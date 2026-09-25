@@ -84,7 +84,7 @@ export class LensAssembly {
       clearcoatRoughness: 0.26,
     });
     const section = new THREE.MeshPhysicalMaterial({ color: '#a4a8b0', metalness: 1, roughness: 0.34 });
-    const chrome = new THREE.MeshPhysicalMaterial({ color: '#f3f5f8', metalness: 1, roughness: 0.06 });
+    const chrome = new THREE.MeshPhysicalMaterial({ color: '#d4d8de', metalness: 1, roughness: 0.26, envMapIntensity: 0.8 });
     const innerBlack = new THREE.MeshStandardMaterial({ color: '#050506', metalness: 0.2, roughness: 0.85 });
     // ground (frosted) element edges: soft grey, reads as glass thickness instead of a black slab
     const edgeMat = new THREE.MeshPhysicalMaterial({ color: '#59616b', metalness: 0, roughness: 0.62, transmission: 0.25, thickness: 0.2, clearcoat: 0.2 });

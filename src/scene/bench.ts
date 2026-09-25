@@ -89,7 +89,7 @@ export function createBench(hw: HardwareMaterials): THREE.Group {
   group.add(slab);
 
   // Thin satin edge band — catches a crisp highlight line along the bench edge.
-  const edge = new THREE.Mesh(new THREE.BoxGeometry(w + 0.06, 0.035, 0.035), hw.satinSteel);
+  const edge = new THREE.Mesh(new THREE.BoxGeometry(w + 0.06, 0.035, 0.035), hw.darkSteel);
   edge.position.set(top.position.x, -0.02, BENCH.zMax + 0.035);
   group.add(edge);
 

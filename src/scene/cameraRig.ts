@@ -15,8 +15,8 @@ const TARGET_BOUNDS = new THREE.Box3(new THREE.Vector3(-4.5, 0.4, -2), new THREE
 
 /** Desktop and portrait framings of the bench. */
 export const VIEWS = {
-  hero: { position: new THREE.Vector3(0.2, 5.6, 11.8), target: new THREE.Vector3(0.9, 1.7, 0) },
-  heroPortrait: { position: new THREE.Vector3(0.9, 9.5, 21), target: new THREE.Vector3(0.7, 1.3, 0) },
+  hero: { position: new THREE.Vector3(-6.2, 5.4, 12.2), target: new THREE.Vector3(1.9, 1.75, 0) },
+  heroPortrait: { position: new THREE.Vector3(-9.5, 9.0, 19.5), target: new THREE.Vector3(1.6, 1.9, 0) },
 };
 
 export function createCameraRig(dom: HTMLElement, aspect: number): CameraRig {

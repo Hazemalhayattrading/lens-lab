@@ -4,7 +4,7 @@ export interface LabLights {
   group: THREE.Group;
   key: THREE.SpotLight;
   /** Warm "set light" that rakes across the diorama like a low evening sun. */
-  sun: THREE.DirectionalLight;
+  sun: THREE.SpotLight;
   setShadowQuality(size: number, enabled: boolean): void;
 }
 
@@ -31,20 +31,15 @@ export function createLights(): LabLights {
   rim.target.position.set(0, 1, 0);
   group.add(rim, rim.target);
 
-  // Warm low "sun" for the diorama (also lights the lab a little from the right)
-  const sun = new THREE.DirectionalLight('#ffc58a', 2.3);
-  sun.position.set(14, 5.2, -7.5);
-  sun.target.position.set(4.5, 1.2, 0);
+  // Warm low "sun": a far, tight spot that only rakes across the diorama (no spill on the lab)
+  const sun = new THREE.SpotLight('#ffc27f', 1900, 0, 0.24, 0.55, 2);
+  sun.position.set(19.5, 6.8, -8.5);
+  sun.target.position.set(5.9, 1.55, -0.2);
   sun.castShadow = true;
   sun.shadow.mapSize.set(2048, 2048);
-  const sc = sun.shadow.camera;
-  sc.left = -5.5;
-  sc.right = 5.5;
-  sc.top = 4.5;
-  sc.bottom = -3;
-  sc.near = 1;
-  sc.far = 26;
-  sun.shadow.bias = -0.0004;
+  sun.shadow.camera.near = 8;
+  sun.shadow.camera.far = 26;
+  sun.shadow.bias = -0.0003;
   sun.shadow.normalBias = 0.02;
   sun.shadow.radius = 3;
   group.add(sun, sun.target);

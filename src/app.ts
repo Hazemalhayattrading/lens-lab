@@ -1,13 +1,15 @@
 import * as THREE from 'three';
 import { MainPipeline } from './render/MainPipeline';
-import { createBench, createHardwareMaterials, createLensCradle, createPostOnCarrier } from './scene/bench';
+import { createBench, createHardwareMaterials, createLensCradle } from './scene/bench';
 import { LensAssembly } from './scene/lens/LensAssembly';
 import { LENS } from './optics/config';
 import { computeOptics } from './optics/opticsState';
 import { createCameraRig } from './scene/cameraRig';
 import { createBackdropTexture, createStudioEnvironment } from './scene/environment';
-import { LAYOUT, OPTICAL_CENTER_X, SENSOR_H, SENSOR_W, worldXForDistance } from './scene/layout';
+import { LAYOUT, OPTICAL_CENTER_X } from './scene/layout';
 import { createLights } from './scene/lights';
+import { createSensorStand, type SensorStand } from './scene/sensorStand';
+import { Diorama } from './scene/diorama/Diorama';
 
 export class LensLabApp {
   readonly renderer: THREE.WebGLRenderer;
@@ -17,6 +19,8 @@ export class LensLabApp {
   private readonly timer = new THREE.Timer();
   private readonly container: HTMLElement;
   readonly lens: LensAssembly;
+  readonly sensor: SensorStand;
+  readonly diorama: Diorama;
   private t = 0;
 
   constructor(container: HTMLElement) {
@@ -46,31 +50,16 @@ export class LensLabApp {
     const hw = createHardwareMaterials();
     this.scene.add(createBench(hw));
 
-    // --- temporary placeholders (replaced in later phases) ---
-    const sensorPost = createPostOnCarrier(hw, LAYOUT.sensorX, LAYOUT.axisY - SENSOR_H / 2 - 0.1);
-    this.scene.add(sensorPost);
-    const sensor = new THREE.Mesh(
-      new THREE.BoxGeometry(0.1, SENSOR_H + 0.3, SENSOR_W + 0.3),
-      new THREE.MeshPhysicalMaterial({ color: '#202226', metalness: 0.5, roughness: 0.3 }),
-    );
-    sensor.position.set(LAYOUT.sensorX - 0.05, LAYOUT.axisY, 0);
-    sensor.castShadow = true;
-    this.scene.add(sensor);
+    this.sensor = createSensorStand(hw);
+    this.scene.add(this.sensor.group);
+
+    this.diorama = new Diorama();
+    this.scene.add(this.diorama.group);
 
     const maxAperture = (LENS.focalLength / 2 / 2) * LAYOUT.kLateral;
     this.lens = new LensAssembly(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ, maxAperture);
     this.scene.add(this.lens.group);
     this.scene.add(createLensCradle(hw, OPTICAL_CENTER_X - 0.1, LAYOUT.axisY, 1.122));
-
-    for (const d of [800, 2000, 8000]) {
-      const m = new THREE.Mesh(
-        new THREE.BoxGeometry(0.5, 0.8, 0.5),
-        new THREE.MeshStandardMaterial({ color: '#8a6' }),
-      );
-      m.position.set(worldXForDistance(d), LAYOUT.axisY - 0.4, 0);
-      m.castShadow = true;
-      this.scene.add(m);
-    }
 
     const aspect = container.clientWidth / Math.max(1, container.clientHeight);
     this.rig = createCameraRig(renderer.domElement, aspect);
