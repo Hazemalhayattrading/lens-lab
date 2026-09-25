@@ -75,3 +75,78 @@ blur disc A·|v_s − v_d|/v_d; f/2 → f/16 shrinks every blur disc by exactly 
 - 2026-09-25: `git push` is refused with 403 (Claude GitHub App not installed on the repo); the GitHub connector is also
   read-only (403 "Resource not accessible by integration"). Work is committed locally after every phase and pushed as
   soon as access is granted.
+
+---
+
+# Phase 2 — Lens & camera encyclopedia
+
+Goal: turn the focus bench into an encyclopedia of real lenses and phone cameras — a researched lens library
+(8 brands), per-lens physics in the 3D lab (zoom, apertures, close focus, field of view, DoF), a telephoto-ready
+scene, smartphone camera teardowns, compare mode and a full English / Arabic (RTL) UI.
+Work happens on branch `claude/intelligent-cori-0yz11n`; every phase is committed and pushed. If resumed: read
+this section and `git log`, then continue with the first unchecked phase.
+
+## Phases
+
+- [ ] **2.0 — Plan & schema**: this section, data model (`src/data/types.ts`), research tooling check.
+- [ ] **2.1 — Lens research**: Canon, Nikon, Sony, Fujifilm, Panasonic, Leica, Sigma, Tamron — 6–10 current lenses each
+  (ultra-wide, standard, portrait, macro, standard zoom, tele zoom, super-tele where the brand has one), official specs +
+  review-based "famous for / strengths / weaknesses / best for", sources per lens → `data/lenses/*.json`.
+- [ ] **2.2 — Phone research**: current flagships (searched, not from memory) of Apple, Samsung, Google + 3 other makers,
+  every camera's sensor / pixel / MP / eq. focal length / aperture / zoom / OIS / AF → `data/phones/phones.json`;
+  `data/SOURCES.md` generated from the data.
+- [ ] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
+  plane, focus breathing fitted to the published max. magnification), sensor formats + CoC, rectilinear FOV,
+  equivalent focal length / aperture, zoom-ring mapping. Unit tests with hand calculations (below).
+- [ ] **2.4 — i18n foundation**: string tables, English / Arabic toggle, full RTL layout, IBM Plex Sans Arabic (bundled).
+- [ ] **2.5 — Telephoto scene**: new depth ladder (0.25 m → ∞) with far subjects (bird on a branch 30 m, tower 200 m,
+  far mountains), wide-angle world for the sensor view, field-of-view cone in 3D, sensor pipeline driven by any lens.
+- [ ] **2.6 — Procedural lenses**: barrel from real dimensions, real element / group counts, special elements highlighted
+  and labelled, zoom groups + zoom ring, adaptive aperture buttons, smooth lens-to-lens transitions.
+- [ ] **2.7 — Lens browser**: brand tabs, category filters, search, cards, detail sheet (specs, text, sources,
+  "unverified" markers), "Load into lab".
+- [ ] **2.8 — Phones**: phone browser, per-camera specs, procedural exploded camera-module teardown (cover glass, lens
+  stack, IR filter, sensor, VCM / OIS) and periscope prism path with animated light.
+- [ ] **2.9 — Explainers**: small-sensor depth of field, equivalent focal length & aperture, periscope zoom,
+  computational photography (portrait mode, multi-frame fusion) — with live visuals.
+- [ ] **2.10 — Compare mode + phone vs camera**: any two lenses / phone cameras side by side: specs, FOV, DoF at the same
+  distance, rendered images; phone-vs-full-frame preset.
+- [ ] **2.11 — Arabic content**: translate all lens / phone descriptions and explainers; RTL polish.
+- [ ] **2.12 — Polish loop**: Playwright screenshots (desktop + mobile) after each visual phase, critique, iterate;
+  lazy loading, quality toggle, zero console errors.
+- [ ] **2.13 — Finish**: README, SOURCES.md, tests, `npm run build`, pull request with screenshots.
+
+## Phase 2 decisions
+
+1. **Research access.** From this container `WebFetch`/`curl` to manufacturer sites (apple.com, canon.com, …), GSMArena,
+   DPReview and Wikipedia is blocked by the network policy; web *search* works. Specs are therefore taken from search
+   results restricted to the manufacturer's own domains (official spec pages / PDFs / press releases), with reviews only
+   to fill gaps, and every product stores the URLs its values came from. Values that could not be confirmed stay `null`
+   and show as **unverified**.
+2. **Optical layouts are illustrative.** Manufacturers publish construction diagrams as images, which cannot be fetched
+   here, so no layout can be claimed to match a diagram. Every cutaway uses the lens' *real* element count, group count
+   and special-element counts; shapes/positions follow the lens type (retrofocus wide, double-Gauss standard, telephoto
+   with a negative rear group, zooms with moving groups) and are labelled **"Illustrative layout"** in the UI.
+3. **Distances are measured from the focal plane** (the ⦶ mark), like MFD specs and distance scales. The thin-lens
+   maths still uses the object distance u from the lens; u is recovered from the sensor distance T with
+   u = (T + √(T² − 4Tf))/2 (the larger root of T = u²/(u − f)).
+4. **Focus breathing / close focus.** Most modern lenses focus internally and shorten their focal length at close range —
+   a fixed-f thin lens cannot reach e.g. 1.4× at 0.26 m with f = 100 mm (it would need 0.41 m). Each lens therefore gets
+   an effective focal length that equals f at ∞ and f_mfd = MFD·m/(1+m)² at its published MFD / max. magnification
+   (the thin-lens conjugate relation T = f(1+m)²/m solved for f), blended as f_eff = f + (f_mfd − f)·(MFD/T).
+   If the magnification is unverified, f stays fixed.
+5. **Circle of confusion** per format: c = diagonal / 1442 (0.030 mm full frame, 0.020 APS-C, 0.015 MFT, 0.038 44×33),
+   the convention used by Phase 1. Phones use the same rule on their (small) sensors.
+6. **Image side is schematic.** A 600 mm lens cannot sit on the bench at the scale of the sensor, so each lens is drawn
+   at its own scale (real length : diameter ratio). The cones between the iris and the sensor are solved so that each
+   blur disc on the sensor is exactly the real CoC (× the sensor's scale) and lands where the subject appears in the
+   sensor view.
+7. **Depth ladder.** The object side keeps a smooth monotonic distance → depth map, now with two scales so both near
+   (macro, 0.8 m cabin, 2 m trees) and far subjects (30 m bird, 200 m tower, ∞ mountains) get room on the diorama.
+   The focus slider covers MFD → ∞ of the loaded lens.
+8. **Wide angles.** The diorama is extended with sensor-only geometry (a wider terrain ring + sky dome) so a 10–16 mm lens
+   sees a complete world in the sensor view while the bench model stays compact; the FOV cone shows what the lens sees.
+9. **Legal.** Brand and product names appear as plain text only. No logos, trademarks as graphics or product photos; all
+   lenses, phones and camera modules are generated procedurally, with a neutral Lens Lab styling.
+10. **Lazy loading.** Lens data (per brand), phone data, the phone teardown scene, compare mode and the Arabic font /
+    content are split into separate chunks and loaded on demand.
