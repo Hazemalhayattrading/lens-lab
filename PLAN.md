@@ -13,8 +13,8 @@ This file is the source of truth for progress. If a session is resumed: read thi
 - [x] **Phase 5 — Light rays + plane of focus**: ray bundles traced from scene points through the elements to the sensor; glowing plane of focus; DoF zone; blur discs on the sensor.
 - [x] **Phase 6 — Sensor view**: render from the lens' optical centre with physically-driven depth-of-field pass; filmstrip; live (inverted) image on the 3D sensor.
 - [x] **Phase 7 — UI & interaction**: glass panels, live readouts, "Plane of Focus" explanation, slider, quick-focus, aperture buttons, exploded toggle, 3D focus-ring dragging, mobile layout.
-- [ ] **Phase 8 — Visual polish loop**: Playwright screenshots (desktop + mobile), critique, iterate.
-- [ ] **Phase 9 — Quality & finish**: performance + quality toggle, zero console errors, physics verification table, README, final `npm run build`.
+- [x] **Phase 8 — Visual polish loop**: Playwright screenshots (desktop + mobile), critique, iterate.
+- [x] **Phase 9 — Quality & finish**: performance + quality toggle, zero console errors, physics verification table, README, final `npm run build`.
 
 ## Key decisions (made autonomously)
 
@@ -27,6 +27,11 @@ This file is the source of truth for progress. If a session is resumed: read thi
    - *Image side* (lens → sensor) is an affine scaling of real millimetres (axial and lateral scale factors). Affine maps keep straight lines straight and keep intersections, so "rays meet in a point" vs. "rays land as a disc" is exact, and the disc drawn on the sensor is the real CoC × lateral scale.
 6. **Rays through the elements** — entry and exit rays are exact for the thin-lens model and pass through the true aperture point at the iris. Inside an (exploded) multi-element stack the path is interpolated so that the bending is shared by the element surfaces (a real exploded lens would no longer focus, so this is the honest visual compromise).
 7. **Where the physical DoF is shown** — the sensor view (filmstrip + live image projected on the 3D sensor) is rendered from the lens' optical centre with the physical field of view (2·atan(18 mm / dᵢ), so focus breathing is real). Every pixel's axial depth → physical distance → thin-lens CoC in mm → blur radius in pixels (image width ↔ 36 mm). The main orbit view stays crisp (it is *our* eye, not the lens), with bloom/ACES/vignette.
+8. **Default view** — exploded lens, focused on the trees (2 m) at f/2 so the effect is obvious at first glance; the intro sweeps the focus from ∞ to 2 m while the camera flies in. Camera looks down the bench from behind the sensor (sensor → lens → diorama read left to right); presets for Lens / Sensor / Diorama close-ups.
+9. **Exploded view** — the six elements spread along the axis while the barrel parts lift up and back out of the light path (a real exploded lens can't be seen through otherwise). The iris stays on the axis because it is the aperture stop.
+10. **Cutaway** — barrel parts are 270° sections with solid machined-aluminium cut faces; glass elements are full so rays always travel through glass.
+11. **UI layout** — the sensor image is drawn by WebGL *under* the DOM, so the filmstrip is a transparent window with no glass panel above it, and the enlarged view dims the scene with a box-shadow instead of a covering backdrop. The 3D camera frames itself inside the free region between panels (projection-centre shift + FOV compensation).
+12. **Quality** — Auto (default) starts at Medium on desktop / Low on phones and steps down under ~38 fps (up once above 58 fps). Presets change DPR cap, MSAA, shadow-map size, transmission resolution and the sensor view's resolution / bokeh sample count. Shadow maps re-render only when the lens moves; shaders are compiled behind the loader.
 
 ## Physics verification (hand calculations)
 
@@ -44,9 +49,29 @@ with the formulas in `src/optics/thinLens.ts` and is asserted in `tests/optics.t
 Extra invariants checked in the tests: CoC equals c exactly at both DoF limits; the CoC formula equals the similar-triangles
 blur disc A·|v_s − v_d|/v_d; f/2 → f/16 shrinks every blur disc by exactly 8×; ring angle ↔ focus distance is invertible.
 
+## Verification log (Phase 8–9)
+
+- Playwright screenshots reviewed after every visual phase (desktop 1600×900, tablet 1024×768, phone 390×844): hero,
+  assembled/exploded, lens/sensor/diorama presets, f/2 vs f/16, enlarged sensor view, mobile Learn drawer.
+  Fixes that came out of the reviews: glass read as black inside the barrel → full elements + frosted edges + fresnel rim;
+  barrel hid the optics when exploded → lift-away choreography; panels covered the sensor → camera safe area;
+  glass panels showed through the enlarged sensor view → panels hidden while it is open; 3D sensor went black after a
+  resolution change → texture re-binding; label collisions → priority-based layout; tablet too cramped → Learn drawer.
+- Automated interaction test (Playwright): quick-focus buttons, aperture buttons, assembled/exploded, slider, dragging
+  the 3D focus ring, sensor modal, keyboard shortcuts, readouts — all pass (e.g. cabin at f/2 shows sharp zone
+  2.9 cm, 78.6–81.5 cm, matching the formulas).
+- Console: no errors or warnings in capture mode and in live mode, for both `npm run dev` and the production build
+  (`vite preview` under `/lens-lab/`).
+- Render cost (one frame incl. shadows, transmission, sensor view, main view, post): ≈274 draw calls, ≈0.37 M
+  triangles (scene ≈0.16 M). Iris blades and cabin props were merged to get there. Real-GPU frame rates could not be
+  measured in this container (software WebGL only), hence the adaptive quality.
+- `npm test` (20 optics tests) and `npm run build` pass.
+
 ## Notes / log
 
 - Live site (after merge to `main` + Pages enabled): https://hazemalhayattrading.github.io/lens-lab/
+- Enable Pages once: repo **Settings → Pages → Build and deployment → Source: GitHub Actions**. The workflow
+  (`.github/workflows/deploy.yml`) runs on every push to `main` and can also be started from the Actions tab.
 - 2026-09-25: `git push` is refused with 403 (Claude GitHub App not installed on the repo); the GitHub connector is also
   read-only (403 "Resource not accessible by integration"). Work is committed locally after every phase and pushed as
   soon as access is granted.

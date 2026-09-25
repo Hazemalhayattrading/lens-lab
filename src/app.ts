@@ -151,10 +151,32 @@ export class LensLabApp {
       this.auto.enabled = false;
       this.state.setFocusDistance(2000, 'init');
       this.frame(1 / 60);
-    } else {
-      this.startIntro();
-      renderer.setAnimationLoop(() => this.frame());
     }
+  }
+
+  /**
+   * Compiles every shader in the background (KHR_parallel_shader_compile where available) so the
+   * first frames don't hitch, then starts the render loop and the intro.
+   */
+  async start(): Promise<void> {
+    if (this.capture) return;
+    try {
+      if (this.renderer.extensions.has('KHR_parallel_shader_compile')) {
+        await Promise.all([
+          this.renderer.compileAsync(this.scene, this.rig.camera),
+          this.renderer.compileAsync(this.scene, this.sensorView.camera),
+        ]);
+      } else {
+        // no parallel compile: compile synchronously while the loader is still up
+        this.renderer.compile(this.scene, this.rig.camera);
+        this.renderer.compile(this.scene, this.sensorView.camera);
+      }
+    } catch {
+      /* compilation happens lazily on the first frame instead */
+    }
+    this.timer.reset();
+    this.startIntro();
+    this.renderer.setAnimationLoop(() => this.frame());
   }
 
   // ------------------------------------------------------------------ intro / camera

@@ -39,6 +39,7 @@ async function boot(): Promise<void> {
   const container = document.getElementById('app')!;
   const app = new LensLabApp(container);
   window.lensLab = app;
+  await app.start();
   if (new URLSearchParams(location.search).has('capture')) {
     loader?.remove();
     return;

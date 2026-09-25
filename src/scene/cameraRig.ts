@@ -78,6 +78,10 @@ export function createCameraRig(dom: HTMLElement, aspect: number): CameraRig {
   } | null = null;
 
   const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+  // the user grabbing the view always wins over a scripted camera move
+  controls.addEventListener('start', () => {
+    fly = null;
+  });
 
   return {
     camera,
