@@ -170,6 +170,45 @@ export function createSensorStand(hw: HardwareMaterials): SensorStand {
     group.add(b);
   }
 
+  // ---- back side: finned heatsink, status LED and a ribbon cable down to the bench ----
+  const sinkMat = new THREE.MeshPhysicalMaterial({ color: '#2a2e35', metalness: 0.85, roughness: 0.38, clearcoat: 0.3 });
+  const sinkBase = new THREE.Mesh(new RoundedBoxGeometry(0.06, boardH * 0.62, boardW * 0.5, 2, 0.015), sinkMat);
+  sinkBase.position.set(x0 - 0.32, cy + 0.02, 0);
+  sinkBase.castShadow = true;
+  group.add(sinkBase);
+  const fins = 9;
+  const finGeo = new THREE.BoxGeometry(0.16, boardH * 0.58, 0.018);
+  const finMesh = new THREE.InstancedMesh(finGeo, sinkMat, fins);
+  const fm = new THREE.Matrix4();
+  for (let i = 0; i < fins; i++) {
+    const z = (i / (fins - 1) - 0.5) * boardW * 0.44;
+    fm.makeTranslation(x0 - 0.43, cy + 0.02, z);
+    finMesh.setMatrixAt(i, fm);
+  }
+  finMesh.castShadow = true;
+  group.add(finMesh);
+  const led = new THREE.Mesh(
+    new THREE.SphereGeometry(0.018, 12, 8),
+    new THREE.MeshStandardMaterial({ color: '#0a2a12', emissive: '#39ff88', emissiveIntensity: 3.5 }),
+  );
+  led.position.set(x0 - 0.2, cy + boardH / 2 - 0.12, boardW / 2 - 0.16);
+  group.add(led);
+  // flat ribbon cable: leaves the board's lower edge, drops to the bench, runs away along it
+  const cableCurve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(x0 - 0.2, cy - boardH / 2 + 0.05, -boardW * 0.25),
+    new THREE.Vector3(x0 - 0.42, cy - boardH / 2 - 0.25, -boardW * 0.3),
+    new THREE.Vector3(x0 - 0.7, 0.35, -boardW * 0.35),
+    new THREE.Vector3(x0 - 1.05, 0.04, -boardW * 0.45),
+    new THREE.Vector3(x0 - 1.9, 0.02, -boardW * 0.6),
+  ]);
+  const cable = new THREE.Mesh(
+    new THREE.TubeGeometry(cableCurve, 64, 0.022, 6, false),
+    new THREE.MeshStandardMaterial({ color: '#6a5a3c', roughness: 0.6, metalness: 0.2 }),
+  );
+  cable.scale.set(1, 1, 1);
+  cable.castShadow = true;
+  group.add(cable);
+
   group.traverse((o) => {
     if ((o as THREE.Mesh).isMesh) (o as THREE.Mesh).receiveShadow = true;
   });

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { rng } from '../../util/noise';
+import { mergeStaticByMaterial } from '../../util/merge';
 
 /**
  * Miniature log cabin. Local frame: footprint centred on the origin, ground at y = 0,
@@ -187,6 +188,8 @@ export function buildCabin(): { group: THREE.Group; light: THREE.PointLight } {
     w.castShadow = true;
     group.add(w);
   }
+
+  mergeStaticByMaterial(group);
 
   // warm interior light spilling out of the windows
   const light = new THREE.PointLight('#ffae55', 0.9, 1.6, 2);

@@ -72,7 +72,7 @@ export function createBench(hw: HardwareMaterials): THREE.Group {
     metalness: 1,
     clearcoat: 0.08,
     clearcoatRoughness: 0.6,
-    envMapIntensity: 0.6,
+    envMapIntensity: 0.4,
   });
   const top = new THREE.Mesh(new THREE.PlaneGeometry(w, d), topMat);
   top.rotation.x = -Math.PI / 2;

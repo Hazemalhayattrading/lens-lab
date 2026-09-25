@@ -13,7 +13,7 @@ export function createLights(): LabLights {
   group.name = 'lights';
 
   // Key: large soft spot from high front-right
-  const key = new THREE.SpotLight('#fff3e4', 1400, 0, 0.46, 1, 2);
+  const key = new THREE.SpotLight('#fff3e4', 1500, 0, 0.4, 1, 2);
   key.position.set(1.2, 13.5, 6.5);
   key.target.position.set(0.9, 0.8, -0.2);
   key.castShadow = true;
@@ -45,7 +45,7 @@ export function createLights(): LabLights {
   group.add(sun, sun.target);
 
   // Very low ambient so shadows never go fully black
-  const hemi = new THREE.HemisphereLight('#b9c8e6', '#0b0a09', 0.35);
+  const hemi = new THREE.HemisphereLight('#b9c8e6', '#0b0a09', 0.22);
   group.add(hemi);
 
   // Lights must illuminate every render layer (main + sensor camera).

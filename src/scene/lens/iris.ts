@@ -8,9 +8,10 @@ import * as THREE from 'three';
  */
 export class Iris {
   readonly group = new THREE.Group();
-  private readonly blades: THREE.Mesh[] = [];
+  private readonly mesh: THREE.Mesh;
   private readonly cols = 18;
   private readonly rows = 3;
+  private readonly perBlade: number;
   private lastRadius = -1;
 
   constructor(
@@ -21,37 +22,35 @@ export class Iris {
     readonly maxRadius: number,
     material: THREE.Material,
   ) {
+    // all blades share one geometry (one draw call); each blade = front + back sheet
+    const W = this.cols + 1;
+    const layer = (this.cols + 1) * (this.rows + 1);
+    this.perBlade = layer * 2;
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(this.perBlade * bladeCount * 3), 3));
+    const idx: number[] = [];
     for (let i = 0; i < bladeCount; i++) {
-      const geo = new THREE.BufferGeometry();
-      const verts = (this.cols + 1) * (this.rows + 1);
-      geo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(verts * 3 * 2), 3));
-      const idx: number[] = [];
-      const W = this.cols + 1;
-      const layer = verts;
+      const o = i * this.perBlade;
       for (let c = 0; c < this.cols; c++) {
         for (let r = 0; r < this.rows; r++) {
-          const a = r * W + c;
+          const a = o + r * W + c;
           const b = a + 1;
           const d = a + W;
           const e = d + 1;
-          // front (+x) face and back (−x) face
           idx.push(a, d, b, b, d, e);
           idx.push(layer + a, layer + b, layer + d, layer + b, layer + e, layer + d);
         }
       }
-      // closing strip along the working edge (row 0) for a visible blade thickness
       for (let c = 0; c < this.cols; c++) {
-        const a = c;
-        const b = c + 1;
+        const a = o + c;
+        const b = a + 1;
         idx.push(a, b, layer + a, b, layer + b, layer + a);
       }
-      geo.setIndex(idx);
-      const mesh = new THREE.Mesh(geo, material);
-      mesh.castShadow = false;
-      mesh.frustumCulled = false;
-      this.blades.push(mesh);
-      this.group.add(mesh);
     }
+    geo.setIndex(idx);
+    this.mesh = new THREE.Mesh(geo, material);
+    this.mesh.frustumCulled = false;
+    this.group.add(this.mesh);
   }
 
   /** Set the aperture radius (world units). */
@@ -69,9 +68,10 @@ export class Iris {
     const swing = Math.acos(openness);
     const W = this.cols + 1;
     const layer = (this.cols + 1) * (this.rows + 1);
+    const pos = this.mesh.geometry.getAttribute('position') as THREE.BufferAttribute;
     for (let i = 0; i < n; i++) {
       const gamma = (i / n) * Math.PI * 2 + swing;
-      const pos = this.blades[i].geometry.getAttribute('position') as THREE.BufferAttribute;
+      const o = i * this.perBlade;
       for (let c = 0; c <= this.cols; c++) {
         const t = c / this.cols;
         const psi = gamma - span / 2 + t * span;
@@ -86,14 +86,13 @@ export class Iris {
           const yy = rho * Math.cos(psi);
           const zz = rho * Math.sin(psi);
           const base = i * 0.0009;
-          const a = row * W + c;
+          const a = o + row * W + c;
           pos.setXYZ(a, base + tilt + 0.004, yy, zz);
           pos.setXYZ(layer + a, base + tilt - 0.004, yy, zz);
         }
       }
-      pos.needsUpdate = true;
-      this.blades[i].geometry.computeVertexNormals();
-      this.blades[i].geometry.computeBoundingSphere();
     }
+    pos.needsUpdate = true;
+    this.mesh.geometry.computeVertexNormals();
   }
 }
