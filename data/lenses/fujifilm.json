@@ -165,5 +165,60 @@
       { "title": "Hands-on with the new Fujifilm XF33mm F1.4 R LM WR", "url": "https://www.dpreview.com/articles/7150439861/fujifilm-xf33mm-f1-4-r-lm-wr-hands-on", "kind": "review" }
     ],
     "checked": "2026-09-25"
+  },
+  {
+    "id": "fujifilm-xf-56mm-f12-r-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF56mmF1.2 R WR",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "portrait-prime",
+    "focalLength": { "min": 56, "max": 56 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 13,
+    "groups": 8,
+    "specialElements": [
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.5, "tele": 0.5 },
+    "maxMagnification": 0.14,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "DC Motor",
+    "weightG": 445,
+    "dimensionsMm": { "diameter": 80, "length": 76 },
+    "filterMm": 67,
+    "releaseYear": 2022,
+    "launchPrice": { "amount": 999.95, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "This is the 2022 'R WR' redesign (replacing the 2014 XF56mmF1.2 R and the R APD variant, both now discontinued); task specifically requested this current version. Dimensions (80 x 76mm) are corroborated across retailer/review listings rather than confirmed verbatim on an official spec-page snippet. Launch price is reported here as $999.95 (matching the DPReview announcement headline and Fujifilm's typical US pricing pattern for this lens tier); note that some 2026 retail listings show a higher current price (~$1,199), which likely reflects a post-launch price increase rather than the original MSRP. Unlike the XF23/33/56mm f/1.4 trio, this lens uses a DC motor, not a linear motor.",
+    "famousFor": "The weather-resistant, redesigned successor to Fujifilm's original 56mm f/1.2, notable as the first X-mount lens with an 11-blade aperture for very smooth bokeh.",
+    "strengths": [
+      "Extremely sharp across the frame at every aperture",
+      "11 rounded aperture blades give very smooth, nearly circular bokeh even stopped down",
+      "Closer minimum focus distance (0.5 m) than the original XF56mmF1.2 R (0.7 m)",
+      "Weather- and dust-sealed construction rated to -10°C"
+    ],
+    "weaknesses": [
+      "Autofocus uses an older DC motor rather than Fujifilm's linear motor, and is slower and noisier than LM-driven primes",
+      "Heavier and pricier than the original XF56mmF1.2 R",
+      "No optical image stabilization"
+    ],
+    "bestFor": [
+      "Portraits with creamy, smooth background blur",
+      "Headshots and studio portraiture",
+      "Low-light events needing a fast 85mm-equivalent view",
+      "Wedding photography wanting shallow depth of field"
+    ],
+    "sources": [
+      { "title": "FUJINON XF56mmF1.2 R WR — product page", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf56mmf12-r-wr/", "kind": "official" },
+      { "title": "FUJINON XF56mmF1.2 R WR — specifications", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf56mmf12-r-wr/specifications/", "kind": "official" },
+      { "title": "Fujifilm Unveils FUJINON XF56mmF1.2 R WR Mid-Telephoto Lens", "url": "https://www.fujifilm.com/us/en/news/digital-cameras/fujifilm-unveils-fujinon-xf56-lens", "kind": "press" },
+      { "title": "Fujinon XF 56mm F1.2 R WR Review", "url": "https://dustinabbott.net/2024/05/fujinon-xf-56mm-f1-2-r-wr-review/", "kind": "review" },
+      { "title": "Fujifilm announces 56mm F1.2 WR R lens for X-mount", "url": "https://www.dpreview.com/news/3254467320/fujifilm-announces-1-200-56mm-f1-2-wr-r-lens-for-x-mount", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
   }
 ]

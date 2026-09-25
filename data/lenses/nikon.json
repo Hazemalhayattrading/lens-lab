@@ -1,0 +1,561 @@
+[
+  {
+    "id": "nikon-z-14-24mm-f28-s",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 14-24mm f/2.8 S",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": { "min": 14, "max": 24 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 16,
+    "groups": 11,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 4 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 3 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.28, "tele": 0.28 },
+    "maxMagnification": null,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Stepping motor (STM)",
+    "weightG": 650,
+    "dimensionsMm": { "diameter": 88.5, "length": 124.5 },
+    "filterMm": 112,
+    "releaseYear": 2020,
+    "launchPrice": { "amount": 2399.95, "currency": "USD" },
+    "zoomMechanism": null,
+    "focusMechanism": "internal",
+    "notes": "Aperture-blade count (9) and minimum focus distance (0.28 m) are corroborated by DPReview/Photography Life reviews rather than an explicit Nikon spec table. Diameter (88.5 mm) and launch price ($2,399.95) come from third-party specification databases (Imaging Resource, Lens Atlas) since Nikon's own spec tables did not render numeric values in search results. Maximum magnification is not published and is left null.",
+    "famousFor": "Marketed at launch as the world's shortest and lightest full-frame f/2.8 ultra-wide zoom, replacing the F-mount 14-24mm as Nikon's benchmark ultra-wide for landscape and astro work.",
+    "strengths": [
+      "Exceptional center-to-edge sharpness from f/2.8",
+      "Very well controlled coma, a favorite for astrophotography",
+      "Compact and light for an f/2.8 ultra-wide zoom",
+      "Weather-sealed with a fluorine-coated front element"
+    ],
+    "weaknesses": [
+      "Bulbous front element requires large, expensive 112mm filters",
+      "Some vignetting and distortion wide open (correctable in software)",
+      "Premium price"
+    ],
+    "bestFor": [
+      "Astrophotography of the Milky Way",
+      "Interior and architecture photography",
+      "Sweeping landscape vistas",
+      "Environmental portraits with dramatic wide-angle perspective"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z 14-24mm f/2.8 S | Ultra-Wide Zoom Lens", "url": "https://www.nikonusa.com/p/nikkor-z-14-24mm-f28-s/20097/overview", "kind": "official" },
+      { "title": "NIKKOR Z 14-24mm f/2.8 S | Z mount Lenses | Nikon Consumer", "url": "https://imaging.nikon.com/imaging/lineup/lens/z-mount/z_14-24mmf28s/", "kind": "official" },
+      { "title": "Nikon releases the fast, ultrawide-angle zoom lens NIKKOR Z 14-24mm f/2.8 S", "url": "https://www.nikon.com/company/news/2020/0916_lens_02/", "kind": "press" },
+      { "title": "Nikon Z 14-24mm F2.8 S field review", "url": "https://www.dpreview.com/reviews/nikon-z-14-24mm-f2-8-s-field-review", "kind": "review" },
+      { "title": "Nikon Z 14-24mm f/2.8 S Review", "url": "https://photographylife.com/reviews/nikon-z-14-24mm-f2-8-s/4", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-35mm-f12-s",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 35mm f/1.2 S",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "wide-prime",
+    "focalLength": { "min": 35, "max": 35 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 17,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 3 },
+      { "kind": "low-dispersion", "label": "Aspherical ED", "count": 1 },
+      { "kind": "aspherical", "label": "Aspherical ED", "count": 1 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.3, "tele": 0.3 },
+    "maxMagnification": 0.2,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Dual stepping motors (Multi-Focus System)",
+    "weightG": 1060,
+    "dimensionsMm": { "diameter": 90, "length": 150 },
+    "filterMm": 82,
+    "releaseYear": 2025,
+    "launchPrice": { "amount": 3799.95, "currency": "USD" },
+    "focusMechanism": null,
+    "notes": "Announced 2025-02-05, the newest member of Nikon's f/1.2 S-Line trio (35/50/85mm); this is the current, only version, so no replacement judgment was needed. Weight (1060 g), minimum focus distance (0.3 m) and maximum magnification (0.2x) are corroborated across multiple reviews (Photography Life, Photography Blog, DPReview, CineD) but did not render as explicit numeric values on Nikon's own spec pages in search results. Minimum aperture (smallest f-stop) was not found in any source reviewed and is left null.",
+    "famousFor": "The first f/1.2 autofocus wide-angle prime in Nikon's own lineup, extending the S-Line f/1.2 trio (35/50/85mm) to a dedicated environmental-portrait and reportage focal length.",
+    "strengths": [
+      "Very sharp even wide open at f/1.2",
+      "Strong background separation unusual for a 35mm focal length",
+      "Dual stepping-motor autofocus is fast and near-silent",
+      "Robust weather sealing and S-Line build quality"
+    ],
+    "weaknesses": [
+      "Large and heavy for a 35mm prime, similar in size to the 50mm f/1.2 S",
+      "Very expensive compared with Nikon's own f/1.4 and f/1.8 35mm lenses",
+      "Some focus breathing noted by reviewers"
+    ],
+    "bestFor": [
+      "Environmental portraits with creamy background blur",
+      "Low-light reportage and event photography",
+      "Astro and night landscapes with a wider field of view than 50mm",
+      "Video work benefiting from quiet, precise autofocus"
+    ],
+    "sources": [
+      { "title": "Nikon releases the NIKKOR Z 35mm f/1.2 S", "url": "https://www.nikon.com/company/news/2025/0205_imaging_01.html", "kind": "press" },
+      { "title": "NIKKOR Z 35mm f/1.2 S Lens | Interchangeable Lens for Nikon Mirrorless Cameras", "url": "https://www.nikonusa.com/p/nikkor-z-35mm-f12-s/20124/overview", "kind": "official" },
+      { "title": "Inside the numbers on the new NIKKOR Z 35mm f/1.2 S", "url": "https://www.nikon.co.uk/en_GB/learn-and-explore/magazine/gear/inside-the-numbers-on-the-new-nikkor-z-35mm-f1.2-s", "kind": "official" },
+      { "title": "Nikon Z 35mm f/1.2 S Review", "url": "https://photographylife.com/reviews/nikon-z-35mm-f-1-2-s-lens", "kind": "review" },
+      { "title": "Nikon Z 35mm f1.2 S review", "url": "https://www.cameralabs.com/nikon-z-35mm-f1-2-s-review/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-50mm-f12-s",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 50mm f/1.2 S",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": { "min": 50, "max": 50 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 17,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 2 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 3 }
+    ],
+    "apertureBlades": null,
+    "minFocusM": { "wide": 0.45, "tele": 0.45 },
+    "maxMagnification": 0.15,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Stepping motor (STM)",
+    "weightG": 1090,
+    "dimensionsMm": { "diameter": 89.5, "length": 150 },
+    "filterMm": 82,
+    "releaseYear": 2020,
+    "launchPrice": { "amount": 2099.95, "currency": "USD" },
+    "focusMechanism": null,
+    "notes": "Weight, dimensions, minimum focus distance and magnification were not captured from Nikon's own spec tables in search results (they rendered as blank placeholders); values instead come from Photography Life's review and corroborating sources (DPReview, B&H, Wikipedia). Minimum aperture and aperture-blade count were not found in any source reviewed and are left null.",
+    "famousFor": "One of the first three native f/1.2 S-Line primes (alongside the 35mm and 85mm), pitched as Nikon's answer to Canon's and Sony's f/1.2 50mm lenses but notably larger and heavier than either rival.",
+    "strengths": [
+      "Outstanding sharpness and contrast wide open at f/1.2",
+      "Very well controlled coma and aberrations for such a fast lens",
+      "Smooth, pleasing bokeh",
+      "Robust, weather-sealed S-Line build"
+    ],
+    "weaknesses": [
+      "Notably larger and heavier than competing f/1.2 50mm primes from Canon and Sony",
+      "Modest close-up magnification (0.15x) for a modern prime",
+      "Expensive"
+    ],
+    "bestFor": [
+      "Portraits with creamy background blur",
+      "Low-light event and wedding photography",
+      "Environmental portraits needing strong subject isolation",
+      "General-purpose fast-prime work on a Z body"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z 50mm f/1.2 S | Fast Interchangeable Lens", "url": "https://www.nikonusa.com/p/nikkor-z-50mm-f12-s/20095/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z 50mm f/1.2 S, a fast, standard prime lens", "url": "https://www.nikon.com/company/news/2020/0916_lens_01/", "kind": "press" },
+      { "title": "Nikon Z 50mm f/1.2 S Review", "url": "https://photographylife.com/reviews/nikon-z-50mm-f-1-2-s", "kind": "review" },
+      { "title": "Nikon Nikkor Z 50mm F1.2 S", "url": "https://www.dpreview.com/products/nikon/lenses/nikon_z_50_1p2_s/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-58mm-f095-s-noct",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 58mm f/0.95 S Noct",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": { "min": 58, "max": 58 },
+    "maxAperture": { "wide": 0.95, "tele": 0.95 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 17,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 4 },
+      { "kind": "aspherical", "label": "Aspherical (incl. high-refractive-index ground aspherical)", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.5, "tele": 0.5 },
+    "maxMagnification": 0.194,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Manual focus",
+    "weightG": 2000,
+    "dimensionsMm": { "diameter": 102, "length": 153 },
+    "filterMm": 82,
+    "releaseYear": 2019,
+    "launchPrice": { "amount": 7996.95, "currency": "USD" },
+    "focusMechanism": null,
+    "notes": "Launch price ($7,996.95) as reported at announcement by Newsshooter, citing Nikon's own press materials; many retailers round this to $8,000. Purely manual-focus lens, no autofocus motor.",
+    "famousFor": "The fastest NIKKOR ever made (f/0.95) and a modern reinterpretation of the legendary 1977 Noct-Nikkor 58mm f/1.2, built purely for extreme-aperture manual-focus rendering rather than convenience.",
+    "strengths": [
+      "Exceptionally sharp even at f/0.95, unusual for such an extreme aperture",
+      "Creamy, almost three-dimensional bokeh with very low coma and spherical aberration",
+      "Superb build quality with full weather sealing",
+      "A benchmark lens for astro and night portraiture"
+    ],
+    "weaknesses": [
+      "Extremely heavy (2 kg) and large for a 58mm prime",
+      "Manual focus only; focusing precisely at f/0.95 is challenging even with focus peaking",
+      "Very expensive"
+    ],
+    "bestFor": [
+      "Astrophotography and night portraits",
+      "Creative, extremely shallow depth-of-field portraiture",
+      "Collectors and enthusiasts seeking Nikon's technical flagship prime",
+      "Fine-art and cinematic still photography"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z 58mm f/0.95 S Noct | Pro Manual Focus Lens", "url": "https://www.nikonusa.com/p/nikkor-z-58mm-f095-s-noct/20086/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z 58mm f/0.95 S Noct", "url": "https://www.nikon.com/company/news/2019/1010_lens_02.html", "kind": "press" },
+      { "title": "NIKKOR Z 58mm f/0.95 S Noct to cost $7,996.95 USD", "url": "https://www.newsshooter.com/2019/10/10/nikkor-z-58mm-f-0-95-s-noct-to-cost-7996-95-usd/", "kind": "press" },
+      { "title": "Nikon Nikkor Z 58mm F0.95 S Noct Lens review: Ultra-high speed with high sharpness", "url": "https://www.dxomark.com/nikon-nikkor-z-58mm-f0-95-s-noct-lens-review-ultra-high-speed-with-high-sharpness/", "kind": "review" },
+      { "title": "Nikon 58mm f/0.95 Noct: A Wedding Photographer's First Impressions", "url": "https://petapixel.com/2020/01/30/nikon-58mm-f-0-95-noct-a-wedding-photographers-first-impressions/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-85mm-f12-s",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 85mm f/1.2 S",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "portrait-prime",
+    "focalLength": { "min": 85, "max": 85 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 15,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 1 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.85, "tele": 0.85 },
+    "maxMagnification": null,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Dual stepping motors (Multi-Focus System)",
+    "weightG": 1160,
+    "dimensionsMm": { "diameter": 102.5, "length": 141.5 },
+    "filterMm": 82,
+    "releaseYear": 2023,
+    "launchPrice": { "amount": 2799.95, "currency": "USD" },
+    "focusMechanism": null,
+    "notes": "Weight, dimensions, filter size and close-focus distance were confirmed via Nikon Middle East & Africa's regional product page and cross-checked against third-party specification databases, since Nikon USA/imaging.nikon.com's own tables did not render numeric values in search results. Maximum magnification was not found in any source and is left null.",
+    "famousFor": "Nikon's flagship native-mount 85mm portrait prime, widely reviewed as one of the best 85mm lenses on any mount for sharpness and bokeh quality.",
+    "strengths": [
+      "Exceptional sharpness wide open at f/1.2",
+      "Beautiful, smooth bokeh with a gradual out-of-focus transition",
+      "Fast, quiet, accurate autofocus via dual stepping motors",
+      "Strong weather sealing"
+    ],
+    "weaknesses": [
+      "Large, heavy, and expensive next to Nikon's own f/1.8 S version",
+      "Moderate focus breathing",
+      "0.85 m close-focus distance limits tight headshot framing"
+    ],
+    "bestFor": [
+      "Studio and outdoor portraits with creamy background blur",
+      "Wedding and event photography",
+      "Fashion editorial work",
+      "Low-light portraiture"
+    ],
+    "sources": [
+      { "title": "Fast f/1.2 85mm Prime Lens for Photo and Video | NIKKOR Z 85mm f/1.2 S", "url": "https://www.nikonusa.com/p/nikkor-z-85mm-f12-s/20114/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z 85mm f/1.2 S", "url": "https://www.nikon.com/company/news/2023/0207_lens_01.html", "kind": "press" },
+      { "title": "NIKKOR Z 85mm f/1.2 S Specifications", "url": "https://www.nikon-mea.com/nikkor-z-85mm-f-1-2-s", "kind": "official" },
+      { "title": "Nikon Z 85mm f/1.2 S Review", "url": "https://photographylife.com/reviews/nikon-z-85mm-f-1-2-s", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-mc-105mm-f28-vr-s",
+    "brand": "Nikon",
+    "name": "NIKKOR Z MC 105mm f/2.8 VR S",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "macro",
+    "focalLength": { "min": 105, "max": 105 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 32, "tele": 32 },
+    "elements": 16,
+    "groups": 11,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 3 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 1 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.29, "tele": 0.29 },
+    "maxMagnification": 1,
+    "stabilization": { "optical": true, "stops": 4.5 },
+    "autofocus": "Stepping motor (STM)",
+    "weightG": 630,
+    "dimensionsMm": { "diameter": 85, "length": 140 },
+    "filterMm": 62,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 999.95, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "The 4.5-stop VR rating reflects Nikon's 5-axis Synchro VR figure quoted when paired with a compatible Z body; a lens-only CIPA rating was not separately stated in the sources reviewed.",
+    "famousFor": "Nikon's first native Z-mount telephoto macro lens, widely praised as one of the sharpest macro lenses available, with true 1:1 life-size magnification and strong general-purpose portrait performance.",
+    "strengths": [
+      "Razor-sharp from close-up to infinity across the aperture range",
+      "Smooth, creamy bokeh for a macro lens",
+      "Effective VR aids handheld macro and general shooting",
+      "Weather-sealed with fluorine coating"
+    ],
+    "weaknesses": [
+      "Slightly busier bokeh on bright specular highlights at narrow apertures",
+      "f/2.8 trades some background blur potential versus faster non-macro portrait primes",
+      "Focus can hunt in very low-contrast close-up scenes without the limiter set correctly"
+    ],
+    "bestFor": [
+      "Life-size macro of insects and small objects",
+      "Product and still-life photography",
+      "Portraits with flattering telephoto compression",
+      "Nature close-ups of flowers and textures"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z MC 105mm f/2.8 VR S | macro lens", "url": "https://www.nikonusa.com/p/nikkor-z-mc-105mm-f28-vr-s/20100/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z MC 105mm f/2.8 VR S", "url": "https://www.nikon.com/company/news/2021/0602_lens_02/", "kind": "press" },
+      { "title": "Nikon Z MC 105mm f/2.8 VR S Macro Review", "url": "https://photographylife.com/reviews/nikon-z-mc-105mm-f-2-8-vr-s-macro/2", "kind": "review" },
+      { "title": "Nikon Z MC 105mm f/2.8 VR S review", "url": "https://www.digitalcameraworld.com/reviews/nikon-z-mc-105mm-f28-vr-s-review", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-24-70mm-f28-s-ii",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 24-70mm f/2.8 S II",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": { "min": 24, "max": 70 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 14,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 2 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.24, "tele": 0.33 },
+    "maxMagnification": 0.32,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Silky Swift VCM (voice coil motor)",
+    "weightG": 675,
+    "dimensionsMm": { "diameter": 84, "length": 142 },
+    "filterMm": 77,
+    "releaseYear": 2025,
+    "launchPrice": { "amount": 2799.95, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "focusMechanism": null,
+    "notes": "Replaces the original NIKKOR Z 24-70mm f/2.8 S (2019), which is no longer Nikon's current standard-zoom flagship; researched here as the S II per the current-product instruction. Minimum aperture (f/22) is from a Photography Life/ePHOTOzine review rather than an official Nikon spec table. Maximum magnification (0.32x) is the peak value reached at 70mm; at 24mm it is 0.21x.",
+    "famousFor": "Announced in 2025 as the lightest 24-70mm f/2.8 in its class and the first standard zoom with an internal zoom mechanism, plus Nikon's new high-speed Silky Swift VCM autofocus.",
+    "strengths": [
+      "Lightest 24-70mm f/2.8 among full-frame mirrorless rivals",
+      "Internal zoom improves handling, balance and weather sealing versus the extending original",
+      "Autofocus roughly 5x faster than the original S, with far better zoom-tracking",
+      "Focus breathing reduced to less than half of the previous generation"
+    ],
+    "weaknesses": [
+      "Costlier than the original S at launch",
+      "Internal zoom means a denser, more complex barrel",
+      "Still a large, professional-grade lens rather than a compact option"
+    ],
+    "bestFor": [
+      "Wedding and event photojournalism",
+      "Everyday professional walk-around shooting",
+      "Video work benefiting from minimal focus/zoom breathing",
+      "General portrait-to-environmental coverage in one lens"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z 24-70mm f/2.8 S II | Mirrorless Interchangeable Lens", "url": "https://www.nikonusa.com/p/nikkor-z-24-70mm-f28-s-ii/20129/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z 24-70mm f/2.8 S II", "url": "https://www.nikon.com/company/news/2025/0822_imaging_01/", "kind": "press" },
+      { "title": "All the stats that matter on the new NIKKOR Z 24-70mm f/2.8 S II", "url": "https://www.nikon.co.uk/en_GB/learn-and-explore/magazine/gear/all-the-stats-that-matter-on-the-new-nikkor-z-24-70mm-f2.8-s-ii", "kind": "official" },
+      { "title": "Nikon Z 24-70mm f/2.8 S II Review", "url": "https://photographylife.com/reviews/nikon-z-24-70mm-f-2-8-s-ii", "kind": "review" },
+      { "title": "Nikon Z 24-70mm f/2.8 S II review", "url": "https://www.digitalcameraworld.com/cameras/lenses/nikon-z-24-70mm-f-2-8-s-ii-review-ordinary-in-terms-of-standard-zoom-range-extraordinary-when-it-comes-to-everything-else", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-70-200mm-f28-vr-s-ii",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 70-200mm f/2.8 VR S II",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": { "min": 70, "max": 200 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 18,
+    "groups": 16,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 1 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 1 },
+      { "kind": "low-dispersion", "label": "Aspherical ED", "count": 1 },
+      { "kind": "aspherical", "label": "Aspherical ED", "count": 1 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 },
+      { "kind": "fluorite", "label": "Fluorite", "count": 1 },
+      { "kind": "other", "label": "SR (short-wavelength refractive)", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.38, "tele": 0.8 },
+    "maxMagnification": null,
+    "stabilization": { "optical": true, "stops": null },
+    "autofocus": "Silky Swift VCM (voice coil motor)",
+    "weightG": 998,
+    "dimensionsMm": { "diameter": 90, "length": 208 },
+    "filterMm": 77,
+    "releaseYear": 2026,
+    "launchPrice": { "amount": 3199.95, "currency": "USD" },
+    "zoomMechanism": null,
+    "focusMechanism": null,
+    "notes": "This II version was announced 2026-02-17 and shipped from late March 2026, replacing the original NIKKOR Z 70-200mm f/2.8 VR S (2020); researched here as the current model per the task's replacement instruction. About 26% lighter than the original (998 g vs. approx. 1,360 g). Minimum aperture, exact VR stop rating, maximum magnification and zoom mechanism (internal vs. extending) were not stated in the sources reviewed and are left null.",
+    "famousFor": "A 2026 second-generation redesign of Nikon's flagship 70-200mm f/2.8, breaking the 1kg barrier for the class while adding Nikon's fastest-yet Silky Swift VCM autofocus.",
+    "strengths": [
+      "Roughly 26% lighter than the original S while improving optics",
+      "Autofocus approximately 3.5x faster with much better zoom-tracking",
+      "11-blade aperture for smoother bokeh (up from 9 on the original)",
+      "Closer minimum focus distance than the original"
+    ],
+    "weaknesses": [
+      "More expensive than the lens it replaces",
+      "Still a large professional zoom despite the weight savings",
+      "Very new at review time, so long-term reliability data is limited"
+    ],
+    "bestFor": [
+      "Sports and action photography",
+      "Wildlife at moderate distances",
+      "Wedding and event coverage",
+      "Portraits with telephoto compression"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z 70-200mm f/2.8 VR S II Zoom Lens for Nikon Z Mirrorless Cameras", "url": "https://www.nikonusa.com/p/nikkor-z-70-200mm-f28-vr-s-ii/20130/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z 70-200mm f/2.8 VR S II", "url": "https://www.nikon.com/company/news/2026/0224_imaging_01/", "kind": "press" },
+      { "title": "The all-new NIKKOR Z 70-200mm f/2.8 VR S II", "url": "https://www.nikon.co.uk/en_GB/learn-and-explore/magazine/gear/the-all-new-nikkor-z-70-200mm-f2.8-vr-s-ii", "kind": "official" },
+      { "title": "Nikon Z 70-200mm f/2.8 VR S II review: a flawless workhorse lens", "url": "https://www.techradar.com/cameras/camera-lenses/nikon-z-70-200mm-f-2-8-vr-s-ii-review", "kind": "review" },
+      { "title": "Nikon Z 70-200mm f2.8 S VR II Review: Nikon's Best Zoom Yet", "url": "https://www.thephoblographer.com/2026/02/23/nikon-z-70-200mm-f2-8-s-vr-ii-review-nikons-best-zoom-yet/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-180-600mm-f56-63-vr",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 180-600mm f/5.6-6.3 VR",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 180, "max": 600 },
+    "maxAperture": { "wide": 5.6, "tele": 6.3 },
+    "minAperture": { "wide": 32, "tele": 36 },
+    "elements": 25,
+    "groups": 17,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 6 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 1 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 1.3, "tele": 2.4 },
+    "maxMagnification": 0.25,
+    "stabilization": { "optical": true, "stops": 5.5 },
+    "autofocus": "Stepping motor (STM)",
+    "weightG": 1955,
+    "dimensionsMm": { "diameter": 110, "length": 315.5 },
+    "filterMm": 95,
+    "releaseYear": 2023,
+    "launchPrice": { "amount": 1699.95, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "focusMechanism": null,
+    "notes": "Weight is stated as 1955 g in Nikon's press release; some Nikon spec renderings instead show approx. 1995 g without collar / 2140 g with a tripod collar attached. The press-release figure is used here and the discrepancy is flagged. Compatible with Nikon's Z teleconverters for up to 840mm (1.4x) or 1200mm (2.0x), with autofocus and sharpness trade-offs.",
+    "famousFor": "Nikon's first native super-telephoto zoom reaching 600mm, praised as an affordable, all-internal-zoom alternative to fixed super-telephoto primes for wildlife and sports.",
+    "strengths": [
+      "Sharp across the entire zoom range, even at 600mm",
+      "All-internal zoom design resists dust/moisture ingress and doesn't shift balance while zooming",
+      "Relatively affordable for a lens reaching 600mm",
+      "Effective 5.5-stop VR aids handholding"
+    ],
+    "weaknesses": [
+      "Variable, relatively slow aperture (f/5.6-6.3) limits low light and background blur versus primes",
+      "Still fairly heavy for prolonged handheld use",
+      "Teleconverter use brings autofocus and sharpness compromises"
+    ],
+    "bestFor": [
+      "Wildlife and bird photography",
+      "Sports and airshow photography from a distance",
+      "Handheld super-telephoto work without a monopod",
+      "Travel and safari trips where multiple primes aren't practical"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z 180-600mm f/5.6-6.3 VR | Nikon Mirrorless Super-Telephoto Lens", "url": "https://www.nikonusa.com/p/nikkor-z-180-600mm-f56-63-vr/20117/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z 180-600mm f/5.6-6.3 VR", "url": "https://www.nikon.com/company/news/2023/0621_lens_01.html", "kind": "press" },
+      { "title": "Nikon Z 180-600mm f/5.6-6.3 VR review", "url": "https://www.digitalcameraworld.com/reviews/nikon-z-180-600mm-f56-63-vr-review", "kind": "review" },
+      { "title": "Nikon Z 180-600mm f/5.6-6.3 VR Review", "url": "https://photographylife.com/reviews/nikon-z-180-600mm-f-5-6-6-3-vr", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "nikon-z-600mm-f4-tc-vr-s",
+    "brand": "Nikon",
+    "name": "NIKKOR Z 600mm f/4 TC VR S",
+    "mount": "Nikon Z",
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 600, "max": 600 },
+    "maxAperture": { "wide": 4, "tele": 4 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 26,
+    "groups": 20,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 3 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 1 },
+      { "kind": "fluorite", "label": "Fluorite", "count": 2 },
+      { "kind": "other", "label": "SR (short-wavelength refractive)", "count": 2 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 4.3, "tele": 4.3 },
+    "maxMagnification": null,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Silky Swift VCM (voice coil motor)",
+    "weightG": 3260,
+    "dimensionsMm": { "diameter": 165, "length": 437 },
+    "filterMm": null,
+    "releaseYear": 2022,
+    "launchPrice": { "amount": 15499.95, "currency": "USD" },
+    "focusMechanism": null,
+    "notes": "Built-in 1.4x teleconverter creates a second 840mm f/5.6 lens with no external element to attach; can be combined with the separate Z Teleconverter TC-2.0x for 1200mm f/8 (1680mm f/11 with both engaged). No front filter thread; a rear drop-in holder takes 46mm screw-in filters instead (filterMm left null accordingly). VR is rated at 5.0 stops on its own, rising to 5.5 with Synchro VR on compatible bodies (e.g. Z9). Dimensions, aperture-blade count and exact element/group count come from Imaging Resource's specifications database since Nikon's own spec table did not render numeric values in search results. Minimum aperture and maximum magnification were not found and are left null.",
+    "famousFor": "The first super-telephoto NIKKOR Z with a built-in teleconverter, delivering both 600mm f/4 and 840mm f/5.6 from one lens while being notably lighter than Nikon's F-mount 600mm f/4 predecessors.",
+    "strengths": [
+      "Outstanding center-to-edge sharpness wide open, even with the built-in 1.4x TC engaged",
+      "Significantly lighter than the F-mount AF-S 600mm f/4E FL ED VR",
+      "Fast, quiet Silky Swift VCM autofocus",
+      "Extends to 840mm (or up to 1680mm with an external 2.0x TC) without swapping lenses"
+    ],
+    "weaknesses": [
+      "Extremely expensive",
+      "Still large and heavy for handholding over long sessions",
+      "Rear drop-in filter system limits filter choice compared with front-thread lenses"
+    ],
+    "bestFor": [
+      "Professional wildlife and bird photography",
+      "Sports photography from a distance (sidelines, stadiums)",
+      "Air shows and aviation photography",
+      "Situations needing both 600mm and 840mm reach without a lens change"
+    ],
+    "sources": [
+      { "title": "NIKKOR Z 600mm f/4 TC VR S Lens | Interchangeable Lens for Nikon Mirrorless", "url": "https://www.nikonusa.com/p/nikkor-z-600mm-f4-tc-vr-s/20113/overview", "kind": "official" },
+      { "title": "Nikon releases the NIKKOR Z 600mm f/4 TC VR S", "url": "https://www.nikon.com/company/news/2022/1102_lens_01.html", "kind": "press" },
+      { "title": "Nikon Z 600mm f/4 TC VR S Nikkor - Specifications", "url": "https://www.imaging-resource.com/lenses/nikon-z-600mm-f-4-tc-vr-s-nikkor/specifications/", "kind": "retailer" },
+      { "title": "Nikon Z 600mm f/4 S TC VR Review: Can a Lens Be Worth $15,500?", "url": "https://petapixel.com/2023/12/16/nikon-z-600mm-f-4-s-tc-vr-review-can-a-lens-be-worth-15500/", "kind": "review" },
+      { "title": "Nikon Z 600mm f/4 TC VR S Review", "url": "https://photographylife.com/reviews/nikon-z-600mm-f-4-tc-vr-s", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  }
+]

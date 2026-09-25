@@ -89,10 +89,10 @@ this section and `git log`, then continue with the first unchecked phase.
 ## Phases
 
 - [x] **2.0 — Plan & schema**: this section, data model (`src/data/types.ts`), research tooling check.
-- [ ] **2.1 — Lens research**: Canon, Nikon, Sony, Fujifilm, Panasonic, Leica, Sigma, Tamron — 6–10 current lenses each
+- [~] **2.1 — Lens research** — *partial, see "Research status" below*: Canon, Nikon, Sony, Fujifilm, Panasonic, Leica, Sigma, Tamron — 6–10 current lenses each
   (ultra-wide, standard, portrait, macro, standard zoom, tele zoom, super-tele where the brand has one), official specs +
   review-based "famous for / strengths / weaknesses / best for", sources per lens → `data/lenses/*.json`.
-- [ ] **2.2 — Phone research**: current flagships (searched, not from memory) of Apple, Samsung, Google + 3 other makers,
+- [~] **2.2 — Phone research** — *partial, see "Research status" below*: current flagships (searched, not from memory) of Apple, Samsung, Google + 3 other makers,
   every camera's sensor / pixel / MP / eq. focal length / aperture / zoom / OIS / AF → `data/phones/phones.json`;
   `data/SOURCES.md` generated from the data.
 - [x] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
@@ -167,3 +167,27 @@ Every row was worked out by hand (checked with a pocket-calculator script) and i
 | **L** depth ladder | u(d) = 1 − (200/d)^0.3: u(2 m) = 1 − 0.1^0.3 = **0.4988**; d(½) = 200·0.5^(−1/0.3) = **2015.9 mm**; 0.3 m → 0.115, 30 m → 0.778, 200 m → 0.874, ∞ → 1 | ✅ |
 | **M** apertures | f/1.2–16 → buttons **1.2, 2, 4, 8, 16** (full stops spread evenly in stop space) · f/0.95–16 → **0.95, 2, 4, 8, 16** | ✅ |
 | **N** image-side cones | aperture radius r at D in front of the sensor, wanted disc b, t = b/2r: far subject a = tD/(1 + t) in front, near subject a = tD/(1 − t) behind; similar triangles give back 2r·a/(D ∓ a) = b exactly | ✅ |
+
+## Research status (updated 2026-09-25)
+
+Researched with the method in `data/RESEARCH.md`, validated by `tests/data.test.ts`, listed with sources in
+`data/SOURCES.md` (`npm run sources`).
+
+| File | Done | Still to research |
+|---|---|---|
+| `data/lenses/canon.json` | 10/10 | — |
+| `data/lenses/nikon.json` | 10/10 | — |
+| `data/lenses/sony.json` | 3/10 (16-35 GM II, 24 GM, 50 GM) | 85 GM II, 100 Macro GM / 90 Macro G, 24-70 GM II, 70-200 GM II, 200-600 G, 400-800 G, 600 GM |
+| `data/lenses/fujifilm.json` | 4/9 (8-16, 23, 33, 56) | XF80 Macro, XF16-55 II, XF50-140, XF150-600, GF110 |
+| `data/lenses/panasonic.json` | 0/9 | all (list in the task prompts, see git history of this section) |
+| `data/lenses/leica.json` | 0/10 | all |
+| `data/lenses/sigma.json` | 0/10 | all |
+| `data/lenses/tamron.json` | 0/10 | all |
+| `data/phones/phones-apple-samsung-google.json` | 3/3 (iPhone 18 Pro / Pro Max, Galaxy S26 Ultra, Pixel 11 Pro / Pro XL) | — |
+| `data/phones/phones-xiaomi-vivo-huawei.json` | 0/3 | Xiaomi, vivo, Huawei flagships (search for the current models first) |
+
+**Blocker:** this session's web-search budget (200 searches, `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`) is used up,
+and direct page fetches are blocked by the network policy, so the remaining products cannot be verified here.
+Nothing is filled in from memory. To finish: run the remaining research in a new session (fresh budget) or with a
+higher budget — one agent per file, each reading `data/RESEARCH.md` first and appending to the existing file.
+The app loads whatever is in `data/`, so new files/entries appear in the library without code changes.

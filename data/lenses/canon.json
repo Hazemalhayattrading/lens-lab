@@ -1,0 +1,544 @@
+[
+  {
+    "id": "canon-rf-15-35-f28-l-is-usm",
+    "brand": "Canon",
+    "name": "Canon RF15-35mm F2.8 L IS USM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": { "min": 15, "max": 35 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 16,
+    "groups": 12,
+    "specialElements": [
+      { "kind": "aspherical", "label": "glass-molded aspherical", "count": 3 },
+      { "kind": "low-dispersion", "label": "UD", "count": 2 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.28, "tele": 0.28 },
+    "maxMagnification": 0.21,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Nano USM",
+    "weightG": 840,
+    "dimensionsMm": { "diameter": 88.5, "length": 126.8 },
+    "filterMm": 82,
+    "releaseYear": 2019,
+    "launchPrice": { "amount": 2299, "currency": "USD" },
+    "notes": "Zoom/focus mechanism (internal vs. extending) could not be confirmed from accessible sources, so zoomMechanism/focusMechanism are omitted. minFocusM is a single Canon-published value used for both ends of the zoom (Canon gives one MFD for the whole range). Maximum magnification (0.21x) is specified by Canon at the 35mm end.",
+    "famousFor": "One of the sharpest ultra-wide zooms in the RF lineup, valued by landscape and architecture photographers for edge-to-edge sharpness at a constant f/2.8 with built-in stabilization, unusual for this class of lens.",
+    "strengths": [
+      "Very sharp across the frame, even wide open",
+      "Fast, near-silent Nano USM autofocus",
+      "Effective 5-stop optical image stabilization, rare for an ultra-wide zoom",
+      "Weather-sealed L-series build"
+    ],
+    "weaknesses": [
+      "Noticeable barrel distortion at 15mm (corrected in software)",
+      "No manual aperture ring like some newer RF primes",
+      "Large, costly 82mm filter thread"
+    ],
+    "bestFor": [
+      "Landscape and astrophotography",
+      "Interior and architecture photography",
+      "Handheld stabilized wide-angle video",
+      "Environmental portraits with dramatic wide perspective"
+    ],
+    "sources": [
+      { "title": "RF15-35mm F2.8 L IS USM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf15-35mm-f2-8-l-is-usm", "kind": "official" },
+      { "title": "RF 15-35mm F2.8L IS USM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-15-35mm-f2-8l-is-usm-lens/specifications/", "kind": "official" },
+      { "title": "RF15-35mm F2.8 L IS USM - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf484.html", "kind": "official" },
+      { "title": "New Canon RF Mount Lenses - Press Release", "url": "https://www.usa.canon.com/newsroom/2019/20190828-lens", "kind": "press" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-24-f14-l-vcm",
+    "brand": "Canon",
+    "name": "Canon RF24mm F1.4 L VCM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "wide-prime",
+    "focalLength": { "min": 24, "max": 24 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 15,
+    "groups": 11,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "UD", "count": 2 },
+      { "kind": "aspherical", "label": "GMo aspherical", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.24, "tele": 0.24 },
+    "maxMagnification": 0.17,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Nano USM + VCM (Voice Coil Motor)",
+    "weightG": 525,
+    "dimensionsMm": { "diameter": 76.5, "length": 99.3 },
+    "filterMm": 67,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 1499, "currency": "USD" },
+    "focusMechanism": "floating",
+    "notes": "Announced October 2024, shipped December 2024. No optical image stabilization (relies on camera IBIS). Focus system uses Nano USM driving a floating focus unit together with a VCM-driven rear focus group; simplified here as 'floating'.",
+    "famousFor": "One of Canon's newest fast wide primes, built for hybrid shooters, pairing an f/1.4 aperture with a near-silent VCM focus motor for video and a declickable manual iris ring.",
+    "strengths": [
+      "Compact and light for an f/1.4 L-series lens",
+      "Very fast, silent autofocus thanks to VCM",
+      "Manual iris ring usable during video recording",
+      "Strong corner-to-corner sharpness"
+    ],
+    "weaknesses": [
+      "No optical image stabilization",
+      "Premium L-series price versus third-party 24mm primes",
+      "Modest maximum magnification limits close-up use"
+    ],
+    "bestFor": [
+      "Environmental portraits and street photography",
+      "Run-and-gun video with smooth aperture racking",
+      "Astrophotography and landscapes at f/1.4-2.8",
+      "Vlogging with a wide field of view"
+    ],
+    "sources": [
+      { "title": "RF24mm F1.4 L VCM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf24mm-f1-4-l-vcm", "kind": "official" },
+      { "title": "Canon RF 24mm F1.4L VCM Lens Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-24mm-f1-4l-vcm/specifications/", "kind": "official" },
+      { "title": "Canon RF 24mm F1.4L VCM Lens Specifications - Canon UK", "url": "https://www.canon.co.uk/lenses/rf-24mm-f1-4l-vcm/specifications/", "kind": "official" },
+      { "title": "Expanding the Range of Expression: Canon Announces Three New L Series Hybrid Lenses", "url": "https://www.usa.canon.com/newsroom/2024/20241030-consumer", "kind": "press" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-50-f12-l-usm",
+    "brand": "Canon",
+    "name": "Canon RF50mm F1.2 L USM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": { "min": 50, "max": 50 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 15,
+    "groups": 9,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "UD", "count": 1 },
+      { "kind": "aspherical", "label": "ground and polished aspherical", "count": 2 },
+      { "kind": "aspherical", "label": "GMo aspherical", "count": 1 }
+    ],
+    "apertureBlades": 10,
+    "minFocusM": { "wide": 0.40, "tele": 0.40 },
+    "maxMagnification": 0.19,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Ring-type USM",
+    "weightG": 950,
+    "dimensionsMm": { "diameter": 89.8, "length": 108.0 },
+    "filterMm": 77,
+    "releaseYear": 2018,
+    "launchPrice": { "amount": 2299, "currency": "USD" },
+    "notes": "Minimum aperture value could not be confirmed from accessible sources and is left null. No optical IS (confirmed on Canon's own product page; relies on camera IBIS on EOS R bodies that have it).",
+    "famousFor": "One of the first RF-mount L primes and long considered a benchmark super-fast standard prime for the EOS R system, known for creamy background blur and razor-thin depth of field at f/1.2.",
+    "strengths": [
+      "Exceptional subject isolation and bokeh wide open",
+      "Sharp even at f/1.2 in the center of the frame",
+      "Robust all-metal L-series build with a customizable control ring",
+      "Reliable ring-type USM autofocus"
+    ],
+    "weaknesses": [
+      "Heavy and front-heavy for a 50mm prime",
+      "No optical image stabilization",
+      "Some vignetting and softness in the corners wide open"
+    ],
+    "bestFor": [
+      "Portraits with extremely shallow depth of field",
+      "Low-light event and wedding photography",
+      "Environmental portraits needing strong subject separation",
+      "Studio work where sharpness at f/1.2 matters"
+    ],
+    "sources": [
+      { "title": "RF50mm F1.2 L USM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf50mm-f1-2-l-usm", "kind": "official" },
+      { "title": "RF 50mm F1.2L USM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-50mm-f-1-2l-usm-lens/specifications/", "kind": "official" },
+      { "title": "RF50mm F1.2 L USM - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf472.html", "kind": "official" },
+      { "title": "Canon Introduces Four RF Mount Lenses - Press Release", "url": "https://www.usa.canon.com/newsroom/2018/20180905-rf", "kind": "press" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-50-f18-stm",
+    "brand": "Canon",
+    "name": "Canon RF50mm F1.8 STM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": { "min": 50, "max": 50 },
+    "maxAperture": { "wide": 1.8, "tele": 1.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 6,
+    "groups": 5,
+    "specialElements": [
+      { "kind": "aspherical", "label": "PMo aspherical", "count": 1 }
+    ],
+    "apertureBlades": 7,
+    "minFocusM": { "wide": 0.3, "tele": 0.3 },
+    "maxMagnification": 0.25,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Stepping Motor (Gear-Type STM)",
+    "weightG": 160,
+    "dimensionsMm": { "diameter": 69.2, "length": 40.5 },
+    "filterMm": 43,
+    "releaseYear": 2020,
+    "launchPrice": { "amount": 199.99, "currency": "USD" },
+    "notes": "Filter size (43mm) was inferred from a Canon accessory (lens cap) cross-reference rather than seeing it directly on a spec-sheet field in search results; treat with slight caution. No optical IS.",
+    "famousFor": "Canon's affordable 'nifty fifty' for RF mount, widely recommended as a first prime lens for EOS R shooters thanks to its low price and compact size.",
+    "strengths": [
+      "Very inexpensive and light",
+      "Sharp at moderate apertures",
+      "Quiet STM autofocus, good for video",
+      "Compact, pancake-like profile on the camera"
+    ],
+    "weaknesses": [
+      "Plastic mount and budget-oriented build",
+      "No image stabilization",
+      "Noticeably softer wide open than the L-series 50mm primes"
+    ],
+    "bestFor": [
+      "Everyday walk-around photography",
+      "Budget portrait and low-light shooting",
+      "A first RF prime lens for beginners",
+      "Casual video with smooth STM focus pulls"
+    ],
+    "sources": [
+      { "title": "RF50mm F1.8 STM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf50mm-f1-8-stm", "kind": "official" },
+      { "title": "Canon RF 50mm F1.8 STM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-50mm-f1-8-stm/specifications/", "kind": "official" },
+      { "title": "RF50mm F1.8 STM - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf498.html", "kind": "official" },
+      { "title": "Canon Adds Two RF Lenses And PIXMA PRO Printer - Press Release", "url": "https://www.usa.canon.com/newsroom/2020/20201103-lens", "kind": "press" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-85-f12-l-usm",
+    "brand": "Canon",
+    "name": "Canon RF85mm F1.2 L USM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "portrait-prime",
+    "focalLength": { "min": 85, "max": 85 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 13,
+    "groups": 9,
+    "specialElements": [
+      { "kind": "other", "label": "BR (Blue Spectrum Refractive) optics", "count": 1 },
+      { "kind": "low-dispersion", "label": "UD", "count": 1 },
+      { "kind": "aspherical", "label": "aspherical", "count": 1 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.85, "tele": 0.85 },
+    "maxMagnification": 0.12,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "USM",
+    "weightG": 1195,
+    "dimensionsMm": { "diameter": 103.2, "length": 117.3 },
+    "filterMm": 82,
+    "releaseYear": 2019,
+    "launchPrice": { "amount": 2699, "currency": "USD" },
+    "notes": "This is the standard (non-DS) version, distinct from the RF85mm F1.2 L USM DS variant with Defocus Smoothing. No optical IS: confirmed via review sources (DPReview, admiringlight.com) rather than a directly-read official spec-sheet field.",
+    "famousFor": "Regarded as one of Canon's finest portrait lenses, praised for near-total absence of chromatic aberration thanks to BR (Blue Spectrum Refractive) optics and dreamy background rendering at f/1.2.",
+    "strengths": [
+      "Outstanding subject separation and bokeh",
+      "Virtually no color fringing thanks to BR optics",
+      "Very sharp wide open in the center of the frame",
+      "Solid, weather-sealed L-series construction"
+    ],
+    "weaknesses": [
+      "Heavy and large for an 85mm prime",
+      "No image stabilization",
+      "Premium price"
+    ],
+    "bestFor": [
+      "Professional portrait photography",
+      "Wedding photography with shallow depth of field",
+      "Fashion and editorial shoots",
+      "Low-light events needing fast glass"
+    ],
+    "sources": [
+      { "title": "RF85mm F1.2 L USM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf85mm-f1-2-l-usm", "kind": "official" },
+      { "title": "RF 85mm F1.2L USM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-85mm-f1-2l-usm/specifications/", "kind": "official" },
+      { "title": "RF 85mm F1.2 L USM - Press Release", "url": "https://www.usa.canon.com/newsroom/2019/20190508-lens", "kind": "press" },
+      { "title": "Canon RF 85mm F1.2L USM review", "url": "https://www.dpreview.com/reviews/canon-rf-85mm-f1-2l-usm-review", "kind": "review" },
+      { "title": "Review: Canon RF 85mm f/1.2L USM", "url": "https://admiringlight.com/blog/review-canon-rf-85mm-f-1-2l-usm/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-100-f28-l-macro-is-usm",
+    "brand": "Canon",
+    "name": "Canon RF100mm F2.8 L MACRO IS USM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "macro",
+    "focalLength": { "min": 100, "max": 100 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 17,
+    "groups": 13,
+    "specialElements": null,
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.26, "tele": 0.26 },
+    "maxMagnification": 1.4,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Dual Nano USM",
+    "weightG": 725,
+    "dimensionsMm": null,
+    "filterMm": 67,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 1399, "currency": "USD" },
+    "notes": "Diameter could not be confirmed (only length, approx. 148.1mm/5.83in, was found), so the whole dimensionsMm field is left null per schema rules rather than publishing a partial value. specialElements left null: Canon's optical description mentions aspherical elements and a concave front element for spherical-aberration control, but exact element kind/count breakdown was not found in accessible sources. Minimum aperture not found. Price ($1,399 launch MSRP) and weight (725g) are corroborated by both official Canon text and independent retailer/review coverage (DPReview, TechRadar).",
+    "famousFor": "Billed by Canon as the world's first medium-telephoto autofocus macro lens reaching 1.4x life-size magnification, with a novel Spherical Aberration (SA) control ring for adjustable bokeh rendering.",
+    "strengths": [
+      "Extreme 1.4x magnification, beyond true life-size",
+      "Sharp wide open with effective 5-stop hybrid IS",
+      "Unique SA control ring for creative bokeh",
+      "Dual Nano USM gives fast, quiet AF even at high magnification"
+    ],
+    "weaknesses": [
+      "Very short working distance at maximum magnification",
+      "Focus breathing at close range",
+      "No tripod collar included"
+    ],
+    "bestFor": [
+      "Life-size and greater-than-life-size macro of insects and small objects",
+      "Product and jewelry photography",
+      "Portraits using the SA control ring for soft bokeh",
+      "General telephoto work at f/2.8"
+    ],
+    "sources": [
+      { "title": "RF100mm F2.8 L MACRO IS USM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf100mm-f2-8-l-macro-is-usm", "kind": "official" },
+      { "title": "Canon RF 100mm F2.8L Macro IS USM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-100mm-f2-8l-macro-is-usm/specifications/", "kind": "official" },
+      { "title": "RF100mm F2.8 L MACRO IS USM - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf508.html", "kind": "official" },
+      { "title": "New Canon RF 100mm F2.8L Macro IS USM lets you adjust bokeh on-the-fly", "url": "https://www.dpreview.com/news/8383854721/new-canon-rf-100mm-f2-8l-macro-is-usm-lets-you-adjust-bokeh-on-the-fly", "kind": "press" },
+      { "title": "Canon RF 100mm F2.8L Macro IS USM review - hidden depths", "url": "https://www.techradar.com/cameras/camera-lenses/canon-rf-100mm-f28l-macro-is-usm-review", "kind": "review" },
+      { "title": "Canon RF 100mm F2.8L Macro IS USM Review", "url": "https://dustinabbott.net/2021/11/canon-rf-100mm-f2-8l-macro-is-usm/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-24-70-f28-l-is-usm",
+    "brand": "Canon",
+    "name": "Canon RF24-70mm F2.8 L IS USM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": { "min": 24, "max": 70 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 21,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "aspherical", "label": "glass-molded aspherical", "count": 3 },
+      { "kind": "low-dispersion", "label": "UD", "count": 3 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.21, "tele": 0.38 },
+    "maxMagnification": 0.30,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Nano USM",
+    "weightG": 900,
+    "dimensionsMm": { "diameter": 88.5, "length": 125.7 },
+    "filterMm": 82,
+    "releaseYear": 2019,
+    "launchPrice": { "amount": 2299, "currency": "USD" },
+    "zoomMechanism": null,
+    "notes": "Not replaced by a 'Z' version as of 2026-09-25. Canon's newer 'Z' hybrid lens in the standard-zoom class is the RF24-105mm F2.8 L IS USM Z (a different focal range, sold alongside rather than replacing this lens), so the original RF24-70mm F2.8 L IS USM remains Canon's current 24-70 constant-f/2.8 zoom. Minimum aperture and zoom mechanism (internal vs. extending) not found/confirmed in accessible sources.",
+    "famousFor": "The standard 'trinity' zoom of the RF lineup, praised for combining Canon's sharpest 24-70 optics yet with in-lens stabilization, a feature its EF predecessor never had.",
+    "strengths": [
+      "Very sharp across the zoom range, even at 70mm f/2.8",
+      "5-stop optical IS, unusual for a fast standard zoom",
+      "Fast, quiet Nano USM autofocus",
+      "Solid, weather-sealed L-series build"
+    ],
+    "weaknesses": [
+      "Heavier than the EF version it succeeds",
+      "Costly 82mm filter thread shared with other RF L zooms",
+      "No longer Canon's newest tech now that 'Z' hybrid zooms exist in other focal ranges"
+    ],
+    "bestFor": [
+      "Wedding and event photography",
+      "Editorial and portrait work needing one versatile zoom",
+      "Travel photography wanting a single do-it-all lens",
+      "Video work benefiting from optical IS"
+    ],
+    "sources": [
+      { "title": "RF24-70mm F2.8 L IS USM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf24-70mm-f2-8l-is-usm", "kind": "official" },
+      { "title": "RF 24-70mm F2.8L IS USM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-24-70mm-f2-8l-usm-lens/specifications/", "kind": "official" },
+      { "title": "RF24-70mm F2.8 L IS USM - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf485.html", "kind": "official" },
+      { "title": "New Canon RF Mount Lenses - Press Release", "url": "https://www.usa.canon.com/newsroom/2019/20190828-lens", "kind": "press" },
+      { "title": "Shop Canon RF24-105mm F2.8 L IS USM Z (confirms this is a separate, additional lens, not a replacement)", "url": "https://www.usa.canon.com/shop/p/rf24-105mm-f2-8-l-is-usm-z", "kind": "official" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-70-200-f28-l-is-usm-z",
+    "brand": "Canon",
+    "name": "Canon RF70-200mm F2.8 L IS USM Z",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": { "min": 70, "max": 200 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 18,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "aspherical", "label": "aspherical", "count": 3 },
+      { "kind": "super-low-dispersion", "label": "Super UD", "count": 2 },
+      { "kind": "low-dispersion", "label": "UD", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": null, "tele": null },
+    "maxMagnification": null,
+    "stabilization": { "optical": true, "stops": 5.5 },
+    "autofocus": "Dual Nano USM",
+    "weightG": 1110,
+    "dimensionsMm": { "diameter": 89, "length": 199 },
+    "filterMm": 82,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 2999, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "focusMechanism": "floating",
+    "notes": "The task brief described this as the '2023' internal-zoom version, but Canon's own newsroom material confirms it was announced 30 Oct 2024 and shipped Nov 2024; the confirmed 2024 date is used. Weight is 1110g for the black finish (white finish is 1115g per Canon's heat-resistant white paint); weight/dimensions/filter size were corroborated via The Digital Picture, PetaPixel and DPReview since the Canon spec-sheet page text itself was not fully readable in search results (non-official corroboration). minFocusM and maxMagnification are left null: one search result reported approx. 0.49m, another reported approx. 0.68m with 0.3x magnification, and this conflict could not be resolved within the available search budget. Minimum aperture not found.",
+    "famousFor": "Canon's redesigned 'Z' 70-200mm f/2.8, the first in this class with a fully internal zoom and focus mechanism, keeping the barrel length fixed while zooming and enabling RF extender compatibility across the whole zoom range.",
+    "strengths": [
+      "Fully internal zoom - barrel length never changes, useful for gimbals and video",
+      "Sharper than the original RF 70-200 F2.8, especially at 200mm",
+      "5.5-stop image stabilization",
+      "Compatible with RF 1.4x/2x extenders throughout the zoom range"
+    ],
+    "weaknesses": [
+      "Premium price above the original (non-Z) version",
+      "Similar weight to the outgoing model despite the internal-zoom redesign",
+      "Large-diameter barrel versus some competitors"
+    ],
+    "bestFor": [
+      "Sports and event photography needing a constant-length zoom for gimbal/video work",
+      "Wildlife photography with teleconverters attached",
+      "Wedding and portrait photography at 200mm f/2.8",
+      "Hybrid photo/video professionals"
+    ],
+    "sources": [
+      { "title": "RF70-200mm F2.8 L IS USM Z - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf70-200mm-f2-8-l-is-usm-z", "kind": "official" },
+      { "title": "Canon RF 70-200mm F2.8L IS USM Z Lens Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-70-200mm-f2-8l-is-usm-z/specifications/", "kind": "official" },
+      { "title": "RF70-200mm F2.8 L IS USM Z - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf544.html", "kind": "official" },
+      { "title": "Expanding the Range of Expression: Canon Announces Three New L Series Hybrid Lenses", "url": "https://www.usa.canon.com/newsroom/2024/20241030-consumer", "kind": "press" },
+      { "title": "Canon RF 70-200mm f/2.8L IS USM Z Review: Excellent Features Come at a Cost", "url": "https://petapixel.com/2024/12/05/canon-rf-70-200mm-f-2-8l-is-usm-z-review-excellent-features-come-at-a-cost/", "kind": "review" },
+      { "title": "Canon unveils the RF 70-200mm F2.8 L IS USM Z", "url": "https://www.dpreview.com/news/3012958778/canon-announces-rf-70-200mm-f2-8-l-is-usm-z", "kind": "press" },
+      { "title": "Canon RF 70-200mm F2.8 L IS USM Z Lens Specifications - The Digital Picture", "url": "https://www.the-digital-picture.com/Reviews/Lens-Specifications.aspx?Lens=1715", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-100-500-f45-71-l-is-usm",
+    "brand": "Canon",
+    "name": "Canon RF100-500mm F4.5-7.1 L IS USM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 100, "max": 500 },
+    "maxAperture": { "wide": 4.5, "tele": 7.1 },
+    "minAperture": { "wide": 32, "tele": 54 },
+    "elements": 20,
+    "groups": 14,
+    "specialElements": [
+      { "kind": "super-low-dispersion", "label": "Super UD", "count": 1 },
+      { "kind": "low-dispersion", "label": "UD", "count": 6 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.9, "tele": 1.2 },
+    "maxMagnification": 0.33,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Dual Nano USM",
+    "weightG": 1365,
+    "dimensionsMm": { "diameter": 93.8, "length": 207.6 },
+    "filterMm": 77,
+    "releaseYear": 2020,
+    "launchPrice": { "amount": 2699, "currency": "USD" },
+    "zoomMechanism": "extending",
+    "notes": "Dimensions given at the 100mm (retracted) position; Canon's spec sheet also lists 93.8 x 297.6mm at the extended 500mm position. Minimum aperture (f/32 wide, f/54 tele) reflects the figure most explicitly stated by Canon; a secondary mention of f/51 appeared to relate to a different measurement increment (1/3-stop vs. 1/2-stop) and was not used. Weight (1365g) is without the tripod mount; with the mount it is approx. 1530g.",
+    "famousFor": "One of the first affordable super-telephoto zooms for the RF mount, widely adopted by wildlife and birding photographers for reaching 500mm in a relatively light, portable package.",
+    "strengths": [
+      "Reaches 500mm at a manageable weight for a super-tele zoom",
+      "Sharp results throughout the zoom range",
+      "Fast Dual Nano USM autofocus",
+      "Compatible with RF extenders for extra reach"
+    ],
+    "weaknesses": [
+      "Variable aperture narrows to f/7.1 at 500mm, limiting low-light use",
+      "Extending zoom barrel",
+      "Slower effective aperture makes autofocus harder in dim conditions"
+    ],
+    "bestFor": [
+      "Birding and wildlife photography",
+      "Air shows and distant sports",
+      "Handheld super-telephoto travel photography",
+      "Moon and distant-landscape compression shots"
+    ],
+    "sources": [
+      { "title": "RF100-500mm F4.5-7.1 L IS USM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf100-500mm-f4-5-7-1-l-is-usm", "kind": "official" },
+      { "title": "Canon RF 100-500mm F4.5-7.1 L IS USM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-100-500mm-f-4-5-7-1-l-is-usm/specifications/", "kind": "official" },
+      { "title": "RF100-500mm F4.5-7.1 L IS USM - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf497.html", "kind": "official" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "canon-rf-600-f4-l-is-usm",
+    "brand": "Canon",
+    "name": "Canon RF600mm F4 L IS USM",
+    "mount": "Canon RF",
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 600, "max": 600 },
+    "maxAperture": { "wide": 4, "tele": 4 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 17,
+    "groups": 13,
+    "specialElements": [
+      { "kind": "fluorite", "label": "Fluorite", "count": 2 },
+      { "kind": "super-low-dispersion", "label": "Super UD", "count": 1 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 4.2, "tele": 4.2 },
+    "maxMagnification": 0.15,
+    "stabilization": { "optical": true, "stops": 5.5 },
+    "autofocus": "Ring-type USM",
+    "weightG": 3090,
+    "dimensionsMm": { "diameter": 168, "length": 472 },
+    "filterMm": null,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 12999, "currency": "USD" },
+    "notes": "Takes a 52mm rear drop-in filter, not a front filter thread, so filterMm is null per schema convention. specialElements includes only the fluorite (2) and Super UD (1) elements confirmed on Canon's own pages; independent reviews mention additional aspherical elements in the design but no confirmed count was found in accessible sources, so they are not itemized. Minimum aperture not found.",
+    "famousFor": "Canon's flagship RF super-telephoto prime for wildlife and sports, notably lighter than its EF predecessor thanks to fluorite elements and an RF-native optical design.",
+    "strengths": [
+      "Significantly lighter and more portable than the EF 600mm f/4 III",
+      "Excellent sharpness and contrast wide open",
+      "5.5-stop image stabilization",
+      "Fast, reliable ring-type USM autofocus"
+    ],
+    "weaknesses": [
+      "Still large and very expensive",
+      "Rear drop-in filter only, no front filter thread",
+      "Requires a sturdy tripod/gimbal for extended handheld use"
+    ],
+    "bestFor": [
+      "Professional wildlife photography",
+      "Sports photography from the sidelines",
+      "Bird photography needing extreme reach",
+      "High-magnification moon photography"
+    ],
+    "sources": [
+      { "title": "RF600mm F4 L IS USM - Canon USA product page", "url": "https://www.usa.canon.com/shop/p/rf600mm-f4-l-is-usm", "kind": "official" },
+      { "title": "Canon RF 600mm F4L IS USM Specifications - Canon Europe", "url": "https://www.canon-europe.com/lenses/rf-600mm-f4l-is-usm/specifications/", "kind": "official" },
+      { "title": "RF600mm F4 L IS USM - Canon Camera Museum", "url": "https://global.canon/en/c-museum/product/rf507.html", "kind": "official" },
+      { "title": "Full-Frame EOS R3 Mirrorless Camera - Press Release", "url": "https://www.usa.canon.com/newsroom/2021/20210414-lens", "kind": "press" },
+      { "title": "Lensrentals.com - Canon RF 600mm f/4L IS USM", "url": "https://www.lensrentals.com/rent/canon-rf-600mm-f4l-is-usm", "kind": "review" },
+      { "title": "Canon RF 600mm f/4L IS USM review", "url": "https://www.digitalcameraworld.com/cameras/lenses/canon-rf-600mm-f-4l-is-usm-review", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  }
+]
