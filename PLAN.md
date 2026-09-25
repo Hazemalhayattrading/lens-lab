@@ -7,7 +7,7 @@ This file is the source of truth for progress. If a session is resumed: read thi
 
 - [x] **Phase 0 — Plan & scaffold**: Vite + TypeScript + three.js project, GitHub Pages workflow, README stub.
 - [x] **Phase 1 — Optics core**: thin-lens model, helicoid, circle of confusion, depth of field, hyperfocal, physical↔visual mapping. Unit tests incl. hand-calculated cases.
-- [ ] **Phase 2 — Lab scene foundation**: renderer, studio environment + cinematic lights + soft shadows, optical breadboard/workbench, optical rail, orbit camera (limits + damping), post-processing (bloom, ACES, vignette, SMAA).
+- [x] **Phase 2 — Lab scene foundation**: renderer, studio environment + cinematic lights + soft shadows, optical breadboard/workbench, optical rail, orbit camera (limits + damping), post-processing (bloom, ACES, vignette, SMAA).
 - [ ] **Phase 3 — The lens**: 6 glass elements (transmission/refraction materials), cutaway metal barrel, knurled focus ring with a real distance scale, 9-blade iris, assembled ⇄ exploded animation.
 - [ ] **Phase 4 — Sensor stand + diorama**: sensor on a stand; miniature diorama (terrain, cabin, trees, mountain, sky backdrop).
 - [ ] **Phase 5 — Light rays + plane of focus**: ray bundles traced from scene points through the elements to the sensor; glowing plane of focus; DoF zone; blur discs on the sensor.
