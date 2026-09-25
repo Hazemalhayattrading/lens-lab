@@ -186,8 +186,11 @@ export class Diorama {
     this.subjects.push({ id: 'mountain', position: new THREE.Vector3(OPTICAL_CENTER_X + best.X, GROUND_Y + best.h, best.Z) });
 
     // ---- sky backdrop at "infinity" ----
-    const skyRadius = DIORAMA.xBack + 0.18;
-    const sky = buildSkyPanel(OPTICAL_CENTER_X, skyRadius, PLINTH_TOP, LAYOUT.axisY + 2.45, THREE.MathUtils.degToRad(25));
+    // Every point of the backdrop must lie beyond the depth map's "∞" so the DoF pass treats
+    // the whole sky as infinitely far: radius · cos(halfAngle) ≥ xInfRel.
+    const skyHalfAngle = THREE.MathUtils.degToRad(22.5);
+    const skyRadius = (LAYOUT.xInfRel + 0.06) / Math.cos(skyHalfAngle);
+    const sky = buildSkyPanel(OPTICAL_CENTER_X, skyRadius, PLINTH_TOP, LAYOUT.axisY + 2.45, skyHalfAngle);
     this.group.add(sky.group);
     sensorVisible.push(sky.panel);
 

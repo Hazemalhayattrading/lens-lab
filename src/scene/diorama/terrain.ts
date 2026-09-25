@@ -12,7 +12,7 @@ export const PLINTH_TOP = GROUND_Y - 0.1;
 /** Trapezoid footprint: it follows the lens' field of view with some margin. */
 export const DIORAMA = {
   xFront: LAYOUT.xNearRel - 0.02,
-  xBack: LAYOUT.xInfRel + 0.5,
+  xBack: LAYOUT.xInfRel + 0.92,
   halfWidthAt(X: number): number {
     // tan(19.8°) ≈ 0.36 (half angle of view at ∞) + margin
     return 0.32 + X * 0.405;

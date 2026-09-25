@@ -11,7 +11,7 @@ This file is the source of truth for progress. If a session is resumed: read thi
 - [x] **Phase 3 — The lens**: 6 glass elements (transmission/refraction materials), cutaway metal barrel, knurled focus ring with a real distance scale, 9-blade iris, assembled ⇄ exploded animation.
 - [x] **Phase 4 — Sensor stand + diorama**: sensor on a stand; miniature diorama (terrain, cabin, trees, mountain, sky backdrop).
 - [x] **Phase 5 — Light rays + plane of focus**: ray bundles traced from scene points through the elements to the sensor; glowing plane of focus; DoF zone; blur discs on the sensor.
-- [ ] **Phase 6 — Sensor view**: render from the lens' optical centre with physically-driven depth-of-field pass; filmstrip; live (inverted) image on the 3D sensor.
+- [x] **Phase 6 — Sensor view**: render from the lens' optical centre with physically-driven depth-of-field pass; filmstrip; live (inverted) image on the 3D sensor.
 - [ ] **Phase 7 — UI & interaction**: glass panels, live readouts, "Plane of Focus" explanation, slider, quick-focus, aperture buttons, exploded toggle, 3D focus-ring dragging, mobile layout.
 - [ ] **Phase 8 — Visual polish loop**: Playwright screenshots (desktop + mobile), critique, iterate.
 - [ ] **Phase 9 — Quality & finish**: performance + quality toggle, zero console errors, physics verification table, README, final `npm run build`.

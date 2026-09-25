@@ -13,6 +13,8 @@ import { Diorama } from './scene/diorama/Diorama';
 import { FocusPlane } from './scene/focusPlane';
 import { applyFocusOverlayTo } from './scene/focusOverlay';
 import { RayBundles } from './scene/rays/RayBundles';
+import { SensorPipeline } from './render/SensorPipeline';
+import { focusOverlay } from './scene/focusOverlay';
 
 export class LensLabApp {
   readonly renderer: THREE.WebGLRenderer;
@@ -26,6 +28,9 @@ export class LensLabApp {
   readonly diorama: Diorama;
   readonly focusPlane = new FocusPlane();
   readonly rays: RayBundles;
+  readonly sensorView: SensorPipeline;
+  /** Where the filmstrip is drawn (CSS px, relative to the canvas); set by the UI. */
+  filmstripRect: { x: number; y: number; width: number; height: number } | null = null;
   /** Minimal state until the full state machine lands (Phase 7). */
   readonly state = { focus: 2000, fNumber: 5.6, explode: 1 };
   private t = 0;
@@ -43,6 +48,7 @@ export class LensLabApp {
     renderer.toneMapping = THREE.NoToneMapping;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFShadowMap;
+    renderer.shadowMap.autoUpdate = false;
     container.appendChild(renderer.domElement);
     renderer.domElement.classList.add('gl');
     this.renderer = renderer;
@@ -66,6 +72,9 @@ export class LensLabApp {
     this.scene.add(this.focusPlane.group);
     this.rays = new RayBundles(this.diorama.subjects);
     this.scene.add(this.rays.group);
+
+    this.sensorView = new SensorPipeline({ width: 1080, samples: 72, msaa: 4 });
+    this.sensor.setImage(this.sensorView.output, 1.15);
 
     const maxAperture = (LENS.focalLength / 2 / 2) * LAYOUT.kLateral;
     this.lens = new LensAssembly(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ, maxAperture);
@@ -95,6 +104,12 @@ export class LensLabApp {
     const t0 = performance.now();
     for (let i = 0; i < n; i++) this.frame(dt);
     return performance.now() - t0;
+  }
+
+  private defaultFilmstripRect() {
+    const w = Math.min(420, this.container.clientWidth * 0.4);
+    const h = (w * 2) / 3;
+    return { x: (this.container.clientWidth - w) / 2, y: this.container.clientHeight - h - 24, width: w, height: h };
   }
 
   private updateLineResolution(): void {
@@ -129,6 +144,18 @@ export class LensLabApp {
     this.rays.update(o, this.lens, this.t, { cabin: true, trees: true, mountain: true }, null);
     this.focusPlane.update(o, this.t, { focus: true, zone: true, frustum: true });
     this.rig.update(dt);
+
+    // shadows are camera independent: render them once per frame, before the first view
+    this.renderer.shadowMap.needsUpdate = true;
+    // sensor view (teaching overlays off: the lens only sees the diorama)
+    focusOverlay.uOverlayOn.value = 0;
+    this.sensorView.update(o);
+    this.sensorView.render(this.renderer, this.scene, this.t);
+    focusOverlay.uOverlayOn.value = 1;
+
     this.pipeline.render(dt);
+
+    const rect = this.filmstripRect ?? this.defaultFilmstripRect();
+    this.sensorView.drawToScreen(this.renderer, rect, this.container.clientHeight);
   }
 }

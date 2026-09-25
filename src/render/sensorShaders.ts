@@ -1,0 +1,230 @@
+/** GLSL for the physically-driven depth-of-field pipeline of the sensor view. */
+
+export const fullscreenVertex = /* glsl */ `
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = vec4(position.xy, 0.0, 1.0);
+}`;
+
+/**
+ * Per-pixel circle of confusion from depth:
+ *   depth → axial distance from the lens (view z) → world X → physical distance d (depth map)
+ *   → thin-lens CoC b = f²(d − s) / (N (s − f) d)  [mm on the sensor]  → pixels (W / 36 mm).
+ */
+export const cocChunk = /* glsl */ `
+uniform float uNear;
+uniform float uFar;
+uniform float uCamX;
+uniform float uXNear;
+uniform float uXInf;
+uniform float uD0;
+uniform float uWNear;
+uniform float uF;
+uniform float uN;
+uniform float uS;        // focus distance in mm, < 0 means infinity
+uniform float uPxPerMm;  // full-resolution pixels per sensor millimetre
+uniform float uMaxCoC;   // clamp, full-res pixels (diameter)
+
+float linearDepth(float z) {
+  float ndc = z * 2.0 - 1.0;
+  return 2.0 * uNear * uFar / (uFar + uNear - ndc * (uFar - uNear));
+}
+
+float physicalDistance(float axial) {
+  float x = uCamX + axial;
+  float u = (x - uXNear) / (uXInf - uXNear);
+  if (u >= 1.0) return 1.0e9;
+  float w = uWNear + u * (1.0 - uWNear);
+  if (w <= 1.0e-4) return 1.0;
+  return uD0 * w / (1.0 - w);
+}
+
+float cocMm(float d) {
+  if (uS < 0.0) return (d > 1.0e8) ? 0.0 : -uF * uF / (uN * d);
+  if (d > 1.0e8) return uF * uF / (uN * (uS - uF));
+  return uF * uF * (d - uS) / (uN * (uS - uF) * d);
+}
+
+/** Signed CoC diameter in full-resolution pixels (negative = nearer than focus). */
+float cocPixels(float depthSample) {
+  float d = physicalDistance(linearDepth(depthSample));
+  return clamp(cocMm(d) * uPxPerMm, -uMaxCoC, uMaxCoC);
+}
+`;
+
+/** Pass 1: half-resolution colour + signed CoC radius (in half-res pixels) in alpha. */
+export const cocDownsampleFragment = /* glsl */ `
+uniform sampler2D tColor;
+uniform sampler2D tDepth;
+uniform vec2 uTexel;
+varying vec2 vUv;
+${cocChunk}
+void main() {
+  vec2 o = uTexel * 0.5;
+  vec2 uv0 = vUv + vec2(-o.x, -o.y);
+  vec2 uv1 = vUv + vec2(o.x, -o.y);
+  vec2 uv2 = vUv + vec2(-o.x, o.y);
+  vec2 uv3 = vUv + vec2(o.x, o.y);
+  vec3 c0 = texture2D(tColor, uv0).rgb;
+  vec3 c1 = texture2D(tColor, uv1).rgb;
+  vec3 c2 = texture2D(tColor, uv2).rgb;
+  vec3 c3 = texture2D(tColor, uv3).rgb;
+  float k0 = cocPixels(texture2D(tDepth, uv0).x);
+  float k1 = cocPixels(texture2D(tDepth, uv1).x);
+  float k2 = cocPixels(texture2D(tDepth, uv2).x);
+  float k3 = cocPixels(texture2D(tDepth, uv3).x);
+  float kmin = min(min(k0, k1), min(k2, k3));
+  float kavg = 0.25 * (k0 + k1 + k2 + k3);
+  // keep near-field blur dominant so foreground bokeh can spread over the background
+  float k = kmin < -2.0 ? kmin : kavg;
+  vec3 c = 0.25 * (c0 + c1 + c2 + c3);
+  gl_FragColor = vec4(c, k * 0.25);
+}`;
+
+/** Pass 2: per-tile maximum near-field CoC radius (tile = 8×8 half-res pixels). */
+export const tileMaxFragment = /* glsl */ `
+uniform sampler2D tHalf;
+uniform vec2 uHalfTexel;
+varying vec2 vUv;
+void main() {
+  float m = 0.0;
+  for (int y = 0; y < 4; y++) {
+    for (int x = 0; x < 4; x++) {
+      vec2 off = (vec2(float(x), float(y)) - 1.5) * 2.0 * uHalfTexel;
+      m = max(m, -texture2D(tHalf, vUv + off).a);
+    }
+  }
+  gl_FragColor = vec4(m, 0.0, 0.0, 1.0);
+}`;
+
+/** Pass 3: spread each tile's near CoC to every tile it can reach. */
+export const tileDilateFragment = /* glsl */ `
+uniform sampler2D tTile;
+uniform vec2 uTileTexel;
+uniform float uTileSize;
+varying vec2 vUv;
+void main() {
+  float m = texture2D(tTile, vUv).r;
+  for (int y = -5; y <= 5; y++) {
+    for (int x = -5; x <= 5; x++) {
+      vec2 d = vec2(float(x), float(y));
+      float n = texture2D(tTile, vUv + d * uTileTexel).r;
+      float reach = (max(abs(d.x), abs(d.y)) - 1.0) * uTileSize;
+      if (n >= reach) m = max(m, n);
+    }
+  }
+  gl_FragColor = vec4(m, 0.0, 0.0, 1.0);
+}`;
+
+/** Pass 4: scatter-as-gather bokeh at half resolution with an iris-shaped kernel. */
+export const bokehFragment = /* glsl */ `
+uniform sampler2D tHalf;
+uniform sampler2D tTile;
+uniform vec2 uHalfTexel;
+uniform float uMaxR;
+uniform float uBlades;
+uniform float uPolygon;
+varying vec2 vUv;
+const float GOLDEN = 2.39996323;
+float ign(vec2 p) { return fract(52.9829189 * fract(dot(p, vec2(0.06711056, 0.00583715)))); }
+void main() {
+  vec4 center = texture2D(tHalf, vUv);
+  float c0 = center.a;
+  float nearR = texture2D(tTile, vUv).r;
+  float R = clamp(max(abs(c0), nearR), 0.0, uMaxR);
+  if (R < 0.5) {
+    gl_FragColor = vec4(center.rgb, 0.0);
+    return;
+  }
+  float rot = ign(gl_FragCoord.xy) * 6.2831853;
+  vec3 acc = center.rgb;
+  float tot = 1.0;
+  float nearCover = 0.0;
+  float seg = 6.2831853 / uBlades;
+  for (int i = 0; i < SAMPLES; i++) {
+    float fi = float(i) + 0.5;
+    float r = sqrt(fi / float(SAMPLES));
+    float th = fi * GOLDEN + rot;
+    float a = mod(th, seg) - seg * 0.5;
+    r *= mix(1.0, cos(seg * 0.5) / cos(a), uPolygon);
+    float dist = r * R;
+    vec4 s = texture2D(tHalf, vUv + vec2(cos(th), sin(th)) * dist * uHalfTexel);
+    float sr = abs(s.a);
+    // a farther (background) sample may not bleed over a sharper foreground pixel
+    if (s.a > c0) sr = min(sr, abs(c0) * 2.0 + 0.5);
+    float m = smoothstep(dist - 0.75, dist + 0.25, sr);
+    acc += mix(acc / tot, s.rgb, m);
+    tot += 1.0;
+    nearCover += s.a < -0.5 ? m : 0.0;
+  }
+  float alpha = max(smoothstep(0.35, 1.25, abs(c0)), clamp(nearCover / float(SAMPLES) * 5.0, 0.0, 1.0));
+  gl_FragColor = vec4(acc / tot, alpha);
+}`;
+
+/** Pass 5: recombine full-resolution sharp image with the half-resolution bokeh. */
+export const compositeFragment = /* glsl */ `
+uniform sampler2D tColor;
+uniform sampler2D tDepth;
+uniform sampler2D tBlur;
+varying vec2 vUv;
+${cocChunk}
+void main() {
+  vec3 sharp = texture2D(tColor, vUv).rgb;
+  vec4 b = texture2D(tBlur, vUv);
+  float k = cocPixels(texture2D(tDepth, vUv).x);
+  float blend = max(smoothstep(1.0, 3.0, abs(k)), b.a);
+  gl_FragColor = vec4(mix(sharp, b.rgb, blend), 1.0);
+}`;
+
+/** Display: ACES filmic (same curve as the main view), natural vignetting, grain, peaking. */
+export const displayFragment = /* glsl */ `
+uniform sampler2D tOut;
+uniform sampler2D tHalf;
+uniform vec2 uOutTexel;
+uniform float uExposure;
+uniform float uTime;
+uniform float uPeaking;
+uniform float uAcceptPx;   // acceptable CoC in full-res pixels
+uniform vec3 uPeakColor;
+varying vec2 vUv;
+
+vec3 RRTAndODTFit(vec3 v) {
+  vec3 a = v * (v + 0.0245786) - 0.000090537;
+  vec3 b = v * (0.983729 * v + 0.4329510) + 0.238081;
+  return a / b;
+}
+vec3 aces(vec3 color) {
+  const mat3 ACESInputMat = mat3(vec3(0.59719, 0.07600, 0.02840), vec3(0.35458, 0.90834, 0.13383), vec3(0.04823, 0.01566, 0.83777));
+  const mat3 ACESOutputMat = mat3(vec3(1.60475, -0.10208, -0.00327), vec3(-0.53108, 1.10813, -0.07276), vec3(-0.07367, -0.00605, 1.07602));
+  color *= 1.0 / 0.6;
+  color = ACESInputMat * color;
+  color = RRTAndODTFit(color);
+  color = ACESOutputMat * color;
+  return clamp(color, 0.0, 1.0);
+}
+vec3 toSRGB(vec3 c) {
+  return mix(c * 12.92, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(0.0031308, c));
+}
+float hash(vec2 p) { return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453); }
+float luma(vec3 c) { return dot(c, vec3(0.2126, 0.7152, 0.0722)); }
+
+void main() {
+  vec3 c = texture2D(tOut, vUv).rgb * uExposure;
+  vec2 p = vUv - 0.5;
+  float r2 = dot(p * vec2(1.5, 1.0), p * vec2(1.5, 1.0));
+  c *= 1.0 - 0.5 * r2;
+  c = aces(c);
+  if (uPeaking > 0.5) {
+    float l = luma(c);
+    float lx = luma(aces(texture2D(tOut, vUv + vec2(uOutTexel.x, 0.0)).rgb * uExposure));
+    float ly = luma(aces(texture2D(tOut, vUv + vec2(0.0, uOutTexel.y)).rgb * uExposure));
+    float edge = length(vec2(lx - l, ly - l));
+    float cocFull = abs(texture2D(tHalf, vUv).a) * 4.0;
+    float inFocus = 1.0 - smoothstep(uAcceptPx, uAcceptPx * 1.8, cocFull);
+    float peak = inFocus * smoothstep(0.035, 0.12, edge);
+    c = mix(c, uPeakColor, clamp(peak * 1.3, 0.0, 1.0));
+  }
+  c += (hash(vUv * 1234.5 + fract(uTime)) - 0.5) * 0.018;
+  gl_FragColor = vec4(toSRGB(clamp(c, 0.0, 1.0)), 1.0);
+}`;
