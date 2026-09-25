@@ -1,0 +1,168 @@
+[
+  {
+    "id": "sony-fe-16-35-f28-gm-ii",
+    "brand": "Sony",
+    "name": "Sony FE 16-35mm F2.8 GM II",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": { "min": 16, "max": 35 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 15,
+    "groups": 12,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 3 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 2 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.22, "tele": 0.22 },
+    "maxMagnification": 0.32,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "4x XD (extreme dynamic) Linear Motor",
+    "weightG": 547,
+    "dimensionsMm": { "diameter": 87.8, "length": 111.5 },
+    "filterMm": 82,
+    "releaseYear": 2023,
+    "launchPrice": { "amount": 2299.99, "currency": "USD" },
+    "zoomMechanism": "extending",
+    "focusMechanism": "internal",
+    "famousFor": "Sony's second-generation constant-f/2.8 ultra-wide GM zoom, marketed as the world's smallest and lightest autofocus F2.8 16-35mm zoom and praised for near coma-free 16mm astro shots.",
+    "strengths": [
+      "Corner-to-corner sharpness wide open at f/2.8, rivaling prime lenses at some focal lengths",
+      "About 20% lighter and more compact than the original GM version",
+      "Fast, near-silent autofocus from four XD linear motors, good for stills and video AF",
+      "Very close 0.22 m minimum focus distance with 0.32x magnification, unusual for an ultra-wide zoom"
+    ],
+    "weaknesses": [
+      "Noticeable corner shading (about 3/4 stop) at f/2.8, though it clears up when stopped down",
+      "Mild coma stretching at 24-35mm compared to the near-perfect 16mm corners",
+      "Manual focus ring feels comparatively loose"
+    ],
+    "bestFor": [
+      "Milky Way and night-sky astrophotography at 16mm",
+      "Landscape and architecture work needing edge-to-edge sharpness",
+      "Run-and-gun handheld and gimbal video work",
+      "Interiors and environmental portraits in low light"
+    ],
+    "sources": [
+      { "title": "SEL1635GM2 Specifications", "url": "https://www.sony.co.uk/electronics/e-mount-lenses/sel1635gm2/specifications", "kind": "official" },
+      { "title": "Sony Electronics Introduces The Sony 16-35mm F2.8 G Master II", "url": "https://alphauniverse.com/stories/sony-electronics-introduces-the-sony-1635mm-f2-8-g-master-ii/", "kind": "official" },
+      { "title": "Sony Introduces World's Smallest and Lightest Wide-Angle Zoom Lens G-Master Sony FE 16-35mm F2.8 GM II", "url": "https://www.sony.co.uk/presscentre/sony-introduces-worlds-smallest-and-lightest-wide-angle-zoom-lens-g-master-sony-fe-16-35mm-f28-gm-ii", "kind": "press" },
+      { "title": "Sony FE 16-35mm F2.8 GM II Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-16-35mm-F2-8-GM-II-Lens.aspx", "kind": "review" },
+      { "title": "Sony FE 16-35mm f/2.8 GM II Review", "url": "https://photographylife.com/reviews/sony-fe-16-35mm-f-2-8-gm-ii", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "sony-fe-24mm-f14-gm",
+    "brand": "Sony",
+    "name": "Sony FE 24mm F1.4 GM",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "wide-prime",
+    "focalLength": { "min": 24, "max": 24 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 13,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.24, "tele": 0.24 },
+    "maxMagnification": 0.17,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "DDSSM (Direct Drive SSM)",
+    "weightG": 445,
+    "dimensionsMm": { "diameter": 75.4, "length": 92.4 },
+    "filterMm": 67,
+    "releaseYear": 2018,
+    "launchPrice": { "amount": 1398, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "Launch price of $1,398 is from a press/retailer report; Sony's own Alpha Universe announcement rounds it to \"approximately $1,400 US\".",
+    "famousFor": "One of the fastest and lightest 24mm primes for full-frame mirrorless, widely regarded as a benchmark lens for astrophotography and night landscapes thanks to very low coma.",
+    "strengths": [
+      "Uncannily sharp edge-to-edge wide open, earning DPReview's 2018 prime lens of the year",
+      "Excellent coma control at f/1.4, a favorite for Milky Way and night-sky shooting",
+      "Very light for an f/1.4 24mm (445 g), the lightest in its class at launch",
+      "Smooth, round bokeh from an 11-blade aperture with minimal onion-ring artifacts"
+    ],
+    "weaknesses": [
+      "Visible purple/green fringing wide open at f/1.4 that clears up by f/2-f/2.8",
+      "Noticeable vignetting wide open, mostly resolved by f/2.8",
+      "Moderate focus breathing when racking focus, relevant for video"
+    ],
+    "bestFor": [
+      "Milky Way and aurora astrophotography",
+      "Wide-aperture landscape and architecture shots with shallow depth of field",
+      "Low-light street and environmental photography",
+      "Astro-landscape composites requiring sharp, low-coma corners"
+    ],
+    "sources": [
+      { "title": "FE 24mm F1.4 GM | SEL24F14GM Specifications", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel24f14gm/specifications", "kind": "official" },
+      { "title": "Sony Expands Full-Frame Lens Lineup With Launch Of 24mm F1.4 G Master Prime", "url": "https://alphauniverse.com/stories/sony-expands-full-frame-lens-lineup-with-launch-of-24mm-f1-4-g-master-prime/", "kind": "official" },
+      { "title": "Sony FE 24mm F1.4 GM Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-24mm-f-1.4-GM-Lens.aspx", "kind": "review" },
+      { "title": "Sony FE 24mm f/1.4 GM Review", "url": "https://photographylife.com/reviews/sony-fe-24mm-f-1-4-gm", "kind": "review" },
+      { "title": "Sony FE 24mm f/1.4 GM Lens Announced: Price $1,398", "url": "https://cameratimes.org/sony-fe-24mm-f-1-4-gm-lens-announced-price-1398-lightest-class/", "kind": "press" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "sony-fe-50mm-f12-gm",
+    "brand": "Sony",
+    "name": "Sony FE 50mm F1.2 GM",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": { "min": 50, "max": 50 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 14,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.4, "tele": 0.4 },
+    "maxMagnification": 0.17,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "4x XD (extreme dynamic) Linear Motor",
+    "weightG": 778,
+    "dimensionsMm": { "diameter": 87, "length": 108 },
+    "filterMm": 72,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 2000, "currency": "USD" },
+    "focusMechanism": "floating",
+    "notes": "Sony's own materials highlight 3 XA elements but do not publish a full breakdown of the remaining 11 elements (e.g. any ED glass), so only the XA count is listed. Launch price is Sony's own \"approximately $2,000 USD\" figure.",
+    "famousFor": "Sony's first full-frame f/1.2 prime, notable for reaching that aperture in a body comparable in size and weight to many f/1.4 50mm lenses.",
+    "strengths": [
+      "High resolution corner-to-corner even wide open at f/1.2",
+      "Compact and relatively light for an f/1.2 50mm, similar to some f/1.4 competitors",
+      "Fast, quiet autofocus from four XD linear motors",
+      "Smooth, rounded G Master bokeh from an 11-blade aperture"
+    ],
+    "weaknesses": [
+      "Noticeable focus breathing when racking focus",
+      "Bokeh rendering can look somewhat neutral/clinical rather than characterful to some users",
+      "Expensive relative to conventional f/1.4 50mm primes"
+    ],
+    "bestFor": [
+      "Portraits with very shallow depth of field and creamy background blur",
+      "Low-light event and reportage photography",
+      "Environmental portraits where subject separation is a priority",
+      "General-purpose fast-aperture full-frame work"
+    ],
+    "sources": [
+      { "title": "FE 50mm F1.2 GM | SEL50F12GM", "url": "https://www.sony.co.uk/electronics/interchangeable-lenses/sel50f12gm", "kind": "official" },
+      { "title": "Sony 50mm F1.2 G Master Expands Creative Possibilities For Photographers & Filmmakers", "url": "https://alphauniverse.com/stories/sony-50mm-f1-2-g-master-expands-creative-possibilities-for-photographers-and-filmmakers/", "kind": "official" },
+      { "title": "Sony Strengthens its Alpha System with the Introduction of its 60th E-Mount Lens, FE 50mm F1.2 G Master", "url": "https://www.sony.co.uk/presscentre/news/sony-strengthens-its-alpha-system-with-the-introduction-of-its-60th-e-mount-lens-fe-50mm-f1-2-g-master", "kind": "press" },
+      { "title": "Sony 50mm f/1.2 GM Review | They Said It Couldn't Be Done!", "url": "https://www.slrlounge.com/sony-50mm-f-1-2-gm-review/", "kind": "review" },
+      { "title": "First impressions of the Sony 50mm F1.2 GM", "url": "https://www.dpreview.com/articles/6776198643/first-impressions-of-the-sony-50mm-f1-2-gm/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  }
+]

@@ -88,14 +88,14 @@ this section and `git log`, then continue with the first unchecked phase.
 
 ## Phases
 
-- [ ] **2.0 — Plan & schema**: this section, data model (`src/data/types.ts`), research tooling check.
+- [x] **2.0 — Plan & schema**: this section, data model (`src/data/types.ts`), research tooling check.
 - [ ] **2.1 — Lens research**: Canon, Nikon, Sony, Fujifilm, Panasonic, Leica, Sigma, Tamron — 6–10 current lenses each
   (ultra-wide, standard, portrait, macro, standard zoom, tele zoom, super-tele where the brand has one), official specs +
   review-based "famous for / strengths / weaknesses / best for", sources per lens → `data/lenses/*.json`.
 - [ ] **2.2 — Phone research**: current flagships (searched, not from memory) of Apple, Samsung, Google + 3 other makers,
   every camera's sensor / pixel / MP / eq. focal length / aperture / zoom / OIS / AF → `data/phones/phones.json`;
   `data/SOURCES.md` generated from the data.
-- [ ] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
+- [x] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
   plane, focus breathing fitted to the published max. magnification), sensor formats + CoC, rectilinear FOV,
   equivalent focal length / aperture, zoom-ring mapping. Unit tests with hand calculations (below).
 - [ ] **2.4 — i18n foundation**: string tables, English / Arabic toggle, full RTL layout, IBM Plex Sans Arabic (bundled).
@@ -150,3 +150,20 @@ this section and `git log`, then continue with the first unchecked phase.
    lenses, phones and camera modules are generated procedurally, with a neutral Lens Lab styling.
 10. **Lazy loading.** Lens data (per brand), phone data, the phone teardown scene, compare mode and the Arabic font /
     content are split into separate chunks and loaded on demand.
+
+## Phase 2 physics verification (hand calculations)
+
+Every row was worked out by hand (checked with a pocket-calculator script) and is asserted in
+`tests/lensModel.test.ts` (`npm test`). Code: `src/optics/formats.ts`, `src/optics/lensModel.ts`, `src/optics/depthMap.ts`.
+
+| Case | Hand calculation | Code |
+|---|---|---|
+| **F** formats | FF d = √(36² + 24²) = **43.267 mm**, c = d/1442 = **0.0300 mm** · APS-C 23.5×15.6: d = 28.207, crop = **1.534**, c = 0.0196 · MFT 17.3×13: crop **1.999** · GFX 43.8×32.9: crop **0.790** · phone 1/1.28": d ≈ 16/1.28 = **12.5 mm** → 10.0 × 7.5 mm (4:3), crop **3.461** | ✅ |
+| **G** field of view | 16 mm: H = 2·atan(18/16) = **96.73°**, V = 2·atan(12/16) = **73.74°**, D = 2·atan(21.63/16) = **107.03°** · 24 mm: D = **84.06°** · 600 mm: H = 2·atan(18/600) = **3.437°**, D = **4.130°** · 50 mm at 1:5 (v = 60 mm): H = **33.4°** (breathing) | ✅ |
+| **H** equivalence | 56 mm f/1.2 on APS-C → 56·1.534 = **85.9 mm**, 1.2·1.534 = **f/1.84** · phone 6.9 mm f/1.78 on 1/1.28" → 6.9·3.461 = **23.9 mm**, 1.78·3.461 = **f/6.16** · at 2 m the equivalent pair agrees to 1.2 % (near) / 3.6 % (far, close to H ≈ 3.1 m): equivalence is exact only for u ≫ f | ✅ |
+| **I** zoom ring | 24–70 at z = ½: √(24·70) = **40.99 mm**; 35 mm ↔ z = ln(35/24)/ln(70/24) = **0.3525** · 100–500 f/4.5–7.1 at 300 mm: 4.5·3^(ln(7.1/4.5)/ln 5) = 4.5·3^0.2833 = f/6.14 → 1/3-stop scale **f/6.3** (the real lens shows f/5.6 there — hence "≈" in the UI) | ✅ |
+| **J** focal-plane distances | 50 mm focused at T = 2000 mm: u = (T + √(T² − 4Tf))/2 = **1948.68 mm**, v = **51.32 mm**, m = **0.02633**; 1/u + 1/v = 1/50 ✓ · 50 mm f/16 at ∞: H_u = 2500/(16c) + 50 = 5258.1, H_T = H_u + f·H_u/(H_u − f) = **5308.6 mm** | ✅ |
+| **K** macro breathing | 100 mm, MFD 260 mm, 1.4×: f_mfd = 260·1.4/2.4² = **63.19 mm** → at MFD u = f(1+m)/m = **108.33**, v = f(1+m) = **151.67**, T = 260 ✓ · f/2.8: working **f/6.72**, DoF = **0.2057 mm** = 2Nc(1+m)/m² ✓ | ✅ |
+| **L** depth ladder | u(d) = 1 − (200/d)^0.3: u(2 m) = 1 − 0.1^0.3 = **0.4988**; d(½) = 200·0.5^(−1/0.3) = **2015.9 mm**; 0.3 m → 0.115, 30 m → 0.778, 200 m → 0.874, ∞ → 1 | ✅ |
+| **M** apertures | f/1.2–16 → buttons **1.2, 2, 4, 8, 16** (full stops spread evenly in stop space) · f/0.95–16 → **0.95, 2, 4, 8, 16** | ✅ |
+| **N** image-side cones | aperture radius r at D in front of the sensor, wanted disc b, t = b/2r: far subject a = tD/(1 + t) in front, near subject a = tD/(1 − t) behind; similar triangles give back 2r·a/(D ∓ a) = b exactly | ✅ |
