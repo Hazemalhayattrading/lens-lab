@@ -110,15 +110,6 @@ export interface LensData {
   checked: string;
 }
 
-/** Translatable text of one lens (Arabic files mirror the English fields). */
-export interface LensText {
-  famousFor: string;
-  strengths: string[];
-  weaknesses: string[];
-  bestFor: string[];
-  notes?: string;
-}
-
 export type PhoneCameraRole = 'ultra-wide' | 'main' | 'telephoto' | 'periscope' | 'front';
 
 export interface PhoneCamera {

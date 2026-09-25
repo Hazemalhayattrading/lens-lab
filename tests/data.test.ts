@@ -1,20 +1,21 @@
-import { readdirSync, readFileSync } from 'node:fs';
-import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { LensData, PhoneData } from '../src/data/types';
 
-const load = <T>(dir: string): T[] =>
-  readdirSync(join(__dirname, '..', dir))
-    .filter((f) => f.endsWith('.json'))
-    .flatMap((f) => JSON.parse(readFileSync(join(__dirname, '..', dir, f), 'utf8')) as T[]);
-
-const lenses = load<LensData>('data/lenses');
-const phones = load<PhoneData>('data/phones');
+// the same glob the app uses to lazy-load the data (here eagerly)
+const lensFiles = import.meta.glob<LensData[]>('../data/lenses/*.json', { eager: true, import: 'default' });
+const phoneFiles = import.meta.glob<PhoneData[]>('../data/phones/*.json', { eager: true, import: 'default' });
+const lenses = Object.values(lensFiles).flat();
+const phones = Object.values(phoneFiles).flat();
 const CATEGORIES = ['ultra-wide', 'wide-prime', 'standard-prime', 'portrait-prime', 'macro', 'standard-zoom', 'telephoto-zoom', 'telephoto-prime', 'super-telephoto'];
 const KINDS = ['aspherical', 'low-dispersion', 'super-low-dispersion', 'fluorite', 'high-refractive', 'diffractive', 'anomalous-dispersion', 'other'];
 const posOrNull = (v: number | null) => v === null || (typeof v === 'number' && v > 0 && Number.isFinite(v));
 
 describe('lens data', () => {
+  it('loads every brand file', () => {
+    expect(Object.keys(lensFiles).length).toBeGreaterThan(0);
+    expect(lenses.length).toBeGreaterThan(0);
+  });
+
   it('has unique ids', () => {
     const ids = lenses.map((l) => l.id);
     expect(new Set(ids).size).toBe(ids.length);

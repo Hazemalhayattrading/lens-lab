@@ -82,7 +82,7 @@ blur disc A·|v_s − v_d|/v_d; f/2 → f/16 shrinks every blur disc by exactly 
 
 Goal: turn the focus bench into an encyclopedia of real lenses and phone cameras — a researched lens library
 (8 brands), per-lens physics in the 3D lab (zoom, apertures, close focus, field of view, DoF), a telephoto-ready
-scene, smartphone camera teardowns, compare mode and a full English / Arabic (RTL) UI.
+scene, smartphone camera teardowns and compare mode. The UI is English only.
 Work happens on branch `claude/intelligent-cori-0yz11n`; every phase is committed and pushed. If resumed: read
 this section and `git log`, then continue with the first unchecked phase.
 
@@ -98,7 +98,6 @@ this section and `git log`, then continue with the first unchecked phase.
 - [x] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
   plane, focus breathing fitted to the published max. magnification), sensor formats + CoC, rectilinear FOV,
   equivalent focal length / aperture, zoom-ring mapping. Unit tests with hand calculations (below).
-- [ ] **2.4 — i18n foundation**: string tables, English / Arabic toggle, full RTL layout, IBM Plex Sans Arabic (bundled).
 - [ ] **2.5 — Telephoto scene**: new depth ladder (0.25 m → ∞) with far subjects (bird on a branch 30 m, tower 200 m,
   far mountains), wide-angle world for the sensor view, field-of-view cone in 3D, sensor pipeline driven by any lens.
 - [ ] **2.6 — Procedural lenses**: barrel from real dimensions, real element / group counts, special elements highlighted
@@ -111,10 +110,13 @@ this section and `git log`, then continue with the first unchecked phase.
   computational photography (portrait mode, multi-frame fusion) — with live visuals.
 - [ ] **2.10 — Compare mode + phone vs camera**: any two lenses / phone cameras side by side: specs, FOV, DoF at the same
   distance, rendered images; phone-vs-full-frame preset.
-- [ ] **2.11 — Arabic content**: translate all lens / phone descriptions and explainers; RTL polish.
 - [ ] **2.12 — Polish loop**: Playwright screenshots (desktop + mobile) after each visual phase, critique, iterate;
   lazy loading, quality toggle, zero console errors.
 - [ ] **2.13 — Finish**: README, SOURCES.md, tests, `npm run build`, pull request with screenshots.
+
+*Scope change (2026-09-25, requested by the user): the Arabic / RTL work — former phases 2.4 (i18n foundation) and 2.11
+(Arabic content) — is dropped; the app is English only. The i18n code that had been started was removed; the other
+phase numbers are kept unchanged so commit messages stay traceable.*
 
 ## Phase 2 decisions
 
@@ -148,8 +150,8 @@ this section and `git log`, then continue with the first unchecked phase.
    sees a complete world in the sensor view while the bench model stays compact; the FOV cone shows what the lens sees.
 9. **Legal.** Brand and product names appear as plain text only. No logos, trademarks as graphics or product photos; all
    lenses, phones and camera modules are generated procedurally, with a neutral Lens Lab styling.
-10. **Lazy loading.** Lens data (per brand), phone data, the phone teardown scene, compare mode and the Arabic font /
-    content are split into separate chunks and loaded on demand.
+10. **Lazy loading.** Lens data (per brand), phone data, the phone teardown scene and compare mode are split into
+    separate chunks and loaded on demand.
 
 ## Phase 2 physics verification (hand calculations)
 
