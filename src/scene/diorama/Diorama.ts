@@ -176,7 +176,7 @@ export class Diorama {
       const s = sampleTerrain(X, Z);
       if (s.path > 0.3 || s.mountain > 0.4 || s.lake > 0.02) continue;
       if (Math.hypot(X - CABIN.x, Z - CABIN.z) < 0.45) continue;
-      if (Math.hypot(X - SUBJECT_X.flower, Z + 0.24) < 0.12) continue;
+      if (Math.hypot(X - SUBJECT_X.flower, Z + 0.14) < 0.12) continue;
       const r = random();
       const kind = r < 0.22 ? 'rock' : r < 0.8 ? 'tuft' : 'flower';
       const size = kind === 'rock' ? 0.018 + random() * 0.035 : kind === 'tuft' ? 0.018 + random() * 0.02 : 0.008 + random() * 0.006;

@@ -35,7 +35,12 @@ export function fmtRange(near: number, far: number): string {
     const mid = (near + far) / 2;
     return `${fmtDistance(mid)} ± ${((far - near) / 2).toFixed(far - near < 2 ? 2 : 1)} mm`;
   }
-  return `${fmtDistance(near)} – ${fmtDistance(far)}`;
+  const n = fmtDistance(near);
+  const f = fmtDistance(far);
+  // share the unit when both ends use it: "78.6–81.4 cm"
+  const nu = n.lastIndexOf(' ');
+  if (Number.isFinite(far) && nu > 0 && n.slice(nu) === f.slice(f.lastIndexOf(' '))) return `${n.slice(0, nu)}–${f}`;
+  return `${n} – ${f}`;
 }
 
 export function fmtF(n: number): string {

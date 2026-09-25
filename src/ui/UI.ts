@@ -149,7 +149,8 @@ export class UI {
 
   // ------------------------------------------------------------------ markup
   private markup(): string {
-    const ticks = SLIDER_TICKS.map(([d, l]) => `<span style="left:${uPct(d)}%">${l}</span>`).join('');
+    const minor = new Set([3000, 30000, 100000]);
+    const ticks = SLIDER_TICKS.map(([d, l]) => `<span${minor.has(d) ? ' class="minor"' : ''} style="left:${uPct(d)}%">${l}</span>`).join('');
     const marks = SUBJECTS.map((s) => `<i style="left:${uPct(s.distance)}%;color:${s.color}" title="${SUBJECT_NAME[s.id]}"></i>`).join('');
     const trackTicks = TRACK_TICKS.map(([d, l]) => `<span class="tick" style="left:${uPct(d)}%">${l}</span>`).join('');
     const trackDots = SUBJECTS.map((s) => `<span class="sdot" data-subject="${s.id}" style="left:${uPct(s.distance)}%;background:${s.color}"></span>`).join('');

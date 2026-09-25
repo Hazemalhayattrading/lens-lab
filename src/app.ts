@@ -329,6 +329,8 @@ export class LensLabApp {
 
     this.state.update(dt);
     this.ring.update(dt);
+    this.sensor.setFormat(this.state.lens.physics.sensor.width, this.state.lens.physics.sensor.height);
+    this.sensor.update(this.capture ? 10 : dt);
     this.rig.update(dt);
     if (!this.capture) this.auto.sample(dt);
     skyUniforms.uSkyTime.value = this.t;
@@ -444,7 +446,8 @@ export class LensLabApp {
     L.place('fov', fovP, cam, !compact, [0, -12]);
 
     // sensor
-    L.ensure('sensor', { className: 'part', priority: 6, html: `Sensor <span class="v">${o.imageDistance.toFixed(1)} mm from lens</span>` });
+    const fmt = o.lens.format === 'full-frame' ? '' : `${o.sensor.width} × ${o.sensor.height} mm · `;
+    L.ensure('sensor', { className: 'part', priority: 6, html: `Sensor <span class="v">${fmt}${o.imageDistance.toFixed(1)} mm from lens</span>` });
     L.place('sensor', new THREE.Vector3(LAYOUT.sensorX, LAYOUT.axisY + SENSOR_H / 2 + 0.62, 0), cam, !compact);
 
     // focus ring hint until the user has turned it once

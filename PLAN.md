@@ -98,8 +98,15 @@ this section and `git log`, then continue with the first unchecked phase.
 - [x] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
   plane, focus breathing fitted to the published max. magnification), sensor formats + CoC, rectilinear FOV,
   equivalent focal length / aperture, zoom-ring mapping. Unit tests with hand calculations (below).
-- [ ] **2.5 — Telephoto scene**: new depth ladder (0.25 m → ∞) with far subjects (bird on a branch 30 m, tower 200 m,
+- [x] **2.5 — Telephoto scene**: new depth ladder (0.25 m → ∞) with far subjects (bird on a branch 30 m, tower 200 m,
   far mountains), wide-angle world for the sensor view, field-of-view cone in 3D, sensor pipeline driven by any lens.
+  *Done:* power-law ladder u = 1 − (200/d)^0.3 (invertible in the shader) · kingfisher on a snag at 30 m, lighthouse
+  at 200 m, peaks at ∞, lake with sky reflection · sensor-only wide world (polar terrain, forest, sky dome) so 14–16 mm
+  frames never see the edge of the diorama · shared procedural dusk sky (gradient, clouds, stars, moon) · aerial haze in
+  the sensor view · FOV cone with live angle label · three-layer gather DoF (own blur with mip-prefiltered near
+  centres, near-field scatter-as-gather + tent filter, composite) · sensor chip resizes to the lens' format
+  (APS-C / MFT / GF) · adaptive aperture buttons, MFD hatch on the focus slider, working f-number for macro.
+  *Known limit:* a faint ghost of a large out-of-focus foreground remains behind its blur (single-layer DoF).
 - [ ] **2.6 — Procedural lenses**: barrel from real dimensions, real element / group counts, special elements highlighted
   and labelled, zoom groups + zoom ring, adaptive aperture buttons, smooth lens-to-lens transitions.
 - [ ] **2.7 — Lens browser**: brand tabs, category filters, search, cards, detail sheet (specs, text, sources,

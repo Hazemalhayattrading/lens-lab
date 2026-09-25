@@ -119,8 +119,75 @@ void main() {
   gl_FragColor = vec4(m, 0.0, 0.0, 1.0);
 }`;
 
-/** Pass 4: scatter-as-gather bokeh at half resolution with an iris-shaped kernel. */
+const gatherCommon = /* glsl */ `
+const float GOLDEN = 2.39996323;
+float ign(vec2 p) { return fract(52.9829189 * fract(dot(p, vec2(0.06711056, 0.00583715)))); }
+/** i-th of n points of a golden-angle spiral in a unit iris-shaped disc. */
+vec2 irisPoint(int i, int n, float rot, float seg, float polygon) {
+  float fi = float(i) + 0.5;
+  float r = sqrt(fi / float(n));
+  float th = fi * GOLDEN + rot;
+  float a = mod(th, seg) - seg * 0.5;
+  r *= mix(1.0, cos(seg * 0.5) / cos(a), polygon);
+  return vec2(cos(th), sin(th)) * r;
+}
+/** Mip level whose texels match the spacing of n samples spread over a disc of radius R. */
+float lodFor(float R, int n) {
+  return max(0.0, log2(R * 1.7725 / sqrt(float(n))) - 0.35);
+}
+`;
+
+/**
+ * Pass 4a: the pixel's own blur (background, midground and defocused foreground), gathered at half
+ * resolution with an iris-shaped kernel. A background sample may never bleed over a sharper
+ * foreground pixel; behind a defocused foreground pixel everything within its disc shows through
+ * (the foreground blur is semi-transparent) — read from a mip level matched to the sample spacing,
+ * so a small foreground object turns into a smooth veil instead of speckles.
+ */
 export const bokehFragment = /* glsl */ `
+uniform sampler2D tHalf;
+uniform vec2 uHalfTexel;
+uniform float uMaxR;
+uniform float uBlades;
+uniform float uPolygon;
+varying vec2 vUv;
+${gatherCommon}
+void main() {
+  vec4 center = texture2D(tHalf, vUv);
+  float c0 = center.a;
+  float R = clamp(abs(c0), 0.0, uMaxR);
+  if (R < 0.5) {
+    gl_FragColor = vec4(center.rgb, 0.0);
+    return;
+  }
+  float rot = ign(gl_FragCoord.xy) * 6.2831853;
+  float seg = 6.2831853 / uBlades;
+  bool nearCentre = c0 < -0.5;
+  float lod = nearCentre ? lodFor(R, SAMPLES) : 0.0;
+  vec3 acc = center.rgb;
+  float tot = 1.0;
+  for (int i = 0; i < SAMPLES; i++) {
+    vec2 o = irisPoint(i, SAMPLES, rot, seg, uPolygon) * R;
+    float dist = length(o);
+    vec4 s = textureLod(tHalf, vUv + o * uHalfTexel, lod);
+    float w = 1.0;
+    if (!nearCentre) {
+      float sr = abs(s.a);
+      if (s.a > c0) sr = min(sr, abs(c0) * 2.0 + 0.5);
+      w = smoothstep(dist - 0.75, dist + 0.25, sr);
+    }
+    acc += s.rgb * w;
+    tot += w;
+  }
+  gl_FragColor = vec4(acc / tot, smoothstep(0.35, 1.25, R));
+}`;
+
+/**
+ * Pass 4b: foreground blur spreading over the pixel (premultiplied colour, coverage). Only samples
+ * nearer than the pixel whose own blur disc reaches it count, weighted by (R/r)² — the density a
+ * foreground point spreads over its disc (scatter-as-gather).
+ */
+export const nearGatherFragment = /* glsl */ `
 uniform sampler2D tHalf;
 uniform sampler2D tTile;
 uniform vec2 uHalfTexel;
@@ -128,47 +195,52 @@ uniform float uMaxR;
 uniform float uBlades;
 uniform float uPolygon;
 varying vec2 vUv;
-const float GOLDEN = 2.39996323;
-float ign(vec2 p) { return fract(52.9829189 * fract(dot(p, vec2(0.06711056, 0.00583715)))); }
+${gatherCommon}
 void main() {
-  vec4 center = texture2D(tHalf, vUv);
-  float c0 = center.a;
-  float nearR = texture2D(tTile, vUv).r;
-  float R = clamp(max(abs(c0), nearR), 0.0, uMaxR);
+  float c0 = texture2D(tHalf, vUv).a;
+  float R = clamp(texture2D(tTile, vUv).r, 0.0, uMaxR);
   if (R < 0.5) {
-    gl_FragColor = vec4(center.rgb, 0.0);
+    gl_FragColor = vec4(0.0);
     return;
   }
-  float rot = ign(gl_FragCoord.xy) * 6.2831853;
-  vec3 acc = center.rgb;
-  float tot = 1.0;
-  float nearCover = 0.0;
+  float rot = ign(gl_FragCoord.xy + 17.0) * 6.2831853;
   float seg = 6.2831853 / uBlades;
+  vec3 acc = vec3(0.0);
+  float cover = 0.0;
   for (int i = 0; i < SAMPLES; i++) {
-    float fi = float(i) + 0.5;
-    float r = sqrt(fi / float(SAMPLES));
-    float th = fi * GOLDEN + rot;
-    float a = mod(th, seg) - seg * 0.5;
-    r *= mix(1.0, cos(seg * 0.5) / cos(a), uPolygon);
-    float dist = r * R;
-    vec4 s = texture2D(tHalf, vUv + vec2(cos(th), sin(th)) * dist * uHalfTexel);
-    float sr = abs(s.a);
-    // a farther (background) sample may not bleed over a sharper foreground pixel
-    if (s.a > c0) sr = min(sr, abs(c0) * 2.0 + 0.5);
-    float m = smoothstep(dist - 0.75, dist + 0.25, sr);
-    acc += mix(acc / tot, s.rgb, m);
-    tot += 1.0;
-    nearCover += s.a < -0.5 ? m : 0.0;
+    vec2 o = irisPoint(i, SAMPLES, rot, seg, uPolygon) * R;
+    float dist = length(o);
+    vec4 s = texture2D(tHalf, vUv + o * uHalfTexel);
+    float sr = -s.a;
+    if (sr > 0.5 && s.a < c0 - 0.5) {
+      float w = smoothstep(dist - 0.75, dist + 0.25, sr) * min(R * R / (sr * sr), 16.0);
+      acc += s.rgb * w;
+      cover += w;
+    }
   }
-  float alpha = max(smoothstep(0.35, 1.25, abs(c0)), clamp(nearCover / float(SAMPLES) * 5.0, 0.0, 1.0));
-  gl_FragColor = vec4(acc / tot, alpha);
+  float alpha = clamp(cover / float(SAMPLES), 0.0, 1.0);
+  gl_FragColor = cover > 0.0 ? vec4(acc / cover * alpha, alpha) : vec4(0.0);
 }`;
 
-/** Pass 5: recombine full-resolution sharp image with the half-resolution bokeh. */
+/** Pass 4c: small tent filter on the (smooth, premultiplied) near layer to remove sampling noise. */
+export const nearFilterFragment = /* glsl */ `
+uniform sampler2D tNear;
+uniform vec2 uHalfTexel;
+varying vec2 vUv;
+void main() {
+  vec2 d = uHalfTexel * 1.5;
+  vec4 c = texture2D(tNear, vUv) * 4.0;
+  c += (texture2D(tNear, vUv + vec2(d.x, 0.0)) + texture2D(tNear, vUv - vec2(d.x, 0.0)) + texture2D(tNear, vUv + vec2(0.0, d.y)) + texture2D(tNear, vUv - vec2(0.0, d.y))) * 2.0;
+  c += texture2D(tNear, vUv + d) + texture2D(tNear, vUv - d) + texture2D(tNear, vUv + vec2(d.x, -d.y)) + texture2D(tNear, vUv + vec2(-d.x, d.y));
+  gl_FragColor = c / 16.0;
+}`;
+
+/** Pass 5: sharp full-resolution image ← own half-resolution blur ← foreground blur on top. */
 export const compositeFragment = /* glsl */ `
 uniform sampler2D tColor;
 uniform sampler2D tDepth;
 uniform sampler2D tBlur;
+uniform sampler2D tNear;
 varying vec2 vUv;
 ${cocChunk}
 void main() {
@@ -176,7 +248,9 @@ void main() {
   vec4 b = texture2D(tBlur, vUv);
   float k = cocPixels(texture2D(tDepth, vUv).x);
   float blend = max(smoothstep(1.0, 3.0, abs(k)), b.a);
-  gl_FragColor = vec4(mix(sharp, b.rgb, blend), 1.0);
+  vec3 base = mix(sharp, b.rgb, blend);
+  vec4 n = texture2D(tNear, vUv);
+  gl_FragColor = vec4(base * (1.0 - n.a) + n.rgb, 1.0);
 }`;
 
 /** Display: ACES filmic (same curve as the main view), natural vignetting, grain, peaking. */

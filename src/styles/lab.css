@@ -192,3 +192,9 @@
 .ro .sub:empty {
   display: none;
 }
+
+@media (max-width: 820px) {
+  .slider-wrap .ticks span.minor {
+    display: none;
+  }
+}

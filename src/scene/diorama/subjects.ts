@@ -55,8 +55,8 @@ export function buildFlower(): BuiltSubject {
   group.name = 'flower';
   const X = OPTICAL_CENTER_X + SUBJECT_X.flower;
   // just below and right of the centre: inside a life-size macro frame, clear of the bird and the cabin
-  const Z = -0.24;
-  const bloom = new THREE.Vector3(X, LAYOUT.axisY - 0.125, Z);
+  const Z = -SUBJECT_X.flower * Math.tan(THREE.MathUtils.degToRad(2));
+  const bloom = new THREE.Vector3(X, LAYOUT.axisY - SUBJECT_X.flower * Math.tan(THREE.MathUtils.degToRad(3.3)), Z);
   const S = 0.72; // bloom scale
   const groundY = GROUND_Y + terrainHeight(SUBJECT_X.flower, Z) - 0.01;
   const random = rng(77);
@@ -210,21 +210,21 @@ export function buildSnagAndBird(): BuiltSubject {
   const beak = new THREE.Mesh(new THREE.ConeGeometry(0.0055, 0.046, 10), black);
   beak.rotation.x = Math.PI / 2 + 0.12;
   beak.position.set(0, 0.063, 0.058);
-  const eyeGeo = new THREE.SphereGeometry(0.0034, 10, 8);
+  const eyeGeo = new THREE.SphereGeometry(0.0042, 12, 10);
   const eyeR = new THREE.Mesh(eyeGeo, black);
-  eyeR.position.set(0.0138, 0.07, 0.03);
+  eyeR.position.set(0.0172, 0.0705, 0.03);
   const eyeL = eyeR.clone();
-  eyeL.position.x = -0.0138;
-  const glint = new THREE.Mesh(new THREE.SphereGeometry(0.0009, 6, 4), new THREE.MeshBasicMaterial({ color: '#ffffff' }));
-  glint.position.set(0.0158, 0.0712, 0.0312);
+  eyeL.position.x = -0.0172;
+  const glint = new THREE.Mesh(new THREE.SphereGeometry(0.0011, 6, 4), new THREE.MeshBasicMaterial({ color: '#ffffff' }));
+  glint.position.set(0.0208, 0.0718, 0.0318);
   const tail = new THREE.Mesh(new THREE.BoxGeometry(0.018, 0.005, 0.036), blue);
   tail.position.set(0, 0.005, -0.045);
   tail.rotation.x = -0.75;
   const wingGeo = new THREE.SphereGeometry(1, 16, 10);
   const wingR = new THREE.Mesh(wingGeo, blue);
-  wingR.scale.set(0.006, 0.02, 0.036);
-  wingR.position.set(0.021, 0.034, -0.006);
-  wingR.rotation.x = 0.55;
+  wingR.scale.set(0.0045, 0.015, 0.03);
+  wingR.position.set(0.0205, 0.037, -0.012);
+  wingR.rotation.x = 0.62;
   const wingL = wingR.clone();
   wingL.position.x = -0.021;
   const footGeo = new THREE.CylinderGeometry(0.0022, 0.0022, 0.012, 6);
