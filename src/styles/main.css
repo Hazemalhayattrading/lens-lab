@@ -1001,6 +1001,24 @@ button {
 }
 
 /* ---------------------------------------------------------------- modals */
+#ui > .topbar,
+#ui > .explain,
+#ui > .readouts,
+#ui > .dock,
+#ui > .filmstrip,
+#ui > .labels {
+  transition: opacity 0.3s ease, visibility 0.3s;
+}
+#ui.film-open > .topbar,
+#ui.film-open > .explain,
+#ui.film-open > .readouts,
+#ui.film-open > .dock,
+#ui.film-open > .filmstrip,
+#ui.film-open > .labels {
+  opacity: 0;
+  visibility: hidden;
+}
+
 .film-modal {
   position: absolute;
   inset: 0;
@@ -1137,7 +1155,9 @@ button {
   color: var(--faint);
 }
 
-.mobile-only {
+.mobile-only,
+.tablet-only,
+.drawer-only {
   display: none !important;
 }
 
@@ -1160,6 +1180,29 @@ button {
 @media (max-width: 1100px) and (min-width: 821px) {
   :root {
     --film-w: 250px;
+  }
+  .tablet-only,
+  .drawer-only {
+    display: revert !important;
+  }
+  .explain {
+    z-index: 25;
+    width: 340px;
+    max-height: calc(100vh - 84px - var(--film-h, 200px) - 34px);
+    background: var(--glass-strong);
+    transform: translateX(calc(-100% - 40px));
+    transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .explain.open {
+    transform: none;
+  }
+  .explain .close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+  .view-ctl .tablet-only {
+    flex: 0 0 auto;
   }
   .dock {
     grid-template-columns: 1.3fr 1fr;
@@ -1264,8 +1307,15 @@ button {
     top: 12px;
     right: 12px;
   }
-  .explain .subjects.mobile-copy {
-    display: grid;
+  .drawer-only {
+    display: revert !important;
+  }
+  .film-modal .film-hud span:last-child {
+    display: none;
+  }
+  .film-modal h3 {
+    font-size: 11px;
+    letter-spacing: 0.14em;
   }
 
   .dock {

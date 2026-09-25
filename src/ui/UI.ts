@@ -146,7 +146,7 @@ export class UI {
 </header>
 
 <aside class="panel explain" aria-live="polite">
-  <button class="icon-btn close mobile-only" data-action="close-learn" aria-label="Close">✕</button>
+  <button class="icon-btn close drawer-only" data-action="close-learn" aria-label="Close">✕</button>
   <div class="eyebrow" data-bind="eyebrow">Focused</div>
   <h2>The Plane of Focus</h2>
   <p class="lead" data-bind="lead"></p>
@@ -202,6 +202,7 @@ export class UI {
       <button data-explode="0" aria-pressed="false">Assembled</button>
       <button data-explode="1" aria-pressed="true">Exploded</button>
     </div>
+    <button class="btn tablet-only" data-action="learn" aria-label="Show the explanation">Learn</button>
     <div class="cams">
       <button class="btn" data-cam="hero">Overview</button>
       <button class="btn" data-cam="lens">Lens</button>
@@ -313,7 +314,7 @@ export class UI {
     this.helpModal.addEventListener('click', (e) => {
       if (e.target === this.helpModal) this.helpModal.classList.remove('open');
     });
-    r.querySelector('[data-action="learn"]')!.addEventListener('click', () => this.explainPanel.classList.add('open'));
+    r.querySelectorAll('[data-action="learn"]').forEach((b) => b.addEventListener('click', () => this.explainPanel.classList.toggle('open')));
     r.querySelector('[data-action="close-learn"]')!.addEventListener('click', () => this.explainPanel.classList.remove('open'));
     const presets: CameraPreset[] = ['hero', 'lens', 'sensor', 'diorama'];
     r.querySelector('[data-action="cam-cycle"]')!.addEventListener('click', () => {
@@ -350,6 +351,8 @@ export class UI {
   openFilm(open: boolean): void {
     this.filmOpen = open;
     this.filmModal.classList.toggle('open', open);
+    // the sensor image is drawn on the canvas *under* the DOM: hide every panel above it
+    this.root.classList.toggle('film-open', open);
   }
 
   get filmIsOpen(): boolean {
@@ -380,8 +383,11 @@ export class UI {
     const explain = q('.explain');
     const readouts = q('.readouts');
     const dock = q('.dock');
-    const top = Math.min(explain.top, readouts.top) - 10;
-    return { left: explain.right + 8, top: Math.max(56, top), right: readouts.left - 8, bottom: dock.top - 10 };
+    const top = readouts.top - 10;
+    // on tablets the explanation is a drawer: when closed it does not cover the view
+    const drawer = W <= 1100;
+    const left = drawer ? 12 : explain.right + 8;
+    return { left, top: Math.max(56, top), right: readouts.left - 8, bottom: dock.top - 10 };
   }
 
   /** Rect (CSS px, relative to the viewport) where the sensor image must be drawn. */

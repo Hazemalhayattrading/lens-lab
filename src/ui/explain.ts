@@ -9,7 +9,7 @@ const b = (text: string) => `<strong>${text}</strong>`;
 
 function sentenceFor(s: SubjectOptics): string {
   const name = tag(s.id, `the ${NAME[s.id]}`);
-  const dist = fmtDistance(s.distance);
+  const dist = fmtDistance(s.distance, 1);
   if (s.sharpness === 'sharp') {
     return `${cap(name)} (${dist}) is in the sharp zone — its rays meet in a point.`;
   }

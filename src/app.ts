@@ -23,9 +23,9 @@ import { UI, type CameraPreset, type QualityChoice } from './ui/UI';
 
 const PRESETS: Record<CameraPreset, { position: THREE.Vector3; target: THREE.Vector3 }> = {
   hero: VIEWS.hero,
-  lens: { position: new THREE.Vector3(2.9, 4.1, 6.6), target: new THREE.Vector3(0.25, 2.25, 0) },
+  lens: { position: new THREE.Vector3(3.3, 4.9, 7.8), target: new THREE.Vector3(0.1, 2.55, -0.4) },
   sensor: { position: new THREE.Vector3(-0.75, 2.75, 3.45), target: new THREE.Vector3(-3.55, 1.85, 0) },
-  diorama: { position: new THREE.Vector3(10.2, 4.6, 8.6), target: new THREE.Vector3(5.7, 1.75, 0) },
+  diorama: { position: new THREE.Vector3(1.7, 4.7, 7.6), target: new THREE.Vector3(5.9, 1.75, -0.3) },
 };
 
 const SUBJECT_CSS: Record<SubjectId, string> = { cabin: 'var(--cabin)', trees: 'var(--trees)', mountain: 'var(--mountain)' };
@@ -59,6 +59,7 @@ export class LensLabApp {
   /** Latest optics (exposed for debugging / tests). */
   optics: OpticsState;
   private sensorWidth = 0;
+  private sensorImage: THREE.Texture | null = null;
   private portrait: boolean;
   /** Frames rendered so far (the loader fades once the first frames are on screen). */
   frameCount = 0;
@@ -305,6 +306,11 @@ export class LensLabApp {
     this.updateLabels(o);
     this.labels.update(this.capture ? 10 : dt);
     this.updateSensorResolution();
+    if (this.sensorImage !== this.sensorView.output) {
+      // the render target is re-allocated when the resolution changes
+      this.sensorImage = this.sensorView.output;
+      this.sensor.setImage(this.sensorImage, 1.1);
+    }
 
     // shadows only when something that casts them moved
     const shadowKey = `${o.extension.toFixed(4)}|${this.state.explode.toFixed(4)}`;

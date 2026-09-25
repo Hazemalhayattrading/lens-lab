@@ -86,7 +86,7 @@ export class LensAssembly {
       clearcoatRoughness: 0.26,
     });
     const section = new THREE.MeshPhysicalMaterial({ color: '#a4a8b0', metalness: 1, roughness: 0.34 });
-    const chrome = new THREE.MeshPhysicalMaterial({ color: '#d4d8de', metalness: 1, roughness: 0.26, envMapIntensity: 0.8 });
+    const chrome = new THREE.MeshPhysicalMaterial({ color: '#a9aeb6', metalness: 1, roughness: 0.42, envMapIntensity: 0.65 });
     const innerBlack = new THREE.MeshStandardMaterial({ color: '#050506', metalness: 0.2, roughness: 0.85 });
     // ground (frosted) element edges: soft grey, reads as glass thickness instead of a black slab
     const edgeMat = new THREE.MeshPhysicalMaterial({ color: '#59616b', metalness: 0, roughness: 0.62, transmission: 0.25, thickness: 0.2, clearcoat: 0.2 });
@@ -253,7 +253,7 @@ export class LensAssembly {
     // Front name ring + filter thread
     const front = addCell(0, 0.78, 0.26, true);
     solid(ringProfile(1.0, 1.12, 1.26, 1.44, 0.018), black, front);
-    solid(ringProfile(1.02, 1.07, 1.44, 1.5), chrome, front);
+    solid(ringProfile(1.02, 1.07, 1.44, 1.5), black, front);
     const nameRing = new THREE.RingGeometry(1.0, 1.1, 128, 1, 0, CUT_PHI_LENGTH);
     // RingGeometry lies in XY; map (x, y) → lathe convention (y = -r sinφ, z = r cosφ), facing +X
     {
