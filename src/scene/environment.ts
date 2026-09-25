@@ -48,7 +48,7 @@ export function createStudioEnvironment(renderer: THREE.WebGLRenderer): THREE.Te
   env.add(top);
 
   // Tall strip lights left and right → long vertical highlights on glass and metal
-  const left = panel(3, 26, '#dfeaff', 7);
+  const left = panel(3, 26, '#eef2ff', 6);
   left.position.set(-24, 8, 8);
   left.lookAt(0, 4, 0);
   env.add(left);
@@ -59,7 +59,7 @@ export function createStudioEnvironment(renderer: THREE.WebGLRenderer): THREE.Te
   env.add(right);
 
   // Cool rim from behind
-  const rim = panel(30, 3, '#9fc3ff', 5);
+  const rim = panel(30, 3, '#b8d2ff', 3.5);
   rim.position.set(0, 10, -24);
   rim.lookAt(0, 2, 0);
   env.add(rim);

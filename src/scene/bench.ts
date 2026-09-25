@@ -28,9 +28,9 @@ export function createHardwareMaterials() {
       clearcoatRoughness: 0.4,
     }),
     satinSteel: new THREE.MeshPhysicalMaterial({
-      color: '#c9ccd2',
+      color: '#8d9198',
       metalness: 1,
-      roughness: 0.3,
+      roughness: 0.42,
       normalMap: brushed.normalMap,
       normalScale: new THREE.Vector2(0.25, 0.25),
       roughnessMap: brushed.roughnessMap,
@@ -70,8 +70,9 @@ export function createBench(hw: HardwareMaterials): THREE.Group {
     metalnessMap: tile.ormMap,
     roughness: 1,
     metalness: 1,
-    clearcoat: 0.15,
-    clearcoatRoughness: 0.5,
+    clearcoat: 0.08,
+    clearcoatRoughness: 0.6,
+    envMapIntensity: 0.6,
   });
   const top = new THREE.Mesh(new THREE.PlaneGeometry(w, d), topMat);
   top.rotation.x = -Math.PI / 2;
@@ -178,5 +179,58 @@ export function createPostOnCarrier(hw: HardwareMaterials, x: number, height: nu
   post.castShadow = true;
   g.add(post);
 
+  return g;
+}
+
+/**
+ * Saddle cradle on a rail carrier: the lens barrel rests in a circular cut-out of radius
+ * `barrelRadius` centred on the optical axis.
+ */
+export function createLensCradle(hw: HardwareMaterials, x: number, axisY: number, barrelRadius: number, length = 0.36): THREE.Group {
+  const g = new THREE.Group();
+  g.position.set(x, 0, LAYOUT.axisZ);
+  const rh = BENCH.railHeight;
+
+  const carrier = new THREE.Mesh(new RoundedBoxGeometry(0.7, 0.2, BENCH.railWidth + 0.3, 3, 0.03), hw.anodizedBlack);
+  carrier.position.y = rh + 0.1;
+  carrier.castShadow = carrier.receiveShadow = true;
+  g.add(carrier);
+
+  const knob = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.08, 24), hw.satinSteel);
+  knob.rotation.x = Math.PI / 2;
+  knob.position.set(0, rh + 0.1, (BENCH.railWidth + 0.3) / 2 + 0.04);
+  g.add(knob);
+
+  const base = rh + 0.2;
+  const halfW = barrelRadius * 0.86;
+  const shape = new THREE.Shape();
+  shape.moveTo(-halfW, base);
+  shape.lineTo(halfW, base);
+  // right side up to the saddle
+  const zEdge = halfW;
+  const yEdge = axisY - Math.sqrt(Math.max(0, barrelRadius * barrelRadius - zEdge * zEdge));
+  shape.lineTo(halfW, yEdge);
+  const steps = 40;
+  for (let i = 0; i <= steps; i++) {
+    const z = halfW - (2 * halfW * i) / steps;
+    const y = axisY - Math.sqrt(Math.max(0, barrelRadius * barrelRadius - z * z));
+    shape.lineTo(z, y);
+  }
+  shape.lineTo(-halfW, base);
+  const geo = new THREE.ExtrudeGeometry(shape, { depth: length, bevelEnabled: true, bevelSize: 0.012, bevelThickness: 0.012, bevelSegments: 2, curveSegments: 4 });
+  // shape is in (z, y); extrude along +Z → rotate so extrusion runs along X
+  geo.rotateY(-Math.PI / 2);
+  geo.translate(length / 2, 0, 0);
+  const saddle = new THREE.Mesh(geo, hw.anodizedBlack);
+  saddle.castShadow = saddle.receiveShadow = true;
+  g.add(saddle);
+
+  // satin locking screws on the saddle's front face
+  for (const y of [base + 0.12, yEdge - 0.08]) {
+    const screw = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 0.03, 20), hw.satinSteel);
+    screw.rotation.x = Math.PI / 2;
+    screw.position.set(0, y, halfW + 0.015);
+    g.add(screw);
+  }
   return g;
 }

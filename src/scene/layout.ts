@@ -9,7 +9,7 @@ import { DepthMap } from '../optics/depthMap';
  * real millimetre geometry; the object side (lens → diorama) is compressed with the DepthMap.
  */
 export const LAYOUT = {
-  axisY: 1.62,
+  axisY: 1.9,
   axisZ: 0,
   /** World X of the sensor plane. */
   sensorX: -3.75,
@@ -18,9 +18,9 @@ export const LAYOUT = {
   /** World units per millimetre across the axis on the image side (sensor, aperture). */
   kLateral: 0.058,
   /** World X (relative to the optical centre at ∞ focus) of the closest focus distance… */
-  xNearRel: 1.9,
+  xNearRel: 3.25,
   /** …and of infinity (the sky backdrop). */
-  xInfRel: 7.25,
+  xInfRel: 8.45,
   /** Depth map shape parameter d₀ (mm). */
   depthD0: 1200,
 } as const;
