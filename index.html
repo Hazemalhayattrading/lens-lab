@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#06080c" />
+    <meta name="description" content="Lens Lab — an interactive 3D optics bench that shows how camera focus, aperture and depth of field really work." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Lens Lab — How Camera Focus Works</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #05070a; }
+      #loader { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+        background: radial-gradient(1200px 700px at 55% 45%, #121826 0%, #06080c 60%, #030406 100%);
+        font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; color: #9aa6b8; transition: opacity .9s ease, visibility .9s; }
+      #loader.done { opacity: 0; visibility: hidden; }
+      #loader .loader-inner { display: grid; justify-items: center; gap: 16px; }
+      #loader svg { width: 64px; height: 64px; animation: ll-spin 2.4s cubic-bezier(.6,0,.4,1) infinite; }
+      #loader .loader-title { font-size: 12px; letter-spacing: .34em; text-transform: uppercase; color: #eef2f8; }
+      #loader .loader-sub { font-size: 12px; color: #6b778a; max-width: 320px; text-align: center; line-height: 1.5; }
+      @keyframes ll-spin { to { transform: rotate(360deg); } }
+    </style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <div id="loader" role="status" aria-live="polite">
+      <div class="loader-inner">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle cx="32" cy="32" r="29" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="2" />
+          <g fill="rgba(95,224,255,.16)" stroke="rgba(159,240,255,.7)" stroke-width="1">
+            <path d="M32 3 L50 12 L38 26 Z" /><path d="M50 12 L61 32 L42 32 Z" /><path d="M61 32 L50 52 L38 38 Z" />
+            <path d="M50 52 L32 61 L32 42 Z" /><path d="M32 61 L14 52 L26 38 Z" /><path d="M14 52 L3 32 L22 32 Z" />
+            <path d="M3 32 L14 12 L26 26 Z" /><path d="M14 12 L32 3 L32 22 Z" />
+          </g>
+        </svg>
+        <div class="loader-title">Lens Lab</div>
+        <div class="loader-sub">Grinding lenses &amp; calibrating the optical bench…</div>
+      </div>
+    </div>
+    <noscript>Lens Lab needs JavaScript and WebGL 2.</noscript>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
