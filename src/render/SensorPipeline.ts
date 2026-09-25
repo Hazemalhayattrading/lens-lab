@@ -1,8 +1,7 @@
 import * as THREE from 'three';
 import { FullScreenQuad } from 'three/examples/jsm/postprocessing/Pass.js';
-import { LENS } from '../optics/config';
-import type { OpticsState } from '../optics/opticsState';
-import { LAYER_SENSOR, LAYOUT, OPTICAL_CENTER_X, depthMap } from '../scene/layout';
+import type { LensState } from '../optics/lensModel';
+import { LAYER_SENSOR, LAYER_SENSOR_ONLY, LAYOUT, OPTICAL_CENTER_X, depthMap } from '../scene/layout';
 import {
   bokehFragment,
   cocDownsampleFragment,
@@ -14,7 +13,7 @@ import {
 } from './sensorShaders';
 
 export interface SensorQuality {
-  /** Render width in pixels (height = width · 2/3, the 36 × 24 aspect). */
+  /** Render width in pixels (height = width / sensor aspect). */
   width: number;
   /** Bokeh gather samples. */
   samples: number;
@@ -26,9 +25,9 @@ const TILE = 8;
 const MAX_R_HALF = 40; // max CoC radius in half-res pixels
 
 /**
- * Renders what the sensor "sees": a camera at the lens' optical centre looking down the axis
- * with the physical angle of view, followed by a depth-of-field pass whose blur is the real
- * thin-lens circle of confusion of every pixel.
+ * Renders what the sensor "sees": a camera at the lens' perspective centre looking down the axis
+ * with the lens' physical angle of view (any focal length, any sensor format), followed by a
+ * depth-of-field pass whose blur is the real thin-lens circle of confusion of every pixel.
  */
 export class SensorPipeline {
   readonly camera: THREE.PerspectiveCamera;
@@ -49,14 +48,17 @@ export class SensorPipeline {
   private readonly matComposite: THREE.ShaderMaterial;
   readonly matDisplay: THREE.ShaderMaterial;
   private quality: SensorQuality;
+  private aspect = 1.5;
+  private sensorWidthMm = 36;
   enabled = true;
 
   constructor(quality: SensorQuality) {
     this.quality = quality;
-    this.camera = new THREE.PerspectiveCamera(27, 1.5, 0.5, 40);
+    this.camera = new THREE.PerspectiveCamera(27, 1.5, 0.25, 140);
     this.camera.position.set(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ);
     this.camera.lookAt(OPTICAL_CENTER_X + 10, LAYOUT.axisY, LAYOUT.axisZ);
     this.camera.layers.set(LAYER_SENSOR);
+    this.camera.layers.enable(LAYER_SENSOR_ONLY);
 
     this.cocUniforms = {
       uNear: { value: this.camera.near },
@@ -64,11 +66,12 @@ export class SensorPipeline {
       uCamX: { value: OPTICAL_CENTER_X },
       uXNear: { value: OPTICAL_CENTER_X + LAYOUT.xNearRel },
       uXInf: { value: OPTICAL_CENTER_X + LAYOUT.xInfRel },
-      uD0: { value: depthMap.d0 },
-      uWNear: { value: depthMap.dNear / (depthMap.dNear + depthMap.d0) },
-      uF: { value: LENS.focalLength },
+      uDNear: { value: depthMap.dNear },
+      uGamma: { value: depthMap.gamma },
+      uF: { value: 50 },
       uN: { value: 2 },
-      uS: { value: 2000 },
+      uUs: { value: 2000 },
+      uVs: { value: 51.3 },
       uPxPerMm: { value: 1 },
       uMaxCoC: { value: MAX_R_HALF * 4 },
     };
@@ -103,7 +106,7 @@ export class SensorPipeline {
         tTile: { value: null },
         uHalfTexel: { value: new THREE.Vector2() },
         uMaxR: { value: MAX_R_HALF },
-        uBlades: { value: LENS.bladeCount },
+        uBlades: { value: 9 },
         uPolygon: { value: 0 },
       },
       depthTest: false,
@@ -113,7 +116,7 @@ export class SensorPipeline {
 
   private allocate(): void {
     const w = Math.round(this.quality.width / 4) * 4;
-    const h = Math.round((w * 2) / 3 / 4) * 4;
+    const h = Math.round(w / this.aspect / 4) * 4;
     if (w === this.width && h === this.height && this.rtScene?.samples === this.quality.msaa) return;
     this.dispose();
     this.width = w;
@@ -146,7 +149,7 @@ export class SensorPipeline {
     (this.matDilate.uniforms.uTileTexel.value as THREE.Vector2).set(1 / tw, 1 / th);
     (this.matBlur.uniforms.uHalfTexel.value as THREE.Vector2).set(2 / w, 2 / h);
     (this.matDisplay.uniforms.uOutTexel.value as THREE.Vector2).set(1 / w, 1 / h);
-    this.cocUniforms.uPxPerMm.value = w / LENS.sensorWidth;
+    this.cocUniforms.uPxPerMm.value = w / this.sensorWidthMm;
   }
 
   setQuality(q: SensorQuality): void {
@@ -168,15 +171,33 @@ export class SensorPipeline {
     return { width: this.width, height: this.height };
   }
 
-  update(o: OpticsState): void {
+  /** Aspect ratio of the current sensor (width / height). */
+  get sensorAspect(): number {
+    return this.aspect;
+  }
+
+  /**
+   * Point the pipeline at a lens state. `maxAperture` is the lens' widest f-number (the iris
+   * polygon appears in the bokeh once the blades enter the light path), `blades` its blade count.
+   */
+  update(o: LensState, maxAperture: number, blades: number): void {
+    const aspect = o.sensor.width / o.sensor.height;
+    if (Math.abs(aspect - this.aspect) > 1e-4 || Math.abs(o.sensor.width - this.sensorWidthMm) > 1e-6) {
+      this.aspect = aspect;
+      this.sensorWidthMm = o.sensor.width;
+      this.width = 0; // force re-allocation
+      this.allocate();
+    }
     this.camera.fov = THREE.MathUtils.radToDeg(o.fovVertical);
-    this.camera.aspect = LENS.sensorWidth / LENS.sensorHeight;
+    this.camera.aspect = aspect;
     this.camera.updateProjectionMatrix();
+    this.cocUniforms.uF.value = o.effectiveFocal;
     this.cocUniforms.uN.value = o.fNumber;
-    this.cocUniforms.uS.value = Number.isFinite(o.focusDistance) ? o.focusDistance : -1;
-    // iris polygon shows up in the bokeh once the blades enter the light path
-    this.matBlur.uniforms.uPolygon.value = THREE.MathUtils.smoothstep(o.fNumber, 2.1, 3.5) * 0.85;
-    this.matDisplay.uniforms.uAcceptPx.value = LENS.cocLimit * (this.width / LENS.sensorWidth);
+    this.cocUniforms.uUs.value = Number.isFinite(o.objectDistance) ? o.objectDistance : -1;
+    this.cocUniforms.uVs.value = o.imageDistance;
+    this.matBlur.uniforms.uBlades.value = blades;
+    this.matBlur.uniforms.uPolygon.value = THREE.MathUtils.smoothstep(o.fNumber, maxAperture * 1.05, maxAperture * 1.75) * 0.85;
+    this.matDisplay.uniforms.uAcceptPx.value = o.coc * (this.width / o.sensor.width);
   }
 
   render(renderer: THREE.WebGLRenderer, scene: THREE.Scene, time: number): void {

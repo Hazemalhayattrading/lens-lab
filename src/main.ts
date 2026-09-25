@@ -1,6 +1,7 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import './styles/main.css';
+import './styles/lab.css';
 import { LensLabApp } from './app';
 
 declare global {

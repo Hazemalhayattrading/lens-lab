@@ -7,7 +7,8 @@ import {
   RING_THROW,
   ringAngleForFocus,
 } from '../src/optics/helicoid';
-import { computeOptics, cocToPixels } from '../src/optics/opticsState';
+import { computeFrame } from '../src/lab/optics';
+import { TEACHING_LENS } from '../src/lab/labLens';
 import {
   angleOfView,
   blurDiameter,
@@ -208,16 +209,26 @@ describe('depth map', () => {
   });
 });
 
-describe('computeOptics', () => {
-  it('reports the sharp subject and blur discs in pixels', () => {
-    const o = computeOptics(2000, 2);
+describe('lab optics frame (teaching lens)', () => {
+  it('reports the sharp subject, blur discs and pixels', () => {
+    // focus 2 m from the focal plane: u_s = 1948.68, v_s = 51.317 (case J in lensModel.test.ts)
+    const o = computeFrame(TEACHING_LENS, 0, 2000, 2);
     const trees = o.subjects.find((s) => s.id === 'trees')!;
     const cabin = o.subjects.find((s) => s.id === 'cabin')!;
     expect(trees.sharpness).toBe('sharp');
+    expect(trees.coc).toBeCloseTo(0, 9);
     expect(cabin.sharpness).toBe('blurred');
-    expect(cabin.focusError).toBeGreaterThan(0); // cabin's image lies behind the sensor
-    expect(o.apertureDiameter).toBe(25);
-    // 0.9615 mm on a 36 mm wide sensor rendered 1440 px wide = 38.5 px
-    expect(cocToPixels(cabin.coc, 1440)).toBeCloseTo(38.46, 2);
+    expect(cabin.imageOffset).toBeGreaterThan(0); // the cabin's image lies behind the sensor
+    expect(o.apertureDiameter).toBeCloseTo(25, 9);
+    // cabin 0.8 m from the focal plane → u_d = 800 − 51.317 = 748.68:
+    // CoC = 2500·(1948.68 − 748.68)/(2·(1948.68 − 50)·748.68) = 1.0552 mm → 42.2 px of a 1440 px, 36 mm frame
+    expect(cabin.coc).toBeCloseTo(1.0552, 4);
+    expect((cabin.coc * 1440) / 36).toBeCloseTo(42.21, 1);
+    // closest focus 0.36 m from the focal plane = 0.30 m from the lens, 1:5
+    const close = computeFrame(TEACHING_LENS, 0, 360, 2);
+    expect(close.objectDistance).toBeCloseTo(300, 6);
+    expect(close.magnification).toBeCloseTo(0.2, 9);
+    expect(close.ringFraction).toBeCloseTo(1, 9);
+    expect(o.subjects.find((s) => s.id === 'flower')!.tooClose).toBe(true);
   });
 });

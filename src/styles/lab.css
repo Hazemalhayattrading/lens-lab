@@ -1,0 +1,194 @@
+/* Lab HUD additions for any lens (Phase 2): lens card, subject ladder, adaptive apertures, zoom ring. */
+
+[hidden] {
+  display: none !important;
+}
+
+/* ---------------------------------------------------------------- lens card */
+.lens-card {
+  margin: -2px 0 14px;
+  padding: 0 0 14px;
+  border-bottom: 1px solid var(--stroke);
+}
+.lc-brand {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  opacity: 0.85;
+}
+.lc-name {
+  margin-top: 4px;
+  font-size: 15.5px;
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+.lc-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.lc-specs span {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  padding: 3px 7px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--stroke);
+  color: #cfd8e5;
+  white-space: nowrap;
+}
+.unverified,
+.lc-specs .unverified {
+  color: #ffcf7a;
+  border: 1px dashed rgba(255, 207, 122, 0.55);
+  background: rgba(255, 190, 90, 0.06);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.lc-foot {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.lc-change {
+  padding: 7px 12px;
+  font-size: 12px;
+}
+.lc-note {
+  font-size: 11px;
+  color: var(--faint);
+  line-height: 1.4;
+  cursor: help;
+}
+.lc-note::before {
+  content: '◐ ';
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+/* ---------------------------------------------------------------- subject ladder (focus chips) */
+.quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.quick .chip-s {
+  flex: 1 1 auto;
+  padding: 6px 9px;
+  font-size: 11.5px;
+  gap: 6px;
+  border-radius: 9px;
+}
+.quick .chip-s.out {
+  opacity: 0.6;
+}
+.quick .chip-s:disabled {
+  opacity: 0.32;
+  cursor: not-allowed;
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 255, 255, 0.35);
+}
+.quick .chip-s:disabled:hover {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: var(--stroke);
+}
+
+/* the part of the focus scale closer than the lens can focus */
+.slider-wrap .blocked,
+.dof-track .blocked {
+  position: absolute;
+  left: 0;
+  width: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(-45deg, rgba(255, 120, 90, 0.34) 0 3px, transparent 3px 6px);
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+.slider-wrap .blocked {
+  top: 13px;
+  height: 8px;
+  z-index: 1;
+}
+.dof-track .blocked {
+  top: 6px;
+  height: 6px;
+}
+
+/* ---------------------------------------------------------------- zoom ring */
+.zoom-ctl .slider-wrap .fill {
+  background: linear-gradient(90deg, rgba(255, 196, 110, 0.25), #ffc46e);
+  box-shadow: 0 0 12px rgba(255, 196, 110, 0.45);
+}
+.zoom-ctl input[type='range']::-webkit-slider-thumb {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #ffe7c2 45%, #ffb454 100%);
+  box-shadow: 0 0 0 5px rgba(255, 190, 100, 0.18), 0 0 20px rgba(255, 180, 90, 0.55), 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+.zoom-ctl input[type='range']::-moz-range-thumb {
+  background: radial-gradient(circle at 35% 30%, #ffffff, #ffe7c2 45%, #ffb454 100%);
+}
+.zoom-ctl .ctl-head output {
+  color: #ffd29a;
+}
+.zoom-sub {
+  font-size: 11px;
+  color: var(--faint);
+  line-height: 1.4;
+}
+.dock.has-zoom {
+  grid-template-columns: minmax(300px, 1.3fr) minmax(180px, 0.72fr) minmax(210px, 0.88fr) minmax(180px, 0.72fr);
+  gap: 20px;
+}
+
+/* ---------------------------------------------------------------- adaptive aperture buttons */
+.ap-buttons {
+  grid-template-columns: repeat(var(--n, 3), 1fr);
+  gap: 6px;
+}
+.ap-buttons .btn {
+  padding: 8px 4px 7px;
+  font-size: 12px;
+  min-width: 0;
+}
+.ap-buttons svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ---------------------------------------------------------------- subjects (7 rows) */
+.subjects {
+  gap: 4px;
+}
+.subjects li {
+  padding: 3px 6px;
+  row-gap: 4px;
+}
+.subjects .name {
+  font-size: 12.5px;
+}
+.subjects li.out {
+  opacity: 0.42;
+}
+.subjects .state.out,
+.subjects .state.close {
+  color: var(--muted);
+  background: transparent;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  padding: 1px 5px;
+}
+.subjects .state.close {
+  color: #ffb49a;
+  border-color: rgba(255, 150, 120, 0.45);
+}
+
+.ro .sub:empty {
+  display: none;
+}

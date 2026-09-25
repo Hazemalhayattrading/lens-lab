@@ -9,8 +9,10 @@ void main() {
 
 /**
  * Per-pixel circle of confusion from depth:
- *   depth → axial distance from the lens (view z) → world X → physical distance d (depth map)
- *   → thin-lens CoC b = f²(d − s) / (N (s − f) d)  [mm on the sensor]  → pixels (W / 36 mm).
+ *   depth → axial distance from the perspective centre (view z) → world X → ladder position u
+ *   → physical distance T from the focal plane: T = d_near·(1 − u)^(−1/γ)
+ *   → object distance from the lens u_d = T − v_s → thin-lens CoC with the lens' effective focal
+ *   length: b = f²(u_d − u_s) / (N (u_s − f) u_d)  [mm on the sensor]  → pixels (W / sensor width).
  */
 export const cocChunk = /* glsl */ `
 uniform float uNear;
@@ -18,11 +20,12 @@ uniform float uFar;
 uniform float uCamX;
 uniform float uXNear;
 uniform float uXInf;
-uniform float uD0;
-uniform float uWNear;
-uniform float uF;
+uniform float uDNear;    // ladder: distance at u = 0, mm from the focal plane
+uniform float uGamma;    // ladder exponent
+uniform float uF;        // effective focal length, mm
 uniform float uN;
-uniform float uS;        // focus distance in mm, < 0 means infinity
+uniform float uUs;       // focused object distance from the lens, mm (< 0 means infinity)
+uniform float uVs;       // lens → sensor, mm
 uniform float uPxPerMm;  // full-resolution pixels per sensor millimetre
 uniform float uMaxCoC;   // clamp, full-res pixels (diameter)
 
@@ -35,15 +38,14 @@ float physicalDistance(float axial) {
   float x = uCamX + axial;
   float u = (x - uXNear) / (uXInf - uXNear);
   if (u >= 1.0) return 1.0e9;
-  float w = uWNear + u * (1.0 - uWNear);
-  if (w <= 1.0e-4) return 1.0;
-  return uD0 * w / (1.0 - w);
+  return uDNear * pow(1.0 - u, -1.0 / uGamma);
 }
 
-float cocMm(float d) {
-  if (uS < 0.0) return (d > 1.0e8) ? 0.0 : -uF * uF / (uN * d);
-  if (d > 1.0e8) return uF * uF / (uN * (uS - uF));
-  return uF * uF * (d - uS) / (uN * (uS - uF) * d);
+float cocMm(float T) {
+  if (T > 1.0e8) return uUs < 0.0 ? 0.0 : uF * uF / (uN * (uUs - uF));
+  float ud = max(T - uVs, uF * 1.02);
+  if (uUs < 0.0) return -uF * uF / (uN * ud);
+  return uF * uF * (ud - uUs) / (uN * (uUs - uF) * ud);
 }
 
 /** Signed CoC diameter in full-resolution pixels (negative = nearer than focus). */

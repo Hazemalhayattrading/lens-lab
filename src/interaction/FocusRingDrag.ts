@@ -1,12 +1,20 @@
 import * as THREE from 'three';
 import type { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { focusForRingAngle, RING_THROW, ringAngleForFocus } from '../optics/helicoid';
-import type { LensAssembly } from '../scene/lens/LensAssembly';
+
+/** What the drag needs from the mounted lens. */
+export interface RingTarget {
+  readonly focusRingMeshes: THREE.Object3D[];
+  readonly focusRing: THREE.Object3D;
+  /** Rotation from ∞ to the closest focus (radians). */
+  readonly ringThrow: number;
+  setRingHover(amount: number): void;
+}
 
 /**
  * Lets the user grab the knurled focus ring and turn it. The grabbed point on the ring stays
  * under the pointer: the pointer ray is intersected with the ring's cylinder and the change of
- * angle around the optical axis turns the ring, which drives the helicoid → focus distance.
+ * angle around the optical axis turns the ring. The ring position is reported as a fraction of
+ * its throw (0 = ∞, 1 = closest focus); the app maps it onto the lens' focus curve.
  */
 export class FocusRingDrag {
   private readonly raycaster = new THREE.Raycaster();
@@ -17,7 +25,7 @@ export class FocusRingDrag {
   private lastPhi = 0;
   private ringAngle = 0;
   private hover = false;
-  onFocus: (distance: number) => void = () => {};
+  onFraction: (fraction: number) => void = () => {};
   onDragStart: () => void = () => {};
   onDragEnd: () => void = () => {};
   /** 0..1 hover/drag glow, eased by the app. */
@@ -27,13 +35,19 @@ export class FocusRingDrag {
     private readonly dom: HTMLElement,
     private readonly camera: THREE.Camera,
     private readonly controls: OrbitControls,
-    private readonly lens: LensAssembly,
-    private readonly getFocus: () => number,
+    private lens: RingTarget,
+    private readonly getFraction: () => number,
   ) {
     dom.addEventListener('pointerdown', this.onDown, { capture: true });
     dom.addEventListener('pointermove', this.onMove);
     window.addEventListener('pointerup', this.onUp);
     window.addEventListener('pointercancel', this.onUp);
+  }
+
+  /** Point the drag at another lens. */
+  setLens(lens: RingTarget): void {
+    this.lens = lens;
+    this.hover = false;
   }
 
   get isDragging(): boolean {
@@ -98,7 +112,7 @@ export class FocusRingDrag {
     const c = this.axisCenter();
     this.radius = Math.hypot(hit.point.y - c.y, hit.point.z - c.z);
     this.lastPhi = this.phiOf(hit.point, c);
-    this.ringAngle = ringAngleForFocus(this.getFocus());
+    this.ringAngle = this.getFraction() * this.lens.ringThrow;
     this.dragging = true;
     this.pointerId = e.pointerId;
     this.controls.enabled = false;
@@ -117,8 +131,9 @@ export class FocusRingDrag {
       if (dPhi < -Math.PI) dPhi += Math.PI * 2;
       this.lastPhi = phi;
       // the knurl follows the finger: a material point moving by +Δφ means the ring turned −Δφ
-      this.ringAngle = THREE.MathUtils.clamp(this.ringAngle - dPhi, 0, RING_THROW);
-      this.onFocus(focusForRingAngle(this.ringAngle));
+      const throwRad = this.lens.ringThrow;
+      this.ringAngle = THREE.MathUtils.clamp(this.ringAngle - dPhi, 0, throwRad);
+      this.onFraction(this.ringAngle / throwRad);
       return;
     }
     if (e.pointerType === 'mouse' && e.buttons === 0) {

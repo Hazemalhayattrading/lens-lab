@@ -3,7 +3,8 @@ import * as THREE from 'three';
 /**
  * Shared uniforms for the "plane of focus" overlay drawn on the diorama's own materials in
  * the main view: a glowing contour where the plane slices through the scene, and a faint tint
- * of the depth-of-field zone. Switched off while the sensor camera renders.
+ * of the depth-of-field zone. Switched off while the sensor camera renders — which instead gets
+ * aerial perspective (distant things fade towards the horizon colour).
  */
 export const focusOverlay = {
   uOverlayOn: { value: 1 },
@@ -15,6 +16,13 @@ export const focusOverlay = {
   uZoneColor: { value: new THREE.Color('#3fb8ff') },
   uZoneStrength: { value: 0.07 },
   uBandStrength: { value: 3.2 },
+  /** Aerial perspective, applied while the sensor camera renders. */
+  uHazeOn: { value: 0 },
+  uHazeColor: { value: new THREE.Color('#9b7f9a').convertSRGBToLinear() },
+  uHazeCentre: { value: new THREE.Vector2(0, 0) },
+  /** Radial distances (world) where haze starts / is full. */
+  uHazeRange: { value: new THREE.Vector2(7.2, 9.6) },
+  uHazeMax: { value: 0.42 },
 };
 
 export function applyFocusOverlay(material: THREE.Material): void {
@@ -49,7 +57,12 @@ uniform float uBandWidth;
 uniform vec3 uBandColor;
 uniform vec3 uZoneColor;
 uniform float uZoneStrength;
-uniform float uBandStrength;`,
+uniform float uBandStrength;
+uniform float uHazeOn;
+uniform vec3 uHazeColor;
+uniform vec2 uHazeCentre;
+uniform vec2 uHazeRange;
+uniform float uHazeMax;`,
       )
       .replace(
         '#include <emissivemap_fragment>',
@@ -60,6 +73,15 @@ if (uOverlayOn > 0.5) {
   float soft = 0.03;
   float zone = smoothstep(uNearX - soft, uNearX + soft, vFocusWorld.x) * (1.0 - smoothstep(uFarX - soft, uFarX + soft, vFocusWorld.x));
   totalEmissiveRadiance += uBandColor * band * uBandStrength + uZoneColor * zone * uZoneStrength;
+}`,
+      )
+      .replace(
+        '#include <opaque_fragment>',
+        `#include <opaque_fragment>
+if (uHazeOn > 0.5) {
+  float hr = length(vFocusWorld.xz - uHazeCentre);
+  float haze = smoothstep(uHazeRange.x, uHazeRange.y, hr) * uHazeMax;
+  gl_FragColor.rgb = mix(gl_FragColor.rgb, uHazeColor, haze);
 }`,
       );
   };

@@ -64,6 +64,9 @@ export class LensAssembly {
   private readonly gripRepeatAround = 120;
   private travel = 0;
   private explode = 0;
+  private currentAperture = 0;
+  readonly blades = LENS.bladeCount;
+  readonly ringThrow = THREE.MathUtils.degToRad(LENS.ringThrowDeg);
   private readonly ringHighlight: THREE.MeshPhysicalMaterial;
 
   constructor(
@@ -335,6 +338,7 @@ export class LensAssembly {
   }
 
   setAperture(radius: number, fNumber: number): void {
+    this.currentAperture = radius;
     this.iris.setRadius(radius);
     this.apertureTex.offset.x = (apertureRingAngle(fNumber) - INDEX_PHI + APERTURE_PSI0) / (Math.PI * 2);
     this.ribTex.offset.x = (apertureRingAngle(fNumber) / (Math.PI * 2)) * 96;
@@ -376,5 +380,15 @@ export class LensAssembly {
   /** World X of the iris (the aperture stop = thin-lens principal plane). */
   get stopX(): number {
     return this.centerX + this.travel;
+  }
+
+  /** Radius of the current iris opening (world units). */
+  get apertureRadius(): number {
+    return this.currentAperture;
+  }
+
+  /** World X of the front of the lens (where the field-of-view cone starts). */
+  get frontX(): number {
+    return this.centerX + 1.5;
   }
 }
