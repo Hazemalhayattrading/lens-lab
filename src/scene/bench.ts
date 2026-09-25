@@ -135,7 +135,7 @@ export function createBench(hw: HardwareMaterials): THREE.Group {
 
   // End stops
   for (const x of [BENCH.railXMin - 0.03, BENCH.railXMax + 0.03]) {
-    const stop = new THREE.Mesh(new RoundedBoxGeometry(0.1, rh + 0.08, BENCH.railWidth + 0.1, 2, 0.02), hw.satinSteel);
+    const stop = new THREE.Mesh(new RoundedBoxGeometry(0.1, rh + 0.08, BENCH.railWidth + 0.1, 2, 0.02), hw.darkSteel);
     stop.position.set(x, (rh + 0.08) / 2, LAYOUT.axisZ);
     stop.castShadow = true;
     group.add(stop);

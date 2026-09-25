@@ -51,6 +51,8 @@ export class LensAssembly {
   readonly cell = new THREE.Group();
   readonly iris: Iris;
   readonly focusRingMeshes: THREE.Mesh[] = [];
+  /** Group of the focus ring (its origin lies on the ring's rotation axis). */
+  focusRing!: THREE.Group;
   readonly glassMaterials: THREE.MeshPhysicalMaterial[] = [];
 
   private readonly parts: MovingPart[] = [];
@@ -221,6 +223,7 @@ export class LensAssembly {
 
     // Focus ring (rotates via its textures; stays axially fixed)
     const focus = addFixed(0, 0.36, 0.2);
+    this.focusRing = focus;
     solid(ringProfile(1.12, 1.18, 0.1, 1.04, 0.01), black, focus);
     this.focusRingMeshes.push(skin(1.183, 0.12, 0.31, scaleMat, focus));
     const grip = solid(
