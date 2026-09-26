@@ -1,0 +1,1086 @@
+[
+  {
+    "id": "leica-super-vario-elmar-sl-16-35-f35-45-asph",
+    "brand": "Leica",
+    "name": "Leica Super-Vario-Elmar-SL 16-35 f/3.5-4.5 ASPH.",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": {
+      "min": 16,
+      "max": 35
+    },
+    "maxAperture": {
+      "wide": 3.5,
+      "tele": 4.5
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": null
+    },
+    "elements": 18,
+    "groups": 12,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 2
+      },
+      {
+        "kind": "anomalous-dispersion",
+        "label": "anomalous partial dispersion glass",
+        "count": 3
+      }
+    ],
+    "apertureBlades": null,
+    "minFocusM": {
+      "wide": 0.25,
+      "tele": 0.25
+    },
+    "maxMagnification": null,
+    "stabilization": null,
+    "autofocus": "Stepping motor",
+    "weightG": null,
+    "dimensionsMm": null,
+    "filterMm": 82,
+    "releaseYear": 2018,
+    "launchPrice": {
+      "amount": 5495,
+      "currency": "USD"
+    },
+    "zoomMechanism": "internal",
+    "focusMechanism": "floating",
+    "notes": "Order no. 11177. Leica's press release put the lens on sale from 23 April 2018. Leica lists 18 elements in 12 groups with two aspherical elements and three elements of glass with anomalous partial dispersion, and a close focus distance of 25 cm (used for both ends of the zoom). Non-official values: the launch price of USD 5,495 comes from launch news/retailer coverage (PetaPixel, B&H); the stepping-motor AF, the non-extending (internal) zoom and the floating-element focusing come from B&H's product description; the smallest aperture f/22 (given only as the aperture range, so the tele-end value is left null) also comes from B&H. The 82 mm filter thread is inferred from Leica's own accessory listing (lens cap E82). Weight, dimensions, number of aperture blades and maximum magnification did not appear in any accessible source and are null; whether the lens has optical stabilisation was not stated explicitly in the accessible sources, so stabilization is null. The Lensrentals link is a rental listing, not a review, so it is classed as a retailer source; no independent review is listed for this lens.",
+    "famousFor": "The widest zoom in Leica's SL line-up, a weather-protected 16-35mm for L-Mount bodies built around an 18-element design with anomalous-dispersion glass for tight control of colour fringing.",
+    "strengths": [
+      "Internal zoom: the barrel does not extend when zooming",
+      "Weather-protected build with AquaDura coating on the front element",
+      "Fast, quiet autofocus",
+      "Close focus of 25 cm across the zoom range"
+    ],
+    "weaknesses": [
+      "Slower f/3.5-4.5 aperture than f/2.8 ultra-wide zooms",
+      "Very expensive for an ultra-wide zoom",
+      "Large 82 mm filters needed"
+    ],
+    "bestFor": [
+      "Landscapes and seascapes in bad weather",
+      "Architecture and tight interiors",
+      "Travel and street scenes with a wide perspective",
+      "Environmental portraits with dramatic foreground"
+    ],
+    "sources": [
+      {
+        "title": "Super-Vario-Elmar-SL 16-35 f/3.5-4.5 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/super-vario-elmar-sl-16-35mm-f3-5-4-5-asph-black",
+        "kind": "official"
+      },
+      {
+        "title": "Overview - Leica Super-Vario-Elmar-SL 16-35mm f/3.5-4.5 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/super-vario-elmar-sl-16-35mm-f3-5-4-5-asph-black/overview",
+        "kind": "official"
+      },
+      {
+        "title": "Super-Vario-Elmar-SL 16-35 f/3.5-4.5 ASPH. data sheet (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/pm-54144-11177_Datenblatt_Super-Vario-Elmar-16-35-ASPH_EN.pdf",
+        "kind": "official"
+      },
+      {
+        "title": "Press release: Super-Vario-Elmar-SL 16-35/3.5-4.5 ASPH. expands the SL-System - Leica Camera AG",
+        "url": "https://leica-camera.com/en-int/Company/Press-Centre/Press-Releases/2018-not-urgent-translatable/Press-Release-Versatile-wide-angle-lens-Super-Vario-Elmar-SL-16%E2%80%9335-3.5%E2%80%934.5-ASPH.-expands-the-SL-System",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Unveils the Super-Vario-Elmar-SL 16-35mm f/3.5-4.5 Lens - PetaPixel",
+        "url": "https://petapixel.com/2018/04/09/leica-unveils-the-super-vario-elmar-sl-16-35mm-f-3-5-4-5-lens/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica unveils Super-Vario-Elmar-SL 16-35mm F3.5-4.5 ASPH zoom lens - DPReview",
+        "url": "https://www.dpreview.com/news/2371861603/leica-unveils-super-vario-elmar-sl-16-35mm-f3-5-4-5-asph-zoom-lens-for-the-sl-system/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Super-Vario-Elmar-SL 16-35mm f/3.5-4.5 ASPH. Lens 11177 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/1401560-REG/leica_11177_super_vario_elmar_sl_16_35mm_f_3_5_4_5_asph.html",
+        "kind": "retailer"
+      },
+      {
+        "title": "Rent a Leica 16-35mm f/3.5-4.5 Super-Vario-Elmar-SL for L-Mount - Lensrentals",
+        "url": "https://www.lensrentals.com/rent/leica-16-35mm-f3.5-4.5-super-vario-elmar-sl-for-l-mount",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-summilux-m-35-f14-asph",
+    "brand": "Leica",
+    "name": "Leica Summilux-M 35 f/1.4 ASPH.",
+    "mount": "Leica M",
+    "format": "full-frame",
+    "category": "wide-prime",
+    "focalLength": {
+      "min": 35,
+      "max": 35
+    },
+    "maxAperture": {
+      "wide": 1.4,
+      "tele": 1.4
+    },
+    "minAperture": {
+      "wide": 16,
+      "tele": 16
+    },
+    "elements": 9,
+    "groups": 5,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": {
+      "wide": 0.4,
+      "tele": 0.4
+    },
+    "maxMagnification": null,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Manual focus",
+    "weightG": 320,
+    "dimensionsMm": {
+      "diameter": 56,
+      "length": 46
+    },
+    "filterMm": 46,
+    "releaseYear": 2022,
+    "launchPrice": {
+      "amount": 5395,
+      "currency": "USD"
+    },
+    "focusMechanism": "floating",
+    "notes": "This is the current redesign announced by Leica on 15 September 2022 (order no. 11726 black, 11727 silver), which replaced the 2010 FLE version: 11 aperture blades instead of 9, close focus 40 cm instead of 70 cm (via a double-cam mechanism; the range 70-40 cm is outside the rangefinder coupling and is focused with live view or an EVF) and a round integrated lens hood. Leica lists 9 elements in 5 groups with one aspherical element and 'several' elements of anomalous-partial-dispersion glass; the number of those is not published, so only the aspherical element is itemised. The elements behind the aperture form a floating group. maxMagnification is null: the researched ratio of 1:17.4 fits a 35 mm lens focused at the old 0.7 m limit (the 2010 FLE version / end of the rangefinder coupling), not at this version's 0.4 m close focus, where a thin-lens estimate gives roughly 1:9; the true largest ratio could not be confirmed from an official source. Leica gives the length as approx. 46 / 58 mm depending on the integrated hood position; 46 mm (hood retracted) is used. Launch price: Leica's press release gives EUR 5,650 (black) / EUR 5,850 (silver); the USD 5,395 (black) figure is from DPReview/PetaPixel launch coverage (non-official). The smallest aperture f/16 is taken from the ePhotozine review (non-official).",
+    "famousFor": "A classic fast 35mm for Leica M rangefinders; the 2022 redesign kept the compact size but added 11 aperture blades for smoother bokeh and closer 40 cm focusing, and reviewers rate it among the sharpest 35mm lenses Leica has made.",
+    "strengths": [
+      "Very sharp across the aperture range, even wide open",
+      "Compact and light (about 320 g) for an f/1.4 lens",
+      "Close focus down to 40 cm, unusual for an M lens",
+      "Pleasant focus transition and rounder bokeh from 11 blades"
+    ],
+    "weaknesses": [
+      "Very expensive",
+      "Manual rangefinder focusing at f/1.4 takes practice; the 70-40 cm range needs live view or an EVF",
+      "Some vignetting wide open"
+    ],
+    "bestFor": [
+      "Street photography and reportage in low light",
+      "Environmental portraits wide open",
+      "Everyday travel and documentary photography with a small kit",
+      "Close details at the table or on the street down to 40 cm"
+    ],
+    "sources": [
+      {
+        "title": "SUMMILUX-M 35 f/1.4 ASPH. - Technical Specs - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/m/summilux-m-35mm-f1-4-asph-black/technical-specification",
+        "kind": "official"
+      },
+      {
+        "title": "Leica Summilux-M 35 mm f/1.4 ASPH. technical data (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/pm-56063-Summilux-M35-TechnicalData.pdf",
+        "kind": "official"
+      },
+      {
+        "title": "PR: Leica Summilux-M 35 f/1.4 ASPH. - Redesign - Leica Camera AG",
+        "url": "https://leica-camera.com/en-int/press/leica-summilux-m-35-f14-asph-redesign",
+        "kind": "press"
+      },
+      {
+        "title": "Press release Leica Summilux-M 35 f/1.4 ASPH. redesign (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/2022-09/press_release_summilux-m_35_september_202246.pdf",
+        "kind": "press"
+      },
+      {
+        "title": "Leica's updated Summilux-M 35mm F1.4 ASPH lens is actually cheaper than its predecessor - DPReview",
+        "url": "https://www.dpreview.com/news/7906244703/leica-s-updated-summilux-m-35mm-f1-4-asph-lens-is-actually-cheaper-than-its-predecessor",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Redesigns and Improves the Summilux-M 35mm f/1.4 ASPH Lens - PetaPixel",
+        "url": "https://petapixel.com/2022/09/15/leica-redesigns-and-improves-the-summilux-m-35mm-f-1-4-asph-lens/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Summilux-M 35mm f/1.4 ASPH Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/leica-summilux-m-35mm-f-1-4-asph-lens-review-35877",
+        "kind": "review"
+      },
+      {
+        "title": "Leica 35mm Summilux-M f/1.4 ASPH review - Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/cameras/lenses/leica-35mm-summilux-m-f-1-4-asph-review",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-noctilux-m-50-f095-asph",
+    "brand": "Leica",
+    "name": "Leica Noctilux-M 50 f/0.95 ASPH.",
+    "mount": "Leica M",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": {
+      "min": 50,
+      "max": 50
+    },
+    "maxAperture": {
+      "wide": 0.95,
+      "tele": 0.95
+    },
+    "minAperture": {
+      "wide": 16,
+      "tele": 16
+    },
+    "elements": 8,
+    "groups": 5,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "ground and polished asphere",
+        "count": 2
+      }
+    ],
+    "apertureBlades": null,
+    "minFocusM": {
+      "wide": 1,
+      "tele": 1
+    },
+    "maxMagnification": 0.059,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Manual focus",
+    "weightG": 700,
+    "dimensionsMm": null,
+    "filterMm": 60,
+    "releaseYear": 2008,
+    "launchPrice": {
+      "amount": 6290,
+      "currency": "GBP"
+    },
+    "focusMechanism": "floating",
+    "notes": "Order no. 11602 (black); silver (11667) and special editions such as the 2023 'Titan' version use the same optics. Leica lists 8 elements in 5 groups with two ground and polished aspherical surfaces/elements, glasses with anomalous partial dispersion and high-refractive-index glasses (their number is not published, so only the aspheres are itemised) and a floating element. Leica gives a length of 75.1 mm, 700 g, E60 filter thread, 1 m close focus and a largest reproduction ratio of 1:17 (stored as 0.059); the lens has a built-in extendable hood. The maximum diameter and the number of aperture blades were not found, so dimensionsMm and apertureBlades are null. Non-official values: announcement date (15 September 2008 at Photokina, availability February 2009) and the launch price of GBP 6,290 come from DPReview's launch article (a USD launch price was not verified); the smallest aperture f/16 appeared in spec listings (Leica / B&H) but not in a clearly official field.",
+    "famousFor": "Leica's legendary f/0.95 standard lens, long billed as the world's fastest aspherical lens, sought after for its extremely shallow depth of field and distinctive 'Noctilux look' in available-light photography.",
+    "strengths": [
+      "Extremely fast f/0.95 aperture for very low light",
+      "Distinctive, pleasant bokeh and razor-thin depth of field",
+      "Outstanding image quality when stopped down",
+      "Vignetting and distortion improved over the older Noctilux f/1"
+    ],
+    "weaknesses": [
+      "Heavy (700 g) and bulky for an M lens; it blocks part of the rangefinder view",
+      "Hard to focus accurately wide open; only focuses to 1 m",
+      "Strong vignetting until about f/4"
+    ],
+    "bestFor": [
+      "Available-light portraits at night",
+      "Street and concert photography in very dim light",
+      "Portraits isolating the subject with very shallow depth of field",
+      "Moody interiors and candlelit scenes"
+    ],
+    "sources": [
+      {
+        "title": "Noctilux-M 50 f/0.95 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/m/noctilux-m-50mm-f0-95-asph-black",
+        "kind": "official"
+      },
+      {
+        "title": "Leica Noctilux-M 50mm f/0.95 ASPH. - Technical specification - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/m/noctilux-m-50mm-f0-95-asph-black/technical-specification",
+        "kind": "official"
+      },
+      {
+        "title": "Leica Noctilux-M 50mm f/0.95 ASPH. - Overview - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/m/noctilux-m-50mm-f0-95-asph-black/discover",
+        "kind": "official"
+      },
+      {
+        "title": "Leica offers World's fastest Aspherical lens - DPReview",
+        "url": "https://www.dpreview.com/articles/4797035976/leica-50mm-f0-95/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Noctilux: Overkill or Necessity - DPReview",
+        "url": "https://www.dpreview.com/articles/9759698807/leica-noctilux-overkill-or-necessity/",
+        "kind": "review"
+      },
+      {
+        "title": "Leica Noctilux-M 50mm f/0.95 ASPH - Photography Life",
+        "url": "https://photographylife.com/lenses/leica-noctilux-m-50mm-f0-95-asph",
+        "kind": "review"
+      },
+      {
+        "title": "Leica Noctilux-M 50mm f/0.95 ASPH. Lens (Leica M, Black) 11602 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/586190-REG/Leica_11_602_50mm_f_0_95_Noctilux_M_Aspherical.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-apo-summicron-m-50-f2-asph",
+    "brand": "Leica",
+    "name": "Leica APO-Summicron-M 50 f/2 ASPH.",
+    "mount": "Leica M",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": {
+      "min": 50,
+      "max": 50
+    },
+    "maxAperture": {
+      "wide": 2,
+      "tele": 2
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 8,
+    "groups": 5,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical surface",
+        "count": 1
+      }
+    ],
+    "apertureBlades": null,
+    "minFocusM": {
+      "wide": 0.7,
+      "tele": 0.7
+    },
+    "maxMagnification": 0.088,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Manual focus",
+    "weightG": 300,
+    "dimensionsMm": {
+      "diameter": 53,
+      "length": 47
+    },
+    "filterMm": 39,
+    "releaseYear": 2012,
+    "launchPrice": {
+      "amount": 7195,
+      "currency": "USD"
+    },
+    "focusMechanism": "floating",
+    "notes": "Order no. 11141 (black anodised); a silver version (11142) followed in 2016 and several special editions (e.g. 'LHSA', 2017) use the same optics. Leica lists 8 elements in 5 groups with one aspherical surface and several elements of glass with anomalous partial dispersion (their number is not published, so only the asphere is itemised); length approx. 47 mm, largest diameter approx. 53 mm, weight approx. 300 g, E39 filter thread, built-in hood extended by rotating, focus range 0.7 m to infinity and largest reproduction ratio 1:11.3 (stored as 0.088). Non-official values: the announcement date (10 May 2012, available late July 2012) and the USD 7,195 launch price come from DPReview's launch article (a PetaPixel article quoted a higher converted figure of almost USD 8,700, which was not used); the floating element comes from B&H's description. Smallest aperture and number of aperture blades were not found in accessible sources and are null.",
+    "famousFor": "Leica's apochromatically corrected 50mm f/2 for the M system, often cited as one of the sharpest standard lenses ever made, with virtually no colour fringing in a body barely larger than the classic Summicron.",
+    "strengths": [
+      "Exceptionally sharp and contrasty across the frame from f/2",
+      "Apochromatic correction: practically no chromatic aberration",
+      "Small and light (about 300 g) with a built-in hood",
+      "Three-dimensional rendering praised by reviewers"
+    ],
+    "weaknesses": [
+      "Very expensive for an f/2 standard lens",
+      "Compact barrel makes it easy to knock the aperture ring while focusing",
+      "Close focus limited to 0.7 m"
+    ],
+    "bestFor": [
+      "Everyday street and documentary photography",
+      "Detailed landscapes and cityscapes on high-resolution M bodies",
+      "Portraits with subject separation at f/2",
+      "Available-light interiors"
+    ],
+    "sources": [
+      {
+        "title": "APO-Summicron-M 50 f/2 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/m/apo-summicron-m-50mm-f2-asph-black",
+        "kind": "official"
+      },
+      {
+        "title": "APO-Summicron-M 50 f/2 ASPH. - Technical Data - Leica Camera AG",
+        "url": "https://leica-camera.com/en-int/photography/lenses/m/apo-summicron-m-50mm-f2-asph-black/technical-specification",
+        "kind": "official"
+      },
+      {
+        "title": "Leica APO-Summicron-M 50 mm f/2 ASPH. data sheet (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/pm-55437-Apo-Summicron-M%202_50%20ASPH_EN_Stand100512.pdf",
+        "kind": "official"
+      },
+      {
+        "title": "Leica announces APO-Summicron-M 50mm f/2 ASPH normal prime - DPReview",
+        "url": "https://www.dpreview.com/articles/1644589816/leica-apo-summicron-m-50mm-f2-asph",
+        "kind": "press"
+      },
+      {
+        "title": "Leica 50mm APO Summicron-M f/2 ASPH review - Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/reviews/leica-50mm-apo-summicron-m-f2-asph-review",
+        "kind": "review"
+      },
+      {
+        "title": "Leica APO-Summicron-M 50mm f/2 ASPH - Photography Life",
+        "url": "https://photographylife.com/lenses/leica-apo-summicron-m-50mm-f2-asph",
+        "kind": "review"
+      },
+      {
+        "title": "Leica APO-Summicron-M 50mm f/2 ASPH. Lens (Leica M, Black) 11141 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/860529-REG/Leica_11141_APO_Summicron_M_50mm_f_2_0_ASPH.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-summilux-m-50-f14-asph",
+    "brand": "Leica",
+    "name": "Leica Summilux-M 50 f/1.4 ASPH.",
+    "mount": "Leica M",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": {
+      "min": 50,
+      "max": 50
+    },
+    "maxAperture": {
+      "wide": 1.4,
+      "tele": 1.4
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 8,
+    "groups": 5,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": {
+      "wide": 0.45,
+      "tele": 0.45
+    },
+    "maxMagnification": null,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Manual focus",
+    "weightG": 337,
+    "dimensionsMm": null,
+    "filterMm": null,
+    "releaseYear": 2023,
+    "launchPrice": {
+      "amount": 4495,
+      "currency": "USD"
+    },
+    "notes": "This is the current redesign announced by Leica on 13 April 2023 (order no. 11728 black, 11729 silver), which replaced the 2004-2023 version (11891/11892): 11 aperture blades instead of 9, close focus 45 cm instead of 70 cm via a double-cam focusing unit, and a round integrated lens hood. Leica lists 8 elements in 5 groups including one aspherical element; USD 4,495 (black) / USD 4,795 (silver) at launch. Weight: Leica's data sheet gives approx. 337 g (US press text: 12 oz) for the black version; B&H lists 14.7 oz, which may refer to another finish, so the official figure is used. Dimensions are null because the sources disagree: Leica's data sheet gives approx. 59.3 mm diameter and 58.6 mm length, while B&H gives 2.3 x 1.8 in (about 58 x 46 mm), probably with the hood retracted; it could not be confirmed which hood position Leica's length refers to. The filter thread, smallest aperture and largest reproduction ratio did not appear in accessible sources and are null. No independent full review was found within the search budget, so the descriptive text relies on Leica's and DPReview/B&H launch information.",
+    "famousFor": "Leica's classic fast 50mm for the M system; the 2023 generation added 11 aperture blades, closer 45 cm focusing and an integrated round hood in a compact M-lens body.",
+    "strengths": [
+      "Compact and light for an f/1.4 standard lens",
+      "Close focus down to 45 cm, well below the traditional 70 cm M limit",
+      "Rounder out-of-focus highlights from the 11-blade diaphragm",
+      "Integrated, retractable lens hood"
+    ],
+    "weaknesses": [
+      "Expensive",
+      "Manual rangefinder focusing at f/1.4 leaves little margin for error"
+    ],
+    "bestFor": [
+      "Available-light street and documentary photography",
+      "Head-and-shoulders and half-body portraits with soft backgrounds",
+      "Everyday travel photography with one small lens",
+      "Close-up details of food or objects down to 45 cm"
+    ],
+    "sources": [
+      {
+        "title": "Technical Specs - Leica Summilux-M 50 f/1.4 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/m/leica-summilux-m-50-f14-asph-black/technical-specification",
+        "kind": "official"
+      },
+      {
+        "title": "Summilux-M 50 f/1.4 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/m/leica-summilux-m-50-f14-asph-black",
+        "kind": "official"
+      },
+      {
+        "title": "Leica Summilux-M 50 f/1.4 ASPH. data sheet (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/pm-107144-EN_Datenblatt-Summilux-M-50---Classic.pdf",
+        "kind": "official"
+      },
+      {
+        "title": "Leica Camera announces new Leica Summilux-M 50 f/1.4 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/press/leica-camera-announces-new-leica-summilux-m-50-f14-asph",
+        "kind": "press"
+      },
+      {
+        "title": "Press release Leica Summilux-M 50 f/1.4 ASPH. - The New Generation (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/2023-04/press_release_leica_summilux-m_50_f_1.4_asph_apil_2023_my.pdf",
+        "kind": "press"
+      },
+      {
+        "title": "Leica releases Summilux-M 50mm F1.4 ASPH - DPReview",
+        "url": "https://www.dpreview.com/news/7069545277/leica-releases-summilux-m-50mm-f1-4-asph/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Summilux-M 50mm f/1.4 ASPH. Lens (Leica M, Black) 11728 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/1760459-REG/leica_summilux_m_50mm_f_1_4_asph.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-apo-summicron-sl-90-f2-asph",
+    "brand": "Leica",
+    "name": "Leica APO-Summicron-SL 90 f/2 ASPH.",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "portrait-prime",
+    "focalLength": {
+      "min": 90,
+      "max": 90
+    },
+    "maxAperture": {
+      "wide": 2,
+      "tele": 2
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 11,
+    "groups": 9,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 1
+      }
+    ],
+    "apertureBlades": null,
+    "minFocusM": {
+      "wide": 0.6,
+      "tele": 0.6
+    },
+    "maxMagnification": 0.2,
+    "stabilization": null,
+    "autofocus": "Stepping motors with DSD (Dual Syncro Drive)",
+    "weightG": 720,
+    "dimensionsMm": {
+      "diameter": 73,
+      "length": 102
+    },
+    "filterMm": 67,
+    "releaseYear": 2018,
+    "launchPrice": {
+      "amount": 5150,
+      "currency": "USD"
+    },
+    "notes": "Order no. 11179. Leica's press release (2018) says the lens was available from 8 February 2018; DPReview dates the announcement to 15 January 2018. Leica lists 11 elements in 9 groups with one aspherical element and several elements of glass with anomalous partial dispersion (their number is not published, so only the asphere is itemised), close focus 60 cm, a dust- and splash-sealed metal housing, and stepping-motor AF with Dual Syncro Drive that covers the whole focus travel in about 250 ms. Non-official values: weight 720 g, dimensions 73 x 102 mm and the 67 mm filter thread come from DPReview's specification page; the USD 5,150 launch price comes from DPReview's launch article (a later review quoted USD 5,795); the smallest aperture f/22 and 0.2x maximum magnification come from Digital Camera World / DPReview. Number of aperture blades not found. Whether the lens has optical stabilisation was not stated explicitly in accessible sources, so stabilization is null.",
+    "famousFor": "The short telephoto of Leica's compact SL 'Summicron' prime family, an apochromatically corrected 90mm f/2 with fast Dual Syncro Drive autofocus, regarded by reviewers as one of the best portrait lenses for L-Mount.",
+    "strengths": [
+      "Apochromatic correction with minimal colour fringing",
+      "Smooth rendering wide open, with peak sharpness around f/5.6-f/8",
+      "Fast Dual Syncro Drive autofocus (full travel in about 250 ms)",
+      "Dust- and splash-sealed metal build with a smooth manual focus ring"
+    ],
+    "weaknesses": [
+      "Expensive",
+      "Heavy for a 90mm f/2 at about 720 g",
+      "Reviewers reported missed eye focus with older SL bodies, which wastes the lens's resolution"
+    ],
+    "bestFor": [
+      "Head-and-shoulders portraits with clean background blur",
+      "Fashion and beauty work on high-resolution L-Mount bodies",
+      "Detail shots at weddings and events",
+      "Compressed landscape and cityscape details"
+    ],
+    "sources": [
+      {
+        "title": "APO-Summicron-SL 90 f/2 ASPH. - Leica Camera AG",
+        "url": "https://leica-camera.com/en-int/photography/lenses/sl/apo-summicron-sl-90mm-f2-asph-black",
+        "kind": "official"
+      },
+      {
+        "title": "Overview - Leica APO-Summicron-SL 90mm f/2 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/apo-summicron-sl-90mm-f2-asph-black/discover",
+        "kind": "official"
+      },
+      {
+        "title": "New prime lenses for the Leica SL-System - Press release - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/Company/Press-Centre/Press-Releases/2018-not-urgent-translatable/Press-Release-New-prime-lenses-for-the-Leica-SL-System-Superior-performance-and-the-finest-arts-of-engineering-in-compact-design",
+        "kind": "press"
+      },
+      {
+        "title": "Leica announces APO-Summicron-SL 75mm and 90mm F2 lenses - DPReview",
+        "url": "https://www.dpreview.com/news/5294423017/leica-announces-apo-summicron-sl-75mm-and-90mm-f2-lenses",
+        "kind": "press"
+      },
+      {
+        "title": "Leica APO-Summicron-SL 90mm F2 ASPH full specifications - DPReview",
+        "url": "https://www.dpreview.com/products/leica/lenses/leica_apo_summicron-sl_90_2_asph/specifications",
+        "kind": "review"
+      },
+      {
+        "title": "Leica 90mm APO Summicron-SL f/2 ASPH. review - Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/reviews/leica-90mm-apo-summicron-sl-f2-asph-review",
+        "kind": "review"
+      },
+      {
+        "title": "Leica APO-Summicron-SL 90mm f/2 ASPH. Lens 11179 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/1384720-REG/leica_11179_apo_summicron_sl_90mm_f_2_asph.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-apo-macro-elmarit-sl-100-f28",
+    "brand": "Leica",
+    "name": "Leica APO-Macro-Elmarit-SL 100 f/2.8",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "macro",
+    "focalLength": {
+      "min": 100,
+      "max": 100
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 17,
+    "groups": 12,
+    "specialElements": null,
+    "apertureBlades": null,
+    "minFocusM": {
+      "wide": 0.3,
+      "tele": 0.3
+    },
+    "maxMagnification": 1,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": null,
+    "weightG": 862,
+    "dimensionsMm": {
+      "diameter": 77,
+      "length": 137.6
+    },
+    "filterMm": 67,
+    "releaseYear": 2026,
+    "launchPrice": {
+      "amount": 2700,
+      "currency": "USD"
+    },
+    "notes": "Chosen as the most notable current Leica macro: Leica's first macro lens for the SL system (order no. 11125), announced on 25 June 2026 together with the SL3-P and a new SL 50mm f/1.4, and presented as a modern revival of the 1987 APO-Macro-Elmarit-R 100 f/2.8. Leica lists 17 elements in 12 groups with apochromatic correction, 1:1 reproduction ratio, close focus 30 cm, a focus limiter (30-50 cm / 50 cm to infinity), E67 filter thread, AquaDura coating and a dust- and splash-proof metal body; the numbers of special glass elements are not published, so specialElements is null. Weight 862 g and length 137.6 mm are Leica's figures, but one official snippet read as 'including the supplied lens hood' while PetaPixel and B&H state the weight is without the hood; treat the hood status as uncertain. Launch price: EUR 2,450 in Leica's press text; USD 2,700 from PetaPixel (non-official). Non-official values: 77 mm diameter, smallest aperture f/22 and 'no image stabilisation' come from B&H/DPReview spec listings. Aperture blades are null because sources disagree (8 in one Leica snippet, 9 in a retailer listing). The AF drive type was not named in accessible sources. As a lens announced three months before this check, it has only hands-on coverage so far, no full independent review.",
+    "famousFor": "Leica's first true 1:1 macro for the SL system, an apochromatic 100mm f/2.8 with autofocus that revives the famous APO-Macro-Elmarit-R 100 from 1987 for mirrorless L-Mount cameras.",
+    "strengths": [
+      "Life-size (1:1) reproduction at a 30 cm close focus distance",
+      "Apochromatic design that suppresses colour fringing",
+      "Focus limiter for faster AF in close-up or distance work",
+      "Dust- and splash-proof metal body with AquaDura coating"
+    ],
+    "weaknesses": [
+      "Fairly heavy at about 862 g",
+      "No optical image stabilisation",
+      "New lens with little independent test data so far"
+    ],
+    "bestFor": [
+      "Life-size macro of insects, flowers and textures",
+      "Product and jewellery photography",
+      "Head-and-shoulders portraits with soft bokeh",
+      "Copying documents, stamps and artwork"
+    ],
+    "sources": [
+      {
+        "title": "APO-Macro-Elmarit-SL 100 f/2.8 - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/apo-macro-elmarit-sl-100mm-f2-8-black",
+        "kind": "official"
+      },
+      {
+        "title": "APO-Macro-Elmarit-SL 100 f/2.8 - Leica Camera AG",
+        "url": "https://leica-camera.com/en-int/photography/lenses/sl/apo-macro-elmarit-sl-100mm-f2-8-black",
+        "kind": "official"
+      },
+      {
+        "title": "The Leica 100mm f/2.8 Is a Modern Revival of an R-Mount Lens From 1987 - PetaPixel",
+        "url": "https://petapixel.com/2026/06/25/the-leica-100mm-f-2-8-is-a-modern-revival-of-an-r-mount-lens-from-1987/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica's new 50mm is smaller, lighter and still F1.4 - DPReview",
+        "url": "https://www.dpreview.com/news/8468939257/leica-50mm-f1p4-100mm-f2p8-macro-sl-lenses-announced/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica launches its first-ever macro lens for its SL mirrorless camera system - Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/cameras/lenses/leica-launches-its-first-ever-macro-lens-for-its-sl-mirrorless-camera-system-and-i-got-to-try-it-out",
+        "kind": "review"
+      },
+      {
+        "title": "Leica APO-Macro-Elmarit-SL 100mm f/2.8 Lens (L-Mount) 11125 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/1981586-REG/leica_leica_apo_macro_elmarit_sl_100_f_2_8.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-vario-elmarit-sl-24-70-f28-asph",
+    "brand": "Leica",
+    "name": "Leica Vario-Elmarit-SL 24-70 f/2.8 ASPH.",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": {
+      "min": 24,
+      "max": 70
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 19,
+    "groups": 15,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "double-sided aspherical",
+        "count": 3
+      },
+      {
+        "kind": "anomalous-dispersion",
+        "label": "anomalous partial dispersion glass",
+        "count": 9
+      }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": {
+      "wide": 0.18,
+      "tele": 0.38
+    },
+    "maxMagnification": 0.34,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Stepping motor",
+    "weightG": 856,
+    "dimensionsMm": {
+      "diameter": 88,
+      "length": 123
+    },
+    "filterMm": 82,
+    "releaseYear": 2021,
+    "launchPrice": {
+      "amount": 2795,
+      "currency": "USD"
+    },
+    "focusMechanism": "internal",
+    "notes": "Order no. 11189. Announced on 6 May 2021 (Leica press release 2021; PetaPixel/DPReview). Leica lists 19 elements in 15 groups with three elements aspherical on both sides (six aspherical surfaces), nine elements of glass with anomalous partial dispersion, an 11-blade aperture and a closest focus of 18 cm at 24mm and 38 cm at 70mm measured from the sensor plane. The lens is made in Japan and shares its optical layout with Sigma's 24-70mm F2.8 DG DN Art; PetaPixel's review found differences suggesting it is not simply a rehoused Sigma. Non-official values: launch price USD 2,795, weight 856 g, dimensions approx. 88 x 123 mm and the 82 mm filter thread come from PetaPixel/DPReview launch coverage; the smallest aperture f/22, 0.34x maximum magnification (at the long end), the stepping-motor AF with a single-element internal focus group and the lack of optical stabilisation come from reviews (ePhotozine, PetaPixel, Digital Camera World). Whether the barrel extends when zooming was not confirmed, so zoomMechanism is omitted.",
+    "famousFor": "A constant-f/2.8 standard zoom for the Leica SL system that shares its optical layout with Sigma's 24-70mm F2.8 DG DN Art, praised by reviewers for prime-like sharpness, near-zero distortion and very close focusing at 24mm.",
+    "strengths": [
+      "Very sharp across the zoom range, with excellent edges from f/2.8",
+      "Distortion practically zero at all focal lengths in tests",
+      "Fast, quiet stepping-motor AF driving a single light focus element",
+      "Very close focus (18 cm at 24mm) and weather-sealed metal build"
+    ],
+    "weaknesses": [
+      "No optical image stabilisation",
+      "Large 82 mm filters"
+    ],
+    "bestFor": [
+      "Weddings and events",
+      "Travel and everyday photography with one lens",
+      "Close-up detail shots at 24mm",
+      "Documentary and reportage work"
+    ],
+    "sources": [
+      {
+        "title": "Vario-Elmarit-SL 24-70 f/2.8 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/vario-elmarit-sl-24-70-f2-8-asph-black-finish",
+        "kind": "official"
+      },
+      {
+        "title": "Overview - Leica Vario-Elmarit-SL 24-70 f/2.8 ASPH. - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/vario-elmarit-sl-24-70-f2-8-asph-black-finish/discover",
+        "kind": "official"
+      },
+      {
+        "title": "Leica releases a new, universal zoom lens - Press release 2021 - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/Company/Press-Centre/Press-Releases/2021/Press-Release-Leica-releases-a-new,-universal-zoom-lens-%E2%80%93-and-launches-two-lens-and-camera-sets-for-SL-System-newcomers",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Unveils the Vario-Elmarit-SL 24-70mm f/2.8 ASPH Lens - PetaPixel",
+        "url": "https://petapixel.com/2021/05/06/leica-unveils-the-vario-elmarit-sl-24-70mm-f-2-8-asph-lens/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica 24-70mm f/2.8 Review: Perhaps Not Just a Rehoused Sigma - PetaPixel",
+        "url": "https://petapixel.com/2021/06/02/leica-24-70mm-f-2-8-review-perhaps-not-just-a-rehoused-sigma/",
+        "kind": "review"
+      },
+      {
+        "title": "Leica Vario-Elmarit-SL 24-70mm f/2.8 ASPH Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/leica-vario-elmarit-sl-24-70mm-f-2-8-asph-lens-review-37572",
+        "kind": "review"
+      },
+      {
+        "title": "Leica 24-70mm Vario-Elmarit-SL f/2.8 ASPH review - Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/reviews/leica-24-70mm-vario-elmarit-sl-f28-asph-review",
+        "kind": "review"
+      },
+      {
+        "title": "Leica Vario-Elmarit-SL 24-70mm f/2.8 ASPH. Lens 11189 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/1639033-REG/leica_11189_vario_elmarit_sl_24_70mm_f_2_8_asph.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-apo-vario-elmarit-sl-90-280-f28-4",
+    "brand": "Leica",
+    "name": "Leica APO-Vario-Elmarit-SL 90-280 f/2.8-4",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": {
+      "min": 90,
+      "max": 280
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 4
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 23,
+    "groups": 17,
+    "specialElements": [
+      {
+        "kind": "anomalous-dispersion",
+        "label": "anomalous partial dispersion glass",
+        "count": 7
+      }
+    ],
+    "apertureBlades": null,
+    "minFocusM": {
+      "wide": 0.6,
+      "tele": 1.4
+    },
+    "maxMagnification": 0.2,
+    "stabilization": {
+      "optical": true,
+      "stops": 3.5
+    },
+    "autofocus": "Stepping motors (dual internal focusing)",
+    "weightG": 1710,
+    "dimensionsMm": {
+      "diameter": 88,
+      "length": 238
+    },
+    "filterMm": 82,
+    "releaseYear": 2015,
+    "launchPrice": {
+      "amount": 6395,
+      "currency": "USD"
+    },
+    "zoomMechanism": "internal",
+    "focusMechanism": "internal",
+    "notes": "Order no. 11175. Announced together with the Leica SL (Typ 601) in October 2015; price and availability were announced separately (DPReview: USD 6,395 / GBP 4,650). Leica's data sheet lists 23 elements (moved in seven groups), seven of them of glass with anomalous partial dispersion, close focus 60 cm at 90mm, length 238 mm to the bayonet flange without hood, largest diameter 88 mm, weight approx. 1,710 g, E82 filter thread and O.I.S. rated 3.5 stops (CIPA, at 280mm on the SL Typ 601); the overall length does not change when zooming or focusing, and the two focus groups of the dual internal focusing are driven by stepping motors. It was not clear from accessible sources whether the 1,710 g includes the tripod mount. Non-official values: 17 groups and the smallest aperture f/22 (both ends) from B&H/DPReview specification listings; close focus 1.4 m at 280mm and the reproduction ratio of about 1:4.8-1:5 (stored as 0.2) from review coverage (Photography Life / Digital Camera World). Number of aperture blades not found.",
+    "famousFor": "Leica's apochromatic telephoto zoom for the SL system, noted for a constant length when zooming and focusing, fast dual internal-focus AF and 3.5-stop stabilisation, with excellent image quality across the whole 90-280mm range.",
+    "strengths": [
+      "Excellent sharpness, contrast and clarity throughout the zoom range",
+      "Apochromatic correction with seven anomalous-dispersion elements",
+      "Internal zoom and focus: the length never changes",
+      "Fast, quiet AF and 3.5-stop optical stabilisation"
+    ],
+    "weaknesses": [
+      "Heavy at about 1.7 kg",
+      "Very expensive",
+      "Aperture drops to f/4 at the long end"
+    ],
+    "bestFor": [
+      "Wildlife and birds at moderate distances",
+      "Outdoor sports and motorsport",
+      "Compressed landscape details",
+      "Tight portraits and close-ups of flowers from a distance"
+    ],
+    "sources": [
+      {
+        "title": "APO-Vario-Elmarit-SL 90-280 f/2.8-4 - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/apo-vario-elmarit-sl-90-280mm-f2-8-4-black",
+        "kind": "official"
+      },
+      {
+        "title": "Leica APO-Vario-Elmarit-SL 90-280 mm f/2.8-4 data sheet, order no. 11 175 (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/pm-55506-Datenblatt_APO-Vario-Elmarit-SL_90-280_en.pdf",
+        "kind": "official"
+      },
+      {
+        "title": "Overview - Leica APO-Vario-Elmarit-SL 90-280mm f/2.8-4 - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/apo-vario-elmarit-sl-90-280mm-f2-8-4-black/discover",
+        "kind": "official"
+      },
+      {
+        "title": "Leica announces price and availability of 90-280mm F2.8-4 zoom for SL camera - DPReview",
+        "url": "https://www.dpreview.com/news/1921711516/leica-announces-price-and-availability-of-90-280mm-f2-8-4-zoom-for-sl-camera",
+        "kind": "press"
+      },
+      {
+        "title": "Leica APO-Vario-Elmarit-SL 90-280mm f/2.8-4 review - Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/cameras/lenses/leica-apo-vario-elmarit-sl-90-280mm-f-2-8-4-review",
+        "kind": "review"
+      },
+      {
+        "title": "Leica APO Vario-Elmarit-SL 90-280mm f/2.8-4 - Photography Life",
+        "url": "https://photographylife.com/lenses/leica-apo-vario-elmarit-sl-90-280mm-f2-8-4",
+        "kind": "review"
+      },
+      {
+        "title": "Leica APO-Vario-Elmarit-SL 90-280mm f/2.8-4 Lens 11175 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/1240076-REG/leica_apo_vario_elmarit_sl_90_280mm_f_2_8_4_lens.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "leica-vario-elmar-sl-100-400-f5-63",
+    "brand": "Leica",
+    "name": "Leica Vario-Elmar-SL 100-400 f/5-6.3",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": {
+      "min": 100,
+      "max": 400
+    },
+    "maxAperture": {
+      "wide": 5,
+      "tele": 6.3
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": null
+    },
+    "elements": 22,
+    "groups": 16,
+    "specialElements": null,
+    "apertureBlades": null,
+    "minFocusM": {
+      "wide": 1.1,
+      "tele": 1.59
+    },
+    "maxMagnification": 0.24,
+    "stabilization": {
+      "optical": true,
+      "stops": 4
+    },
+    "autofocus": null,
+    "weightG": 1530,
+    "dimensionsMm": {
+      "diameter": 88,
+      "length": 198
+    },
+    "filterMm": 82,
+    "releaseYear": 2023,
+    "launchPrice": {
+      "amount": 2195,
+      "currency": "USD"
+    },
+    "notes": "The task list named this lens 'APO-Vario-Elmarit-SL 100-400 f/5-6.3', but Leica's official name is Vario-Elmar-SL 100-400 f/5-6.3 (order no. 11191); no APO-Vario-Elmarit 100-400 exists. Announced on 9 March 2023 together with the Leica Extender L 1.4x (140-560mm f/7-9, which works only with this lens). Leica lists 22 elements in 16 groups, focus range 1.10 m (100mm) / 1.59 m (400mm) to infinity, reproduction ratio 1:9.3 at 100mm and 1:4.1 at 400mm (stored as 0.24), smallest aperture f/22, optical image stabilisation, E82 filter thread, AquaDura coating on both outer lenses, an ARCA-SWISS-compatible detachable tripod base, 198 mm length / 88 mm diameter and 1,530 g without hood (253 mm / 97 mm / 1,620 g with hood); it is not stated whether the weight includes the tripod base. The tele-end smallest aperture is null because ePHOTOzine's test ran to f/29 at 400mm, which conflicts with a single f/22 value. Launch price: EUR 2,200 (Leica press release); USD 2,195 is from DPReview (non-official). The 4-stop stabilisation figure is from review/news coverage (non-official). Special-element counts, number of aperture blades and the AF drive type were not found in accessible sources.",
+    "famousFor": "The longest zoom in Leica's SL line-up, a weather-sealed 100-400mm with optical stabilisation that can be extended to 560mm with the dedicated Extender L 1.4x, priced well below Leica's other SL telephotos.",
+    "strengths": [
+      "Very versatile 100-400mm range, extendable to 560mm",
+      "Fast, virtually silent autofocus",
+      "Minimal colour fringing and negligible distortion in tests",
+      "IP54-rated weather sealing with AquaDura coating"
+    ],
+    "weaknesses": [
+      "Heavy and a little unwieldy at about 1.5 kg",
+      "Zoom ring is stiff to turn from 100 to 400mm handheld",
+      "Only fair sharpness at 400mm wide open; corners average at both ends"
+    ],
+    "bestFor": [
+      "Wildlife and birding",
+      "Field sports and motorsport",
+      "Compressed telephoto landscapes",
+      "Aircraft and airshow photography"
+    ],
+    "sources": [
+      {
+        "title": "Technical Specs - Leica Vario-Elmar-SL 100-400 f/5-6.3 - Leica Camera US",
+        "url": "https://leica-camera.com/en-US/photography/lenses/sl/vario-elmar-sl-100-400-f5-6-3/technical-specification",
+        "kind": "official"
+      },
+      {
+        "title": "Leica Vario-Elmar-SL 100-400 f/5-6.3 data sheet (PDF)",
+        "url": "https://leica-camera.com/sites/default/files/pm-92387-EN_Datenblatt_Vario-Elmar-SL_100-400.pdf",
+        "kind": "official"
+      },
+      {
+        "title": "Leica Vario-Elmar-SL 100-400 f/5-6.3 telephoto zoom lens and the new Leica Extender L 1.4x - Leica Camera AG",
+        "url": "https://leica-camera.com/en-int/press/leica-vario-elmar-sl-100-400-f5-63-telephoto-zoom-lens-and-new-leica-extender-l-14x",
+        "kind": "press"
+      },
+      {
+        "title": "Leica announces Vario-Elmar-SL 100-400 F5-6.3 and 1.4x 'extender' - DPReview",
+        "url": "https://www.dpreview.com/news/9657627837/leica-announces-vario-elmar-sl-100-400-f5-6-3-and-1-4x-extender",
+        "kind": "press"
+      },
+      {
+        "title": "The Vario-Elmar 100-400mm f/5-6.3 is Leica's Longest SL System Lens - PetaPixel",
+        "url": "https://petapixel.com/2023/03/09/the-vario-elmar-100-400mm-f-5-6-3-is-leicas-longest-sl-system-lens/",
+        "kind": "press"
+      },
+      {
+        "title": "Leica Vario-Elmar-SL 100-400mm F/5-6.3 Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/leica-vario-elmar-sl-100-400mm-f-5-6-3-lens-review-36495",
+        "kind": "review"
+      },
+      {
+        "title": "Leica 100-400mm Vario-Elmar-SL f/5-6.3 review - Digital Camera World",
+        "url": "https://www.digitalcameraworld.com/reviews/leica-100-400mm-vario-elmar-sl-f5-63-review",
+        "kind": "review"
+      },
+      {
+        "title": "Leica Vario-Elmar-SL 100-400mm f/5-6.3 Lens (L-Mount) 11191 - B&H",
+        "url": "https://www.bhphotovideo.com/c/product/1756222-REG/leica_11191_vario_elmar_sl_100_400mm_f_5_6_3_lens.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  }
+]

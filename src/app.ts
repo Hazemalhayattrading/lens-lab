@@ -1,43 +1,63 @@
 import * as THREE from 'three';
-import { FocusRingDrag } from './interaction/FocusRingDrag';
-import { LENS, SUBJECTS, type SubjectId } from './optics/config';
-import { computeOptics, type OpticsState } from './optics/opticsState';
+import { FocusRingDrag, type RingTarget } from './interaction/FocusRingDrag';
+import { findLens } from './data/library';
+import { labLensFromData, TEACHING_LENS, type LabLens } from './lab/labLens';
+import { computeFrame, type OpticsFrame } from './lab/optics';
+import { subjectById, type SubjectId } from './optics/config';
+import { distanceForMagnification, focusCurve, zoomForFocal } from './optics/lensModel';
 import { MainPipeline } from './render/MainPipeline';
 import { AutoQuality, initialQuality, isLikelyMobile, QUALITY, type QualityLevel } from './render/quality';
 import { SensorPipeline } from './render/SensorPipeline';
-import { createBench, createHardwareMaterials, createLensCradle } from './scene/bench';
+import { createBench, createHardwareMaterials, createLensCradle, type HardwareMaterials } from './scene/bench';
 import { createCameraRig, VIEWS, type CameraRig } from './scene/cameraRig';
 import { Diorama } from './scene/diorama/Diorama';
+import { skyUniforms } from './scene/diorama/skyShader';
+import { PLINTH_TOP } from './scene/diorama/terrain';
 import { createBackdropTexture, createStudioEnvironment } from './scene/environment';
 import { applyFocusOverlayTo, focusOverlay } from './scene/focusOverlay';
 import { FocusPlane } from './scene/focusPlane';
+import { FovCone } from './scene/fovCone';
 import { LAYOUT, OPTICAL_CENTER_X, SENSOR_H } from './scene/layout';
 import { LensAssembly } from './scene/lens/LensAssembly';
+import type { MountedLens } from './scene/lens/MountedLens';
+import { ProceduralLens } from './scene/lens/ProceduralLens';
 import { createLights, type LabLights } from './scene/lights';
-import { RayBundles } from './scene/rays/RayBundles';
+import { framePosition, RayBundles } from './scene/rays/RayBundles';
 import { createSensorStand, type SensorStand } from './scene/sensorStand';
 import { LabState } from './state/LabState';
-import { fmtCoc, fmtDistance, fmtF } from './ui/format';
+import { SUBJECT_NAME } from './ui/explain';
+import { fmtCoc, fmtDeg, fmtDistance, fmtF } from './ui/format';
 import { LabelLayer } from './ui/labels';
+import type { LibraryView } from './ui/LibraryView';
+import type { CompareView } from './ui/CompareView';
+import type { LearnView } from './ui/LearnView';
+import type { PhonesView } from './ui/PhonesView';
 import { UI, type CameraPreset, type QualityChoice } from './ui/UI';
 
 const PRESETS: Record<CameraPreset, { position: THREE.Vector3; target: THREE.Vector3 }> = {
   hero: VIEWS.hero,
   lens: { position: new THREE.Vector3(3.3, 4.9, 7.8), target: new THREE.Vector3(0.1, 2.55, -0.4) },
   sensor: { position: new THREE.Vector3(-0.75, 2.75, 3.45), target: new THREE.Vector3(-3.55, 1.85, 0) },
-  diorama: { position: new THREE.Vector3(1.7, 4.7, 7.6), target: new THREE.Vector3(5.9, 1.75, -0.3) },
+  diorama: { position: new THREE.Vector3(2.4, 5.2, 8.2), target: new THREE.Vector3(6.6, 1.7, -0.3) },
+  far: { position: new THREE.Vector3(5.6, 3.3, 3.9), target: new THREE.Vector3(8.4, 1.85, 0.2) },
 };
 
-const SUBJECT_CSS: Record<SubjectId, string> = { cabin: 'var(--cabin)', trees: 'var(--trees)', mountain: 'var(--mountain)' };
+/** Drag target for lenses without a zoom ring. */
+const NO_RING: RingTarget = { focusRingMeshes: [], focusRing: new THREE.Group(), ringThrow: 1, setRingHover: () => {} };
+/** Duration of the lens swap animation (s). */
+const SWAP_TIME = 1.25;
+const easeIn = (t: number) => t * t * t;
+const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
 export class LensLabApp {
   readonly renderer: THREE.WebGLRenderer;
   readonly scene = new THREE.Scene();
   readonly state = new LabState();
-  readonly lens: LensAssembly;
+  lens: MountedLens;
   readonly sensor: SensorStand;
   readonly diorama: Diorama;
   readonly focusPlane = new FocusPlane();
+  readonly fovCone = new FovCone(PLINTH_TOP);
   readonly rays: RayBundles;
   readonly sensorView: SensorPipeline;
   readonly rig: CameraRig;
@@ -46,6 +66,30 @@ export class LensLabApp {
   private readonly lights: LabLights;
   private readonly labels: LabelLayer;
   private readonly ring: FocusRingDrag;
+  private readonly zoomDrag: FocusRingDrag;
+  private readonly hw: HardwareMaterials;
+  private cradle: THREE.Group;
+  /** Lens being unmounted (rises out of the bench while the new one drops in). */
+  private outgoing: MountedLens | null = null;
+  private swapT = 1;
+  private cradleSwapped = true;
+  private raysMaster = 1;
+  private readonly tmp = new THREE.Vector3();
+  private library: LibraryView | null = null;
+  private phones: PhonesView | null = null;
+  private compare: CompareView | null = null;
+  private learn: LearnView | null = null;
+  /** Lazy view construction, memoised so a double click cannot build a view twice. */
+  private libraryReady: Promise<LibraryView> | null = null;
+  private phonesReady: Promise<PhonesView> | null = null;
+  private compareReady: Promise<CompareView> | null = null;
+  private learnReady: Promise<LearnView> | null = null;
+  /** The latest view asked for wins when several are still loading. */
+  private viewRequest = 0;
+  /** Two sensor pipelines for compare mode (created on first use). */
+  private comparePipes: [SensorPipeline, SensorPipeline] | null = null;
+  /** The lab stops rendering while a full-screen view (library …) covers it. */
+  private paused = false;
   private readonly auto: AutoQuality;
   private readonly timer = new THREE.Timer();
   private readonly container: HTMLElement;
@@ -57,7 +101,7 @@ export class LensLabApp {
   private ringUsed = false;
   private lastShadowKey = '';
   /** Latest optics (exposed for debugging / tests). */
-  optics: OpticsState;
+  optics!: OpticsFrame;
   private sensorWidth = 0;
   private sensorImage: THREE.Texture | null = null;
   private portrait: boolean;
@@ -95,17 +139,20 @@ export class LensLabApp {
     this.scene.add(this.lights.group);
 
     const hw = createHardwareMaterials();
+    this.hw = hw;
     this.scene.add(createBench(hw));
     this.sensor = createSensorStand(hw);
     this.scene.add(this.sensor.group);
-    const maxAperture = (LENS.focalLength / 2 / 2) * LAYOUT.kLateral;
+    const maxAperture = (50 / 2 / 2) * LAYOUT.kLateral;
     this.lens = new LensAssembly(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ, maxAperture);
     this.scene.add(this.lens.group);
-    this.scene.add(createLensCradle(hw, OPTICAL_CENTER_X - 0.1, LAYOUT.axisY, 1.122));
+    this.cradle = createLensCradle(hw, this.lens.support.x, LAYOUT.axisY, this.lens.support.radius);
+    this.scene.add(this.cradle);
     this.diorama = new Diorama();
-    this.scene.add(this.diorama.group);
+    this.scene.add(this.diorama.group, this.diorama.sensorWorld);
     applyFocusOverlayTo(this.diorama.group);
-    this.scene.add(this.focusPlane.group);
+    applyFocusOverlayTo(this.diorama.sensorWorld);
+    this.scene.add(this.focusPlane.group, this.fovCone.group);
     this.rays = new RayBundles(this.diorama.subjects);
     this.scene.add(this.rays.group);
 
@@ -119,34 +166,47 @@ export class LensLabApp {
     this.pipeline = new MainPipeline(renderer, this.scene, this.rig.camera, preset.msaa);
     this.pipeline.setSize(container.clientWidth, container.clientHeight);
 
-    // ---- state: start focused at ∞ and glide to the trees during the intro ----
+    // ---- state: the teaching lens, focused at ∞, gliding to the trees during the intro ----
+    this.state.setLens(TEACHING_LENS);
     this.state.setFocusDistance(Infinity, 'init');
     this.state.setAperture(2);
-    this.optics = computeOptics(this.state.focusDistance, this.state.fNumber);
 
     // ---- UI ----
     this.ui = new UI(document.body, {
       onSlider: (u) => this.state.followFocusU(u, 'slider'),
       onFocusSubject: (id) => this.state.focusSubject(id),
-      onFocusDistance: (mm) => this.state.focusTo(mm),
       onAperture: (n) => this.state.setAperture(n),
+      onZoom: (z) => this.state.followZoomTo(z),
       onExploded: (on) => this.state.setExploded(on),
       onQuality: (q) => this.setQualityChoice(q),
       onCamera: (p) => this.flyToPreset(p),
       onPeaking: (on) => (this.sensorView.matDisplay.uniforms.uPeaking.value = on ? 1 : 0),
       onHighlight: (id) => (this.highlight = id),
+      onLibrary: () => void this.openLibrary(),
+      onPhones: () => void this.openPhones(),
+      onCompare: () => void this.openCompare(),
+      onLearnView: () => void this.openLearn(),
     });
+    this.ui.enableLibrary();
+    this.ui.setLens(this.state.lens);
     this.labels = new LabelLayer(this.ui.root.querySelector('.labels')!);
 
-    this.ring = new FocusRingDrag(renderer.domElement, this.rig.camera, this.rig.controls, this.lens, () => this.state.focusDistance);
-    this.ring.onFocus = (d) => this.state.setFocusDistance(d, 'ring');
+    this.ring = new FocusRingDrag(renderer.domElement, this.rig.camera, this.rig.controls, this.lens, () => this.optics?.ringFraction ?? 0);
+    this.ring.onFraction = (fr) => {
+      const c = focusCurve(this.state.lens.physics, this.state.zoom);
+      this.state.setFocusDistance(distanceForMagnification(c, fr * c.mMax), 'ring');
+    };
     this.ring.onDragStart = () => (this.ringUsed = true);
+    this.zoomDrag = new FocusRingDrag(renderer.domElement, this.rig.camera, this.rig.controls, NO_RING, () => this.state.zoom);
+    this.zoomDrag.onFraction = (fr) => this.state.followZoomTo(fr);
+    FocusRingDrag.link(this.ring, this.zoomDrag);
 
     this.auto = new AutoQuality(this.quality, (level) => this.applyQuality(level));
     this.updateLineResolution();
     this.updateSafeArea();
 
     window.addEventListener('resize', () => this.resize());
+    window.addEventListener('hashchange', () => this.route());
     if (this.capture) {
       this.auto.enabled = false;
       this.state.setFocusDistance(2000, 'init');
@@ -162,12 +222,8 @@ export class LensLabApp {
     if (this.capture) return;
     try {
       if (this.renderer.extensions.has('KHR_parallel_shader_compile')) {
-        await Promise.all([
-          this.renderer.compileAsync(this.scene, this.rig.camera),
-          this.renderer.compileAsync(this.scene, this.sensorView.camera),
-        ]);
+        await Promise.all([this.renderer.compileAsync(this.scene, this.rig.camera), this.renderer.compileAsync(this.scene, this.sensorView.camera)]);
       } else {
-        // no parallel compile: compile synchronously while the loader is still up
         this.renderer.compile(this.scene, this.rig.camera);
         this.renderer.compile(this.scene, this.sensorView.camera);
       }
@@ -177,6 +233,238 @@ export class LensLabApp {
     this.timer.reset();
     this.startIntro();
     this.renderer.setAnimationLoop(() => this.frame());
+  }
+
+  /** Mount another lens in the lab (library, compare): the old lens rises out, the new one drops in. */
+  setLens(lens: LabLens, focal?: number): void {
+    if (lens.id === this.lens.lens.id) {
+      // already mounted ("Back to the lab"): keep the zoom and aperture unless a focal length was asked for
+      if (focal !== undefined) this.state.zoomTo(zoomForFocal(lens.physics, focal));
+      return;
+    }
+    this.state.setLens(lens, focal);
+    this.ui.setLens(lens);
+    // the dock may have gained or lost the zoom row: reframe the bench and the label area
+    this.updateSafeArea();
+    const next: MountedLens = lens.id === TEACHING_LENS.id ? new LensAssembly(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ, (50 / 2 / 2) * LAYOUT.kLateral) : new ProceduralLens(lens);
+    this.finishSwap();
+    for (const c of this.lens.callouts()) this.labels.remove(this.calloutId(this.lens, c.id));
+    this.outgoing = this.lens;
+    this.lens = next;
+    this.scene.add(next.group);
+    this.swapT = this.capture ? 1 : 0;
+    this.cradleSwapped = false;
+    this.ring.setLens(next);
+    this.zoomDrag.setLens(next.zoomRing ?? NO_RING);
+    if (this.capture) this.finishSwap();
+  }
+
+  private calloutId(lens: MountedLens, id: string): string {
+    return `c-${lens.lens.id}-${id}`;
+  }
+
+  /** Completes a running swap at once (another lens was picked, or screenshots). */
+  private finishSwap(): void {
+    if (this.outgoing) {
+      this.scene.remove(this.outgoing.group);
+      this.outgoing.dispose();
+      this.outgoing = null;
+    }
+    if (!this.cradleSwapped) this.swapCradle();
+    this.swapT = 1;
+    this.lens.group.position.y = LAYOUT.axisY;
+    this.lens.group.position.z = LAYOUT.axisZ;
+  }
+
+  private swapCradle(): void {
+    this.scene.remove(this.cradle);
+    this.cradle.traverse((o) => (o as THREE.Mesh).isMesh && (o as THREE.Mesh).geometry.dispose());
+    this.cradle = createLensCradle(this.hw, this.lens.support.x, LAYOUT.axisY, this.lens.support.radius);
+    this.scene.add(this.cradle);
+    this.cradleSwapped = true;
+    this.lastShadowKey = '';
+  }
+
+  /** Swap animation: the outgoing lens lifts away, the new lens settles into the cradle. */
+  private updateSwap(dt: number): void {
+    if (this.swapT >= 1 && !this.outgoing) return;
+    this.swapT = Math.min(1, this.swapT + dt / SWAP_TIME);
+    const t = this.swapT;
+    const lift = 3.4;
+    if (this.outgoing) {
+      const k = easeIn(Math.min(1, t / 0.5));
+      this.outgoing.group.position.y = LAYOUT.axisY + k * lift;
+      this.outgoing.group.position.z = LAYOUT.axisZ - k * 1.2;
+      if (t >= 0.5) {
+        this.scene.remove(this.outgoing.group);
+        this.outgoing.dispose();
+        this.outgoing = null;
+      }
+    }
+    if (t >= 0.45 && !this.cradleSwapped) this.swapCradle();
+    const kin = 1 - easeOut(THREE.MathUtils.clamp((t - 0.38) / 0.62, 0, 1));
+    this.lens.group.position.y = LAYOUT.axisY + kin * lift;
+    this.lens.group.position.z = LAYOUT.axisZ - kin * 1.2;
+    this.lens.group.visible = t > 0.38;
+  }
+
+  /** Opens the lens library (the view, its styles and the data are fetched on first use). */
+  async openLibrary(selectId?: string): Promise<void> {
+    const req = ++this.viewRequest;
+    const library = await (this.libraryReady ??= import('./ui/LibraryView').then(({ LibraryView }) => {
+      const v = new LibraryView(document.body, {
+        onLoad: (id, focal) => void this.loadLens(id, focal),
+        onTeachingLens: () => this.setLens(TEACHING_LENS),
+        onClose: () => this.overlayClosed('#lenses'),
+      });
+      v.onSelect = (id) => history.replaceState(null, '', `#lenses/${id}`);
+      return (this.library = v);
+    }));
+    if (req !== this.viewRequest) return; // another view was asked for while this one loaded
+    this.closeOverlays('lenses');
+    this.paused = !this.capture;
+    this.ui.setView('lenses');
+    await library.open(this.lens.lens.id === TEACHING_LENS.id ? null : this.lens.lens.id, selectId);
+    if (library.isOpen && !location.hash.startsWith('#lenses')) history.replaceState(null, '', '#lenses');
+  }
+
+  /** Opens the phone cameras view (view, styles, 3D viewer and data are fetched on first use). */
+  async openPhones(selectId?: string): Promise<void> {
+    const req = ++this.viewRequest;
+    const phones = await (this.phonesReady ??= import('./ui/PhonesView').then(({ PhonesView }) => {
+      const v = new PhonesView(document.body, { onClose: () => this.overlayClosed('#phones') });
+      v.onSelect = (id) => history.replaceState(null, '', `#phones/${id}`);
+      return (this.phones = v);
+    }));
+    if (req !== this.viewRequest) return;
+    this.closeOverlays('phones');
+    this.paused = !this.capture;
+    this.ui.setView('phones');
+    await phones.open(selectId);
+    if (phones.isOpen && !location.hash.startsWith('#phones')) history.replaceState(null, '', '#phones');
+  }
+
+  /** Opens the explainers (the view, its styles and the phone data are fetched on first use). */
+  async openLearn(topic?: string): Promise<void> {
+    const req = ++this.viewRequest;
+    const learn = await (this.learnReady ??= import('./ui/LearnView').then(({ LearnView }) => {
+      const v = new LearnView(document.body, { onClose: () => this.overlayClosed('#learn') });
+      v.onSelect = (id) => history.replaceState(null, '', `#learn/${id}`);
+      return (this.learn = v);
+    }));
+    if (req !== this.viewRequest) return;
+    this.closeOverlays('learn');
+    this.paused = !this.capture;
+    this.ui.setView('learn');
+    await learn.open(topic);
+  }
+
+  /** A full-screen view closed: the lab renders again and its deep link is dropped. */
+  private overlayClosed(hash: string): void {
+    this.paused = false;
+    this.timer.reset();
+    this.ui.setView('lab');
+    if (location.hash.startsWith(hash)) history.replaceState(null, '', location.pathname + location.search);
+  }
+
+  /** Closes every full-screen view except `keep` (only one is open at a time). */
+  private closeOverlays(keep?: 'lenses' | 'phones' | 'compare' | 'learn'): void {
+    if (keep !== 'lenses' && this.library?.isOpen) this.library.close();
+    if (keep !== 'phones' && this.phones?.isOpen) this.phones.close();
+    if (keep !== 'compare' && this.compare?.isOpen) this.compare.close();
+    if (keep !== 'learn' && this.learn?.isOpen) this.learn.close();
+  }
+
+  /** Deep links: #lenses[/<lens-id>], #phones[/<phone-id>], #compare[/<preset>], #learn[/<topic>]. */
+  route(): void {
+    const lib = /^#lenses(?:\/([\w-]+))?$/.exec(location.hash);
+    const ph = /^#phones(?:\/([\w-]+))?$/.exec(location.hash);
+    const cmp = /^#compare(?:\/([\w-]+))?$/.exec(location.hash);
+    const lrn = /^#learn(?:\/([\w-]+))?$/.exec(location.hash);
+    if (lib) void this.openLibrary(lib[1]);
+    else if (ph) void this.openPhones(ph[1]);
+    else if (cmp) void this.openCompare(cmp[1]);
+    else if (lrn) void this.openLearn(lrn[1]);
+    else {
+      this.viewRequest++; // back to the lab: a view still loading must not open
+      this.closeOverlays();
+    }
+  }
+
+  /** Opens compare mode; the two sensor images are rendered by the lab renderer (below the view's DOM). */
+  async openCompare(presetId?: string): Promise<void> {
+    const req = ++this.viewRequest;
+    const compare = await (this.compareReady ??= import('./ui/CompareView').then(({ CompareView }) => {
+      const v = new CompareView(document.body, {
+        onClose: () => {
+          this.lastShadowKey = '';
+          this.overlayClosed('#compare');
+        },
+      });
+      return (this.compare = v);
+    }));
+    if (req !== this.viewRequest) return;
+    this.closeOverlays('compare');
+    if (!this.comparePipes) {
+      const p = QUALITY[this.quality];
+      const q = { width: Math.min(p.sensorMaxWidth, 960), samples: p.sensorSamples, msaa: p.sensorMsaa };
+      this.comparePipes = [new SensorPipeline(q), new SensorPipeline(q)];
+    }
+    // compare renders its own frames (the lab's bench is not drawn meanwhile)
+    this.paused = false;
+    this.ui.setView('compare');
+    await compare.open(presetId);
+    if (compare.isOpen && !location.hash.startsWith('#compare')) history.replaceState(null, '', '#compare');
+    if (this.capture) this.frame(1 / 60);
+  }
+
+  /** Compare frame: both sides' sensor views of the diorama, drawn into the view's frame windows. */
+  private renderCompare(): void {
+    const cmp = this.compare!;
+    const pipes = this.comparePipes!;
+    if (!cmp.sides) {
+      this.renderer.setRenderTarget(null);
+      this.renderer.setClearColor('#05070a', 1);
+      this.renderer.clear();
+      return;
+    }
+    const frames = cmp.sides.map((s) => {
+      const T = Math.max(cmp.focus, focusCurve(s.lens.physics, s.zoom).mfd);
+      const o = computeFrame(s.lens, s.zoom, T, s.fNumber);
+      for (const subj of o.subjects) {
+        const p = this.diorama.subjects.find((x) => x.id === subj.id)!.position;
+        const fp = framePosition(p, o.fovHorizontal, o.fovVertical);
+        subj.inFrame = Math.abs(fp.x) <= 1.02 && Math.abs(fp.y) <= 1.02;
+      }
+      return o;
+    }) as [OpticsFrame, OpticsFrame];
+    focusOverlay.uOverlayOn.value = 0;
+    focusOverlay.uHazeOn.value = 1;
+    frames.forEach((o, i) => {
+      pipes[i].update(o, o.maxApertureNow, o.lens.blades || 9);
+      pipes[i].render(this.renderer, this.scene, this.t);
+    });
+    focusOverlay.uOverlayOn.value = 1;
+    focusOverlay.uHazeOn.value = 0;
+    this.renderer.setRenderTarget(null);
+    this.renderer.setClearColor('#05070a', 1);
+    this.renderer.clear();
+    const rects = cmp.frameRects();
+    rects.forEach((r, i) => r && pipes[i].drawToScreen(this.renderer, r, this.container.clientHeight));
+    cmp.update(frames);
+  }
+
+  /** Test tooling: render the phone viewer synchronously. */
+  renderPhones(): void {
+    this.phones?.renderNow();
+  }
+
+  /** Mount a library lens by id (loads the data on demand). */
+  async loadLens(id: string, focal?: number): Promise<boolean> {
+    const d = await findLens(id);
+    if (!d) return false;
+    this.setLens(labLensFromData(d), focal);
+    return true;
   }
 
   // ------------------------------------------------------------------ intro / camera
@@ -225,6 +513,10 @@ export class LensLabApp {
     this.lights.setShadowQuality(p.shadowSize, p.shadows);
     this.lastShadowKey = '';
     this.sensorWidth = 0; // re-evaluate sensor resolution
+    if (this.comparePipes) {
+      const q = { width: Math.min(p.sensorMaxWidth, 960), samples: p.sensorSamples, msaa: p.sensorMsaa };
+      for (const pipe of this.comparePipes) pipe.setQuality(q);
+    }
     this.updateLineResolution();
     if (this.qualityChoice === 'auto') this.ui.setQuality('auto');
   }
@@ -245,6 +537,7 @@ export class LensLabApp {
     const v = this.renderer.getDrawingBufferSize(new THREE.Vector2());
     this.rays.setResolution(v.x, v.y);
     this.focusPlane.lines.setResolution(v.x, v.y);
+    this.fovCone.setResolution(v.x, v.y);
   }
 
   private resize(): void {
@@ -287,42 +580,66 @@ export class LensLabApp {
 
   // ------------------------------------------------------------------ frame
   private frame(fixedDt?: number): void {
+    if (this.paused && fixedDt === undefined) return;
     this.timer.update();
     const dt = fixedDt ?? Math.min(this.timer.getDelta(), 0.1);
     this.t += dt;
     this.frameCount++;
+    if (this.compare?.isOpen) {
+      skyUniforms.uSkyTime.value = this.t;
+      this.renderCompare();
+      return;
+    }
 
-    const debug = (window as unknown as { __lensDebug?: { explode?: number; f?: number; focus?: number } }).__lensDebug;
+    const debug = (window as unknown as { __lensDebug?: { explode?: number; f?: number; focus?: number; zoom?: number } }).__lensDebug;
     if (debug) {
       if (debug.explode !== undefined && (debug.explode > 0.5) !== this.state.exploded) this.state.setExploded(debug.explode > 0.5);
       if (debug.focus !== undefined && Math.abs(debug.focus - this.state.focusDistance) > 1) this.state.setFocusDistance(debug.focus, 'init');
       if (debug.f !== undefined && Math.abs(debug.f - this.state.apertureTarget) > 0.01) this.state.setAperture(debug.f);
-      if (this.capture) {
-        // screenshots: jump straight to targets
-        for (let i = 0; i < 400; i++) this.state.update(0.02);
-      }
+      if (debug.zoom !== undefined && Math.abs(debug.zoom - this.state.zoomTarget) > 1e-4) this.state.zoomTo(debug.zoom, 0.01);
+      if (this.capture) for (let i = 0; i < 400; i++) this.state.update(0.02);
     }
 
     this.state.update(dt);
     this.ring.update(dt);
+    this.zoomDrag.update(dt);
+    this.updateSwap(dt);
+    this.sensor.setFormat(this.state.lens.physics.sensor.width, this.state.lens.physics.sensor.height);
+    this.sensor.update(this.capture ? 10 : dt);
     this.rig.update(dt);
     if (!this.capture) this.auto.sample(dt);
+    skyUniforms.uSkyTime.value = this.t;
 
-    const o = computeOptics(this.state.focusDistance, this.state.fNumber);
+    const o = computeFrame(this.state.lens, this.state.zoom, this.state.focusDistance, this.state.fNumber);
+    // which subjects the lens actually sees
+    for (const s of o.subjects) {
+      const p = this.diorama.subjects.find((x) => x.id === s.id)!.position;
+      const fp = framePosition(p, o.fovHorizontal, o.fovVertical);
+      s.inFrame = Math.abs(fp.x) <= 1.02 && Math.abs(fp.y) <= 1.02;
+    }
     this.optics = o;
 
     // lens mechanics
-    this.lens.setExploded(this.state.explode);
-    this.lens.setFocus(o.extension * LAYOUT.kAxial, o.ringAngle);
-    this.lens.setAperture(((LENS.focalLength / o.fNumber) / 2) * LAYOUT.kLateral, o.fNumber);
+    this.lens.apply(o, this.state.explode);
 
-    // teaching overlays
-    this.rays.update(o, this.lens, this.t, { cabin: true, trees: true, mountain: true }, this.highlight);
-    this.focusPlane.update(o, this.t, { focus: true, zone: true, frustum: true });
+    // teaching overlays (the rays wait until a newly mounted lens has settled)
+    const settled = this.swapT >= 1 && !this.outgoing;
+    this.raysMaster += ((settled ? 1 : 0) - this.raysMaster) * (this.capture ? 1 : 1 - Math.exp(-dt * (settled ? 4 : 14)));
+    const sensorSize = { w: o.sensor.width * LAYOUT.kLateral, h: o.sensor.height * LAYOUT.kLateral };
+    this.rays.update(o, this.lens, sensorSize, this.t, this.capture ? 10 : dt, RayBundles.pick(o), this.highlight, this.raysMaster);
+    this.focusPlane.update(o, this.t, { focus: true, zone: true });
+    this.fovCone.update(o.fovHorizontal, o.fovVertical, this.lens.frontX, this.t);
 
     // UI
-    const focusedSubject = this.focusedSubject(o);
-    this.ui.update(o, { u: this.state.u, exploded: this.state.exploded, apertureTarget: this.state.apertureTarget, focusTargetSubject: focusedSubject });
+    this.ui.update(o, {
+      u: this.state.u,
+      uMin: this.state.uMin,
+      exploded: this.state.exploded,
+      apertureTarget: this.state.apertureTarget,
+      wideOpen: this.state.wideOpen,
+      zoom: this.state.zoom,
+      focusTargetSubject: this.focusedSubject(o),
+    });
     const film = this.ui.filmRect();
     this.labels.exclusions = film ? [{ l: film.x - 16, t: film.y - 18, r: film.x + film.width + 16, b: film.y + film.height + 18 }] : [];
     this.updateLabels(o);
@@ -335,17 +652,19 @@ export class LensLabApp {
     }
 
     // shadows only when something that casts them moved
-    const shadowKey = `${o.extension.toFixed(4)}|${this.state.explode.toFixed(4)}`;
+    const shadowKey = `${this.lens.lens.id}|${o.imageDistance.toFixed(4)}|${o.zoom.toFixed(4)}|${this.state.explode.toFixed(4)}|${this.swapT.toFixed(3)}`;
     if (shadowKey !== this.lastShadowKey) {
       this.renderer.shadowMap.needsUpdate = true;
       this.lastShadowKey = shadowKey;
     }
 
-    // 1. what the sensor sees (no teaching overlays)
+    // 1. what the sensor sees (no teaching overlays, with aerial perspective)
     focusOverlay.uOverlayOn.value = 0;
-    this.sensorView.update(o);
+    focusOverlay.uHazeOn.value = 1;
+    this.sensorView.update(o, o.maxApertureNow, this.state.lens.blades);
     this.sensorView.render(this.renderer, this.scene, this.t);
     focusOverlay.uOverlayOn.value = 1;
+    focusOverlay.uHazeOn.value = 0;
 
     // 2. the lab
     this.pipeline.render(dt);
@@ -355,30 +674,29 @@ export class LensLabApp {
     if (rect) this.sensorView.drawToScreen(this.renderer, rect, this.container.clientHeight);
   }
 
-  private focusedSubject(o: OpticsState): SubjectId | null {
-    const s = SUBJECTS.find((x) => Math.abs(x.distance - o.focusDistance) / x.distance < 0.015);
+  private focusedSubject(o: OpticsFrame): SubjectId | null {
+    const s = o.subjects.find((x) => (Number.isFinite(x.distance) ? Math.abs(x.distance - o.focusDistance) / x.distance < 0.015 : !Number.isFinite(o.focusDistance)));
     return s ? s.id : null;
   }
 
-  private updateLabels(o: OpticsState): void {
+  private updateLabels(o: OpticsFrame): void {
     const cam = this.rig.camera;
     const L = this.labels;
     const compact = this.container.clientWidth <= 820;
     for (const b of this.rays.bundles) {
       const s = o.subjects.find((x) => x.id === b.id)!;
-      const subj = SUBJECTS.find((x) => x.id === b.id)!;
+      const subj = subjectById(b.id);
       const status = s.sharpness === 'sharp' ? 'sharp' : `blur ${fmtCoc(s.coc)}`;
       const html = compact
-        ? `<span class="dot"></span>${subj.label}${s.sharpness === 'sharp' ? ' <span class="v">sharp</span>' : ''}`
-        : `<span class="dot"></span>${subj.label} <span class="v">${fmtDistance(subj.distance, 1)} · ${status}</span>`;
-      L.ensure(`s-${b.id}`, { color: SUBJECT_CSS[b.id], html, priority: 8 });
-      L.place(`s-${b.id}`, b.source, cam, true, [12, -14], 'left');
+        ? `<span class="dot"></span>${SUBJECT_NAME[b.id]}${s.sharpness === 'sharp' ? ' <span class="v">sharp</span>' : ''}`
+        : `<span class="dot"></span>${SUBJECT_NAME[b.id]} <span class="v">${fmtDistance(subj.distance, 1)} · ${status}</span>`;
+      L.ensure(`s-${b.id}`, { color: subj.color, html, priority: 8 });
+      L.place(`s-${b.id}`, b.source, cam, b.active && b.fade > 0.5, [12, -14], 'left');
     }
 
     // plane-of-focus tag at the top edge, on the side nearest the viewer
-    const halfW = (this.focusPlane.focusX - OPTICAL_CENTER_X) * Math.tan(o.fovHorizontal / 2);
     const side = cam.position.z >= 0 ? 1 : -1;
-    const plane = new THREE.Vector3(this.focusPlane.focusX, LAYOUT.axisY + this.focusPlane.focusHalfHeight, LAYOUT.axisZ + side * halfW * 0.72);
+    const plane = new THREE.Vector3(this.focusPlane.focusX, LAYOUT.axisY + this.focusPlane.focusHalfHeight, LAYOUT.axisZ + side * this.focusPlane.focusHalfWidth * 0.72);
     L.ensure('plane', { className: 'plane', priority: 10, html: compact ? `Focus <span class="v">${fmtDistance(o.focusDistance)}</span>` : `Plane of focus <span class="v">${fmtDistance(o.focusDistance)}</span>` });
     L.place('plane', plane, cam, true, [0, -14]);
 
@@ -390,29 +708,41 @@ export class LensLabApp {
     L.ensure('far', { className: 'limit', priority: 4, html: `far <span class="v">${fmtDistance(o.far)}</span>` });
     const a = nearP.clone().project(cam);
     const b2 = farP.clone().project(cam);
-    const w = this.container.clientWidth;
-    const sep = Math.abs(a.x - b2.x) * 0.5 * w;
+    const sep = Math.abs(a.x - b2.x) * 0.5 * this.container.clientWidth;
     const roomy = sep > 110 && !compact;
     L.place('near', nearP, cam, roomy, [-8, 0], 'right');
     L.place('far', farP, cam, roomy && Number.isFinite(o.far), [8, 0], 'left');
 
+    // field of view
+    const fovX = OPTICAL_CENTER_X + Math.min(LAYOUT.xInfRel * 0.42, 3.4 / Math.max(0.05, Math.tan(o.fovHorizontal / 2)));
+    const fovP = new THREE.Vector3(fovX, LAYOUT.axisY + (fovX - OPTICAL_CENTER_X) * Math.tan(o.fovVertical / 2), 0);
+    L.ensure('fov', { className: 'part', priority: 5, html: `Field of view <span class="v">${fmtDeg(o.fovHorizontal)} × ${fmtDeg(o.fovVertical)}</span>` });
+    L.place('fov', fovP, cam, !compact, [0, -12]);
+
     // sensor
-    L.ensure('sensor', { className: 'part', priority: 6, html: `Sensor <span class="v">${o.imageDistance.toFixed(1)} mm from lens</span>` });
+    const fmt = o.lens.format === 'full-frame' ? '' : `${o.sensor.width} × ${o.sensor.height} mm · `;
+    L.ensure('sensor', { className: 'part', priority: 6, html: `Sensor <span class="v">${fmt}${o.imageDistance.toFixed(1)} mm from lens</span>` });
     L.place('sensor', new THREE.Vector3(LAYOUT.sensorX, LAYOUT.axisY + SENSOR_H / 2 + 0.62, 0), cam, !compact);
 
     // focus ring hint until the user has turned it once
-    const ringWorld = this.lens.focusRing.localToWorld(new THREE.Vector3(0.7, -0.55, 1.12));
+    const settled = this.swapT >= 1 && !this.outgoing;
+    const ringWorld = this.lens.ringHintPoint(this.tmp);
     L.ensure('ring', { className: 'hint', priority: 9, html: `↕ Drag the focus ring` });
-    L.place('ring', ringWorld, cam, !this.ringUsed && this.t > 4.5, [0, 30]);
+    L.place('ring', ringWorld, cam, !this.ringUsed && this.t > 4.5 && settled, [0, 30]);
 
     // exploded-view part callouts
     const exploded = this.state.explode > 0.7;
-    const irisWorld = new THREE.Vector3(this.lens.stopX, LAYOUT.axisY - 0.98, 0.3);
-    L.ensure('iris', { className: 'part', priority: 3, html: `Iris <span class="v">${fmtF(o.fNumber)} · ⌀ ${o.apertureDiameter.toFixed(1)} mm</span>` });
-    L.place('iris', irisWorld, cam, exploded && !compact, [0, 16]);
-    const groupWorld = new THREE.Vector3(this.lens.stopX + 1.75, LAYOUT.axisY - 1.0, 0.3);
-    L.ensure('group', { className: 'part', priority: 2, html: `Focusing group <span class="v">+${o.extension.toFixed(2)} mm travel</span>` });
-    L.place('group', groupWorld, cam, exploded && !compact, [0, 26]);
+    const irisWorld = this.lens.irisLabelPoint(this.tmp);
+    L.ensure('iris', { className: 'part', priority: 3, html: `Iris <span class="v">${fmtF(o.fNumber)} · pupil ⌀ ${o.apertureDiameter.toFixed(1)} mm · ${this.lens.lens.assumed.includes('blades') ? 'blades unverified' : `${this.lens.lens.blades} blades`}</span>` });
+    L.place('iris', irisWorld, cam, exploded && !compact && settled, [0, 16]);
+
+    // special glass (close to the lens or exploded) and moving groups (exploded)
+    const near = cam.position.distanceTo(new THREE.Vector3(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ)) < 10.5;
+    for (const c of this.lens.callouts()) {
+      const id = this.calloutId(this.lens, c.id);
+      L.ensure(id, { className: c.explodedOnly ? 'part group' : 'part glass', priority: c.explodedOnly ? 2 : 3, html: c.html });
+      L.place(id, c.world, cam, settled && !compact && (c.explodedOnly ? exploded : exploded || near), c.explodedOnly ? [0, 14] : [0, -12]);
+    }
   }
 
   /** Whether the renderer runs on a phone-class device (used for defaults). */

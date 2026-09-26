@@ -75,3 +75,206 @@ blur disc A·|v_s − v_d|/v_d; f/2 → f/16 shrinks every blur disc by exactly 
 - 2026-09-25: `git push` is refused with 403 (Claude GitHub App not installed on the repo); the GitHub connector is also
   read-only (403 "Resource not accessible by integration"). Work is committed locally after every phase and pushed as
   soon as access is granted.
+
+---
+
+# Phase 2 — Lens & camera encyclopedia
+
+Goal: turn the focus bench into an encyclopedia of real lenses and phone cameras — a researched lens library
+(8 brands), per-lens physics in the 3D lab (zoom, apertures, close focus, field of view, DoF), a telephoto-ready
+scene, smartphone camera teardowns and compare mode. The UI is English only.
+Work happens on branch `claude/intelligent-cori-0yz11n`; every phase is committed and pushed. If resumed: read
+this section and `git log`, then continue with the first unchecked phase.
+
+## Phases
+
+- [x] **2.0 — Plan & schema**: this section, data model (`src/data/types.ts`), research tooling check.
+- [x] **2.1 — Lens research** — *78 lenses, see "Research status" below*: Canon, Nikon, Sony, Fujifilm, Panasonic, Leica, Sigma, Tamron — 6–10 current lenses each
+  (ultra-wide, standard, portrait, macro, standard zoom, tele zoom, super-tele where the brand has one), official specs +
+  review-based "famous for / strengths / weaknesses / best for", sources per lens → `data/lenses/*.json`.
+- [x] **2.2 — Phone research** — *7 phones, see "Research status" below*: current flagships (searched, not from memory) of Apple, Samsung, Google + 3 other makers,
+  every camera's sensor / pixel / MP / eq. focal length / aperture / zoom / OIS / AF → `data/phones/phones.json`;
+  `data/SOURCES.md` generated from the data.
+- [x] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
+  plane, focus breathing fitted to the published max. magnification), sensor formats + CoC, rectilinear FOV,
+  equivalent focal length / aperture, zoom-ring mapping. Unit tests with hand calculations (below).
+- [x] **2.5 — Telephoto scene**: new depth ladder (0.25 m → ∞) with far subjects (bird on a branch 30 m, tower 200 m,
+  far mountains), wide-angle world for the sensor view, field-of-view cone in 3D, sensor pipeline driven by any lens.
+  *Done:* power-law ladder u = 1 − (200/d)^0.3 (invertible in the shader) · kingfisher on a snag at 30 m, lighthouse
+  at 200 m, peaks at ∞, lake with sky reflection · sensor-only wide world (polar terrain, forest, sky dome) so 14–16 mm
+  frames never see the edge of the diorama · shared procedural dusk sky (gradient, clouds, stars, moon) · aerial haze in
+  the sensor view · FOV cone with live angle label · three-layer gather DoF (own blur with mip-prefiltered near
+  centres, near-field scatter-as-gather + tent filter, composite) · sensor chip resizes to the lens' format
+  (APS-C / MFT / GF) · adaptive aperture buttons, MFD hatch on the focus slider, working f-number for macro.
+  *Known limit:* a faint ghost of a large out-of-focus foreground remains behind its blur (single-layer DoF).
+- [x] **2.6 — Procedural lenses**: barrel from real dimensions, real element / group counts, special elements highlighted
+  and labelled, zoom groups + zoom ring, adaptive aperture buttons, smooth lens-to-lens transitions.
+  *Done:* `lab/opticalLayout.ts` builds an illustrative cross-section per design family (double-Gauss, retrofocus,
+  ultra-wide, portrait, macro, telephoto, super-tele, 4 zoom families) with exactly the published element count;
+  cemented doublets (+/− achromats first) are formed until the published group count is reached; published special
+  glass is placed where it typically sits (low-dispersion glass in positive front-group elements of telephotos,
+  aspherical surfaces at the rear / front of wide-angles …; a label listed under two kinds is one element with both
+  properties). Elements are packed against each other's real sag profiles; the air each zoom / focus group needs is
+  reserved first and the motions are scaled down automatically if anything could collide.
+  `scene/lens/ProceduralLens.ts` turns it into the 3D cutaway: barrel to the maker's diameter × length (uniform scale,
+  iris on the optical centre), mount with lugs, rubber focus + zoom rings (both draggable), control ring, tripod
+  collar on super-teles, AF/IS switch panel, section tubes + cells, iris with the published blade count, colour-coded
+  special glass (legend in the lens card, callouts close up / exploded), extending front barrel with inner sleeve for
+  extending zooms, front ring engraved with the spec only (no maker names or trade dress). Rays fan out to the
+  entrance pupil in front of the iris (wider than the iris in a telephoto, narrower in a retrofocus). Lens swaps: the
+  old lens lifts away, the new one drops into a cradle sized for its barrel; geometry / textures are disposed
+  (memory stays flat over repeated swaps). Tests: `tests/opticalLayout.test.ts` — for every library lens and one
+  synthetic lens per family: published element / group counts, every special element assigned, positive edge
+  thickness, clear apertures inside the barrel and the mount throat, cemented partners share the contact surface,
+  no collision at any zoom / focus position, zoom and focus groups actually move, pupil within the front element.
+- [x] **2.7 — Lens browser**: brand tabs, category filters, search, cards, detail sheet (specs, text, sources,
+  "unverified" markers), "Load into lab".
+  *Done:* `ui/LibraryView.ts` (lazy chunk with its own CSS, fetched on first open; data chunks per brand) — section
+  nav (Lab · Lenses), `L` key, "Change lens" in the lens card, deep links `#lenses/<id>`. Brand tabs with counts,
+  type chips (by field of view), token search over name / brand / mount / focal / aperture / special glass / uses
+  ("85 1.2", "fluorite", "macro"), cards with a procedural side silhouette to a common scale and an "n values
+  unverified" note, the teaching lens as a card to go back. Detail sheet: illustrative cross-section (same layout as
+  the 3D cutaway, special glass colour-coded, iris), every spec with an explicit *unverified* marker instead of a
+  guess, angle of view and full-frame equivalent computed from the data, strengths / weaknesses / best for, notes,
+  sources with kind + domain and the check date, "Load into the lab" (zooms: at wide / middle / tele). The lab
+  pauses rendering while the library covers it; mobile: single column + full-screen detail with back button.
+- [x] **2.8 — Phones**: phone browser, per-camera specs, procedural exploded camera-module teardown (cover glass, lens
+  stack, IR filter, sensor, VCM / OIS) and periscope prism path with animated light.
+  *Done:* `ui/PhonesView.ts` (lazy; nav "Phones", `P` key, `#phones/<id>`), `phone/PhoneViewer.ts` (its own small
+  three.js renderer, created on first open, paused when closed) and `phone/phoneOptics.ts` (tested). Generic phone body
+  (no maker design / logo), cameras placed by the published arrangement type. Straight modules, cut away: flex PCB,
+  ceramic package + die sized from the published optical format (else pixel count × pitch, else an illustrative size
+  that is labelled), sensor-shift OIS stage or lens-shift OIS, IR-cut filter, plastic aspheric stack (published
+  element count, else labelled illustrative) with a gull-wing last element, voice-coil motor, cover glass. Folded
+  telephotos follow the maker's description: classic periscope (prism → lens group → upright sensor with its long
+  side in the phone plane), tetraprism-style 4-reflection fold (labelled illustrative path), lenses-on-prism. Exploded
+  view lifts the module out of the phone, which fades; the camera moves to a side view; folded parts separate along
+  the light path so the animated glow path stays connected; part labels. Spec panel: published values vs computed
+  ones (sensor size, real focal length = equivalent ÷ crop, equivalent aperture = N × crop, angle of view, DoF at
+  2 m with the lab's conventions) each tagged *computed* with the formula; missing values *unverified*; all cameras
+  table; the maker's named computational features; sources. Found on the way: `GlowLines` quads are one-sided and their
+  winding follows the segment's screen direction; the phone light paths opt into double-sided lines (the lab's ray
+  bundles keep their tuned one-sided look).
+- [x] **2.9 — Explainers**: small-sensor depth of field, equivalent focal length & aperture, periscope zoom,
+  computational photography (portrait mode, multi-frame fusion) — with live visuals.
+  *Done:* `ui/LearnView.ts` + `learn/` (lazy; nav "Learn", `E` key, `#learn/<topic>`). Four topics, every number
+  computed from the phone data with the lab's physics and tagged published / computed / example: (1) *small sensors* —
+  phone vs full frame at the same framing, DoF bars, magnified background-light tiles; (2) *equivalence* — sensor sizes
+  to scale, calculator (real focal length, f-number → equivalent, angle of view, relative light); (3) *periscope* —
+  to-scale side section of a phone with straight / one-fold / four-fold (schematic) layouts and animated photons along
+  the chief and edge rays; (4) *computational* — Poisson-noise frame stack with measured vs √N SNR, portrait-mode
+  depth blur, HDR bracket merge, crop "zoom". Tests: `tests/learn.test.ts` (row Q). Found on the way: topics mounted
+  while their panel was hidden measured 0 px and waited for a ResizeObserver frame — the panel is now shown first; the
+  view's grid column is `minmax(0, 1fr)` so the nowrap tab strip cannot widen it past a phone screen.
+- [x] **2.10 — Compare mode + phone vs camera**: any two lenses / phone cameras side by side: specs, FOV, DoF at the same
+  distance, rendered images; phone-vs-full-frame preset.
+  *Done:* `ui/CompareView.ts` (lazy; nav "Compare", `C` key, `#compare/<preset>`). Two extra `SensorPipeline`s render the
+  diorama through each side from the same spot, focused at the same distance (clamped to each lens' closest focus,
+  flagged in the table); the images are drawn by the lab renderer into the view's transparent frame windows (the bench
+  is not rendered meanwhile). Pickers list every library lens, the teaching lens and every phone camera whose sensor
+  size and equivalent focal length are published (`lab/phoneLens.ts`: real focal length = equivalent ÷ crop, fixed or
+  stepped aperture, closest focus an explicit assumption). Per side: zoom slider (variable-aperture lenses stay wide
+  open), aperture buttons; shared focus chips. Table: sensor + crop, real and equivalent focal length, aperture +
+  equivalent aperture, angle of view, focus, depth of field, hyperfocal, background blur as % of the frame width
+  (comparable across formats), subject sharp / outside the frame, weight. Presets from the data: phone vs full frame
+  (iPhone main vs RF 24 mm f/1.4), APS-C vs full frame (XF 33 f/1.4 vs RF 50 f/1.2), wide vs tele (16 mm vs 600 mm),
+  f/1.2 vs f/8.
+- [x] **2.12 — Polish loop**: Playwright screenshots (desktop + mobile) after each visual phase, critique, iterate;
+  lazy loading, quality toggle, zero console errors.
+  *Done:* screenshots of every view at 1600×900 and 390×844 (`scripts/shots.mjs`, now also writes JPEG), no console
+  errors. A 38-finding review of Phases 2.5–2.10 (physics, geometry, rendering, interaction) was fixed in clusters:
+  **physics** F1 F2 F4 F5 F9 F10 F13 F31 F32 F38 (tele zooms no longer reach 1:1 — a published maximum magnification
+  is the lens maximum; hyperfocal distance constant across focus for breathing lenses; continuous zoom; closest focus
+  below 0.2 m reachable; aperture animation), with three data gaps filled on the way (Z 70-200 II 0.3×, RF 70-200 Z
+  0.49/0.68 m and 0.3×, XF 150-600 0.24×); **interaction** F30 F33–F37 (the nearest ring takes the pointer, verified
+  in the browser; memoised lazy views; "Back to the lab" keeps zoom; teaching-lens scale at focal-plane distances;
+  assumed blade counts shown as unverified). *Open follow-ups* (not in this pass): geometry F11 F12 F14–F19 F21 F22
+  F29 (layout packing / barrel details) and rendering F3/F23 F6–F8 F24–F28 (mip-level sampling in the near-field DoF
+  pass, shadow pass layers, haze colour, sky shader pow, per-frame allocations).
+- [x] **2.13 — Finish**: README, SOURCES.md, tests, `npm run build`, pull request with screenshots.
+
+*Scope change (2026-09-25, requested by the user): the Arabic / RTL work — former phases 2.4 (i18n foundation) and 2.11
+(Arabic content) — is dropped; the app is English only. The i18n code that had been started was removed; the other
+phase numbers are kept unchanged so commit messages stay traceable.*
+
+## Phase 2 decisions
+
+1. **Research access.** From this container `WebFetch`/`curl` to manufacturer sites (apple.com, canon.com, …), GSMArena,
+   DPReview and Wikipedia is blocked by the network policy; web *search* works. Specs are therefore taken from search
+   results restricted to the manufacturer's own domains (official spec pages / PDFs / press releases), with reviews only
+   to fill gaps, and every product stores the URLs its values came from. Values that could not be confirmed stay `null`
+   and show as **unverified**.
+2. **Optical layouts are illustrative.** Manufacturers publish construction diagrams as images, which cannot be fetched
+   here, so no layout can be claimed to match a diagram. Every cutaway uses the lens' *real* element count, group count
+   and special-element counts; shapes/positions follow the lens type (retrofocus wide, double-Gauss standard, telephoto
+   with a negative rear group, zooms with moving groups) and are labelled **"Illustrative layout"** in the UI.
+3. **Distances are measured from the focal plane** (the ⦶ mark), like MFD specs and distance scales. The thin-lens
+   maths still uses the object distance u from the lens; u is recovered from the sensor distance T with
+   u = (T + √(T² − 4Tf))/2 (the larger root of T = u²/(u − f)).
+4. **Focus breathing / close focus.** Most modern lenses focus internally and shorten their focal length at close range —
+   a fixed-f thin lens cannot reach e.g. 1.4× at 0.26 m with f = 100 mm (it would need 0.41 m). Each lens therefore gets
+   an effective focal length that equals f at ∞ and f_mfd = MFD·m/(1+m)² at its published MFD / max. magnification
+   (the thin-lens conjugate relation T = f(1+m)²/m solved for f), blended as f_eff = f + (f_mfd − f)·(MFD/T).
+   If the magnification is unverified, f stays fixed.
+5. **Circle of confusion** per format: c = diagonal / 1442 (0.030 mm full frame, 0.020 APS-C, 0.015 MFT, 0.038 44×33),
+   the convention used by Phase 1. Phones use the same rule on their (small) sensors.
+6. **Image side is schematic.** A 600 mm lens cannot sit on the bench at the scale of the sensor, so each lens is drawn
+   at its own scale (real length : diameter ratio). The cones between the iris and the sensor are solved so that each
+   blur disc on the sensor is exactly the real CoC (× the sensor's scale) and lands where the subject appears in the
+   sensor view.
+7. **Depth ladder.** The object side keeps a smooth monotonic distance → depth map, now with two scales so both near
+   (macro, 0.8 m cabin, 2 m trees) and far subjects (30 m bird, 200 m tower, ∞ mountains) get room on the diorama.
+   The focus slider covers MFD → ∞ of the loaded lens.
+8. **Wide angles.** The diorama is extended with sensor-only geometry (a wider terrain ring + sky dome) so a 10–16 mm lens
+   sees a complete world in the sensor view while the bench model stays compact; the FOV cone shows what the lens sees.
+9. **Legal.** Brand and product names appear as plain text only. No logos, trademarks as graphics or product photos; all
+   lenses, phones and camera modules are generated procedurally, with a neutral Lens Lab styling.
+10. **Lazy loading.** Lens data (per brand), phone data, the phone teardown scene and compare mode are split into
+    separate chunks and loaded on demand.
+
+## Phase 2 physics verification (hand calculations)
+
+Every row was worked out by hand (checked with a pocket-calculator script) and is asserted in
+`tests/lensModel.test.ts` (`npm test`). Code: `src/optics/formats.ts`, `src/optics/lensModel.ts`, `src/optics/depthMap.ts`.
+
+| Case | Hand calculation | Code |
+|---|---|---|
+| **F** formats | FF d = √(36² + 24²) = **43.267 mm**, c = d/1442 = **0.0300 mm** · APS-C 23.5×15.6: d = 28.207, crop = **1.534**, c = 0.0196 · MFT 17.3×13: crop **1.999** · GFX 43.8×32.9: crop **0.790** · phone 1/1.28": d ≈ 16/1.28 = **12.5 mm** → 10.0 × 7.5 mm (4:3), crop **3.461** | ✅ |
+| **G** field of view | 16 mm: H = 2·atan(18/16) = **96.73°**, V = 2·atan(12/16) = **73.74°**, D = 2·atan(21.63/16) = **107.03°** · 24 mm: D = **84.06°** · 600 mm: H = 2·atan(18/600) = **3.437°**, D = **4.130°** · 50 mm at 1:5 (v = 60 mm): H = **33.4°** (breathing) | ✅ |
+| **H** equivalence | 56 mm f/1.2 on APS-C → 56·1.534 = **85.9 mm**, 1.2·1.534 = **f/1.84** · phone 6.9 mm f/1.78 on 1/1.28" → 6.9·3.461 = **23.9 mm**, 1.78·3.461 = **f/6.16** · at 2 m the equivalent pair agrees to 1.2 % (near) / 3.6 % (far, close to H ≈ 3.1 m): equivalence is exact only for u ≫ f | ✅ |
+| **I** zoom ring | 24–70 at z = ½: √(24·70) = **40.99 mm**; 35 mm ↔ z = ln(35/24)/ln(70/24) = **0.3525** · 100–500 f/4.5–7.1 at 300 mm: 4.5·3^(ln(7.1/4.5)/ln 5) = 4.5·3^0.2833 = f/6.14 → 1/3-stop scale **f/6.3** (the real lens shows f/5.6 there — hence "≈" in the UI) | ✅ |
+| **J** focal-plane distances | 50 mm focused at T = 2000 mm: u = (T + √(T² − 4Tf))/2 = **1948.68 mm**, v = **51.32 mm**, m = **0.02633**; 1/u + 1/v = 1/50 ✓ · 50 mm f/16 at ∞: H_u = 2500/(16c) + 50 = 5258.1, H_T = H_u + f·H_u/(H_u − f) = **5308.6 mm** | ✅ |
+| **K** macro breathing | 100 mm, MFD 260 mm, 1.4×: f_mfd = 260·1.4/2.4² = **63.19 mm** → at MFD u = f(1+m)/m = **108.33**, v = f(1+m) = **151.67**, T = 260 ✓ · f/2.8: working **f/6.72**, DoF = **0.2057 mm** = 2Nc(1+m)/m² ✓ | ✅ |
+| **L** depth ladder | u(d) = 1 − (200/d)^0.3: u(2 m) = 1 − 0.1^0.3 = **0.4988**; d(½) = 200·0.5^(−1/0.3) = **2015.9 mm**; 0.3 m → 0.115, 30 m → 0.778, 200 m → 0.874, ∞ → 1 | ✅ |
+| **M** apertures | f/1.2–16 → buttons **1.2, 2, 4, 8, 16** (full stops spread evenly in stop space) · f/0.95–16 → **0.95, 2, 4, 8, 16** | ✅ |
+| **N** image-side cones | aperture radius r at D in front of the sensor, wanted disc b, t = b/2r: far subject a = tD/(1 + t) in front, near subject a = tD/(1 − t) behind; similar triangles give back 2r·a/(D ∓ a) = b exactly | ✅ |
+| **O** phone cameras (`tests/phoneOptics.test.ts`) | 48 MP × 1.22 µm: px = √(48e6·4/3) = **8000** → **9.76 × 7.32 mm** (matches 1/1.28" ≈ 10 × 7.5) · 24 mm eq → real f = 24/3.4613 = **6.93 mm**, f/1.48 → eq **f/5.1**, FOV 2·atan(43.267/48) = **84.1°** · 5× of 24 mm → **120 mm** eq (computed, labelled) · DoF at 2 m, f/1.48, c = 0.00867: H = 6.93²/(1.48·0.00867) + 6.93 ≈ **3754 mm**, u ≈ 1993 → near ≈ **1.30 m**, far ≈ **4.24 m** (the lens stays at v, so both limits add the same v — same convention as `lensState`, asserted equal) | ✅ |
+| **P** illustrative layouts (`tests/opticalLayout.test.ts`) | invariants, for every library lens + one synthetic lens per design family: element count = published, groups = elements − cemented joins = published, each cemented pair shares its contact surface (r₁' = −r₂, touching vertices), edge thickness > 0.5 mm, clear aperture < barrel inner radius and rear element < mount throat, min axial clearance > 0.2 mm between neighbours at z ∈ {0, ¼, ½, ¾, 1} × focus ∈ {0, ½, 1}, zoom / focus groups move, entrance pupil ≤ front element | ✅ |
+| **Q** explainers (`tests/learn.test.ts`) | Pixel 11 Pro main 1/1.3", 24 mm, f/1.68: d = 16/1.3 = 12.308 → crop **3.515**, f = **6.827 mm**, N_eq = **f/5.91**, c = 0.008535 · DoF at 2 m: phone **1244–5132 mm** (3.89 m), FF 24 mm f/1.68 **1712–2407 mm** (0.70 m), FF f/5.91 **1259–4969 mm** — H − f = f²/(Nc) is the same for phone and equivalent FF (3250.5) · background disc b = f²/(N(u − f)): phone **0.142 %** of the frame width, FF f/1.68 **0.488 %** · tele 105 mm eq on 1/1.95": crop **5.273** → f = **19.91 mm**, pupil f/N = **7.11 mm**, overhang vs 8 mm phone **11.9 mm** · SNR √(λN): λ = 16.1, N = 8 → **11.3** | ✅ |
+
+## Research status (updated 2026-09-26)
+
+Researched with the method in `data/RESEARCH.md` (official pages first, reviews only for gaps and the text), then
+audited by a second, independent agent per file that tried to prove the data wrong (schema, units, versions,
+special-glass normalisation, magnification vs closest focus, sources on the maker's domain, neutral text). Validated
+by `tests/data.test.ts`; every product with its sources and check date is in `data/SOURCES.md` (`npm run sources`).
+
+| File | Products | Notes |
+|---|---|---|
+| `data/lenses/canon.json` | 10 | RF 15-35, 24 VCM, 50 f/1.2, 50 f/1.8, 85 f/1.2, 100 Macro, 24-70, 70-200 Z, 100-500, 600 f/4 |
+| `data/lenses/nikon.json` | 10 | Z 14-24, 35 f/1.2, 50 f/1.2, 58 Noct, 85 f/1.2, MC 105, 24-70 II, 70-200 II, 180-600, 600 TC |
+| `data/lenses/sony.json` | 10 | FE 16-35 GM II, 24 GM, 50 GM, 85 GM II, 100 Macro GM, 24-70 GM II, 70-200 GM II, 200-600 G, 400-800 G, 600 GM |
+| `data/lenses/fujifilm.json` | 9 | XF 8-16, 23, 33, 56, 80 Macro, 16-55 II, 50-140, 150-600; GF 110 |
+| `data/lenses/panasonic.json` | 9 | S 14-28, S PRO 50, S 50, S 85, S 100 Macro, S PRO 24-70, S PRO 70-200, S 28-200; LEICA DG 100-400 II |
+| `data/lenses/leica.json` | 10 | SL 16-35, M 35 Summilux, M 50 Noctilux, M 50 APO-Summicron, M 50 Summilux, SL 90 APO, SL 100 APO-Macro, SL 24-70, SL 90-280, SL 100-400 |
+| `data/lenses/sigma.json` | 10 | 14 f/1.4, 35 f/1.2 II, 50 f/1.2, 85 f/1.4, 105 Macro, 28-45, 24-70 II, 70-200 Sports, 300-600 f/4, 500 f/5.6 |
+| `data/lenses/tamron.json` | 10 | 16-30 G2 (successor of the 17-28), 20-40, 28-75 G2, 35-150, 70-180 G2, 25-200 G2 (successor of the 28-200), 50-400, 150-500, 90 Macro, 20 f/2.8 |
+| `data/phones/phones-apple-samsung-google.json` | 3 | iPhone 18 Pro / Pro Max, Galaxy S26 Ultra, Pixel 11 Pro / Pro XL |
+| `data/phones/phones-xiaomi-vivo-huawei-oppo.json` | 4 | Xiaomi 17 Ultra (the newer 18 Pro / Pro Max is not the top camera model — noted), vivo X300 Ultra, Huawei Pura 90 Pro Max, OPPO Find X9 Ultra |
+
+Values the researchers and auditors could not confirm are `null` and appear as *unverified* in the UI (e.g. several
+minimum apertures, some diameters, launch prices with conflicting sources). Conflicts are explained in each product's
+`notes`. Limits: the web-search budget is 200 searches per session and direct page fetches are blocked by the
+network policy, so every value comes from search results on the official domains (and cited reviews); the 3D
+arrangement of the phone camera modules (`moduleLayout`) is an approximation, as noted in the data.
+The app loads whatever is in `data/`, so new files/entries appear in the library without code changes.

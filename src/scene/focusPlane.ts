@@ -1,9 +1,9 @@
 import * as THREE from 'three';
-import type { OpticsState } from '../optics/opticsState';
+import type { LensState } from '../optics/lensModel';
+import { DIORAMA, PLINTH_TOP } from './diorama/terrain';
 import { focusOverlay } from './focusOverlay';
 import { LAYOUT, OPTICAL_CENTER_X, worldXForDistance } from './layout';
 import { GlowLines } from './rays/GlowLines';
-import { PLINTH_TOP } from './diorama/terrain';
 
 const planeVertex = /* glsl */ `
 varying vec2 vUv;
@@ -63,31 +63,30 @@ function planeMaterial(color: THREE.Color, fill: number, rim: number, grid: numb
 }
 
 /**
- * The plane of focus (glowing, inside the diorama), the near/far limits of the sharp zone and
- * the lens' field-of-view frustum. Each plane is drawn as the slice of the frustum at that
- * distance — i.e. exactly the patch of the world that lands on the sensor.
+ * The plane of focus (glowing, inside the diorama) and the near/far limits of the sharp zone.
+ * Each plane is the slice of the lens' field of view at that distance — exactly the patch of the
+ * world that lands on the sensor — clamped to the diorama for very wide lenses.
  */
 export class FocusPlane {
   readonly group = new THREE.Group();
   private readonly focus: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
   private readonly near: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
   private readonly far: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
-  readonly lines = new GlowLines(64, { width: 1.6, intensity: 1, pulse: 0 });
-  private readonly frustumColor = new THREE.Color('#9fb4d6');
+  readonly lines = new GlowLines(32, { width: 1.6, intensity: 1, pulse: 0 });
   private readonly zoneColor = new THREE.Color('#58d6ff');
   /** World X of the current plane of focus (useful for labels). */
   focusX = 0;
   nearX = 0;
   farX = 0;
   focusHalfHeight = 1;
+  focusHalfWidth = 1;
 
   constructor() {
     this.group.name = 'focus-plane';
     const geo = new THREE.PlaneGeometry(1, 1);
     geo.rotateY(Math.PI / 2); // face ±X
-    // after rotateY(π/2) the plane's u runs along −Z; the shader only needs sizes, fine.
     const cyan = new THREE.Color('#57dcff');
-    this.focus = new THREE.Mesh(geo, planeMaterial(cyan.clone().multiplyScalar(1.0), 0.07, 2.4, 0.06, false));
+    this.focus = new THREE.Mesh(geo, planeMaterial(cyan.clone(), 0.07, 2.4, 0.06, false));
     this.near = new THREE.Mesh(geo, planeMaterial(new THREE.Color('#57dcff'), 0.012, 0.9, 0.0, true));
     this.far = new THREE.Mesh(geo, planeMaterial(new THREE.Color('#57dcff'), 0.012, 0.9, 0.0, true));
     for (const m of [this.focus, this.near, this.far]) {
@@ -97,17 +96,23 @@ export class FocusPlane {
     this.group.add(this.lines.mesh);
   }
 
-  private placePlane(mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>, x: number, o: OpticsState): number {
+  /** Half extents of the field of view at world X (clamped to the diorama). */
+  private extents(x: number, o: LensState): [number, number] {
     const dist = Math.max(0.05, x - OPTICAL_CENTER_X);
-    const hw = dist * Math.tan(o.fovHorizontal / 2);
-    const hh = dist * Math.tan(o.fovVertical / 2);
+    const hw = Math.min(dist * Math.tan(o.fovHorizontal / 2), DIORAMA.halfWidthAt(dist) + 0.15);
+    const hh = Math.min(dist * Math.tan(o.fovVertical / 2), 2.45);
+    return [hw, hh];
+  }
+
+  private placePlane(mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>, x: number, o: LensState): [number, number] {
+    const [hw, hh] = this.extents(x, o);
     mesh.position.set(x, LAYOUT.axisY, LAYOUT.axisZ);
     mesh.scale.set(1, hh * 2, hw * 2);
     mesh.material.uniforms.uSize.value.set(hw * 2, hh * 2);
-    return hh;
+    return [hw, hh];
   }
 
-  update(o: OpticsState, time: number, visible: { focus: boolean; zone: boolean; frustum: boolean }): void {
+  update(o: LensState, time: number, visible: { focus: boolean; zone: boolean }): void {
     const xMax = OPTICAL_CENTER_X + LAYOUT.xInfRel;
     const fx = Math.min(worldXForDistance(o.focusDistance), xMax);
     const nx = Math.min(worldXForDistance(o.near), xMax);
@@ -115,7 +120,7 @@ export class FocusPlane {
     this.focusX = fx;
     this.nearX = nx;
     this.farX = farX;
-    this.focusHalfHeight = this.placePlane(this.focus, fx, o);
+    [this.focusHalfWidth, this.focusHalfHeight] = this.placePlane(this.focus, fx, o);
     this.placePlane(this.near, nx, o);
     this.placePlane(this.far, farX, o);
     this.focus.visible = visible.focus;
@@ -127,25 +132,15 @@ export class FocusPlane {
     focusOverlay.uNearX.value = nx;
     focusOverlay.uFarX.value = visible.zone ? (Number.isFinite(o.far) ? farX : 1e5) : -1e5;
 
-    // frustum edges + DoF slab edges
+    // edges of the depth-of-field slab
     this.lines.begin();
-    const c = new THREE.Vector3(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ);
-    const corner = (x: number, sy: number, sz: number) => {
-      const dist = x - OPTICAL_CENTER_X;
-      return new THREE.Vector3(x, LAYOUT.axisY + sy * dist * Math.tan(o.fovVertical / 2), LAYOUT.axisZ + sz * dist * Math.tan(o.fovHorizontal / 2));
-    };
-    const signs: [number, number][] = [[1, 1], [1, -1], [-1, -1], [-1, 1]];
-    if (visible.frustum) {
-      const xEnd = OPTICAL_CENTER_X + LAYOUT.xInfRel;
-      for (const [sy, sz] of signs) {
-        if (sy < 0) continue; // lower edges disappear into the plinth anyway
-        this.lines.add(c, corner(xEnd, sy, sz), this.frustumColor, 0.16, 0, 1);
-      }
-    }
     if (visible.zone && Math.abs(farX - nx) > 0.01) {
-      for (const [sy, sz] of signs) {
-        if (sy < 0) continue;
-        this.lines.add(corner(nx, sy, sz), corner(farX, sy, sz), this.zoneColor, 0.55, 0, 1);
+      const [nw, nh] = this.extents(nx, o);
+      const [fw, fh] = this.extents(farX, o);
+      for (const sz of [1, -1]) {
+        const a = new THREE.Vector3(nx, LAYOUT.axisY + nh, LAYOUT.axisZ + sz * nw);
+        const b = new THREE.Vector3(farX, LAYOUT.axisY + fh, LAYOUT.axisZ + sz * fw);
+        this.lines.add(a, b, this.zoneColor, 0.55, 0, 1);
       }
     }
     this.lines.end();

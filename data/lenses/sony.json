@@ -1,0 +1,566 @@
+[
+  {
+    "id": "sony-fe-16-35-f28-gm-ii",
+    "brand": "Sony",
+    "name": "Sony FE 16-35mm F2.8 GM II",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": { "min": 16, "max": 35 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 15,
+    "groups": 12,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 3 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 2 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.22, "tele": 0.22 },
+    "maxMagnification": 0.32,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "4x XD (extreme dynamic) Linear Motor",
+    "weightG": 547,
+    "dimensionsMm": { "diameter": 87.8, "length": 111.5 },
+    "filterMm": 82,
+    "releaseYear": 2023,
+    "launchPrice": { "amount": 2299.99, "currency": "USD" },
+    "zoomMechanism": "extending",
+    "focusMechanism": "internal",
+    "notes": "Strengths and weaknesses are paraphrased from the listed reviews (The-Digital-Picture, Photography Life), not from Sony. The audit removed an unsourced vignetting figure (\"about 3/4 stop at f/2.8\"), which is implausibly low for an uncorrected 16mm f/2.8 lens. The zoom (extending) and focus (internal) mechanism labels have no stated source in this entry and could not be re-checked in the audit.",
+    "famousFor": "Sony's second-generation constant-f/2.8 ultra-wide GM zoom, marketed as the world's smallest and lightest autofocus F2.8 16-35mm zoom and praised for near coma-free 16mm astro shots.",
+    "strengths": [
+      "Corner-to-corner sharpness wide open at f/2.8, rivaling prime lenses at some focal lengths",
+      "About 20% lighter and more compact than the original GM version",
+      "Fast, near-silent autofocus from four XD linear motors, good for stills and video AF",
+      "Very close 0.22 m minimum focus distance with 0.32x magnification, unusual for an ultra-wide zoom"
+    ],
+    "weaknesses": [
+      "Noticeable corner shading wide open at f/2.8, which improves when stopped down",
+      "Mild coma stretching at 24-35mm compared to the near-perfect 16mm corners",
+      "Manual focus ring feels comparatively loose"
+    ],
+    "bestFor": [
+      "Milky Way and night-sky astrophotography at 16mm",
+      "Landscape and architecture work needing edge-to-edge sharpness",
+      "Run-and-gun handheld and gimbal video work",
+      "Interiors and environmental portraits in low light"
+    ],
+    "sources": [
+      { "title": "SEL1635GM2 Specifications", "url": "https://www.sony.co.uk/electronics/e-mount-lenses/sel1635gm2/specifications", "kind": "official" },
+      { "title": "Sony Electronics Introduces The Sony 16-35mm F2.8 G Master II", "url": "https://alphauniverse.com/stories/sony-electronics-introduces-the-sony-1635mm-f2-8-g-master-ii/", "kind": "official" },
+      { "title": "Sony Introduces World's Smallest and Lightest Wide-Angle Zoom Lens G-Master Sony FE 16-35mm F2.8 GM II", "url": "https://www.sony.co.uk/presscentre/sony-introduces-worlds-smallest-and-lightest-wide-angle-zoom-lens-g-master-sony-fe-16-35mm-f28-gm-ii", "kind": "press" },
+      { "title": "Sony FE 16-35mm F2.8 GM II Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-16-35mm-F2-8-GM-II-Lens.aspx", "kind": "review" },
+      { "title": "Sony FE 16-35mm f/2.8 GM II Review", "url": "https://photographylife.com/reviews/sony-fe-16-35mm-f-2-8-gm-ii", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "sony-fe-24mm-f14-gm",
+    "brand": "Sony",
+    "name": "Sony FE 24mm F1.4 GM",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "wide-prime",
+    "focalLength": { "min": 24, "max": 24 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 13,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.24, "tele": 0.24 },
+    "maxMagnification": 0.17,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "DDSSM (Direct Drive SSM)",
+    "weightG": 445,
+    "dimensionsMm": { "diameter": 75.4, "length": 92.4 },
+    "filterMm": 67,
+    "releaseYear": 2018,
+    "launchPrice": { "amount": 1400, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "Launch price is Sony's own \"approximately $1,400 US\" from the Alpha Universe announcement, following the brief's official-first rule and the convention used for the other Sony entries. A press/retailer report (cameratimes.org) gives the US list price as $1,398. The audit removed an unsourced claim that the lens was DPReview's 2018 prime lens of the year, because no DPReview source is listed.",
+    "famousFor": "One of the fastest and lightest 24mm primes for full-frame mirrorless, widely regarded as a benchmark lens for astrophotography and night landscapes thanks to very low coma.",
+    "strengths": [
+      "Very sharp from centre to edge already at f/1.4",
+      "Excellent coma control at f/1.4, a favorite for Milky Way and night-sky shooting",
+      "Very light for an f/1.4 24mm (445 g), the lightest in its class at launch",
+      "Smooth, round bokeh from an 11-blade aperture with minimal onion-ring artifacts"
+    ],
+    "weaknesses": [
+      "Visible purple/green fringing wide open at f/1.4 that clears up by f/2-f/2.8",
+      "Noticeable vignetting wide open, mostly resolved by f/2.8",
+      "Moderate focus breathing when racking focus, relevant for video"
+    ],
+    "bestFor": [
+      "Milky Way and aurora astrophotography",
+      "Wide-aperture landscape and architecture shots with shallow depth of field",
+      "Low-light street and environmental photography",
+      "Astro-landscape composites requiring sharp, low-coma corners"
+    ],
+    "sources": [
+      { "title": "FE 24mm F1.4 GM | SEL24F14GM Specifications", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel24f14gm/specifications", "kind": "official" },
+      { "title": "Sony Expands Full-Frame Lens Lineup With Launch Of 24mm F1.4 G Master Prime", "url": "https://alphauniverse.com/stories/sony-expands-full-frame-lens-lineup-with-launch-of-24mm-f1-4-g-master-prime/", "kind": "official" },
+      { "title": "Sony FE 24mm F1.4 GM Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-24mm-f-1.4-GM-Lens.aspx", "kind": "review" },
+      { "title": "Sony FE 24mm f/1.4 GM Review", "url": "https://photographylife.com/reviews/sony-fe-24mm-f-1-4-gm", "kind": "review" },
+      { "title": "Sony FE 24mm f/1.4 GM Lens Announced: Price $1,398", "url": "https://cameratimes.org/sony-fe-24mm-f-1-4-gm-lens-announced-price-1398-lightest-class/", "kind": "press" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "sony-fe-50mm-f12-gm",
+    "brand": "Sony",
+    "name": "Sony FE 50mm F1.2 GM",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": { "min": 50, "max": 50 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 14,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.4, "tele": 0.4 },
+    "maxMagnification": 0.17,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "4x XD (extreme dynamic) Linear Motor",
+    "weightG": 778,
+    "dimensionsMm": { "diameter": 87, "length": 108 },
+    "filterMm": 72,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 2000, "currency": "USD" },
+    "focusMechanism": "floating",
+    "notes": "Sony's own materials highlight 3 XA elements but do not publish a full breakdown of the remaining 11 elements (e.g. any ED glass), so only the XA count is listed. Launch price is Sony's own \"approximately $2,000 USD\" figure.",
+    "famousFor": "Sony's first full-frame f/1.2 prime, notable for reaching that aperture in a body comparable in size and weight to many f/1.4 50mm lenses.",
+    "strengths": [
+      "High resolution corner-to-corner even wide open at f/1.2",
+      "Compact and relatively light for an f/1.2 50mm, similar to some f/1.4 competitors",
+      "Fast, quiet autofocus from four XD linear motors",
+      "Smooth, rounded G Master bokeh from an 11-blade aperture"
+    ],
+    "weaknesses": [
+      "Noticeable focus breathing when racking focus",
+      "Bokeh rendering can look somewhat neutral/clinical rather than characterful to some users",
+      "Expensive relative to conventional f/1.4 50mm primes"
+    ],
+    "bestFor": [
+      "Portraits with very shallow depth of field and creamy background blur",
+      "Low-light event and reportage photography",
+      "Environmental portraits where subject separation is a priority",
+      "General-purpose fast-aperture full-frame work"
+    ],
+    "sources": [
+      { "title": "FE 50mm F1.2 GM | SEL50F12GM", "url": "https://www.sony.co.uk/electronics/interchangeable-lenses/sel50f12gm", "kind": "official" },
+      { "title": "Sony 50mm F1.2 G Master Expands Creative Possibilities For Photographers & Filmmakers", "url": "https://alphauniverse.com/stories/sony-50mm-f1-2-g-master-expands-creative-possibilities-for-photographers-and-filmmakers/", "kind": "official" },
+      { "title": "Sony Strengthens its Alpha System with the Introduction of its 60th E-Mount Lens, FE 50mm F1.2 G Master", "url": "https://www.sony.co.uk/presscentre/news/sony-strengthens-its-alpha-system-with-the-introduction-of-its-60th-e-mount-lens-fe-50mm-f1-2-g-master", "kind": "press" },
+      { "title": "Sony 50mm f/1.2 GM Review | They Said It Couldn't Be Done!", "url": "https://www.slrlounge.com/sony-50mm-f-1-2-gm-review/", "kind": "review" },
+      { "title": "First impressions of the Sony 50mm F1.2 GM", "url": "https://www.dpreview.com/articles/6776198643/first-impressions-of-the-sony-50mm-f1-2-gm/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "sony-fe-85mm-f14-gm-ii",
+    "brand": "Sony",
+    "name": "Sony FE 85mm F1.4 GM II",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "portrait-prime",
+    "focalLength": { "min": 85, "max": 85 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 14,
+    "groups": 11,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 2 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.8, "tele": 0.8 },
+    "maxMagnification": 0.12,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "2x XD (extreme dynamic) Linear Motor",
+    "weightG": 642,
+    "dimensionsMm": { "diameter": 84.7, "length": 107.3 },
+    "filterMm": 77,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 1799.99, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "Sony publishes two close-focus figures: 0.85 m / 0.11x in AF and 0.8 m / 0.12x in MF; the MF (absolute closest) values are used here. Minimum aperture could not be confirmed from an official source in this research pass, so it is left null. Announced 28 August 2024, available September 2024 at approximately $1,799.99 USD (Sony). Weakness details (corner shading, bokeh fringing, breathing) are from reviews.",
+    "famousFor": "The second-generation version of Sony's G Master portrait prime, known for being noticeably smaller, lighter and much faster-focusing than the 2016 original while staying very sharp at f/1.4.",
+    "strengths": [
+      "Very sharp across the frame already at f/1.4, with little to gain from stopping down",
+      "Two XD linear motors give AF that Sony rates up to 3x faster than the previous model, with reliable tracking",
+      "Soft, clean bokeh with smooth focus transitions from the 11-blade aperture",
+      "Lighter and more compact than the original FE 85mm F1.4 GM"
+    ],
+    "weaknesses": [
+      "Some longitudinal chromatic aberration (bokeh fringing) at f/1.4, much reduced by f/2",
+      "Noticeable corner shading wide open (around 2.5 stops at f/1.4 in The-Digital-Picture's tests)",
+      "Minor focus breathing remains, though far less than on the first version"
+    ],
+    "bestFor": [
+      "Head-and-shoulders portraits with strong background blur",
+      "Wedding and event coverage in dim venues",
+      "Concert and stage photography of musicians",
+      "Hybrid portrait and interview video with breathing compensation"
+    ],
+    "sources": [
+      { "title": "Sony FE 85mm F1.4 GM II Specifications", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel85f14gm2/specifications", "kind": "official" },
+      { "title": "FE 85mm F1.4 GM II | SEL85F14GM2 | Sony United Kingdom", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel85f14gm2", "kind": "official" },
+      { "title": "Sony Electronics Announces The Highly Anticipated FE 85mm F1.4 G Master II Lightweight Telephoto Portrait Lens", "url": "https://alphauniverse.com/stories/sony-electronics-announces-the-highly-anticipated-fe-85mm-f1-4-g-master-ii-lightweight-telephoto-portrait-lens/", "kind": "official" },
+      { "title": "Sony Announces the Highly Anticipated FE 85mm F1.4 GM II Lightweight Portrait Lens", "url": "https://www.sony.co.uk/presscentre/sony-announces-the-highly-anticipated-fe-85mm-f14-gm-ii-lightweight-portrait-lens", "kind": "press" },
+      { "title": "Sony 85mm f/1.4 GM II Review: Smaller, Sharper, Speedier", "url": "https://petapixel.com/2024/08/28/sony-85mm-f-1-4-gm-ii-review-smaller-sharper-speedier/", "kind": "review" },
+      { "title": "Sony FE 85mm F1.4 GM II Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-85mm-F1-4-GM-II-Lens.aspx", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sony-fe-100mm-f28-macro-gm-oss",
+    "brand": "Sony",
+    "name": "Sony FE 100mm F2.8 Macro GM OSS",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "macro",
+    "focalLength": { "min": 100, "max": 100 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 17,
+    "groups": 13,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 2 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.26, "tele": 0.26 },
+    "maxMagnification": 1.4,
+    "stabilization": { "optical": true, "stops": null },
+    "autofocus": "4x XD (extreme dynamic) Linear Motor",
+    "weightG": 646,
+    "dimensionsMm": { "diameter": 81.4, "length": 147.9 },
+    "filterMm": 67,
+    "releaseYear": 2025,
+    "launchPrice": { "amount": 1499.99, "currency": "USD" },
+    "focusMechanism": "floating",
+    "notes": "The listed lens exists and is the current Sony macro G Master, so it was researched instead of the FE 90mm F2.8 Macro G OSS. Announced in autumn 2025 (the research pass gave September 2025, but the listed PetaPixel review is dated 9 October 2025, so the exact month is unconfirmed). Available November 2025 at approximately $1,499.99 USD (Sony). The elements/groups count (17 in 13), 0.26 m close focus, 1.4x magnification and 67 mm filter are nearly identical to Canon's RF100mm F2.8 L Macro IS USM. The audit could not re-check them against Sony's spec page, so treat them with some caution. Native magnification is 1.4x, up to 2.8x with an optional teleconverter (Sony). The lens has Optical SteadyShot, but Sony does not publish a CIPA stop rating in the sources found, so stops is null. No tripod collar (reviews), so the 646 g weight is lens only. The minimum working distance of about 90 mm at 1.4x, the 160-degree focus ring rotation and the focus-breathing remarks come from reviews.",
+    "famousFor": "Sony's first G Master macro lens, notable for going beyond life-size to 1.4x magnification natively (2.8x with a teleconverter) while adding fast linear-motor AF and optical stabilisation.",
+    "strengths": [
+      "1.4x native maximum magnification, beyond the usual 1:1 of macro lenses",
+      "Very sharp at all focus distances, with clearly better edges than Sony's older 90mm macro",
+      "Fast, quiet autofocus from four XD linear motors driving a floating focus group",
+      "Teleconverter compatible, reaching up to 2.8x magnification"
+    ],
+    "weaknesses": [
+      "Focus breathing changes subject size when refocusing, so focus stacks need some cropping",
+      "Focus ring's 160-degree throw is a little quick for precise manual macro focusing",
+      "No tripod collar, and priced well above typical 100mm macro lenses"
+    ],
+    "bestFor": [
+      "Beyond life-size macro of insects and small flowers",
+      "Focus-stacked product and jewellery close-ups",
+      "Tight headshot portraits with shallow depth of field",
+      "Close-up detail shots at weddings, such as rings and invitations"
+    ],
+    "sources": [
+      { "title": "Sony FE 100mm F2.8 Macro GM OSS Specifications", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel100m28gm/specifications", "kind": "official" },
+      { "title": "FE 100mm F2.8 Macro GM OSS | SEL100M28GM | Sony United Kingdom", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel100m28gm", "kind": "official" },
+      { "title": "Sony Expands The G Master Series With The Versatile 100mm F2.8 Macro G Master", "url": "https://alphauniverse.com/stories/sony-expands-the-g-master-series-with-the-versatile-100mm-f2-8-macro-g-master/", "kind": "official" },
+      { "title": "Sony Unveils Sony FE 100mm F2.8 Macro GM OSS: Redefining Macro Photography to Reveal New Worlds", "url": "https://www.sony.co.uk/presscentre/sony-unveils-sony-fe-100mm-f28-macro-gm-oss-redefining-macro-photography-to-reveal-new-worlds", "kind": "press" },
+      { "title": "Sony FE 100mm F2.8 Macro GM OSS Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-100mm-F2-8-Macro-GM-OSS-Lens.aspx", "kind": "review" },
+      { "title": "Sony 100mm f/2.8 Macro G Master Review: Close to Perfect", "url": "https://petapixel.com/2025/10/09/sony-100mm-f-2-8-macro-g-master-review-close-to-perfect/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sony-fe-24-70-f28-gm-ii",
+    "brand": "Sony",
+    "name": "Sony FE 24-70mm F2.8 GM II",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": { "min": 24, "max": 70 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 20,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 2 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 3 },
+      { "kind": "low-dispersion", "label": "ED", "count": 2 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 2 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.21, "tele": 0.3 },
+    "maxMagnification": 0.32,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "4x XD (extreme dynamic) Linear Motor",
+    "weightG": 695,
+    "dimensionsMm": { "diameter": 87.8, "length": 119.9 },
+    "filterMm": 82,
+    "releaseYear": 2022,
+    "launchPrice": { "amount": 2300, "currency": "USD" },
+    "zoomMechanism": "extending",
+    "focusMechanism": "internal",
+    "notes": "Sony describes the optics as five aspherical elements including two XA, so they are listed as 2 XA + 3 other aspherical, plus 2 ED and 2 Super ED. Close focus is 0.21 m at 24 mm and 0.30 m at 70 mm, with 0.32x maximum magnification (Sony). The launch price of about $2,300 USD comes from reviews (PetaPixel/DPReview), not from an official page found in this pass. That the barrel extends when zooming, and the vignetting/distortion figures, come from reviews.",
+    "famousFor": "The second-generation G Master standard zoom, launched as the world's smallest and lightest F2.8 24-70mm and widely treated as the reference workhorse zoom for Sony full-frame bodies.",
+    "strengths": [
+      "Sharp at f/2.8 across the range with good corners, and much sharper at 70mm than the first version",
+      "Fast XD linear-motor AF that Sony rates for tracking at up to 30 fps, even while zooming",
+      "Compact and light for an f/2.8 standard zoom (695 g)",
+      "Declickable aperture ring and minimal focus breathing for video work"
+    ],
+    "weaknesses": [
+      "Strong corner shading wide open (about 2.5 stops at 24mm f/2.8)",
+      "Visible barrel distortion at 24mm turning to pincushion at 50-70mm, relying on software correction",
+      "The barrel extends when zooming, and there is no optical stabilisation"
+    ],
+    "bestFor": [
+      "Wedding and event coverage from ceremony to reception",
+      "Travel photography with one versatile lens",
+      "Photojournalism and documentary work",
+      "Handheld and gimbal video with minimal focus breathing"
+    ],
+    "sources": [
+      { "title": "SEL2470GM2 Specifications | Sony UK", "url": "https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel2470gm2/specifications", "kind": "official" },
+      { "title": "FE 24-70mm F2.8 GM II | Sony UK", "url": "https://www.sony.co.uk/lenses/products/sel2470gm2", "kind": "official" },
+      { "title": "Sony Introduces New FE 24-70mm F2.8 GM II, World's Smallest & Lightest F2.8 Standard Zoom Lens", "url": "https://alphauniverse.com/stories/sony-introduces-new-fe-2470mm-f2-8-gm-ii-world-s-smallest-and-lightest-f2-8-standard-zoom-lens/", "kind": "official" },
+      { "title": "Sony 24-70mm f/2.8 G Master II Review: Smaller, Faster, Sharper", "url": "https://petapixel.com/2022/04/27/the-sony-24-70mm-f-2-8-g-master-ii-review-makes-major-changes-for-the-better/", "kind": "review" },
+      { "title": "Sony FE 24-70mm F2.8 GM II Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-24-70mm-f-2.8-GM-II-Lens.aspx", "kind": "review" },
+      { "title": "Sony FE 24-70mm F2.8 GM II Lens Review - Performance", "url": "https://www.ephotozine.com/article/sony-fe-24-70mm-f2-8-gm-ii-lens-review-36131/performance", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sony-fe-70-200-f28-gm-oss-ii",
+    "brand": "Sony",
+    "name": "Sony FE 70-200mm F2.8 GM OSS II",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": { "min": 70, "max": 200 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 17,
+    "groups": 14,
+    "specialElements": [
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 1 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 1 },
+      { "kind": "aspherical", "label": "ED aspherical", "count": 1 },
+      { "kind": "low-dispersion", "label": "ED", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED aspherical", "count": 1 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 2 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.4, "tele": 0.82 },
+    "maxMagnification": 0.3,
+    "stabilization": { "optical": true, "stops": null },
+    "autofocus": "XD (extreme dynamic) Linear Motors",
+    "weightG": 1045,
+    "dimensionsMm": { "diameter": 88, "length": 200 },
+    "filterMm": 77,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 2800, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "focusMechanism": "internal",
+    "notes": "Elements/groups (17 in 14) come from ePHOTOzine's review specifications, because the official spec text found in this pass did not show them (one search summary instead gave 23/18, which belongs to the original FE 70-200mm F2.8 GM OSS). Sony describes two aspherical elements, one of them XA, plus a separate ED aspherical element, two ED and two Super ED elements. The ED aspherical element is counted under both aspherical and low-dispersion. ePHOTOzine's list (2 aspherical, 1 XA, 1 ED aspherical, 2 ED, 2 Super ED) could also be read as one extra aspherical element. Weight is Sony's figure without the tripod mount. Sony says the lens uses XD linear motors, but the exact motor count was not confirmed, so none is given. Optical SteadyShot is built in, but Sony publishes no CIPA stop rating in the sources found. Price is Sony's \"approximately $2,800 USD\". Internal zoom and focus (the length does not change) is from ePHOTOzine. Diameter x length (88 x 200 mm) and the 77 mm filter came from a summary of Sony UK pages that also showed the Mark I page, so they carry slightly less certainty.",
+    "famousFor": "Sony's first 'Mark II' G Master lens, which cut a large amount of weight from the original 70-200mm GM while adding much faster linear-motor AF and markedly better sharpness, making it a staple for event and sports shooters.",
+    "strengths": [
+      "Rated by reviewers among the sharpest zoom lenses they have tested, clearly improving on the first version",
+      "Fast, nearly silent AF with excellent subject tracking on recent Alpha bodies",
+      "Internal zoom and focus, so the length stays fixed and balance does not shift",
+      "Much lighter than the original 70-200mm GM, with Optical SteadyShot built in"
+    ],
+    "weaknesses": [
+      "Electronic manual focus ring is quite light and easy to nudge by accident",
+      "Still over 1 kg, which gets tiring for long handheld sessions",
+      "Expensive at around $2,800 at launch"
+    ],
+    "bestFor": [
+      "Indoor sports and courtside action",
+      "Wedding ceremonies shot from the aisle or balcony",
+      "Compressed-perspective portraits with smooth background blur",
+      "Concerts, stage shows and conference coverage"
+    ],
+    "sources": [
+      { "title": "SEL70200GM2 Specifications | Sony UK", "url": "https://www.sony.co.uk/electronics/support/lenses-e-mount-lenses/sel70200gm2/specifications", "kind": "official" },
+      { "title": "FE 70-200mm F2.8 GM OSS II | Sony UK", "url": "https://www.sony.co.uk/lenses/products/sel70200gm2", "kind": "official" },
+      { "title": "Sony Redefines Excellence With New 70-200mm F2.8 GM OSS II Lens", "url": "https://alphauniverse.com/stories/sony-redefines-excellence-with-new-70200mm-f2-8-gm-oss-ii-lens/", "kind": "official" },
+      { "title": "Sony FE 70-200mm F/2.8 GM OSS II Lens Review - Specifications", "url": "https://www.ephotozine.com/article/sony-fe-70-200mm-f-2-8-gm-oss-ii-lens-review-35914/specifications", "kind": "review" },
+      { "title": "Sony 70-200mm f/2.8 G Master OSS II Review: Lighter, Faster, Better", "url": "https://petapixel.com/2021/10/13/sony-70-200mm-f-2-8-g-master-oss-ii-review-lighter-faster-better/", "kind": "review" },
+      { "title": "Sony FE 70-200mm F2.8 GM OSS II Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-70-200mm-F2.8-GM-OSS-II-Lens.aspx", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sony-fe-200-600-f56-63-g-oss",
+    "brand": "Sony",
+    "name": "Sony FE 200-600mm F5.6-6.3 G OSS",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 200, "max": 600 },
+    "maxAperture": { "wide": 5.6, "tele": 6.3 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 24,
+    "groups": 17,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 5 },
+      { "kind": "aspherical", "label": "Aspherical", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 2.4, "tele": 2.4 },
+    "maxMagnification": 0.2,
+    "stabilization": { "optical": true, "stops": null },
+    "autofocus": "DDSSM (Direct Drive SSM)",
+    "weightG": 2115,
+    "dimensionsMm": { "diameter": 112, "length": 318 },
+    "filterMm": 95,
+    "releaseYear": 2019,
+    "launchPrice": { "amount": 2000, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "notes": "Sony gives a single 2.4 m minimum focus distance, used here for both ends. Maximum magnification is 0.2x (Sony). Minimum aperture could not be confirmed in this research pass, so it is null. The 2115 g weight is Sony's figure; the sources found did not say whether it includes the removable tripod ring. Dimensions (112 x 318 mm) come from Photography Life/The-Digital-Picture review data, not from an official page, and the diameter may be rounded. Optical SteadyShot is built in, but no CIPA stop rating was found. Price is Sony's \"approximately $2,000 US\", shipping August 2019. The internal zoom is confirmed by Sony. The focus mechanism type was not confirmed, so it is omitted.",
+    "famousFor": "A very popular 600mm-reach zoom for Sony full-frame, known for bringing internal-zoom super-telephoto handling and G-series optics to a price around $2,000, which made it a default choice for wildlife and bird photographers on E-mount.",
+    "strengths": [
+      "Internal zoom: the length never changes, so balance stays constant and dust is less likely to get drawn in",
+      "Good sharpness across much of the range for its price, which The-Digital-Picture rated above the Tamron 150-500mm",
+      "Fast, quiet DDSSM autofocus for a lens of this size",
+      "Optical SteadyShot plus a removable, rotating tripod ring; works with Sony's 1.4x and 2x teleconverters"
+    ],
+    "weaknesses": [
+      "Heavy at over 2 kg for long handheld sessions",
+      "Not class-leading optically; OpticalLimits found the edges soft wide open until about f/8",
+      "f/6.3 at 600mm limits low-light use, and a 2x teleconverter drops the maximum aperture to about f/11-f/13"
+    ],
+    "bestFor": [
+      "Birds in flight and backyard bird photography",
+      "Safari and distant wildlife",
+      "Field sports such as football and motorsport from the sidelines",
+      "Airshows and aircraft spotting"
+    ],
+    "sources": [
+      { "title": "Sony FE 200-600mm F5.6-6.3 G OSS Specifications", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel200600g/specifications", "kind": "official" },
+      { "title": "FE 200-600mm F5.6-6.3 G OSS | SEL200600G | Sony United Kingdom", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel200600g", "kind": "official" },
+      { "title": "Sony Announces New FE 200-600mm F5.6-6.3 G OSS Super-Telephoto Zoom Lens", "url": "https://alphauniverse.com/stories/sony-announces-new-fe-200-600mm-f5-6-6-3-g-oss-super-telephoto-zoom-lens/", "kind": "official" },
+      { "title": "Sony FE 200-600mm F5.6-6.3 G OSS Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-200-600mm-f-5.6-6.3-G-OSS-Lens.aspx", "kind": "review" },
+      { "title": "Sony FE 200-600mm f/5.6-6.3 G Review", "url": "https://photographylife.com/reviews/sony-fe-200-600mm-f-5-6-6-3-g", "kind": "review" },
+      { "title": "Sony FE 200-600mm f/5.6-6.3 G OSS Review - OpticalLimits", "url": "https://opticallimits.com/sony/sony-fe-full-format/sony-fe-200-600mm-f-5-6-6-3-g-oss-review/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sony-fe-400-800-f63-8-g-oss",
+    "brand": "Sony",
+    "name": "Sony FE 400-800mm F6.3-8 G OSS",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 400, "max": 800 },
+    "maxAperture": { "wide": 6.3, "tele": 8 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 27,
+    "groups": 19,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 6 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 1.7, "tele": 3.5 },
+    "maxMagnification": 0.23,
+    "stabilization": { "optical": true, "stops": null },
+    "autofocus": "2x Linear Motor",
+    "weightG": 2475,
+    "dimensionsMm": { "diameter": 119.8, "length": 346 },
+    "filterMm": 105,
+    "releaseYear": 2025,
+    "launchPrice": { "amount": 2899.99, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "notes": "Announced 26 February 2025, available March 2025 at approximately $2,899.99 USD (Sony). Close focus is 1.7 m at 400 mm and 3.5 m at 800 mm, with 0.23x maximum magnification (Sony). Sony's materials in this pass highlight six ED elements but give no aspherical-element count, so only the ED elements are listed. Minimum aperture could not be confirmed, so it is null. The 2475 g weight is Sony's figure; the sources found did not say whether it includes the tripod mount. One review quotes 2.77 kg, which probably includes the foot or hood. Optical SteadyShot is built in, but no CIPA stop rating was found. Sony confirms the internal zoom; the focus mechanism type was not confirmed, so it is omitted. Low-light AF and handling remarks come from reviews.",
+    "famousFor": "Sony's longest-reaching E-mount lens at launch, an internal-zoom 400-800mm G lens that reviewers quickly called one of the best E-mount zooms for wildlife, reaching up to 1600mm with teleconverters.",
+    "strengths": [
+      "800mm of reach in a zoom, extendable to 1600mm with Sony's 1.4x and 2x teleconverters",
+      "Internal zoom keeps the length fixed and the centre of gravity steady for stable handling",
+      "Fast linear-motor AF that PetaPixel found kept up with the a9 III's 120 fps bursts, even while zooming",
+      "Good image quality for its size, weight and price, and slightly sharper at the long end"
+    ],
+    "weaknesses": [
+      "Slow f/6.3-8 apertures make AF slower in dim light and force high ISOs",
+      "Large and heavy (about 2.5 kg, 346 mm long) and tiring to handhold for long periods",
+      "Longer and about 360 g heavier than the popular 200-600mm G"
+    ],
+    "bestFor": [
+      "Frame-filling shots of small or distant birds",
+      "Safari wildlife that cannot be approached",
+      "Field sports and motorsport from distant stands",
+      "Airshows and aircraft spotting"
+    ],
+    "sources": [
+      { "title": "SEL400800G Specifications | Camera Lenses | Sony United Kingdom", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel400800g/specifications", "kind": "official" },
+      { "title": "FE 400-800mm F6.3-8 G OSS | SEL400800G | Sony United Kingdom", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel400800g", "kind": "official" },
+      { "title": "Sony Unveils Specialty 400-800mm F6.3-8 G OSS Super Telephoto Zoom G Lens: The Furthest Reaching Sony Lens To Date", "url": "https://alphauniverse.com/stories/sony-unveils-specialty-400800mm-f6-38-g-oss-super-telephoto-zoom-g-lens-the-furthest-reaching-sony-lens-to-date/", "kind": "official" },
+      { "title": "Sony Launches Its First 800 mm Super Telephoto Zoom G Lens - FE 400-800mm F6.3-8 G OSS", "url": "https://www.sony.co.uk/presscentre/sony-launches-its-first-800-mm-super-telephoto-zoom-g-lens-fe-400-800mm-f63-8-g-oss", "kind": "press" },
+      { "title": "Sony 400-800mm f/6.3-8 G Review: A Wildlife Photography Champion", "url": "https://petapixel.com/2025/02/26/sony-400-800mm-f-6-3-8-g-review-a-wildlife-photography-champion/", "kind": "review" },
+      { "title": "Sony FE 400-800mm F6.3-8 G OSS Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-400-800mm-F6-3-8-G-OSS-Lens.aspx", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sony-fe-600mm-f4-gm-oss",
+    "brand": "Sony",
+    "name": "Sony FE 600mm F4 GM OSS",
+    "mount": "Sony E",
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 600, "max": 600 },
+    "maxAperture": { "wide": 4, "tele": 4 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 24,
+    "groups": 18,
+    "specialElements": [
+      { "kind": "fluorite", "label": "Fluorite", "count": 3 },
+      { "kind": "aspherical", "label": "XA (extreme aspherical)", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 4.5, "tele": 4.5 },
+    "maxMagnification": 0.14,
+    "stabilization": { "optical": true, "stops": null },
+    "autofocus": "2x XD (extreme dynamic) Linear Motor",
+    "weightG": 3040,
+    "dimensionsMm": { "diameter": 163.6, "length": 449 },
+    "filterMm": null,
+    "releaseYear": 2019,
+    "launchPrice": { "amount": 13000, "currency": "USD" },
+    "notes": "Sony's 18 groups / 24 elements count includes one filter element. The lens takes no front filter; instead it has a drop-in slot for 40.5 mm filters (and the optional VF-DCPL1 polariser), so filterMm is null. Sony publishes the weight only with the tripod mount (3,040 g), and it is given here as published. Sony highlights three fluorite elements and one large XA element; any other special glass (e.g. ED) was not listed in the sources found, so only these are included. Optical SteadyShot is built in, but Sony gives no CIPA stop rating. Announced 11 June 2019, shipping August 2019 for approximately $13,000 US (Sony). The focus mechanism type was not confirmed, so it is omitted. Sony has since introduced a separate, lighter FE 600mm F6.3 GM OSS (SEL600F63GM); that is a different lens, and the F4 GM was researched as listed.",
+    "famousFor": "Sony's flagship 600mm f/4 super-telephoto for professional sports and wildlife work, known for being the lightest 600mm f/4 in its class at launch and for a rear-weighted design that makes it unusually easy to handle.",
+    "strengths": [
+      "Extremely sharp across the full frame at every aperture, including wide open at f/4",
+      "Very fast, accurate AF from dual XD linear motors, snapping between near and far subjects",
+      "Lightest 600mm f/4 in its class at launch, with most weight near the rear for easier handling",
+      "Weather-sealed pro build with a drop-in filter slot"
+    ],
+    "weaknesses": [
+      "Very expensive at about $13,000 at launch",
+      "Still about 3 kg and 449 mm long, so a monopod is often needed for long sessions",
+      "4.5 m minimum focus is slightly longer than some rivals, and only drop-in filters can be used"
+    ],
+    "bestFor": [
+      "Professional field sports such as football and baseball from the sidelines",
+      "Bird and wildlife photography at long distances",
+      "Low-light wildlife at dawn and dusk, where f/4 matters",
+      "Motorsport and equestrian events"
+    ],
+    "sources": [
+      { "title": "Sony FE 600mm F4 GM OSS Specifications", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel600f40gm/specifications", "kind": "official" },
+      { "title": "FE 600mm F4 GM OSS | SEL600F40GM | Sony United Kingdom", "url": "https://www.sony.co.uk/electronics/camera-lenses/sel600f40gm", "kind": "official" },
+      { "title": "Sony Introduces New Super-Telephoto 600mm F4 G Master Prime Lens", "url": "https://alphauniverse.com/stories/sony-introduces-new-super-telephoto-600mm-f4-g-master-prime-lens/", "kind": "official" },
+      { "title": "Sony FE 600mm F4 GM OSS Lens Review", "url": "https://www.the-digital-picture.com/Reviews/Sony-FE-600mm-f-4-GM-OSS-Lens.aspx", "kind": "review" },
+      { "title": "Hands-on with new Sony FE 600mm F4 GM OSS and FE 200-600mm F5.6-6.3 G OSS", "url": "https://www.dpreview.com/articles/4146085092/hands-on-with-new-sony-gm-600mm-f4-and-g-200-600mm-f5-6-6-3/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  }
+]

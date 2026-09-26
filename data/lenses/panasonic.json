@@ -1,0 +1,1059 @@
+[
+  {
+    "id": "panasonic-lumix-s-14-28-f4-56-macro",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S 14-28mm F4-5.6 MACRO",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": {
+      "min": 14,
+      "max": 28
+    },
+    "maxAperture": {
+      "wide": 4,
+      "tele": 5.6
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 14,
+    "groups": 10,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical ED",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "aspherical ED",
+        "count": 1
+      },
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-Low Dispersion)",
+        "count": 3
+      },
+      {
+        "kind": "high-refractive",
+        "label": "UHR (Ultra High Refractive Index)",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 7,
+    "minFocusM": {
+      "wide": 0.15,
+      "tele": 0.15
+    },
+    "maxMagnification": 0.5,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": null,
+    "weightG": 345,
+    "dimensionsMm": {
+      "diameter": 84,
+      "length": 89.8
+    },
+    "filterMm": 77,
+    "releaseYear": 2023,
+    "launchPrice": {
+      "amount": 799.99,
+      "currency": "USD"
+    },
+    "notes": "Model number S-R1428. Announced at CES in January 2023 alongside the LUMIX S5II; Panasonic North America gave $799.99 with availability at the end of March 2023 (Europe: February 2023, EUR 999 / GBP 879.99). Panasonic lists 14 elements in 10 groups: 1 aspherical ED element (counted here under both aspherical and low-dispersion), 1 aspherical, 3 ED and 1 UHR element. Panasonic gives one closest focusing distance (0.15 m) for the whole zoom range and one minimum aperture (F22), used for both ends. Maximum magnification is 0.25x at 14mm and 0.5x at 28mm. Panasonic's spec sheet lists 7 diaphragm blades (circular aperture). No O.I.S. in the name: the lens has no optical stabilisation and relies on camera IBIS. The AF drive type and whether the barrel extends when zooming did not appear in accessible official snippets, so autofocus is null and zoomMechanism/focusMechanism are omitted. Dimensions are Panasonic's maximum diameter x length from the lens tip to the mount base side.",
+    "famousFor": "A small, light ultra-wide zoom for the L-Mount that doubles as a close-up lens, reaching 0.5x magnification at 28mm with a 15 cm minimum focus distance, at a much lower price and weight than constant-f/2.8 ultra-wides.",
+    "strengths": [
+      "Very compact and light at about 345 g",
+      "Unusual 0.5x close-up capability at 28mm",
+      "Good centre sharpness from f/4, best around f/5.6-f/8",
+      "Takes standard 77mm screw-in filters despite the 14mm wide end"
+    ],
+    "weaknesses": [
+      "Slow variable f/4-5.6 aperture limits low-light and astro use",
+      "Some residual barrel distortion at 14mm, even with in-camera correction",
+      "Short 2x zoom range"
+    ],
+    "bestFor": [
+      "Landscapes and travel photography with a light kit",
+      "Interiors and architecture in tight spaces",
+      "Wide-angle close-ups of flowers and small subjects with their surroundings",
+      "Vlogging and handheld wide video on stabilised LUMIX bodies"
+    ],
+    "sources": [
+      {
+        "title": "Panasonic LUMIX S Series 14-28mm F4-5.6 MACRO L-Mount Lens - S-R1428 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-14-28mm-f4-5-6-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "LUMIX S 14-28mm F4-5.6 MACRO (S-R1428) specifications - Panasonic UK",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-r1428.specs.html",
+        "kind": "official"
+      },
+      {
+        "title": "Features and Specifications - LUMIX Lens - S-R1428 (Panasonic North America)",
+        "url": "https://help.na.panasonic.com/answers/specifications-lumix-lens-s-r1428/",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic Announces a New Compact and Lightweight Ultra Wide-Angle Zoom Lens with Macro Capability",
+        "url": "https://na.panasonic.com/news/panasonic-announces-a-new-compact-and-lightweight-ultra-wide-angle-zoom-lens-with-macro-capability",
+        "kind": "press"
+      },
+      {
+        "title": "Panasonic Lumix S 14-28mm F/4-5.6 Macro Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/panasonic-lumix-s-14-28mm-f-4-5-6-macro-lens-review-36381",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Lumix S 14-28mm F4-5.6 Macro Review - Amateur Photographer",
+        "url": "https://amateurphotographer.com/review/panasonic-lumix-s-14-28mm-f4-5-6-macro-review/",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-lumix-s-pro-50-f14",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S PRO 50mm F1.4",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": {
+      "min": 50,
+      "max": 50
+    },
+    "maxAperture": {
+      "wide": 1.4,
+      "tele": 1.4
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 13,
+    "groups": 11,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "ASPH (aspherical)",
+        "count": 2
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-Low Dispersion)",
+        "count": 3
+      }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": {
+      "wide": null,
+      "tele": null
+    },
+    "maxMagnification": 0.15,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Double focus system (linear motor + stepping motor)",
+    "weightG": 955,
+    "dimensionsMm": null,
+    "filterMm": 77,
+    "releaseYear": 2019,
+    "launchPrice": {
+      "amount": 2299,
+      "currency": "USD"
+    },
+    "notes": "Model number S-X50. Panasonic's pages give 13 elements in 11 groups with 2 aspherical and 3 ED elements, an 11-blade circular aperture, a 77mm filter, approx. 0.15x maximum magnification, dust/splash resistance and freeze resistance to -10 C, and a double focus system combining a linear motor and a stepping motor. Weight (955 g), announcement date (1 February 2019, with the LUMIX S1/S1R) and the $2,299 launch price come from DPReview/B&H (non-official) because they did not appear in accessible official snippets. Minimum aperture, closest focusing distance and the lens diameter could not be verified and are left null; DPReview gives a length of 130 mm, but because the diameter is unverified the whole dimensionsMm field is left null. No O.I.S. in the name: no optical stabilisation (relies on camera IBIS). Little review detail was available for this lens: the descriptive text leans on DPReview's 'reference lens' description and Panasonic's own sharpness claims, and no review assessment of AF speed was found, so the AF strength states only the mechanism.",
+    "famousFor": "The launch 'reference' prime of Panasonic's full-frame LUMIX S system, built to resolve the S1R's high-resolution sensor from centre to edge, and known as one of the largest and heaviest 50mm f/1.4 lenses on the market.",
+    "strengths": [
+      "High sharpness from the centre to the edges of the frame",
+      "11-blade circular aperture for smooth, round out-of-focus highlights",
+      "Double focus system driven by a linear motor and a stepping motor",
+      "Dust- and splash-resistant, freeze-resistant to -10 C"
+    ],
+    "weaknesses": [
+      "Very heavy and bulky for a 50mm f/1.4 (about 955 g)",
+      "Expensive at launch compared with other 50mm f/1.4 lenses",
+      "No optical stabilisation"
+    ],
+    "bestFor": [
+      "High-resolution portraits and people photography with shallow depth of field",
+      "Low-light events and weddings",
+      "Studio and product work on high-megapixel L-Mount bodies",
+      "Cinematic video with a natural standard field of view"
+    ],
+    "sources": [
+      {
+        "title": "Panasonic LUMIX S Series PRO 50mm F1.4 L-Mount Lens - S-X50 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-50mm-f1-4-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "LUMIX PRO S-X50 - LUMIX S Fixed Focal Lens - Panasonic UK & Ireland",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-x50.html",
+        "kind": "official"
+      },
+      {
+        "title": "S Series Lenses - Chapter 1: S PRO 50mm F1.4 (Panasonic LUMIX blog)",
+        "url": "https://shop.panasonic.com/blogs/lumix/lumix-s-series-lens-stories-chapter-1-s-pro-50mm-f1-4-the-master-sharp-natural-and-true-to-life",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic Lumix S Pro 50mm F1.4 Specs - DPReview",
+        "url": "https://www.dpreview.com/products/panasonic/lenses/panasonic_s_pro_50_1p4/specifications",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic S Pro 50mm F1.4 sample gallery - DPReview",
+        "url": "https://www.dpreview.com/samples/2485627380/panasonic-s-pro-50mm-f1-4-sample-gallery",
+        "kind": "review"
+      },
+      {
+        "title": "Hands-on with the new Panasonic Lumix S 50mm F1.8 (compares size/weight with the S PRO 50mm F1.4) - DPReview",
+        "url": "https://www.dpreview.com/articles/4426598684/hands-on-with-the-new-panasonic-lumix-s-50mm-f1-8/",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic S PRO 50mm f/1.4 Lens S-X50 - B&H Photo",
+        "url": "https://www.bhphotovideo.com/c/product/1455169-REG/panasonic_s_x50_lumix_s_pro_50mm.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-lumix-s-50-f18",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S 50mm F1.8",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": {
+      "min": 50,
+      "max": 50
+    },
+    "maxAperture": {
+      "wide": 1.8,
+      "tele": 1.8
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 9,
+    "groups": 8,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 3
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-Low Dispersion)",
+        "count": 1
+      },
+      {
+        "kind": "high-refractive",
+        "label": "UHR (Ultra-High Refractive Index)",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.45,
+      "tele": 0.45
+    },
+    "maxMagnification": 0.14,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Linear motor",
+    "weightG": 300,
+    "dimensionsMm": {
+      "diameter": 73.6,
+      "length": 82
+    },
+    "filterMm": 67,
+    "releaseYear": 2021,
+    "launchPrice": {
+      "amount": 449.99,
+      "currency": "USD"
+    },
+    "notes": "Model number S-S50. Second of Panasonic's matched F1.8 primes (shared 67mm filter and near-identical size/control layout). Panasonic's specifications give 9 elements in 8 groups (3 aspherical, 1 ED, 1 UHR), 9-blade circular aperture, F22 minimum aperture, 0.45 m closest focus, 0.14x maximum magnification, approx. 300 g (without caps and hood) and 73.6 x 82.0 mm (length from lens tip to mount base). Announced 1 June 2021; Panasonic North America listed it at $449.99 with July 2021 availability. The linear AF motor is stated on Panasonic India's official store listing and in Panasonic's LUMIX blog on the F1.8 prime series. No O.I.S.: relies on camera IBIS.",
+    "famousFor": "Panasonic's affordable, lightweight standard prime for full-frame L-Mount bodies, part of a matched F1.8 prime family that shares one size, weight class and 67mm filter so video shooters can swap lenses without rebalancing a gimbal.",
+    "strengths": [
+      "Light (about 300 g) and compact, yet dust- and splash-resistant",
+      "Sharp with quick, silent linear-motor autofocus",
+      "Low distortion and good flare control",
+      "Rounded 9-blade aperture for smooth bokeh; low focus breathing for video"
+    ],
+    "weaknesses": [
+      "Noticeable vignetting wide open (largely gone by f/2.8)",
+      "Some purple fringing in strong backlight",
+      "Modest 0.14x close-focus magnification and no focus limiter"
+    ],
+    "bestFor": [
+      "Everyday walk-around and street photography",
+      "Budget portraits with background blur",
+      "Gimbal video alongside the other LUMIX S F1.8 primes",
+      "Travel photography where weight matters"
+    ],
+    "sources": [
+      {
+        "title": "LUMIX S 50mm F1.8 (S-S50) L-Mount Lens specifications - Panasonic UK",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-s50.specs.html",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic - Features and Specifications - LUMIX Lens - Model S-S50",
+        "url": "https://help.na.panasonic.com/answers/features-and-specifications-lumix-lens-model-s-s50/",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic LUMIX S Series 50mm F1.8 L-Mount Lens - S-S50 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-50mm-f1-8-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "Lumix L-Mount S 50mm f/1.8 Fixed Focal Length Lens (S-S50GC) - Panasonic India store",
+        "url": "https://store.in.panasonic.com/cameras/lenses/s-s50gc.html",
+        "kind": "official"
+      },
+      {
+        "title": "S Series Lenses - Chapter 5: S F1.8 Prime Series (Panasonic LUMIX blog)",
+        "url": "https://shop.panasonic.com/blogs/lumix/lumix-s-series-lens-stories-chapter-5-s-f1-8-prime-lens-series-a-unified-system-for-hybrid-creators",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic Expands Lens Lineup with New F1.8 Large-Aperture Fixed Focal Length Lens for the LUMIX S Series: LUMIX S 50mm F1.8 (S-S50)",
+        "url": "https://na.panasonic.com/news/panasonic-expands-lens-lineup-with-new-f1.8-large-aperture-fixed-focal-length-lens-for-the-lumix-s-series-compact-lightweight-standard-lumix-s-50mm-f1.8-s-s50",
+        "kind": "press"
+      },
+      {
+        "title": "Hands-on with the new Panasonic Lumix S 50mm F1.8 - DPReview",
+        "url": "https://www.dpreview.com/articles/4426598684/hands-on-with-the-new-panasonic-lumix-s-50mm-f1-8/",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Lumix S 50mm F1.8 Review - Amateur Photographer",
+        "url": "https://amateurphotographer.com/review/panasonic-lumix-s-50mm-f1-8-review/",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-lumix-s-85-f18",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S 85mm F1.8",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "portrait-prime",
+    "focalLength": {
+      "min": 85,
+      "max": 85
+    },
+    "maxAperture": {
+      "wide": 1.8,
+      "tele": 1.8
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 9,
+    "groups": 8,
+    "specialElements": [
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-Low Dispersion)",
+        "count": 2
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.8,
+      "tele": 0.8
+    },
+    "maxMagnification": 0.13,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Linear motor",
+    "weightG": 355,
+    "dimensionsMm": {
+      "diameter": 73.6,
+      "length": 82
+    },
+    "filterMm": 67,
+    "releaseYear": 2020,
+    "launchPrice": {
+      "amount": 599,
+      "currency": "USD"
+    },
+    "notes": "Model number S-S85. First of Panasonic's matched F1.8 primes (same 73.6 x 82.0 mm size and 67mm filter as the S 50mm F1.8). Panasonic's specifications give 9 elements in 8 groups with 2 ED elements, a 9-blade circular aperture, 0.8 m closest focus, 0.13x maximum magnification and approx. 355 g; the F22 minimum aperture is stated only in the title of Panasonic India's official store listing (treat with slight caution), and the linear AF motor there and in Panasonic's LUMIX blog on the F1.8 prime series. Announced 4 November 2020. The US launch price of $599 is as reported by DPReview/PetaPixel (Panasonic UK: GBP 599.99); the exact official US figure (possibly $599.99) was not seen in accessible official snippets. US availability was quoted as mid-December 2020, although some sources mention January 2021. specialElements lists only the ED elements that Panasonic names. No O.I.S.: relies on camera IBIS.",
+    "famousFor": "A compact, affordable 85mm portrait prime for L-Mount that reviewers found sharp from centre to edge even at f/1.8, with smooth bokeh, excellent flare control and almost zero distortion.",
+    "strengths": [
+      "Excellent centre and edge sharpness from f/1.8",
+      "Smooth, softly graduated bokeh from a rounded 9-blade aperture",
+      "Very well controlled flare and virtually no distortion",
+      "Light (about 355 g), weather-resistant and fairly priced"
+    ],
+    "weaknesses": [
+      "f/1.8 gives less background blur and light than f/1.4 or f/1.2 portrait lenses",
+      "No optical stabilisation",
+      "Limited close-up ability (0.8 m minimum focus, 0.13x)"
+    ],
+    "bestFor": [
+      "Head-and-shoulders portraits with soft backgrounds",
+      "Weddings and events from a discreet distance",
+      "Stage and indoor performances in low light",
+      "Interview and B-camera video framing alongside the other S F1.8 primes"
+    ],
+    "sources": [
+      {
+        "title": "LUMIX S Lens S-S85 L-Mount 85mm - specifications, Panasonic UK",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-s85.specs.html",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic - Features and Specifications - LUMIX Lens - Model S-S85",
+        "url": "https://help.na.panasonic.com/answers/features-and-specifications-lumix-lens-model-s-s85/",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic LUMIX S Series 85mm F1.8 L-Mount Lens - S-S85 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-85mm-f1-8-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "Lumix L-Mount S 85mm f/1.8 Fixed Focal Length Lens (S-S85GC) - Panasonic India store",
+        "url": "https://store.in.panasonic.com/cameras/lenses/panasonic-lumix-s-85mm-f-1-8-lens.html",
+        "kind": "official"
+      },
+      {
+        "title": "S Series Lenses - Chapter 5: S F1.8 Prime Series (Panasonic LUMIX blog)",
+        "url": "https://shop.panasonic.com/blogs/lumix/lumix-s-series-lens-stories-chapter-5-s-f1-8-prime-lens-series-a-unified-system-for-hybrid-creators",
+        "kind": "official"
+      },
+      {
+        "title": "A New F1.8 Large-Aperture Fixed Focal Length Lens for the LUMIX S Series: LUMIX S 85mm F1.8 (S-S85)",
+        "url": "https://na.panasonic.com/news/a-new-f1.8-large-aperture-fixed-focal-length-lens-for-the-lumix-s-series-compact-lightweight-medium-telephoto-lumix-s-85mm-f1.8-s-s85",
+        "kind": "press"
+      },
+      {
+        "title": "Panasonic announces compact Lumix S 85mm F1.8 prime for L-mount - DPReview",
+        "url": "https://www.dpreview.com/news/3609002671/panasonic-announces-compact-lumix-s-85mm-f1-8-prime-for-l-mount/",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic S 85mm F/1.8 Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/panasonic-s-85mm-f-1-8-lens-review-35653",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-lumix-s-100-f28-macro",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S 100mm F2.8 MACRO",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "macro",
+    "focalLength": {
+      "min": 100,
+      "max": 100
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 13,
+    "groups": 11,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "ASPH (aspherical)",
+        "count": 3
+      },
+      {
+        "kind": "super-low-dispersion",
+        "label": "UED (Ultra Extra-Low Dispersion)",
+        "count": 2
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-Low Dispersion)",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.204,
+      "tele": 0.204
+    },
+    "maxMagnification": 1,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Dual Phase Linear Motor",
+    "weightG": 298,
+    "dimensionsMm": {
+      "diameter": 73.6,
+      "length": 82
+    },
+    "filterMm": 67,
+    "releaseYear": 2024,
+    "launchPrice": {
+      "amount": 999.99,
+      "currency": "USD"
+    },
+    "notes": "Model number S-E100. Announced at CES in January 2024 (Panasonic North America: $999.99, available end of January 2024). Panasonic calls it the world's smallest and lightest medium-telephoto fixed-focal-length macro lens (Panasonic's claim at launch). Panasonic's specifications give 13 elements in 11 groups (3 aspherical, 2 UED, 1 ED), 9-blade circular aperture, F22 minimum aperture, 0.204 m closest focus, 1x magnification, approx. 298 g, 73.6 x 82.0 mm and a 67mm filter; it shares size, filter thread and control layout with the S F1.8 prime series. UED is Panasonic's 'Ultra Extra-Low Dispersion' glass, normalised here as super-low-dispersion. Autofocus uses a newly developed Dual Phase Linear Motor. No O.I.S.: relies on camera IBIS.",
+    "famousFor": "Launched as the world's smallest and lightest medium-telephoto macro lens (Panasonic's claim) at about 298 g, with life-size 1:1 magnification, a new dual phase linear AF motor and the same compact body and 67mm filter as Panasonic's F1.8 primes.",
+    "strengths": [
+      "Remarkably small and light for a full-frame 1:1 macro",
+      "Sharp from corner to corner even at f/2.8",
+      "Fast, quiet, precise autofocus that stays usable at 1:1",
+      "Focus breathing well suppressed at normal subject distances, good for video"
+    ],
+    "weaknesses": [
+      "Short working distance at 1:1 compared with rival 100-105mm macros",
+      "No optical stabilisation",
+      "Angle of view narrows noticeably when focusing into the macro range"
+    ],
+    "bestFor": [
+      "Life-size macro of flowers, insects and small details",
+      "Product and jewellery photography",
+      "Head-and-shoulders portraits with a compact kit",
+      "Close-up B-roll video alongside the S F1.8 primes"
+    ],
+    "sources": [
+      {
+        "title": "LUMIX S 100mm F2.8 MACRO (S-E100) L-Mount Lens specifications - Panasonic UK",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-e100.specs.html",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic LUMIX S Series 100mm F2.8 MACRO L-Mount Lens - S-E100 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-100mm-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic - Introducing LUMIX S 100mm F2.8 MACRO (S-E100) | L-Mount",
+        "url": "https://help.na.panasonic.com/answers/introducing-lumix-s-100mm-f2-8-macro-s-e100-l-mount/",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic Announces its Newest S Series Lens at CES 2024",
+        "url": "https://na.panasonic.com/explore/press-release/panasonic-announces-its-newest-s-series-lens-ces-2024",
+        "kind": "press"
+      },
+      {
+        "title": "Panasonic Lumix S 100mm F2.8 Macro review - Amateur Photographer",
+        "url": "https://amateurphotographer.com/review/panasonic-lumix-s-100mm-f2-8-macro-review/",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Lumix S 100mm f/2.8 Macro Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/panasonic-lumix-s-100mm-f-2-8-macro-lens-review-36787",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-lumix-s-pro-24-70-f28",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S PRO 24-70mm F2.8",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": {
+      "min": 24,
+      "max": 70
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 18,
+    "groups": 16,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 3
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-Low Dispersion)",
+        "count": 4
+      },
+      {
+        "kind": "high-refractive",
+        "label": "UHR (Ultra High Refractive Index)",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": {
+      "wide": 0.37,
+      "tele": 0.37
+    },
+    "maxMagnification": 0.25,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "Double focus system (linear motor + stepping motor)",
+    "weightG": 935,
+    "dimensionsMm": {
+      "diameter": 91,
+      "length": 140
+    },
+    "filterMm": 82,
+    "releaseYear": 2019,
+    "launchPrice": {
+      "amount": 2199.99,
+      "currency": "USD"
+    },
+    "notes": "Model number S-E2470. Announced 27 August 2019; Panasonic North America listed it at $2,199.99 with October 2019 availability. Panasonic's pages give 18 elements in 16 groups (3 aspherical, 4 ED, 1 UHR), an 11-blade circular aperture, 82mm filter, approx. 0.25x maximum magnification, approx. 935 g (without caps and hood), a length of approx. 140 mm (lens tip to mount base) and a double focus system combining linear and stepping motors; Panasonic says the optics pass LEICA's quality standards. The 0.37 m closest focusing distance (a single value, used for both ends) and the 91 mm diameter come from DPReview's specifications (non-official; DPReview's diameter is a rounded figure) because they did not appear in accessible official snippets. Minimum aperture could not be verified and is left null. Whether the barrel extends when zooming was not confirmed, so zoomMechanism is omitted. No O.I.S.: relies on camera IBIS.",
+    "famousFor": "Panasonic's professional 'workhorse' standard zoom for the full-frame LUMIX S system, certified to Leica's optical standards and praised for high sharpness and contrast across the whole 24-70mm range.",
+    "strengths": [
+      "High resolution and contrast at every focal length, including the edges wide open",
+      "Solid, professional-grade build",
+      "11-blade circular aperture for smooth bokeh",
+      "Fast, precise double-motor (linear + stepping) autofocus"
+    ],
+    "weaknesses": [
+      "Heavy and long for its class (about 935 g, 140 mm)",
+      "No optical stabilisation",
+      "Expensive at launch"
+    ],
+    "bestFor": [
+      "Weddings and events where one zoom must cover most shots",
+      "Professional reportage and documentary work",
+      "Landscapes and travel on high-resolution L-Mount bodies",
+      "Corporate and documentary video with a constant f/2.8"
+    ],
+    "sources": [
+      {
+        "title": "Panasonic LUMIX S Series PRO 24-70mm F2.8 L-Mount Lens - S-E2470 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-pro-24-70mm-f2-8-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic - Features and Specifications - LUMIX Lens - Model S-E2470",
+        "url": "https://help.na.panasonic.com/answers/features-and-specifications-lumix-lens-model-s-e2470/",
+        "kind": "official"
+      },
+      {
+        "title": "LUMIX S PRO 24-70mm F2.8 Standard Zoom Lens, L-Mount - Panasonic UK",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-e2470.html",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic announces new L-Mount interchangeable lens LUMIX S PRO 24-70mm F2.8 (S-E2470)",
+        "url": "https://na.panasonic.com/news/panasonic-announces-new-nn-l-mount-interchangeable-lens-lumix-s-pro-24-70mm-f2.8-S-E2470",
+        "kind": "press"
+      },
+      {
+        "title": "Panasonic Lumix S Pro 24-70mm F2.8 Specs - DPReview",
+        "url": "https://www.dpreview.com/products/panasonic/lenses/panasonic_s_pro_24-70_2p8/specifications",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Lumix S Pro 24-70mm F2.8 sample gallery - DPReview",
+        "url": "https://www.dpreview.com/samples/2243517858/panasonic-lumix-s-pro-24-70mm-f2-8-sample-gallery",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic LUMIX S PRO 24-70mm f/2.8 Lens S-E2470 - B&H Photo",
+        "url": "https://www.bhphotovideo.com/c/product/1501345-REG/panasonic_s_e2470_lumix_s_pro_24_70mm.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-lumix-s-pro-70-200-f28-ois",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S PRO 70-200mm F2.8 O.I.S.",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": {
+      "min": 70,
+      "max": 200
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 22,
+    "groups": 17,
+    "specialElements": [
+      {
+        "kind": "super-low-dispersion",
+        "label": "UED (Ultra Extra-low Dispersion)",
+        "count": 2
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-low Dispersion)",
+        "count": 3
+      },
+      {
+        "kind": "aspherical",
+        "label": "aspherical",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": {
+      "wide": null,
+      "tele": null
+    },
+    "maxMagnification": 0.21,
+    "stabilization": {
+      "optical": true,
+      "stops": null
+    },
+    "autofocus": "Double focus system with double-magnet linear motors",
+    "weightG": 1570,
+    "dimensionsMm": {
+      "diameter": 94,
+      "length": 209
+    },
+    "filterMm": 82,
+    "releaseYear": 2019,
+    "launchPrice": {
+      "amount": 2599,
+      "currency": "USD"
+    },
+    "notes": "Model number S-E70200. Announced 6 November 2019 (together with the S PRO 16-35mm F4) and on sale from January 2020; Panasonic North America gave a price of $2,599. Panasonic's pages give 22 elements in 17 groups with 2 UED and 3 ED elements, an 11-blade circular aperture, 82mm filter, approx. 0.21x maximum magnification and approx. 1,570 g excluding caps, hood and the removable tripod mount (the tripod mount adds approx. 230 g); the F22 minimum aperture is stated only in the title of Panasonic India's official store listing (treat with slight caution). The single aspherical element is as reported by DPReview (not seen in official snippets). Panasonic quotes 7 stops of stabilisation for 5-axis Dual I.S. 2 (lens O.I.S. combined with camera IBIS); a lens-only CIPA figure was not found, so stops is null. Dimensions (94 x 209 mm) come from DPReview's rounded specifications (non-official). The exact closest focusing distance could not be verified (reviews only say about 1 m), so minFocusM is null. Whether the zoom is internal was not confirmed, so zoomMechanism is omitted. Panasonic describes a double focus system (two focus groups) driven by double-magnet linear motors, with three focus buttons and a focus-clutch mechanism for instant AF/MF switching.",
+    "famousFor": "Panasonic's flagship f/2.8 telephoto zoom for the LUMIX S system, known for very high image quality and a robust, weather-sealed build, and for reaching up to 7 stops of shake reduction when its O.I.S. works with camera IBIS (Dual I.S. 2).",
+    "strengths": [
+      "Very sharp with high contrast across the zoom range",
+      "Up to 7 stops of stabilisation with Dual I.S. 2 on LUMIX bodies",
+      "Dust-, splash- and freeze-resistant build to -10 C",
+      "Focus clutch for instant AF/MF switching plus three focus buttons"
+    ],
+    "weaknesses": [
+      "Heavier than rival 70-200mm f/2.8 zooms (about 1.57 kg without tripod mount)",
+      "Expensive",
+      "Modest 0.21x close-up magnification"
+    ],
+    "bestFor": [
+      "Indoor sports and action in dim arenas",
+      "Wedding ceremonies and events from a distance",
+      "Stage performances and concerts",
+      "Tight head-and-shoulders portraits with compressed backgrounds"
+    ],
+    "sources": [
+      {
+        "title": "Panasonic LUMIX S Series PRO 70-200mm F2.8 L-Mount Lens - S-E70200 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-pro-70-200mm-f2-8-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "LUMIX S Full Frame Lenses S-E70200 - Panasonic UK & Ireland",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-e70200.html",
+        "kind": "official"
+      },
+      {
+        "title": "Lumix L-Mount S PRO 70-200mm f/2.8 O.I.S. Telephoto Zoom Lens (S-E70200GC) - Panasonic India store",
+        "url": "https://store.in.panasonic.com/cameras/lenses/lumix-l-mount-s-pro-70-200mm-f-2-8-o-i-s-telephoto-zoom-lens-aperture-range-f-2-8-to-f-22-optical-image-stabilizer-weather-sealed-construction-s-e70200gc-black.html",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic Launches Two New L-Mount Interchangeable Lenses for the LUMIX S Series Full-frame Digital Single Lens Mirrorless Camera",
+        "url": "https://na.panasonic.com/news/panasonic-launches-two-new-l-mount-interchangeable-lenses-for-the-lumix-s-series-full-frame-digital-single-lens-mirrorless-camera",
+        "kind": "press"
+      },
+      {
+        "title": "Panasonic's new Lumix S Pro 70-200mm F2.8 offers up to 7 stops of shake reduction - DPReview",
+        "url": "https://www.dpreview.com/news/5492554426/panasonic-s-new-lumix-s-pro-70-200mm-f2-8-offers-up-to-7-stops-of-shake-reduction/",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Lumix S Pro 70-200 F2.8 O.I.S. Specs - DPReview",
+        "url": "https://www.dpreview.com/products/panasonic/lenses/panasonic_s_pro_70-200_2p8/specifications",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic S Pro 70-200mm f/2.8 Field Test: Supreme Image Quality... for a Price - PetaPixel",
+        "url": "https://petapixel.com/2020/01/17/panasonic-s-pro-70-200mm-f-2-8-field-test-supreme-image-quality-for-a-price/",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-lumix-s-28-200-f4-71-macro-ois",
+    "brand": "Panasonic",
+    "name": "Panasonic LUMIX S 28-200mm F4-7.1 MACRO O.I.S.",
+    "mount": "L-Mount",
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": {
+      "min": 28,
+      "max": 200
+    },
+    "maxAperture": {
+      "wide": 4,
+      "tele": 7.1
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 17,
+    "groups": 13,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "ASPH (aspherical)",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-Low Dispersion)",
+        "count": 4
+      },
+      {
+        "kind": "high-refractive",
+        "label": "UHR (Ultra High Refractive Index)",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.14,
+      "tele": null
+    },
+    "maxMagnification": 0.5,
+    "stabilization": {
+      "optical": true,
+      "stops": null
+    },
+    "autofocus": null,
+    "weightG": 413,
+    "dimensionsMm": {
+      "diameter": 77.3,
+      "length": 93.4
+    },
+    "filterMm": 67,
+    "releaseYear": 2024,
+    "launchPrice": {
+      "amount": 899,
+      "currency": "USD"
+    },
+    "notes": "Model number S-R28200. Announced February 2024 as the first wide-to-tele all-in-one zoom for LUMIX S, on sale from the end of April 2024; the $899 US price is as reported by DPReview/PetaPixel (Panasonic UK/EU: GBP 899 / EUR 999). Panasonic calls it the world's smallest and lightest long zoom lens (its launch claim). Panasonic's pages give 17 elements in 13 groups including 1 aspherical, 4 ED and 1 UHR element, a 9-blade circular aperture, 67mm filter, approx. 413 g and 77.3 x 93.4 mm (at the 28mm, retracted position); closest focus is 0.14 m at 28mm, where the maximum magnification of 0.5x is reached. The closest focus at 200mm and the minimum aperture were not found and are left null. Panasonic quotes 6.5 stops for 5-axis Dual I.S. 2 (lens O.I.S. combined with camera IBIS); no lens-only CIPA figure was found, so stops is null. The AF motor type was not confirmed (a Panasonic India store title says 'Linear AF Motor' but the same title misstates the aperture range, so it was not relied on); autofocus is null. Categorised as standard-zoom because it starts at a standard 28mm wide angle (it is an all-in-one travel superzoom). Dust-, splash- and freeze-resistant with a fluorine front coating.",
+    "famousFor": "The first all-in-one travel zoom in Panasonic's LUMIX S range, launched as the world's smallest and lightest full-frame long zoom (Panasonic's claim) at 413 g and 93.4 mm long, with a 0.5x half-life-size close-up ability at 28mm.",
+    "strengths": [
+      "Tiny and light for a 7x full-frame zoom",
+      "0.5x close-up capability with 14 cm minimum focus at 28mm",
+      "Fast, decisive and silent autofocus",
+      "Weather-resistant with optical stabilisation that works with camera IBIS (Dual I.S. 2)"
+    ],
+    "weaknesses": [
+      "Softer at the long end, especially wide open and at close distances",
+      "Slow f/7.1 maximum aperture at 200mm limits low-light use",
+      "Ghosting and flare with bright light sources"
+    ],
+    "bestFor": [
+      "One-lens travel photography",
+      "Family events and day trips where changing lenses is impractical",
+      "Casual close-ups of flowers and food at 28mm",
+      "Hiking and city walks with a light kit"
+    ],
+    "sources": [
+      {
+        "title": "Panasonic LUMIX S Series 28-200mm F4-7.1 MACRO L-Mount Lens - S-R28200 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/s-series-28-200mm-l-mount-lens",
+        "kind": "official"
+      },
+      {
+        "title": "LUMIX S Full Frame Lenses S-R28200 - Panasonic UK & Ireland",
+        "url": "https://www.panasonic.com/uk/consumer/cameras-camcorders/lumix-camera-lenses/lumix-s-lenses/s-r28200.html",
+        "kind": "official"
+      },
+      {
+        "title": "Specs - S-R28200GC LUMIX S Series Full Frame Lenses - Panasonic Singapore",
+        "url": "https://www.panasonic.com/sg/consumer/camera-camcorder/lumix-s-series/lumix-s-lens/s-r28200gc.specs.html",
+        "kind": "official"
+      },
+      {
+        "title": "Panasonic Introduces the World's Smallest and Lightest Long Zoom Lens: LUMIX S 28-200mm F4-7.1 MACRO O.I.S. (S-R28200)",
+        "url": "https://na.panasonic.com/news/panasonic-introduces-the-worlds-smallest-and-lightest-long-zoom-lens-lumix-s-28-200mm-f4-7.1-macro-o.i.s.-s-r28200",
+        "kind": "press"
+      },
+      {
+        "title": "Panasonic intros Lumix S 28-200mm F4-7.1 macro travel zoom - DPReview",
+        "url": "https://www.dpreview.com/news/1392634384/panasonic-intros-lumix-s-28-200mm-f4-7-1-macro-travel-zoom",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic 28-200mm f/4-7.1 Macro OIS Review: A Super Small Superzoom - PetaPixel",
+        "url": "https://petapixel.com/2024/03/02/panasonic-28-200mm-f-4-7-1-macro-ois-review-a-super-small-superzoom/",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Lumix S 28-200mm F4-7.1 Macro OIS review - Amateur Photographer",
+        "url": "https://amateurphotographer.com/review/panasonic-lumix-s-28-200mm-f4-7-1-macro-ois-review/",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "panasonic-leica-dg-vario-elmar-100-400-f4-63-ii-asph-power-ois",
+    "brand": "Panasonic",
+    "name": "Panasonic LEICA DG VARIO-ELMAR 100-400mm F4.0-6.3 II ASPH. POWER O.I.S.",
+    "mount": "Micro Four Thirds",
+    "format": "micro-four-thirds",
+    "category": "super-telephoto",
+    "focalLength": {
+      "min": 100,
+      "max": 400
+    },
+    "maxAperture": {
+      "wide": 4,
+      "tele": 6.3
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 20,
+    "groups": 13,
+    "specialElements": [
+      {
+        "kind": "aspherical",
+        "label": "aspherical ED",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "aspherical ED",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "ED (Extra-low Dispersion)",
+        "count": 2
+      },
+      {
+        "kind": "super-low-dispersion",
+        "label": "UED (Ultra Extra-Low Dispersion)",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 1.3,
+      "tele": 1.3
+    },
+    "maxMagnification": 0.25,
+    "stabilization": {
+      "optical": true,
+      "stops": null
+    },
+    "autofocus": null,
+    "weightG": 985,
+    "dimensionsMm": null,
+    "filterMm": 72,
+    "releaseYear": 2023,
+    "launchPrice": null,
+    "notes": "Model number H-RSA100400; the II version of the 2016 H-RS100400, announced 12 September 2023 alongside the LUMIX G9II. 100-400mm on Micro Four Thirds gives a 200-800mm full-frame-equivalent field of view, hence the super-telephoto category. Panasonic's pages give 20 elements in 13 groups with 1 aspherical ED element (counted here under both aspherical and low-dispersion), 1 UED and 2 ED elements, a 1.3 m closest focusing distance (one value, used for both ends), a maximum magnification of approx. 0.25x (0.5x in 35mm-camera equivalent), approx. 985 g excluding caps, hood and the external tripod mount, and a length of approx. 171.5 mm (lens tip to mount base). Unlike the first version it is compatible with Panasonic's 1.4x and 2x teleconverters, and gains freeze-resistant sealing (per B&H). A 'zoom limiter switch' and 'zoom lock ring' taken from the B&H listing could not be confirmed from any Panasonic source, so the descriptive text does not claim them; nor does it rate image quality with the teleconverters, because no review of the II version with a teleconverter is among the sources. The 72mm filter and 9-blade rounded diaphragm come from B&H's listing (non-official). B&H lists the lens at $1,597.99, but this could not be confirmed as the launch MSRP, so launchPrice is null. Minimum aperture, diameter (so dimensionsMm), AF drive type and a CIPA stabilisation rating were not found and are left null. The lens has POWER O.I.S. and works with LUMIX Dual I.S. bodies.",
+    "famousFor": "A Leica-certified Micro Four Thirds super-telephoto zoom giving 200-800mm-equivalent reach in a hand-holdable package with POWER O.I.S.; the II version adds teleconverter compatibility for even longer reach and freeze-resistant sealing.",
+    "strengths": [
+      "Huge 200-800mm-equivalent reach in a package light enough to hand-hold",
+      "Works with Panasonic's 1.4x and 2x teleconverters (new in the II version)",
+      "Built-in POWER O.I.S. for handheld shooting at long focal lengths",
+      "Dust-, splash- and freeze-resistant build"
+    ],
+    "weaknesses": [
+      "Slow f/6.3 maximum aperture at 400mm limits low-light shooting",
+      "Heavy for a Micro Four Thirds lens (about 985 g)"
+    ],
+    "bestFor": [
+      "Birds and wildlife that cannot be approached",
+      "Field sports and motorsport from the sidelines",
+      "Airshows and plane spotting",
+      "Close-ups of butterflies and dragonflies from 1.3 m away"
+    ],
+    "sources": [
+      {
+        "title": "Panasonic LUMIX G Series LEICA 100-400mm F4.0-6.3 DG VARIO-ELMAR Lens - H-RSA100400 (Panasonic shop)",
+        "url": "https://shop.panasonic.com/products/g-series-100-400mm-f4-0-6-3-asph-leica-lens-1",
+        "kind": "official"
+      },
+      {
+        "title": "LEICA DG VARIO-ELMAR 100-400mm / F4.0-6.3 II ASPH. / POWER O.I.S. (H-RSA100400G) - Panasonic Australia store",
+        "url": "https://store.apac.panasonic.com/au/h-rsa100400g.html",
+        "kind": "official"
+      },
+      {
+        "title": "LEICA 100-400mm F4-6.3 II Lens - Panasonic AU",
+        "url": "https://www.panasonic.com/au/consumer/lumix-cameras-video-cameras/lumix-camera-lenses/lumix-g-lenses/h-rsa100400g.html",
+        "kind": "official"
+      },
+      {
+        "title": "H-RSA100400 operating instructions (PDF) - Panasonic North America",
+        "url": "https://help.na.panasonic.com/wp-content/uploads/2023/10/H-RSA100400_DVQX2430ZA_ENG_FRE.pdf",
+        "kind": "official"
+      },
+      {
+        "title": "The LUMIX G9II - Panasonic North America",
+        "url": "https://na.panasonic.com/news/the-lumix-g9ii",
+        "kind": "press"
+      },
+      {
+        "title": "Panasonic Leica DG Vario-Elmar 100-400mm F4.0-6.3 II ASPH Power OIS Specs - DPReview",
+        "url": "https://www.dpreview.com/products/panasonic/lenses/panasonic_100-400_4p0-6p3_ii_asph/specifications",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Leica DG Vario-Elmar 100-400mm f/4.0-6.3 ASPH Review (first version) - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/panasonic-leica-dg-vario-elmar-100-400mm-f-4-6-3-review-28971",
+        "kind": "review"
+      },
+      {
+        "title": "Panasonic Leica DG Vario-Elmar 100-400mm f/4-6.3 II ASPH. POWER O.I.S. Lens - B&H Photo",
+        "url": "https://www.bhphotovideo.com/c/product/1786253-REG/panasonic_rsa100400_leica_dg_vario_elmar_100_400mm.html",
+        "kind": "retailer"
+      }
+    ],
+    "checked": "2026-09-26"
+  }
+]

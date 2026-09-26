@@ -1,0 +1,498 @@
+[
+  {
+    "id": "fujifilm-xf-8-16mm-f28-r-lm-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF8-16mmF2.8 R LM WR",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "ultra-wide",
+    "focalLength": { "min": 8, "max": 16 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 20,
+    "groups": 13,
+    "specialElements": [
+      { "kind": "aspherical", "label": "Aspherical", "count": 4 },
+      { "kind": "low-dispersion", "label": "ED", "count": 3 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 3 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.25, "tele": 0.25 },
+    "maxMagnification": 0.1,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Linear Motor (LM)",
+    "weightG": 805,
+    "dimensionsMm": { "diameter": 88, "length": 121.5 },
+    "filterMm": null,
+    "releaseYear": 2018,
+    "launchPrice": { "amount": 1999.95, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "focusMechanism": "internal",
+    "notes": "No front filter thread; the bulbous front element accepts no filters (official spec sheet lists no filter size). Constant barrel length while zooming/focusing is corroborated by Photography Life and DustinAbbott.net reviews rather than an explicit official spec field.",
+    "famousFor": "Fujifilm's constant-f/2.8 ultra-wide zoom for X-mount (12-24 mm equivalent), valued by astrophotographers and architecture shooters for combining rectilinear wide coverage with a fast, usable aperture.",
+    "strengths": [
+      "Very sharp across the frame, even wide open at f/2.8",
+      "Extensively weather-sealed metal barrel rated to -10°C",
+      "Fast, quiet, accurate linear-motor autofocus",
+      "Constant f/2.8 aperture at 8mm suits night-sky work"
+    ],
+    "weaknesses": [
+      "Large and heavy for the X-mount system (805 g)",
+      "Bulbous front element accepts no front filters",
+      "One of the most expensive X-mount zooms"
+    ],
+    "bestFor": [
+      "Milky Way and night-sky photography",
+      "Architecture and interior photography",
+      "Expansive landscapes",
+      "Environmental portraits with dramatic wide-angle perspective"
+    ],
+    "sources": [
+      { "title": "FUJINON XF8-16mmF2.8 R LM WR — product page", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf8-16mmf28-r-lm-wr/", "kind": "official" },
+      { "title": "FUJINON XF8-16mmF2.8 R LM WR — specifications", "url": "http://www.fujifilm-x.com/en-us/products/lenses/xf8-16mmf28-r-lm-wr/specifications/", "kind": "official" },
+      { "title": "Fujifilm launches new wide aperture ultra wide angle zoom lens FUJINON LENS XF8-16mmF2.8 R LM WR", "url": "https://fujifilm.com/news/n180720_02.html", "kind": "press" },
+      { "title": "Fuji XF 8-16mm f/2.8 R LM WR Review", "url": "https://photographylife.com/reviews/fuji-xf-8-16mm-f2-8-r-lm-wr", "kind": "review" },
+      { "title": "Fujifilm XF 8-16mm F2.8 R LM WR Overview", "url": "https://www.dpreview.com/products/fujifilm/lenses/fujifilm_xf_8-16_2p8_r_lm_wr/overview", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "fujifilm-xf-23mm-f14-r-lm-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF23mmF1.4 R LM WR",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "wide-prime",
+    "focalLength": { "min": 23, "max": 23 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 15,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 3 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.19, "tele": 0.19 },
+    "maxMagnification": 0.2,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Linear Motor (LM), Inner Focus",
+    "weightG": null,
+    "dimensionsMm": { "diameter": 67, "length": 77.8 },
+    "filterMm": 58,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 899, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "This is the second-generation LM WR lens (announced 2021), replacing the original 2013 XF23mmF1.4 R, now discontinued. Dimensions and filter size confirmed on Fujifilm's own USA shop pages. Weight is left null (audit 2026-09-26): the earlier research recorded 380 g as the fujifilm-x.com figure, but other listings give 375 g (5 g apart, so not a rounding difference), and the conflict could not be re-checked against the official spec page. The launch price is recorded as $899; Fujifilm US releases usually quote .95 prices (e.g. $799.95 for the XF33mmF1.4 R LM WR), so the exact cents are unverified.",
+    "famousFor": "The weather-resistant, linear-motor-driven successor to Fujifilm's original 23mm f/1.4, and one of the sharpest 35mm-equivalent primes in the X-mount line-up.",
+    "strengths": [
+      "Extremely sharp corner-to-corner, even wide open at f/1.4",
+      "Fast, near-silent linear-motor autofocus, far quicker than the original XF23mmF1.4 R",
+      "Very close minimum focus distance (0.19 m) for a fast wide-angle prime",
+      "Weather- and dust-resistant construction"
+    ],
+    "weaknesses": [
+      "Bokeh is good but not exceptional, with some outlining in the transition zone",
+      "Larger and heavier than the original XF23mmF1.4 R it replaced",
+      "Very clinical, low-character rendering compared to the older lens"
+    ],
+    "bestFor": [
+      "Street and documentary photography",
+      "Environmental portraits at a natural 35mm-equivalent field of view",
+      "Low-light events and weddings",
+      "Travel photography needing a fast, weather-sealed wide prime"
+    ],
+    "sources": [
+      { "title": "FUJINON XF23mmF1.4 R LM WR — product page", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf23mmf14-r-lm-wr/", "kind": "official" },
+      { "title": "FUJINON XF23mmF1.4 R LM WR — specifications", "url": "https://www.fujifilm-x.com/global/products/lenses/xf23mmf14-r-lm-wr/specifications/", "kind": "official" },
+      { "title": "Fujifilm Announces FUJINON XF23mmF1.4 R LM WR Lens", "url": "https://www.fujifilm.com/us/en/news/digital-cameras/fujifilm-announces-FUJINON-XF23mm-lens", "kind": "press" },
+      { "title": "Fujifilm XF 23mm F1.4 R LM WR Overview", "url": "https://www.dpreview.com/products/fujifilm/lenses/fujifilm_xf_23_1p4_r_lm_wr/overview", "kind": "review" },
+      { "title": "Fujinon XF 23mm F1.4 R LM WR Review", "url": "https://dustinabbott.net/2023/08/fujinon-xf-23mm-f1-4-r-lm-wr-review/", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "fujifilm-xf-33mm-f14-r-lm-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF33mmF1.4 R LM WR",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "standard-prime",
+    "focalLength": { "min": 33, "max": 33 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 15,
+    "groups": 10,
+    "specialElements": [
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 3 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.3, "tele": 0.3 },
+    "maxMagnification": 0.15,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Linear Motor (LM), Inner Focus",
+    "weightG": 360,
+    "dimensionsMm": { "diameter": 67, "length": 73.5 },
+    "filterMm": 58,
+    "releaseYear": 2021,
+    "launchPrice": { "amount": 799.95, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "Diameter (67mm) and aperture-blade/magnification figures corroborated by Photo Review, Digital Camera World and B&H listings alongside the official fujifilm-x.com specification page.",
+    "famousFor": "The 50mm-equivalent member of Fujifilm's fast f/1.4 LM WR prime line (alongside the XF18mm and XF23mm f/1.4), praised for balancing sharpness, pleasant bokeh and quick weather-sealed autofocus.",
+    "strengths": [
+      "Sharp wide open and excellent stopped down, with good contrast",
+      "Pleasant bokeh and a useful 0.15x maximum magnification",
+      "Fast, near-silent linear-motor autofocus",
+      "Weather-sealed, well-built barrel"
+    ],
+    "weaknesses": [
+      "Larger, heavier and pricier than Fujifilm's older XF35mmF1.4 R and XF35mmF2 R WR",
+      "Some find the rendering more clinical than the older XF35mmF1.4 R it complements",
+      "No optical image stabilization"
+    ],
+    "bestFor": [
+      "General-purpose walk-around and travel photography",
+      "Environmental and half-body portraits at a natural 50mm-equivalent view",
+      "Street photography",
+      "Low-light handheld shooting"
+    ],
+    "sources": [
+      { "title": "FUJINON XF33mmF1.4 R LM WR — product page", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf33mmf14-r-lm-wr/", "kind": "official" },
+      { "title": "FUJINON XF33mmF1.4 R LM WR — specifications", "url": "http://www.fujifilm-x.com/en-us/products/lenses/xf33mmf14-r-lm-wr/specifications/", "kind": "official" },
+      { "title": "Fujifilm Announces FUJINON XF33mmF1.4 R LM WR Lens", "url": "https://www.fujifilm.com/us/en/news/digital-cameras/fujifilm-announces-XF33mm-lens", "kind": "press" },
+      { "title": "Fujinon XF 33mm F1.4 LM WR Review", "url": "https://dustinabbott.net/2023/05/fujinon-xf-33mm-f1-4-lm-wr-review/", "kind": "review" },
+      { "title": "Hands-on with the new Fujifilm XF33mm F1.4 R LM WR", "url": "https://www.dpreview.com/articles/7150439861/fujifilm-xf33mm-f1-4-r-lm-wr-hands-on", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "fujifilm-xf-56mm-f12-r-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF56mmF1.2 R WR",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "portrait-prime",
+    "focalLength": { "min": 56, "max": 56 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 13,
+    "groups": 8,
+    "specialElements": [
+      { "kind": "aspherical", "label": "Aspherical", "count": 2 },
+      { "kind": "low-dispersion", "label": "ED", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.5, "tele": 0.5 },
+    "maxMagnification": 0.14,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "DC Motor",
+    "weightG": 445,
+    "dimensionsMm": { "diameter": 80, "length": 76 },
+    "filterMm": 67,
+    "releaseYear": 2022,
+    "launchPrice": null,
+    "focusMechanism": null,
+    "notes": "This is the 2022 'R WR' redesign that replaced the 2014 XF56mmF1.2 R (the XF56mmF1.2 R APD is a separate lens); the task specifically requested this current version. Dimensions (80 x 76mm) are corroborated across retailer/review listings rather than confirmed verbatim on an official spec-page snippet. Launch price left null (audit 2026-09-26): the earlier research recorded $999.95, justified by the DPReview announcement headline and 'Fujifilm's typical US pricing pattern' (an inference, not a source), but the cited DPReview URL's slug ('fujifilm-announces-1-200-...') indicates a different figure, and 2026 retail listings show about $1,199; the launch MSRP could not be re-checked against Fujifilm's press release. Focus mechanism left null: no source states whether it focuses internally or by moving the whole optical unit. Unlike the XF18/23/33mm f/1.4 LM WR primes, this lens uses a DC motor, not a linear motor.",
+    "famousFor": "The weather-resistant 2022 redesign of Fujifilm's original 56mm f/1.2 portrait lens, notable for its 11-blade rounded aperture and smooth bokeh.",
+    "strengths": [
+      "Very sharp across the frame, including wide open at f/1.2",
+      "11 rounded aperture blades give very smooth, nearly circular bokeh even stopped down",
+      "Closer minimum focus distance (0.5 m) than the original XF56mmF1.2 R (0.7 m)",
+      "Weather- and dust-sealed construction rated to -10°C"
+    ],
+    "weaknesses": [
+      "Autofocus uses an older DC motor rather than Fujifilm's linear motor, and is slower and noisier than LM-driven primes",
+      "Larger and heavier than the original XF56mmF1.2 R",
+      "No optical image stabilization"
+    ],
+    "bestFor": [
+      "Portraits with creamy, smooth background blur",
+      "Headshots and studio portraiture",
+      "Low-light events needing a fast 85mm-equivalent view",
+      "Wedding photography wanting shallow depth of field"
+    ],
+    "sources": [
+      { "title": "FUJINON XF56mmF1.2 R WR — product page", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf56mmf12-r-wr/", "kind": "official" },
+      { "title": "FUJINON XF56mmF1.2 R WR — specifications", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf56mmf12-r-wr/specifications/", "kind": "official" },
+      { "title": "Fujifilm Unveils FUJINON XF56mmF1.2 R WR Mid-Telephoto Lens", "url": "https://www.fujifilm.com/us/en/news/digital-cameras/fujifilm-unveils-fujinon-xf56-lens", "kind": "press" },
+      { "title": "Fujinon XF 56mm F1.2 R WR Review", "url": "https://dustinabbott.net/2024/05/fujinon-xf-56mm-f1-2-r-wr-review/", "kind": "review" },
+      { "title": "Fujifilm announces 56mm F1.2 WR R lens for X-mount", "url": "https://www.dpreview.com/news/3254467320/fujifilm-announces-1-200-56mm-f1-2-wr-r-lens-for-x-mount", "kind": "review" }
+    ],
+    "checked": "2026-09-25"
+  },
+  {
+    "id": "fujifilm-xf-80mm-f28-r-lm-ois-wr-macro",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF80mmF2.8 R LM OIS WR Macro",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "macro",
+    "focalLength": { "min": 80, "max": 80 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 16,
+    "groups": 12,
+    "specialElements": [
+      { "kind": "aspherical", "label": "Aspherical", "count": 1 },
+      { "kind": "low-dispersion", "label": "ED", "count": 3 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 1 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.25, "tele": 0.25 },
+    "maxMagnification": 1,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Linear Motor (LM), Inner Focus",
+    "weightG": 750,
+    "dimensionsMm": { "diameter": 80, "length": 130 },
+    "filterMm": 62,
+    "releaseYear": 2017,
+    "launchPrice": { "amount": 1199, "currency": "USD" },
+    "focusMechanism": "internal",
+    "notes": "Optical formula (16 elements / 12 groups: 1 aspherical, 3 ED, 1 Super ED), 750 g, 62 mm filter, 0.25 m minimum focus, F22 minimum aperture, 9 rounded blades, 1:1 magnification and 5-stop OIS are from Fujifilm's official pages. One review summary counts 'four ED' elements; the official count of three ED plus one Super ED is used here. Dimensions (80 x 130 mm) and the $1,199 US launch price come from reviews (Photography Blog / PetaPixel) because the official dimension field did not appear in accessible search snippets. Release year 2017 is based on hands-on reviews published in September 2017. Focuses internally, so the barrel does not extend when going to 1:1.",
+    "famousFor": "Fujifilm's first dedicated 1:1 macro lens for the X system, pairing life-size reproduction with 5-stop optical stabilisation, weather sealing and fast linear-motor autofocus.",
+    "strengths": [
+      "Excellent sharpness, from close-up macro distances to infinity",
+      "True 1:1 life-size magnification with internal focusing",
+      "5-stop optical image stabilisation helps handheld close-up work",
+      "Quick, accurate and very quiet linear-motor autofocus, usable as a portrait lens too"
+    ],
+    "weaknesses": [
+      "Large and heavy for an X-mount prime (750 g)",
+      "Expensive compared with most other macro options for the system"
+    ],
+    "bestFor": [
+      "Life-size macro of insects and flowers",
+      "Product and food close-ups",
+      "Tight head-and-shoulders portraits at a 122 mm-equivalent view",
+      "Handheld detail shots at weddings, such as rings"
+    ],
+    "sources": [
+      { "title": "FUJINON XF80mmF2.8 R LM OIS WR Macro — product page", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf80mmf28-r-lm-ois-wr-macro/", "kind": "official" },
+      { "title": "FUJINON XF80mmF2.8 R LM OIS WR Macro — specifications", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf80mmf28-r-lm-ois-wr-macro/specifications/", "kind": "official" },
+      { "title": "FUJINON XF80mmF2.8 R LM OIS WR Macro — specifications (Global)", "url": "https://www.fujifilm-x.com/global/products/lenses/xf80mmf28-r-lm-ois-wr-macro/specifications/", "kind": "official" },
+      { "title": "Fujifilm XF 80mm f/2.8 R LM OIS WR Macro Review", "url": "https://www.photographyblog.com/reviews/fujifilm_xf_80mm_f2_8_r_lm_ois_wr_macro_review", "kind": "review" },
+      { "title": "A Review of the Fujifilm XF 80mm f/2.8 R LM OIS WR Macro Lens", "url": "https://petapixel.com/2021/09/09/a-review-of-the-fujifilm-xf-80mm-f-2-8-r-lm-ois-wr-macro-lens/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "fujifilm-xf-16-55mm-f28-r-lm-wr-ii",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF16-55mmF2.8 R LM WR II",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "standard-zoom",
+    "focalLength": { "min": 16, "max": 55 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 16,
+    "groups": 11,
+    "specialElements": [
+      { "kind": "aspherical", "label": "Aspherical", "count": 4 },
+      { "kind": "low-dispersion", "label": "ED", "count": 3 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.3, "tele": 0.3 },
+    "maxMagnification": 0.21,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Linear Motor (LM)",
+    "weightG": 410,
+    "dimensionsMm": { "diameter": 78.3, "length": 95 },
+    "filterMm": 72,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 1199.95, "currency": "USD" },
+    "notes": "Second-generation model announced 14 October 2024 (US availability December 2024), replacing the 2015 XF16-55mmF2.8 R LM WR. All specifications are from Fujifilm's official product, specification and press pages: 16 elements in 11 groups (4 aspherical, 3 ED, 1 Super ED), 11 rounded blades, 0.3 m minimum focus with 0.21x maximum magnification, 410 g, 78.3 x 95 mm, 72 mm filter, US MSRP $1,199.95. Fujifilm gives a single minimum focus distance, used here for both ends. No in-lens stabilisation. Zoom and focus mechanisms are left out because accessible sources did not state them explicitly. It was the first XF lens with a switch to de-click the aperture ring.",
+    "famousFor": "The redesigned constant-f/2.8 standard zoom for X-mount: about 37% lighter and much smaller than the 2015 original, while sharper across the frame. It was also the first XF lens with a de-clickable aperture ring.",
+    "strengths": [
+      "Much smaller and lighter (410 g) than the first-generation 16-55mm f/2.8",
+      "Sharp from centre to edges, even at f/2.8, with controlled chromatic aberration",
+      "11-blade rounded aperture and refined aspherical elements give smooth bokeh",
+      "Fast linear-motor AF and a de-clickable aperture ring suit hybrid photo and video work"
+    ],
+    "weaknesses": [
+      "No optical image stabilisation, so it relies on the camera's IBIS",
+      "Expensive for an APS-C standard zoom"
+    ],
+    "bestFor": [
+      "Weddings and events needing a 24–84 mm-equivalent range at f/2.8",
+      "Travel and everyday general-purpose shooting",
+      "Landscape and street photography",
+      "Hybrid photo/video work with silent aperture changes"
+    ],
+    "sources": [
+      { "title": "XF16-55mmF2.8 R LM WR II — product page", "url": "https://www.fujifilm-x.com/en-us/products/lenses/xf16-55mmf28-r-lm-wr-ii/", "kind": "official" },
+      { "title": "XF16-55mmF2.8 R LM WR II — specifications", "url": "https://www.fujifilm-x.com/global/products/lenses/xf16-55mmf28-r-lm-wr-ii/specifications/", "kind": "official" },
+      { "title": "Prime Performance, Zoom Versatility: Fujifilm Announces FUJINON XF16-55mmF2.8 R LM WR II", "url": "https://www.fujifilm.com/us/en/news/digital-cameras/fujifilm-announces-fujinon-xf16-55mmF2-8-r-lm-wr-II", "kind": "press" },
+      { "title": "Fujinon XF 16-55mm F2.8 R LM WR II Review", "url": "https://dustinabbott.net/2025/01/fujinon-xf-16-55mm-f2-8-r-lm-wr-ii-review/", "kind": "review" },
+      { "title": "Fujifilm announces more compact XF 16-55mm F2.8 R LM WR II", "url": "https://www.dpreview.com/news/2238915727/fujifilm-announces-more-compact-xf-16-55mm-f2-8-r-lm-wr-ii/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "fujifilm-xf-50-140mm-f28-r-lm-ois-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF50-140mmF2.8 R LM OIS WR",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "telephoto-zoom",
+    "focalLength": { "min": 50, "max": 140 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 23,
+    "groups": 16,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 5 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 1 }
+    ],
+    "apertureBlades": 7,
+    "minFocusM": { "wide": 1, "tele": 1 },
+    "maxMagnification": 0.12,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Triple Linear Motor (LM)",
+    "weightG": 995,
+    "dimensionsMm": { "diameter": 82.9, "length": 175.9 },
+    "filterMm": 72,
+    "releaseYear": 2014,
+    "launchPrice": { "amount": 1599.95, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "notes": "Fujifilm's official specifications give 23 elements in 16 groups (5 ED, 1 Super ED; no aspherical elements listed), 7 rounded blades, 1 m minimum focus across the whole zoom range, 0.12x magnification at the tele end, 82.9 x 175.9 mm at both wide and tele, 72 mm filter and 5-stop OIS. The weight of about 995 g excludes caps, hood and the removable tripod foot. Announcement date (10 September 2014), December 2014 availability and the $1,599.95 US launch price come from DPReview's launch article. Internal zoom is stated by reviews and matches Fujifilm listing the same length at wide and tele. Focus mechanism is left out because no source stated it explicitly.",
+    "famousFor": "Fujifilm's weather-sealed 70-200mm-equivalent f/2.8 workhorse, known for its internal-zoom design, triple linear-motor AF and 5-stop OIS in a body under 1 kg.",
+    "strengths": [
+      "Sharp throughout the zoom range, even at f/2.8",
+      "Internal zoom keeps the length and balance constant",
+      "Effective 5-stop optical image stabilisation",
+      "Fast, quiet triple linear-motor autofocus and weather sealing to -10°C"
+    ],
+    "weaknesses": [
+      "Large and heavy for the X system (995 g without the tripod foot)",
+      "Removable tripod foot uses thumbscrews that reviewers found fiddly",
+      "1 m minimum focus limits close-up work (0.12x maximum)"
+    ],
+    "bestFor": [
+      "Indoor sports and school events",
+      "Portraits with compressed backgrounds at 76–213 mm equivalent",
+      "Wedding ceremonies from a distance",
+      "Wildlife and outdoor action in bad weather"
+    ],
+    "sources": [
+      { "title": "FUJINON XF50-140mmF2.8 R LM OIS WR — product page", "url": "http://www.fujifilm-x.com/en-us/products/lenses/xf50-140mmf28-r-lm-ois-wr/", "kind": "official" },
+      { "title": "FUJINON XF50-140mmF2.8 R LM OIS WR — specifications", "url": "https://www.fujifilm-x.com/global/products/lenses/xf50-140mmf28-r-lm-ois-wr/specifications/", "kind": "official" },
+      { "title": "Fujifilm announces weather-resistant XF 50-140mm F2.8", "url": "https://www.dpreview.com/articles/8345124638/fujifilm-announces-weather-resistant-xf-50-140mm-f2-8", "kind": "review" },
+      { "title": "Fujifilm Fujinon XF 50-140mm f/2.8 R LM OIS WR Lens Review", "url": "https://www.ephotozine.com/article/fujifilm-xf-50-140mm-f-2-8-r-ois-wr-lens-review-26748", "kind": "review" },
+      { "title": "Fujinon XF 50-140mm F2.8 OIS Review", "url": "https://dustinabbott.net/2020/08/fujinon-xf-50-140mm-f2-8-ois-review/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "fujifilm-xf-150-600mm-f56-8-r-lm-ois-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON XF150-600mmF5.6-8 R LM OIS WR",
+    "mount": "Fujifilm X",
+    "format": "aps-c",
+    "category": "super-telephoto",
+    "focalLength": { "min": 150, "max": 600 },
+    "maxAperture": { "wide": 5.6, "tele": 8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 24,
+    "groups": 17,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 3 },
+      { "kind": "super-low-dispersion", "label": "Super ED", "count": 4 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 2.4, "tele": 2.4 },
+    "maxMagnification": 0.24,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "Linear Motor (LM)",
+    "weightG": 1605,
+    "dimensionsMm": { "diameter": 99, "length": 314.5 },
+    "filterMm": 82,
+    "releaseYear": 2022,
+    "launchPrice": { "amount": 1999, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "notes": "Fujifilm's official pages give 24 elements in 17 groups (3 ED, 4 Super ED), 9 rounded blades, F22 minimum aperture, 2.4 m minimum focus, 82 mm filter, 5-stop OIS, an inner-zoom barrel of constant length, and about 1,605 g excluding caps, hood and tripod foot. Fujifilm gives one minimum focus distance and one minimum aperture, used here for both ends. The US press release states an MSRP of $1,999 with availability in July 2022 (announced 31 May 2022). Dimensions (99 x 314.5 mm) come from DPReview because the official dimension field did not appear in accessible snippets. Maximum magnification 0.24x at 600 mm and 2.4 m comes from reviews (DustinAbbott.net, Digital Camera World); it did not appear in accessible snippets of the official pages. Compatible with Fujifilm's XF1.4X and XF2X teleconverters (229-914 mm equivalent native; 300-1,200 mm actual focal length with the 2x).",
+    "famousFor": "Fujifilm's longest X-mount zoom, reaching 914 mm equivalent in a weather-sealed, internally zooming barrel with 5-stop stabilisation.",
+    "strengths": [
+      "229-914 mm-equivalent reach, extendable with Fujifilm teleconverters",
+      "Internal zoom keeps the length and balance constant",
+      "Effective 5-stop OIS makes handheld shooting at 600 mm practical",
+      "Quick, reliable linear-motor autofocus and weather sealing"
+    ],
+    "weaknesses": [
+      "Slow f/8 maximum aperture at the long end limits low-light use",
+      "Long and heavy (about 1.6 kg) for the X system",
+      "2.4 m minimum focus distance"
+    ],
+    "bestFor": [
+      "Birds in flight and distant wildlife",
+      "Field sports and motorsport from the stands",
+      "Airshows and plane spotting",
+      "Moon and distant landscape details"
+    ],
+    "sources": [
+      { "title": "FUJINON XF150-600mmF5.6-8 R LM OIS WR — product page", "url": "https://www.fujifilm-x.com/global/products/lenses/xf150-600mmf56-8-r-lm-ois-wr/", "kind": "official" },
+      { "title": "FUJINON XF150-600mmF5.6-8 R LM OIS WR — specifications", "url": "https://www.fujifilm-x.com/global/products/lenses/xf150-600mmf56-8-r-lm-ois-wr/specifications/", "kind": "official" },
+      { "title": "Fujifilm Introduces FUJINON XF150-600mmF5.6-8 R LM OIS WR Lens", "url": "https://www.fujifilm.com/us/en/news/optical-devices/fujifilm-introduces-fujinon-xf150-600-mm-lens", "kind": "press" },
+      { "title": "Fujifilm launches the 150-600mm F5.6-8 R LM OIS WR, its longest super telephoto zoom to date", "url": "https://www.dpreview.com/news/8430367417/fujifilm-launches-the-150-600mm-f5-6-8-r-lm-ois-wr-it-s-longest-super-telephoto-zoom-to-date", "kind": "review" },
+      { "title": "Hands-on with the Fujifilm XF 150-600mm F5.6-8 R LM OIS WR Lens", "url": "https://www.dpreview.com/articles/7991433592/hands-on-with-the-fujifilm-xf-150-600mm-f5-6-8-r-lm-ois-wr-lens", "kind": "review" },
+      { "title": "Fujinon XF 150-600mm F5.6-8 R LM OIS WR Review", "url": "https://dustinabbott.net/2023/01/fujinon-xf-150-600mm-f5-6-8-r-lm-ois-wr-review/", "kind": "review" },
+      { "title": "Fujifilm Fujinon XF150-600mm F5.6-8 R LM OIS WR review", "url": "https://www.digitalcameraworld.com/reviews/fujinon-xf150-600mmf56-8-r-lm-ois-wr-review", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "fujifilm-gf-110mm-f2-r-lm-wr",
+    "brand": "Fujifilm",
+    "name": "FUJINON GF110mmF2 R LM WR",
+    "mount": "Fujifilm G",
+    "format": "medium-format",
+    "category": "portrait-prime",
+    "focalLength": { "min": 110, "max": 110 },
+    "maxAperture": { "wide": 2, "tele": 2 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 14,
+    "groups": 9,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "ED", "count": 4 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.9, "tele": 0.9 },
+    "maxMagnification": 0.16,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Linear Motor (LM)",
+    "weightG": 1010,
+    "dimensionsMm": { "diameter": 94.3, "length": 125.5 },
+    "filterMm": 77,
+    "releaseYear": 2017,
+    "launchPrice": { "amount": 2799.95, "currency": "USD" },
+    "notes": "Medium-format G-mount lens for the GFX system (43.8 x 32.9 mm sensor); 110 mm gives an 87 mm full-frame-equivalent view, hence the portrait-prime category. Fujifilm's official specifications give 14 elements in 9 groups (4 ED; no aspherical elements listed), 9 rounded blades, F22 minimum aperture, 0.9 m minimum focus, 0.16x maximum magnification, 94.3 x 125.5 mm, 1,010 g and a 77 mm filter. Fujifilm announced the launch on 19 April 2017 with availability in late June 2017; the US launch price of $2,799.95 comes from coverage of that announcement (Fujifilm news / DPReview). No in-lens stabilisation. Focus mechanism is left out because no source stated it explicitly.",
+    "famousFor": "The fast portrait prime of the GFX system: its 87 mm-equivalent view and f/2 aperture on the large sensor give very shallow depth of field and smooth bokeh, and reviewers widely rate it among the sharpest GF primes.",
+    "strengths": [
+      "Exceptionally sharp across the frame even wide open at f/2",
+      "Smooth, creamy bokeh with shallow depth of field on the large GFX sensor",
+      "Quiet linear-motor autofocus",
+      "Weather- and dust-resistant build rated to -10°C"
+    ],
+    "weaknesses": [
+      "Large and heavy (about 1 kg)",
+      "Expensive",
+      "No optical image stabilisation, and the 0.9 m minimum focus limits tight close-ups"
+    ],
+    "bestFor": [
+      "Head-and-shoulders and half-length portraits with strong subject separation",
+      "Fashion and beauty photography",
+      "Wedding portraits in natural light",
+      "Studio product shots with a shallow depth of field"
+    ],
+    "sources": [
+      { "title": "FUJINON GF110mmF2 R LM WR — product page", "url": "https://www.fujifilm-x.com/global/products/lenses/gf110mmf2-r-lm-wr/", "kind": "official" },
+      { "title": "FUJINON GF110mmF2 R LM WR — specifications", "url": "http://www.fujifilm-x.com/global/products/lenses/gf110mmf2-r-lm-wr/specifications/", "kind": "official" },
+      { "title": "FUJINON GF110mmF2 R LM WR and GF23mmF4 R LM WR (Fujifilm news, 19 April 2017)", "url": "http://www.fujifilm.com/news/n170419_01.html", "kind": "press" },
+      { "title": "Fujifilm releases GF 23mm and 110mm lenses, updates roadmap", "url": "https://www.dpreview.com/news/9664753356/fujifilm-releases-gf-23mm-and-110mm-lenses-updates-roadmap", "kind": "review" },
+      { "title": "Fujinon GF 110mm F2 WR LM Review", "url": "https://dustinabbott.net/2022/03/fujinon-gf-110mm-f2-wr-lm-review/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  }
+]

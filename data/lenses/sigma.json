@@ -1,0 +1,579 @@
+[
+  {
+    "id": "sigma-14-f14-dg-dn-art",
+    "brand": "Sigma",
+    "name": "Sigma 14mm F1.4 DG DN | Art",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": { "min": 14, "max": 14 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 19,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "super-low-dispersion", "label": "FLD", "count": 3 },
+      { "kind": "low-dispersion", "label": "SLD", "count": 1 },
+      { "kind": "aspherical", "label": "aspherical", "count": 4 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.3, "tele": 0.3 },
+    "maxMagnification": 0.084,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "HLA (High-response Linear Actuator)",
+    "weightG": 1170,
+    "dimensionsMm": { "diameter": 101.4, "length": 149.9 },
+    "filterMm": null,
+    "releaseYear": 2023,
+    "launchPrice": null,
+    "notes": "Announced 8 June 2023, on sale from late June 2023. Weight is Sigma's figure for the L-Mount version (Sony E version: 1,160 g). No front filter thread: the bulbous front element only allows a sheet-type rear filter in the holder supplied at the mount. Minimum focus 0.30 m, maximum magnification 1:11.9 and the 11-blade rounded aperture come from review/press coverage (DPReview, ePhotozine), not from a directly read Sigma spec table. Dimensions are Sigma's L-Mount figures (101.4 x 149.9 mm; Sony E: 101.4 x 151.9 mm). Launch price left null because sources still disagree: Sigma America's page was summarised as announced at USD 1,499 but retailing at USD 1,599, and reviews quote about USD 1,600. Sigma's element count is 4 aspherical elements; one review mentions three. No optical stabilisation. In September 2025 Sigma announced that the lens is renamed 'Sigma 14mm F1.4 DG | Art', with a refreshed exterior and packaging, a changed sales method and a revised price; Sigma says the optics and image quality are unchanged. The data here is for the original DG DN version; the weight and dimensions of the renamed version were not checked.",
+    "famousFor": "Sigma presents it as the world's first 14mm f/1.4 lens, designed especially for astrophotography. Reviewers praised its sharpness for star fields at f/1.4.",
+    "strengths": [
+      "Very bright f/1.4 aperture for night-sky work at 14mm",
+      "Sharp even at f/1.4, with aberration correction aimed at pin-point stars",
+      "Rear holder accepts sheet filters despite the curved front element",
+      "Fast, quiet HLA autofocus"
+    ],
+    "weaknesses": [
+      "Large and heavy at roughly 1.2 kg",
+      "Bulbous front element: no screw-in front filters, only rear sheet filters",
+      "Noticeable vignetting wide open"
+    ],
+    "bestFor": [
+      "Milky Way and star-field astrophotography",
+      "Auroras and night landscapes",
+      "Dramatic ultra-wide landscapes and architecture",
+      "Low-light interiors where a tripod isn't practical"
+    ],
+    "sources": [
+      { "title": "14mm F1.4 DG DN | Art - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a023_14_14/", "kind": "official" },
+      { "title": "14mm F1.4 DG DN - Specifications - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a023_14_14/specification.html", "kind": "official" },
+      { "title": "Changes in sales method and pricing of SIGMA 14mm F1.4 DG DN | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2025/09/02/011134/", "kind": "official" },
+      { "title": "14mm F1.4 DG | Art (renamed version) - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a023_14_14_re/", "kind": "official" },
+      { "title": "Sigma 14mm F1.4 DG DN | Art - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/14mm-f1-4-dg-dn-a", "kind": "official" },
+      { "title": "SIGMA Announces 14mm F1.4 DG DN | Art - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/06/sigma-announces-14mm-f1-4-dg-dn-art/", "kind": "press" },
+      { "title": "Launch schedule of SIGMA 14mm F1.4 DG DN | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2023/06/08/21131/", "kind": "official" },
+      { "title": "Sigma 14mm f/1.4 DG DN Art Review - Photography Life", "url": "https://photographylife.com/reviews/sigma-14mm-f-1-4-dg-dn-art", "kind": "review" },
+      { "title": "Sigma 14mm f/1.4 DG DN Art Review: A Nocturnal Monster - PetaPixel", "url": "https://petapixel.com/2023/06/08/sigma-14mm-f-1-4-dg-dn-art-review-a-nocturnal-monster/", "kind": "review" },
+      { "title": "Sigma introduces its fastest-ever wide angle, the 14mm F1.4 Art - DPReview", "url": "https://www.dpreview.com/news/6054329672/sigma-introduces-its-fastest-ever-wide-angle-the-14mm-f1-4-art/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-35-f12-dg-ii-art",
+    "brand": "Sigma",
+    "name": "Sigma 35mm F1.2 DG II | Art",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "wide-prime",
+    "focalLength": { "min": 35, "max": 35 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 17,
+    "groups": 13,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "SLD", "count": 1 },
+      { "kind": "aspherical", "label": "aspherical", "count": 4 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.28, "tele": 0.28 },
+    "maxMagnification": 0.19,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Dual HLA (High-response Linear Actuator)",
+    "weightG": 755,
+    "dimensionsMm": { "diameter": 81.0, "length": 111.4 },
+    "filterMm": 72,
+    "releaseYear": 2025,
+    "launchPrice": { "amount": 1549, "currency": "USD" },
+    "focusMechanism": "floating",
+    "notes": "Announced 9 September 2025 as the successor to the 35mm F1.2 DG DN | Art (2019); Sigma's newer naming drops 'DN'. Sigma says it is about 20% shorter and 30% lighter than the previous model, with the filter size reduced from 82 mm to 72 mm. Weight and dimensions are Sigma's L-Mount figures (Sony E: 81.0 x 113.4 mm). The researcher found 755 g for both mounts although the ounce figures differ slightly, so the Sony E weight is unconfirmed; the audit's searches did not recheck this lens. Sigma also mentions high-refractive-index glass but gives no count, so it is not listed in specialElements. Maximum magnification is Sigma's 1:5.3 ratio (also quoted as 0.19x by reviews). focusMechanism 'floating' reflects Sigma's description of two focus groups each driven by its own HLA motor. No optical stabilisation.",
+    "famousFor": "A second-generation f/1.2 35mm that Sigma made much smaller and lighter than the original, bringing an ultra-fast aperture to a size closer to conventional f/1.4 primes while improving sharpness and autofocus.",
+    "strengths": [
+      "Very sharp, contrasty centre even at f/1.2",
+      "Smooth bokeh with clean specular highlights",
+      "Much more compact and lighter than the first-generation 35mm F1.2",
+      "Fast dual-HLA autofocus in continuous mode"
+    ],
+    "weaknesses": [
+      "Still larger and heavier than most f/1.4 35mm primes",
+      "Premium price for a 35mm lens",
+      "No optical stabilisation"
+    ],
+    "bestFor": [
+      "Low-light concerts and music photography",
+      "Environmental portraits with shallow depth of field",
+      "Documentary and wedding coverage indoors",
+      "Street photography at night"
+    ],
+    "sources": [
+      { "title": "35mm F1.2 DG II | Art - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a025_35_12/", "kind": "official" },
+      { "title": "Sigma 35mm F1.2 DG II | Art Lens - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/35mm-f1-2-dg-ii-a", "kind": "official" },
+      { "title": "Sigma Announces 35mm F1.2 DG II | Art Lens - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/09/sigma-announces-35mm-f1-2-dg-ii-art-lens/", "kind": "press" },
+      { "title": "Launch schedule of Sigma 35mm F1.2 DG II | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2025/09/09/011116/", "kind": "official" },
+      { "title": "Sigma 35mm f/1.2 DG Art II Review: Compact, Lightweight, and Ultra-Fast - PetaPixel", "url": "https://petapixel.com/2025/09/27/sigma-35mm-f-1-2-dg-art-ii-review-compact-lightweight-and-ultra-fast/", "kind": "review" },
+      { "title": "Sigma 35mm F1.2 DG II Art Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-35mm-F1-2-DG-II-Art-Lens.aspx", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-50-f12-dg-dn-art",
+    "brand": "Sigma",
+    "name": "Sigma 50mm F1.2 DG DN | Art",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "standard-prime",
+    "focalLength": { "min": 50, "max": 50 },
+    "maxAperture": { "wide": 1.2, "tele": 1.2 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 17,
+    "groups": 12,
+    "specialElements": [
+      { "kind": "aspherical", "label": "aspherical", "count": 4 }
+    ],
+    "apertureBlades": 13,
+    "minFocusM": { "wide": 0.4, "tele": 0.4 },
+    "maxMagnification": 0.16,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Dual HLA (High-response Linear Actuator)",
+    "weightG": 745,
+    "dimensionsMm": { "diameter": 81.0, "length": 108.8 },
+    "filterMm": 72,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 1399, "currency": "USD" },
+    "notes": "Announced 26 March 2024, on sale 18 April 2024 (USD 1,399 for both mounts). Weight, dimensions and filter size are Sigma's L-Mount figures; the Sony E-mount figures were not confirmed. Maximum magnification is Sigma's 1:6.2 ratio. specialElements lists only the 4 aspherical elements named in the Sigma spec text that was accessible; any SLD/FLD elements could not be confirmed and are not listed. Focus is driven by two HLA motors. Barrel uses Sigma's TSC (Thermally Stable Composite) material. No optical stabilisation.",
+    "famousFor": "Sigma's brightest 50mm, notable for packing an f/1.2 aperture with autofocus into a body not much larger than many f/1.4 lenses, at a lower price than first-party f/1.2 standard primes.",
+    "strengths": [
+      "Excellent sharpness from the widest aperture",
+      "Compact and light for an f/1.2 autofocus 50mm",
+      "13-blade rounded aperture for smooth, round bokeh",
+      "Solid build at a moderate price for its class"
+    ],
+    "weaknesses": [
+      "Bigger and heavier than typical f/1.4 50mm primes",
+      "No optical stabilisation"
+    ],
+    "bestFor": [
+      "Portraits with very shallow depth of field",
+      "Weddings and events in dim venues",
+      "Everyday documentary and street photography at night",
+      "Food and product shots with soft backgrounds"
+    ],
+    "sources": [
+      { "title": "50mm F1.2 DG DN | Art - Specifications - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a024_50_12/specification.html", "kind": "official" },
+      { "title": "Sigma 50mm F1.2 DG DN | Art - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/50mm-f1-2-dg-dn-a", "kind": "official" },
+      { "title": "Announcing the 50mm F1.2 DG DN | Art lens - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/03/announcing-the-50mm-f1-2-dg-dn-art-lens/", "kind": "press" },
+      { "title": "Launch schedule of SIGMA 50mm F1.2 DG DN | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2024/03/26/010312/", "kind": "official" },
+      { "title": "Sigma 50mm F1.2 DG DN Art Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-50mm-F1-2-DG-DN-Art-Lens.aspx", "kind": "review" },
+      { "title": "Sigma 50mm f/1.2 DG DN Art Lens Review - ePHOTOzine", "url": "https://www.ephotozine.com/article/sigma-50mm-f-1-2-dg-dn-art-lens-review-36845", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-85-f14-dg-dn-art",
+    "brand": "Sigma",
+    "name": "Sigma 85mm F1.4 DG DN | Art",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "portrait-prime",
+    "focalLength": { "min": 85, "max": 85 },
+    "maxAperture": { "wide": 1.4, "tele": 1.4 },
+    "minAperture": { "wide": null, "tele": null },
+    "elements": 15,
+    "groups": null,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "SLD", "count": 5 },
+      { "kind": "aspherical", "label": "aspherical", "count": 1 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.85, "tele": 0.85 },
+    "maxMagnification": 0.12,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "Stepping motor",
+    "weightG": 630,
+    "dimensionsMm": null,
+    "filterMm": 77,
+    "releaseYear": 2020,
+    "launchPrice": { "amount": 999, "currency": "GBP" },
+    "notes": "Announced 6 August 2020. Sigma confirms 5 SLD + 1 aspherical elements, an 11-blade rounded diaphragm, a 77 mm filter, a 630 g weight and a 94.1 mm length (the Sigma text found does not say which mount these figures refer to; diameter not found, so dimensionsMm is null). From review sources (ePhotozine), not directly from Sigma: 15 elements, minimum focus 0.85 m, maximum magnification about 1:8.4 (stored as 0.12), and the GBP 999 UK launch price. A search summary of review and retailer pages gave USD 1,199, but it could not be confirmed as the launch MSRP, so the GBP figure is kept. Groups left null because review sources disagree: ePhotozine gives 10 groups, while a search summary of other review pages gave 15 elements in 11 groups; Sigma's own spec table could not be read. Minimum aperture not confirmed (one summary gave F16, but only by reference to the cine version). Diameter still not found on a Sigma page (a review summary gave a rounded 83 mm). Sigma also mentions high-refractive-index glass without a count in its text, so it is not listed; the special-element list may be incomplete. Dust- and splash-resistant construction with a water- and oil-repellent front coating (Sigma). No optical stabilisation.",
+    "famousFor": "Sigma's mirrorless-only redesign of its 85mm f/1.4 Art, far smaller and lighter than the older DSLR-era 85mm F1.4 DG HSM Art while keeping very high sharpness. It costs less than most first-party 85mm f/1.4 lenses for the same mounts.",
+    "strengths": [
+      "Very sharp, even at f/1.4",
+      "Compact and light for an 85mm f/1.4",
+      "Dust- and splash-resistant build with a water- and oil-repellent coating",
+      "Attractive price compared with first-party 85mm f/1.4 lenses"
+    ],
+    "weaknesses": [
+      "No optical stabilisation",
+      "Some bokeh fringing and cat's-eye highlights toward the corners wide open, as is common at f/1.4"
+    ],
+    "bestFor": [
+      "Head-and-shoulders portraits with creamy background blur",
+      "Wedding ceremonies and receptions in low light",
+      "Fashion and beauty work on location",
+      "Stage and event photography from a moderate distance"
+    ],
+    "sources": [
+      { "title": "85mm F1.4 DG DN | Art - Specifications - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a020_85_14/specification.html", "kind": "official" },
+      { "title": "Sigma 85mm F1.4 DG DN | Art - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/85mm-f1-4-dg-dn-a", "kind": "official" },
+      { "title": "Sigma Announces the 85mm F1.4 DG DN | Art Lens - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/08/sigma-announces-the-85mm-f1-4-dg-dn-art-lens/", "kind": "press" },
+      { "title": "New product announcement: SIGMA 85mm F1.4 DG DN | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2020/08/06/10926/", "kind": "official" },
+      { "title": "Sigma 85mm f/1.4 DG DN Art Lens Review - Specifications - ePHOTOzine", "url": "https://www.ephotozine.com/article/sigma-85mm-f-1-4-dg-dn-art-lens-review-35000/specifications", "kind": "review" },
+      { "title": "Sigma 85mm f/1.4 DG DN Art Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-85mm-f-1.4-DG-DN-Art-Lens.aspx", "kind": "review" },
+      { "title": "Sigma 85mm F1.4 DG DN Art Review - DPReview", "url": "https://www.dpreview.com/products/sigma/lenses/sigma_85_1p4_dg_dn_art/review", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-105-f28-dg-dn-macro-art",
+    "brand": "Sigma",
+    "name": "Sigma 105mm F2.8 DG DN MACRO | Art",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "macro",
+    "focalLength": { "min": 105, "max": 105 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 17,
+    "groups": 12,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "SLD", "count": 1 }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": { "wide": 0.295, "tele": 0.295 },
+    "maxMagnification": 1,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": null,
+    "weightG": 715,
+    "dimensionsMm": { "diameter": 74.0, "length": 133.6 },
+    "filterMm": 62,
+    "releaseYear": 2020,
+    "launchPrice": null,
+    "focusMechanism": "internal",
+    "notes": "Announced 30 September 2020, on sale October 2020; Sigma's first macro lens in its mirrorless Art line. Weight and dimensions are Sigma's L-Mount figures (Sony E: 710 g, 74 x 135.6 mm). Focusing is internal: Sigma says the total length does not change when focusing, giving a constant working distance at 1:1. The 62 mm filter size comes from review/retailer sources (The-Digital-Picture, B&H), not from a Sigma spec table that was read directly. specialElements lists the 1 SLD element named in Sigma's text (17 elements in 12 groups, rechecked in the audit); any ELD elements could not be confirmed, so the list may be incomplete. Autofocus motor left null: search summaries of Sigma pages repeatedly named an HSM (Hyper Sonic Motor), which may be a mix-up with the older 105mm F2.8 EX DG OS HSM Macro and could not be confirmed. Launch price left null: reviews quote about USD 800 and Sigma USA currently lists USD 879, but the exact launch MSRP was not confirmed. No optical stabilisation.",
+    "famousFor": "Sigma's first macro lens for its mirrorless Art line. Reviewers noted very high sharpness at life-size magnification for a moderate price.",
+    "strengths": [
+      "Very sharp at both macro and normal distances",
+      "True 1:1 magnification with internal focusing and a fixed length",
+      "Dust- and splash-resistant build with a water- and oil-repellent coating",
+      "Good value for its optical performance"
+    ],
+    "weaknesses": [
+      "Autofocus can hunt, especially at close range",
+      "No optical stabilisation for handheld macro work"
+    ],
+    "bestFor": [
+      "Life-size macro of insects and flowers",
+      "Product and jewellery photography",
+      "Tight head-and-shoulders portraits",
+      "Copying artwork, documents and film negatives"
+    ],
+    "sources": [
+      { "title": "105mm F2.8 DG DN MACRO | Art - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a020_105_28/", "kind": "official" },
+      { "title": "Sigma 105mm F2.8 DG DN MACRO | Art - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/105mm-f2-8-dg-dn-macro-a", "kind": "official" },
+      { "title": "New product announcement: SIGMA 105mm F2.8 DG DN MACRO | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2020/09/30/10945/", "kind": "official" },
+      { "title": "105mm F2.8 DG DN MACRO - Sigma UK", "url": "https://www.sigma-imaging-uk.com/lens-item/105mm-f2-8-dg-dn-macro/", "kind": "official" },
+      { "title": "Sigma 105mm f/2.8 DG DN Macro Art Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-105mm-f-2.8-DG-DN-Macro-Art-Lens.aspx", "kind": "review" },
+      { "title": "Sigma 105mm F2.8 DG DN Macro for E- and L-mount arrives in October - DPReview", "url": "https://www.dpreview.com/news/9821386679/sigma-105mm-f2-8-dg-dn-macro-for-e-and-l-mount-arrives-in-october", "kind": "review" },
+      { "title": "Sigma 105mm f/2.8 DG DN Macro Art Lens (Sony E) - B&H Photo", "url": "https://www.bhphotovideo.com/c/product/1595582-REG/sigma_260965_105mm_f_2_8_dg_dn.html", "kind": "retailer" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-28-45-f18-dg-dn-art",
+    "brand": "Sigma",
+    "name": "Sigma 28-45mm F1.8 DG DN | Art",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": { "min": 28, "max": 45 },
+    "maxAperture": { "wide": 1.8, "tele": 1.8 },
+    "minAperture": { "wide": 16, "tele": 16 },
+    "elements": 18,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "low-dispersion", "label": "SLD", "count": 5 },
+      { "kind": "aspherical", "label": "aspherical", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.3, "tele": 0.3 },
+    "maxMagnification": 0.25,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "HLA (High-response Linear Actuator)",
+    "weightG": 960,
+    "dimensionsMm": { "diameter": 87.8, "length": 151.4 },
+    "filterMm": 82,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 1349, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "notes": "Announced 3 June 2024, on sale 20 June 2024 at USD 1,349. Sigma describes it as the world's first zoom lens with a constant F1.8 aperture for full-frame mirrorless cameras. Weight and dimensions are Sigma's L-Mount figures (Sony E: 950 g). Sigma gives a single 0.30 m minimum focusing distance for the whole zoom range, and the 1:4 maximum magnification is reached at 45 mm. Inner zoom: the overall length does not change when zooming. No optical stabilisation.",
+    "famousFor": "Sigma bills it as the world's first constant-f/1.8 zoom for full-frame mirrorless cameras. Reviewers found its image quality close to prime lenses, so it can stand in for a set of fast 28, 35 and 40-45mm primes.",
+    "strengths": [
+      "Prime-like sharpness at a constant f/1.8",
+      "Internal zoom with little focus breathing, good on gimbals",
+      "Fast, accurate and quiet HLA autofocus",
+      "Close focusing down to 0.30 m at every focal length"
+    ],
+    "weaknesses": [
+      "Heavy and bulky for a short 28-45mm range",
+      "Limited zoom range compared with standard f/2.8 zooms",
+      "Large 82 mm filters"
+    ],
+    "bestFor": [
+      "Weddings and events in dim venues without switching primes",
+      "Gimbal-based video and documentary filming",
+      "Environmental portraits and street photography at night",
+      "Interiors and real-estate work in low light"
+    ],
+    "sources": [
+      { "title": "28-45mm F1.8 DG DN | Art - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a024_28_45_18/", "kind": "official" },
+      { "title": "Sigma 28-45mm F1.8 DG DN | Art - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/28-45mm-f1-8-dg-dn-a", "kind": "official" },
+      { "title": "Introducing the SIGMA 28-45mm F1.8 DG DN | Art - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/06/introducing-the-sigma-28-45mm-f1-8-dg-dn-art-the-first-full-frame-f1-8-zoom-lens-for-mirrorless-camera-systems/", "kind": "press" },
+      { "title": "Launch schedule of SIGMA 28-45mm F1.8 DG DN | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2024/06/03/010421/", "kind": "official" },
+      { "title": "Sigma 28-45mm f/1.8 DG DN Art Review: Limited Zoom, Maximum Light - PetaPixel", "url": "https://petapixel.com/2024/06/03/sigma-28-45mm-f-1-8-dg-dn-art-review-limited-zoom-maximum-light/", "kind": "review" },
+      { "title": "Sigma 28-45mm F1.8 DG DN Art Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-28-45mm-F1-8-DG-DN-Art-Lens.aspx", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-24-70-f28-dg-dn-ii-art",
+    "brand": "Sigma",
+    "name": "Sigma 24-70mm F2.8 DG DN II | Art",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": { "min": 24, "max": 70 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 19,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "super-low-dispersion", "label": "FLD", "count": 6 },
+      { "kind": "low-dispersion", "label": "SLD", "count": 2 },
+      { "kind": "aspherical", "label": "aspherical", "count": 5 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.17, "tele": 0.34 },
+    "maxMagnification": 0.37,
+    "stabilization": { "optical": false, "stops": null },
+    "autofocus": "HLA (High-response Linear Actuator)",
+    "weightG": 745,
+    "dimensionsMm": { "diameter": 87.8, "length": 120.2 },
+    "filterMm": 82,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 1199, "currency": "USD" },
+    "zoomMechanism": "extending",
+    "notes": "Announced 16 May 2024 as the successor to the 24-70mm F2.8 DG DN | Art (2019); Sigma says it is about 7% smaller and 10% lighter than the first version. Weight is Sigma's L-Mount figure (Sony E: 735 g). Dimensions are Sigma's headline figures; the Sigma text found does not say which mount they refer to. Special elements (6 FLD, 2 SLD, 5 aspherical in 19 elements / 15 groups) were rechecked against Sigma's pages. Maximum magnification is 1:2.7 at 24 mm (stored as 0.37) and 1:4 at 70 mm. Autofocus changed from the first version's stepping motor to an HLA linear motor (DPReview, ePhotozine). The barrel extends when zooming towards 70 mm (review sources). Launch price: USD 1,199 (UK GBP 1,179). No optical stabilisation.",
+    "famousFor": "Sigma's second-generation f/2.8 standard zoom for mirrorless cameras. PetaPixel said it offers G Master-level image quality for about half the price, and it replaced the popular first version with faster linear-motor AF and a lighter body.",
+    "strengths": [
+      "Very sharp across the zoom range",
+      "Fast, accurate and virtually silent HLA autofocus",
+      "Lighter and more compact than the first version",
+      "Close focusing at 24 mm for up to 1:2.7 magnification"
+    ],
+    "weaknesses": [
+      "Barrel extends when zooming",
+      "No optical stabilisation",
+      "Large 82 mm filters"
+    ],
+    "bestFor": [
+      "Wedding and event coverage",
+      "Travel and everyday general-purpose shooting",
+      "Landscapes and cityscapes",
+      "Run-and-gun video and documentary work"
+    ],
+    "sources": [
+      { "title": "24-70mm F2.8 DG DN II | Art - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/a024_24_70_28_ii/", "kind": "official" },
+      { "title": "Sigma 24-70mm F2.8 DG DN II | Art - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/24-70mm-f2-8-dg-dn-ii-a", "kind": "official" },
+      { "title": "SIGMA Announces 24-70mm F2.8 DG DN II | Art Lens - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/05/sigma-announces-24-70mm-f2-8-dg-dn-ii-art-lens-an-upgraded-follow-up-to-its-popular-standard-zoom-for-full-frame-mirrorless-cameras/", "kind": "press" },
+      { "title": "Launch schedule of SIGMA 24-70mm F2.8 DG DN II | Art - Sigma News", "url": "https://www.sigma-global.com/en/news/2024/05/16/010385/", "kind": "official" },
+      { "title": "The Sigma 24-70mm f/2.8 DG DN Art II Has G Master Quality for Half the Price - PetaPixel", "url": "https://petapixel.com/2024/05/16/the-sigma-24-70mm-f-2-8-dg-dn-art-ii-first-impressions-review-has-g-master-quality-for-half-the-price/", "kind": "review" },
+      { "title": "Sigma 24-70mm f/2.8 DG DN II Art Lens Review - ePHOTOzine", "url": "https://www.ephotozine.com/article/sigma-24-70mm-f-2-8-dg-dn-ii-art-lens-review-36893", "kind": "review" },
+      { "title": "Sigma announces 24-70mm F2.8 DG DN II for Sony E and Leica L mounts - DPReview", "url": "https://www.dpreview.com/news/7936421331/sigma-announces-24-70mm-f2-8-dg-dn-ii-for-sony-e-and-leica-l-mounts/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-70-200-f28-dg-dn-os-sports",
+    "brand": "Sigma",
+    "name": "Sigma 70-200mm F2.8 DG DN OS | Sports",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": { "min": 70, "max": 200 },
+    "maxAperture": { "wide": 2.8, "tele": 2.8 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 20,
+    "groups": 15,
+    "specialElements": [
+      { "kind": "super-low-dispersion", "label": "FLD", "count": 6 },
+      { "kind": "low-dispersion", "label": "SLD", "count": 2 },
+      { "kind": "aspherical", "label": "aspherical", "count": 3 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 0.65, "tele": 1.0 },
+    "maxMagnification": 0.19,
+    "stabilization": { "optical": true, "stops": 7.5 },
+    "autofocus": "Dual HLA (High-response Linear Actuator)",
+    "weightG": 1345,
+    "dimensionsMm": { "diameter": 90.6, "length": 205.0 },
+    "filterMm": 77,
+    "releaseYear": 2023,
+    "launchPrice": { "amount": 1499, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "focusMechanism": "internal",
+    "notes": "Announced 16 November 2023, on sale 7 December 2023 at USD 1,499. OS2 stabilisation is rated at 7.5 stops at the wide end and 5.5 stops at the tele end (Sigma); the wide-end figure is stored. Weight is Sigma's L-Mount figure (the Sony E version is about 10 g lighter). Whether it includes the detachable Arca-Swiss-compatible tripod socket (TS-151) is unresolved: The-Digital-Picture says it does, while a search summary of Sigma's pages suggested the socket is extra; Sigma's weight without the socket was not found. Maximum magnification is 1:5.2 at 200 mm. Special elements (6 FLD, 2 SLD, 3 aspherical), F22 minimum aperture, 0.65-1.0 m minimum focus, 77 mm filter and 90.6 x 205.0 mm dimensions were rechecked against Sigma's pages. Inner zoom (fixed length) confirmed by Sigma; internal focusing is from review sources.",
+    "famousFor": "Sigma's first 70-200mm f/2.8 designed only for mirrorless cameras. It was long awaited by Sony E and L-Mount users and combines internal zoom, fast dual-motor AF and strong stabilisation at a launch price well below first-party f/2.8 70-200mm zooms.",
+    "strengths": [
+      "Sharp across the zoom range at f/2.8",
+      "Fast dual-HLA autofocus suited to sports and action",
+      "Very effective OS2 stabilisation (up to 7.5 stops)",
+      "Internal zoom, Arca-Swiss foot and several AF-stop buttons"
+    ],
+    "weaknesses": [
+      "Heavier than the lightest first-party mirrorless 70-200mm f/2.8 zooms",
+      "Long 205 mm barrel is conspicuous and bulky in a bag"
+    ],
+    "bestFor": [
+      "Indoor sports and action",
+      "Wedding ceremonies from the back of the venue",
+      "Concert and stage photography",
+      "Compressed-background portraits"
+    ],
+    "sources": [
+      { "title": "70-200mm F2.8 DG DN OS | Sports - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/s023_70_200_28/", "kind": "official" },
+      { "title": "Sigma 70-200mm F2.8 DG DN | Sports - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/70-200mm-f2-8-dg-dn-os-s", "kind": "official" },
+      { "title": "SIGMA Announces Release of 70-200mm F2.8 DG DN OS | Sports Lens - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/11/sigma-announces-release-of-70-200mm-f2-8-dg-dn-os-sports-lens/", "kind": "press" },
+      { "title": "Launch schedule of SIGMA 70-200mm F2.8 DG DN OS | Sports - Sigma News", "url": "https://www.sigma-global.com/en/news/2023/11/16/21975/", "kind": "official" },
+      { "title": "Sigma 70-200mm f/2.8 DG DN OS Sports Lens Review: Long Awaited - PetaPixel", "url": "https://petapixel.com/2023/11/16/sigma-70-200mm-f-2-8-dg-dn-os-sports-lens-review-long-awaited/", "kind": "review" },
+      { "title": "Sigma 70-200mm F2.8 DG DN OS Sports Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-70-200mm-F2-8-DG-DN-OS-Sports-Lens.aspx", "kind": "review" },
+      { "title": "Sigma releases 70-200mm DG DN OS: internal zoom tele lens for mirrorless - DPReview", "url": "https://www.dpreview.com/news/6453078588/sigma-70-200mm-f2-8-dg-dn-oss", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-300-600-f4-dg-os-sports",
+    "brand": "Sigma",
+    "name": "Sigma 300-600mm F4 DG OS | Sports",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 300, "max": 600 },
+    "maxAperture": { "wide": 4, "tele": 4 },
+    "minAperture": { "wide": 22, "tele": 22 },
+    "elements": 28,
+    "groups": 21,
+    "specialElements": [
+      { "kind": "super-low-dispersion", "label": "FLD", "count": 6 },
+      { "kind": "low-dispersion", "label": "SLD", "count": 1 }
+    ],
+    "apertureBlades": 13,
+    "minFocusM": { "wide": 2.8, "tele": 4.5 },
+    "maxMagnification": 0.17,
+    "stabilization": { "optical": true, "stops": 5.5 },
+    "autofocus": "HLA (High-response Linear Actuator)",
+    "weightG": 3985,
+    "dimensionsMm": { "diameter": 167.0, "length": 467.9 },
+    "filterMm": null,
+    "releaseYear": 2025,
+    "launchPrice": { "amount": 5999, "currency": "USD" },
+    "zoomMechanism": "internal",
+    "notes": "Announced 24 February 2025; release was delayed and it went on sale in April 2025. Listed as '300-600mm F4 DG OS Sports (else 150-600mm DG DN)'; the 300-600mm exists, so it was researched. Note that its name has no 'DN', although it is designed for the L-Mount and Sony E mirrorless mounts. No front filter thread: it uses a drop-in holder for 40.5 mm filters, so filterMm is null. Weight and dimensions are Sigma's L-Mount figures (Sony E: 3,970 g). The Sigma figure found does not say whether the weight includes the removable Arca-Swiss-compatible tripod foot, so treat it as possibly including it. Sigma also mentions anomalous-dispersion and high-refractive-index glass without counts, so these are not listed in specialElements. Maximum magnification is 1:6 at 470 mm. OS is rated at 5.5 stops at 600 mm. The USD 5,999 launch price comes from review coverage (PetaPixel, DPReview), not from a Sigma page. Internal zoom per review sources. Construction (28 elements in 21 groups, 6 FLD, 1 SLD), 2.8-4.5 m minimum focus, 40.5 mm drop-in filter, 3,985 g and 167 x 467.9 mm were rechecked against Sigma's pages. Sigma reports that it received the EISA Ultra-Telephoto Zoom Lens 2025-2026 award and a TIPA World Award 2025.",
+    "famousFor": "A zoom that keeps a constant f/4 aperture from 300mm to 600mm. Reviewers found it gives much of the performance of a 600mm f/4 prime with the option to zoom out to 300mm, at a much lower price than first-party 600mm f/4 primes.",
+    "strengths": [
+      "Constant f/4 all the way to 600mm",
+      "Very sharp, even wide open",
+      "Effective 5.5-stop optical stabilisation at 600mm",
+      "Zoom flexibility that a 600mm prime cannot offer"
+    ],
+    "weaknesses": [
+      "Very heavy at about 4 kg, heavier than first-party 600mm f/4 primes",
+      "Large and expensive; practically needs a monopod or tripod",
+      "Only drop-in 40.5 mm filters, no front filter thread"
+    ],
+    "bestFor": [
+      "Bird and wildlife photography at dawn and dusk",
+      "Field sports and motorsport from the sidelines",
+      "Air shows",
+      "Safari photography from a vehicle with a bean bag"
+    ],
+    "sources": [
+      { "title": "300-600mm F4 DG OS | Sports - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/s025_300_600_4/", "kind": "official" },
+      { "title": "Sigma 300-600mm F4 DG OS | Sports - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/300-600mm-f4-dg-os-s", "kind": "official" },
+      { "title": "Introducing the Sigma 300-600mm F4 DG OS | Sports Lens - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/02/introducing-the-sigma-300-600mm-f4-dg-os-sports-lens/", "kind": "press" },
+      { "title": "Launch schedule of Sigma 300-600mm F4 DG OS | Sports - Sigma News", "url": "https://www.sigma-global.com/en/news/2025/02/24/010843", "kind": "official" },
+      { "title": "Updated release dates for the Sigma 300-600mm F4 DG OS | Sports - Sigma News", "url": "https://www.sigma-global.com/en/news/2025/04/24/010945/", "kind": "official" },
+      { "title": "Sigma 300-600mm F4 DG OS | Sports has received EISA ULTRA-TELEPHOTO ZOOM LENS 2025-2026 - Sigma News", "url": "https://www.sigma-global.com/en/news/2025/08/18/011110/", "kind": "official" },
+      { "title": "Sigma BF, Sigma 300-600mm F4 DG OS | Sports, and Sigma 16-300mm F3.5-6.7 DC OS | Contemporary have won TIPA World Awards 2025 - Sigma News", "url": "https://www.sigma-global.com/en/news/2025/04/17/010926/", "kind": "official" },
+      { "title": "Sigma 300-600mm f/4 DG OS Sports Review: Way More for Way Less - PetaPixel", "url": "https://petapixel.com/2025/05/03/sigma-300-600mm-f-4-dg-os-sports-review-way-more-for-way-less/", "kind": "review" },
+      { "title": "Sigma 300-600mm F4 DG OS Sports Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-300-600mm-F4-DG-OS-Sports-Lens.aspx", "kind": "review" },
+      { "title": "Sigma announces the ultra-telephoto 300-600mm F4 DG OS Sports lens - DPReview", "url": "https://www.dpreview.com/news/0835876793/sigma-announces-the-ultra-telephoto-300-600mm-f4-dg-os-sports-lens", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "sigma-500-f56-dg-dn-os-sports",
+    "brand": "Sigma",
+    "name": "Sigma 500mm F5.6 DG DN OS | Sports",
+    "mount": "L-Mount",
+    "mounts": ["L-Mount", "Sony E"],
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": { "min": 500, "max": 500 },
+    "maxAperture": { "wide": 5.6, "tele": 5.6 },
+    "minAperture": { "wide": 32, "tele": 32 },
+    "elements": 20,
+    "groups": 14,
+    "specialElements": [
+      { "kind": "super-low-dispersion", "label": "FLD", "count": 3 },
+      { "kind": "low-dispersion", "label": "SLD", "count": 2 }
+    ],
+    "apertureBlades": 11,
+    "minFocusM": { "wide": 3.2, "tele": 3.2 },
+    "maxMagnification": 0.17,
+    "stabilization": { "optical": true, "stops": 5 },
+    "autofocus": "HLA (High-response Linear Actuator)",
+    "weightG": 1370,
+    "dimensionsMm": { "diameter": 107.6, "length": 234.6 },
+    "filterMm": 95,
+    "releaseYear": 2024,
+    "launchPrice": { "amount": 2999, "currency": "USD" },
+    "notes": "Announced 20-21 February 2024 alongside the 15mm F1.4 DG DN Diagonal Fisheye; on sale in the US from mid-March 2024 at USD 2,999. Weight is the L-Mount figure (48.3 oz / about 1,370 g); another Sigma figure found gives 1,365 g without naming the mount, so the Sony E weight is unconfirmed. According to The-Digital-Picture, the weight includes the detachable Arca-Swiss-compatible magnesium tripod socket; a weight without it was not found. Dimensions are Sigma's headline figures (mount not stated). Sigma says the design reaches its compact size with large low-dispersion elements and no diffractive (DO/PF) elements. OS2 stabilisation is rated at 5 stops. Maximum magnification is 1:6 (stored as 0.17). Sigma's 1.4x and 2x teleconverters are supported on the L-Mount version only (review sources). The audit reconfirmed on Sigma's pages the HLA motor, 5-stop OS2, 95 mm filter and the absence of diffractive elements, but not the 20-element / 14-group construction, the FLD/SLD counts or the F32 minimum aperture; the special-element list may be incomplete. The TIPA 'Best Super Telephoto Prime Lens' 2024 award is reported by Sigma's press centre.",
+    "famousFor": "An unusually compact and light 500mm prime for mirrorless cameras, at about 1.4 kg and small enough to use handheld, while staying sharp from corner to corner at f/5.6. It was named Best Super Telephoto Prime Lens in the TIPA World Awards 2024.",
+    "strengths": [
+      "Very compact and light for a 500mm prime, easy to handhold",
+      "Sharp across the frame even at f/5.6",
+      "Fast, quiet HLA autofocus",
+      "5-stop OS2 stabilisation; teleconverter support on L-Mount"
+    ],
+    "weaknesses": [
+      "f/5.6 gathers less light than heavier 500mm f/4 primes",
+      "Fixed focal length is less flexible than 150-600/200-600mm zooms",
+      "Teleconverters work only on the L-Mount version"
+    ],
+    "bestFor": [
+      "Handheld bird photography on long hikes",
+      "Wildlife from hides and vehicles",
+      "Outdoor field sports and motorsport",
+      "Aviation and air-show photography"
+    ],
+    "sources": [
+      { "title": "Specifications | 500mm F5.6 DG DN OS | Sports - SIGMA Global", "url": "https://www.sigma-global.com/en/lenses/s024_500_56/specification.html", "kind": "official" },
+      { "title": "Sigma 500mm F5.6 DG DN OS | Sports - SIGMA Corporation of America", "url": "https://www.sigmaphoto.com/500mm-f5-6-dg-dn-os-s", "kind": "official" },
+      { "title": "Announcing the SIGMA 15mm F1.4 DG DN DIAGONAL FISHEYE | Art and SIGMA 500mm F5.6 DG DN OS | Sports Lenses - SIGMA Press Center", "url": "https://press.sigmaphoto.com/product/02/announcing-the-sigma-15mm-f1-4-dg-dn-diagonal-fisheye-art-and-sigma-500mm-f5-6-dg-dn-os-sports-lenses/", "kind": "press" },
+      { "title": "Launch schedule of SIGMA 500mm F5.6 DG DN OS | Sports - Sigma News", "url": "https://www.sigma-global.com/en/news/2024/02/21/010253/", "kind": "official" },
+      { "title": "SIGMA 500mm F5.6 DG DN OS | Sports Named Best Super Telephoto Prime Lens at TIPA World Awards 2024 - SIGMA Press Center", "url": "https://press.sigmaphoto.com/awards/sigma-500mm-f5-6-dg-dn-os-sports-named-best-super-telephoto-prime-lens-at-tipa-world-awards-2024/", "kind": "press" },
+      { "title": "Sigma 500mm F5.6 DG DN OS Sports Lens Review - The-Digital-Picture", "url": "https://www.the-digital-picture.com/Reviews/Sigma-500mm-F5-6-DG-DN-OS-Sports-Lens.aspx", "kind": "review" },
+      { "title": "Sigma 500mm f/5.6 DG DN Sport Review: The Perfect Telephoto? - PetaPixel", "url": "https://petapixel.com/2024/02/20/sigma-500mm-f-5-6-dg-dn-sport-review-the-perfect-telephoto/", "kind": "review" }
+    ],
+    "checked": "2026-09-26"
+  }
+]

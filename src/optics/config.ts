@@ -1,5 +1,6 @@
 /**
- * Physical description of the simulated camera. All lengths in millimetres.
+ * Phase 1 teaching lens (Lens Lab 50 mm f/2, unit focusing on a helicoid). All lengths in mm.
+ * Its helicoid maths (helicoid.ts) and Phase 1 tests measure distances from the lens.
  */
 export const LENS = {
   /** Effective focal length of the whole lens system. */
@@ -19,19 +20,25 @@ export const LENS = {
   bladeCount: 9,
 } as const;
 
-export type SubjectId = 'cabin' | 'trees' | 'mountain';
+export type SubjectId = 'flower' | 'cabin' | 'trees' | 'hill' | 'bird' | 'tower' | 'peaks';
 
 export interface Subject {
   id: SubjectId;
-  label: string;
-  role: 'Foreground' | 'Middle' | 'Background';
-  /** Distance of the subject's focus point from the lens, mm. */
+  /** Distance of the subject's focus point, mm from the focal plane (∞ for the far mountains). */
   distance: number;
+  /** Colour of its light rays, labels and UI dots. */
+  color: string;
 }
 
-/** The three diorama subjects and the distances the lens "sees" them at. */
+/** The depth ladder of the diorama: a subject for every kind of lens, from macro to landscape. */
 export const SUBJECTS: readonly Subject[] = [
-  { id: 'cabin', label: 'Cabin', role: 'Foreground', distance: 800 },
-  { id: 'trees', label: 'Trees', role: 'Middle', distance: 2000 },
-  { id: 'mountain', label: 'Mountain', role: 'Background', distance: 8000 },
+  { id: 'flower', distance: 300, color: '#ff8ad8' },
+  { id: 'cabin', distance: 800, color: '#ffb04f' },
+  { id: 'trees', distance: 2000, color: '#5dffa2' },
+  { id: 'hill', distance: 8000, color: '#d6b98c' },
+  { id: 'bird', distance: 30000, color: '#ffe066' },
+  { id: 'tower', distance: 200000, color: '#ff7a6b' },
+  { id: 'peaks', distance: Number.POSITIVE_INFINITY, color: '#8fb0ff' },
 ];
+
+export const subjectById = (id: SubjectId): Subject => SUBJECTS.find((s) => s.id === id)!;

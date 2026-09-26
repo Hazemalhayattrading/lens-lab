@@ -53,6 +53,9 @@ export interface SensorStand {
   /** The active area: shows the live (inverted) sensor image. */
   activeArea: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshPhysicalMaterial>;
   setImage(texture: THREE.Texture | null, intensity: number): void;
+  /** Resize the chip to a sensor format (mm); eased towards the target by `update`. */
+  setFormat(widthMm: number, heightMm: number): void;
+  update(dt: number): void;
 }
 
 export function createSensorStand(hw: HardwareMaterials): SensorStand {
@@ -87,20 +90,25 @@ export function createSensorStand(hw: HardwareMaterials): SensorStand {
   pcb.receiveShadow = true;
   group.add(pcb);
 
+  // the chip (package, seal ring, pads, die) scales with the sensor format of the mounted lens
+  const chip = new THREE.Group();
+  chip.position.set(0, cy, 0);
+  group.add(chip);
+
   // ceramic package with gold seal ring
   const ceramic = new THREE.Mesh(
     new RoundedBoxGeometry(0.1, SENSOR_H + 0.42, SENSOR_W + 0.42, 3, 0.03),
     new THREE.MeshPhysicalMaterial({ color: '#2b2622', roughness: 0.55, metalness: 0.05, clearcoat: 0.3 }),
   );
-  ceramic.position.set(x0 - 0.085, cy, 0);
+  ceramic.position.set(x0 - 0.085, 0, 0);
   ceramic.castShadow = true;
-  group.add(ceramic);
+  chip.add(ceramic);
 
   const gold = new THREE.MeshPhysicalMaterial({ color: '#e0b25c', metalness: 1, roughness: 0.22 });
   const frameGeo = new THREE.BoxGeometry(0.02, SENSOR_H + 0.22, SENSOR_W + 0.22);
   const frame = new THREE.Mesh(frameGeo, gold);
-  frame.position.set(x0 - 0.03, cy, 0);
-  group.add(frame);
+  frame.position.set(x0 - 0.03, 0, 0);
+  chip.add(frame);
 
   // bond-wire pads along the long edges
   const padGeo = new THREE.BoxGeometry(0.012, 0.035, 0.02);
@@ -110,11 +118,11 @@ export function createSensorStand(hw: HardwareMaterials): SensorStand {
   for (const side of [-1, 1]) {
     for (let i = 0; i < 40; i++) {
       const z = -SENSOR_W / 2 + (i + 0.5) * (SENSOR_W / 40);
-      m.makeTranslation(x0 - 0.015, cy + side * (SENSOR_H / 2 + 0.07), z);
+      m.makeTranslation(x0 - 0.015, side * (SENSOR_H / 2 + 0.07), z);
       pads.setMatrixAt(k++, m);
     }
   }
-  group.add(pads);
+  chip.add(pads);
 
   // silicon die: dark, iridescent (microlens array + colour filter array) with the live image as emission
   const dieMat = new THREE.MeshPhysicalMaterial({
@@ -135,8 +143,8 @@ export function createSensorStand(hw: HardwareMaterials): SensorStand {
   for (let i = 0; i < uv.count; i++) uv.setY(i, 1 - uv.getY(i));
   activeGeo.rotateY(Math.PI / 2);
   const activeArea = new THREE.Mesh(activeGeo, dieMat);
-  activeArea.position.set(x0 - 0.001, cy, 0);
-  group.add(activeArea);
+  activeArea.position.set(x0 - 0.001, 0, 0);
+  chip.add(activeArea);
 
   // thin cover glass (IR-cut filter) with a faint cyan/magenta coating reflection
   const cover = new THREE.Mesh(
@@ -213,6 +221,7 @@ export function createSensorStand(hw: HardwareMaterials): SensorStand {
     if ((o as THREE.Mesh).isMesh) (o as THREE.Mesh).receiveShadow = true;
   });
 
+  const target = new THREE.Vector2(1, 1);
   return {
     group,
     activeArea,
@@ -220,6 +229,14 @@ export function createSensorStand(hw: HardwareMaterials): SensorStand {
       dieMat.emissiveMap = texture;
       dieMat.emissiveIntensity = texture ? intensity : 0;
       dieMat.needsUpdate = true;
+    },
+    setFormat(widthMm, heightMm) {
+      target.set(widthMm / 36, heightMm / 24);
+    },
+    update(dt) {
+      const k = dt > 5 ? 1 : 1 - Math.exp(-dt * 5);
+      chip.scale.z += (target.x - chip.scale.z) * k;
+      chip.scale.y += (target.y - chip.scale.y) * k;
     },
   };
 }

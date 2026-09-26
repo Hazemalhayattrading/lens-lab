@@ -71,6 +71,14 @@ export class LabelLayer {
     item.want = show && onScreen;
   }
 
+  /** Removes label `id` for good (e.g. callouts of a lens that was unmounted). */
+  remove(id: string): void {
+    const item = this.items.get(id);
+    if (!item) return;
+    item.el.remove();
+    this.items.delete(id);
+  }
+
   hide(id: string): void {
     const item = this.items.get(id);
     if (item) item.want = false;

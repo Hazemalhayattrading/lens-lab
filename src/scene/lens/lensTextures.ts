@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { canvasTexture, heightToNormal, makeCanvas } from '../../util/textures';
+import { LENS } from '../../optics/config';
 import { ringAngleForFocus } from '../../optics/helicoid';
 
 const MONO = '"JetBrains Mono Variable", ui-monospace, monospace';
@@ -59,8 +60,19 @@ const DISTANCE_MARKS: { d: number; label: string; major: boolean }[] = [
   { d: 700, label: '.7', major: false },
   { d: 500, label: '.5', major: true },
   { d: 400, label: '.4', major: false },
-  { d: 300, label: '.3', major: true },
+  { d: 360, label: '.36', major: true },
 ];
+
+/**
+ * Ring angle of a mark for a subject T mm from the focal plane — the lab's convention, like the
+ * distance scale of a real lens. The helicoid is driven by the lens-to-subject distance u, with
+ * u + v = T and 1/u + 1/v = 1/f; the closest focus (0.3 m from the lens) engraves as .36.
+ */
+function markAngle(T: number): number {
+  if (!Number.isFinite(T)) return 0;
+  const f = LENS.focalLength;
+  return ringAngleForFocus((T + Math.sqrt(T * T - 4 * T * f)) / 2);
+}
 
 /** Ring-local angle of the ∞ mark on the distance band texture (radians). */
 export const DISTANCE_PSI_INF = 0.35;
@@ -68,7 +80,7 @@ export const DISTANCE_PSI_INF = 0.35;
 /**
  * Distance scale printed around the focus ring. Canvas x spans the full circumference (0…2π),
  * canvas y spans the band along the axis (top = towards the subject). Each mark sits at
- * ψ = ψ∞ + helicoid angle(d), so the scale is compressed towards ∞ exactly like the real thing.
+ * ψ = ψ∞ + helicoid angle(T), T from the focal plane (`markAngle`), so the scale is compressed towards ∞ exactly like the real thing.
  */
 export function distanceScaleTexture(): THREE.Texture {
   const W = 4096;
@@ -80,15 +92,15 @@ export function distanceScaleTexture(): THREE.Texture {
   // minor ticks between marks
   x.strokeStyle = 'rgba(240,240,240,0.55)';
   x.lineWidth = 3;
-  for (const d of [20000, 7000, 4000, 2500, 1750, 1250, 850, 600, 450, 350]) {
-    const px = (DISTANCE_PSI_INF + ringAngleForFocus(d)) * pxPerRad;
+  for (const d of [20000, 7000, 4000, 2500, 1750, 1250, 850, 600, 450]) {
+    const px = (DISTANCE_PSI_INF + markAngle(d)) * pxPerRad;
     x.beginPath();
     x.moveTo(px, H * 0.02);
     x.lineTo(px, H * 0.2);
     x.stroke();
   }
   for (const m of DISTANCE_MARKS) {
-    const psi = DISTANCE_PSI_INF + ringAngleForFocus(m.d);
+    const psi = DISTANCE_PSI_INF + markAngle(m.d);
     const px = psi * pxPerRad;
     x.strokeStyle = '#f2f2f2';
     x.lineWidth = m.major ? 6 : 4;
@@ -107,7 +119,7 @@ export function distanceScaleTexture(): THREE.Texture {
     x.restore();
   }
   // "m" unit label after the close-focus mark
-  const pxM = (DISTANCE_PSI_INF + ringAngleForFocus(300) + 0.1) * pxPerRad;
+  const pxM = (DISTANCE_PSI_INF + markAngle(360) + 0.12) * pxPerRad;
   x.save();
   x.translate(pxM, H * 0.62);
   x.rotate(-Math.PI / 2);

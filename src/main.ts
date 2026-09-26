@@ -1,6 +1,7 @@
 import '@fontsource-variable/inter';
 import '@fontsource-variable/jetbrains-mono';
 import './styles/main.css';
+import './styles/lab.css';
 import { LensLabApp } from './app';
 
 declare global {
@@ -40,6 +41,7 @@ async function boot(): Promise<void> {
   const app = new LensLabApp(container);
   window.lensLab = app;
   await app.start();
+  app.route();
   if (new URLSearchParams(location.search).has('capture')) {
     loader?.remove();
     return;
