@@ -1,0 +1,1040 @@
+[
+  {
+    "id": "tamron-16-30-f28-di-iii-vxd-g2",
+    "brand": "Tamron",
+    "name": "Tamron 16-30mm F/2.8 Di III VXD G2 (Model A064)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E",
+      "Nikon Z"
+    ],
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": {
+      "min": 16,
+      "max": 30
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": 16,
+      "tele": 16
+    },
+    "elements": 16,
+    "groups": 12,
+    "specialElements": [
+      {
+        "kind": "super-low-dispersion",
+        "label": "XLD (eXtra Low Dispersion)",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 2
+      },
+      {
+        "kind": "aspherical",
+        "label": "GM (Glass Molded Aspherical)",
+        "count": 3
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.19,
+      "tele": 0.3
+    },
+    "maxMagnification": 0.19,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 440,
+    "dimensionsMm": {
+      "diameter": 74.8,
+      "length": 101.8
+    },
+    "filterMm": 67,
+    "releaseYear": 2025,
+    "launchPrice": {
+      "amount": 929,
+      "currency": "USD"
+    },
+    "focusMechanism": "internal",
+    "notes": "Researched as the current successor of the listed 17-28mm F/2.8 Di III RXD (Model A046, 2019): Tamron presents the 16-30mm G2 as the ultra-wide that completes its G2 F2.8 zoom trio, and reviews treat it as the replacement for the 17-28mm. Weight and length are Tamron's Sony E figures; the Nikon Z version is 450 g and 103.9 mm long. Tamron gives maximum magnification as 1:5.4 (wide) to 1:7 (tele); 0.19 is 1:5.4 rounded. Sony E version on sale 31 July 2025, Nikon Z version 22 August 2025, both at USD 929. Internal focusing is stated by The-Digital-Picture's review, not read from a Tamron spec table; zoom mechanism (internal vs. extending) could not be confirmed and is omitted. No optical stabilisation.",
+    "famousFor": "Tamron's ultra-wide member of its second-generation (G2) f/2.8 zoom trio, adding a wider 16 mm start and the VXD linear focus motor to a compact, light lens with a 67 mm filter thread.",
+    "strengths": [
+      "Sharp in the centre wide open, with sharp corners at f/2.8 from 16 to 24 mm",
+      "Fast, quiet VXD autofocus",
+      "Light (about 440 g) and takes common 67 mm filters",
+      "Very close focusing at 16 mm (0.19 m)"
+    ],
+    "weaknesses": [
+      "Corners at 30 mm are soft at f/2.8 and need stopping down",
+      "No optical stabilisation",
+      "Long end stops at 30 mm rather than the usual 35 mm"
+    ],
+    "bestFor": [
+      "Landscapes and cityscapes with filters on a light kit",
+      "Real-estate and interior photography",
+      "Street and urban sports at ultra-wide angles",
+      "Handheld travel vlogging on a gimbal"
+    ],
+    "sources": [
+      {
+        "title": "16-30mm F/2.8 Di III VXD G2 (Model A064) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a064/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "16-30mm F/2.8 Di III VXD G2 - Tamron Americas",
+        "url": "https://tamron-americas.com/product/16-30mm-f-2-8-di-iii-vxd-g2/",
+        "kind": "official"
+      },
+      {
+        "title": "TAMRON Completes the G2 Trinity, Announces Ultra Wide-Angle 16-30mm F/2.8 Di III VXD G2 Zoom Lens",
+        "url": "https://tamron-americas.com/announced-ultra-wide-angle-16-30-mm-g2-trinity-sony-nikon/",
+        "kind": "press"
+      },
+      {
+        "title": "Tamron 16-30mm F/2.8 Di III VXD G2 Lens Review - The-Digital-Picture",
+        "url": "https://www.the-digital-picture.com/Reviews/Tamron-16-30mm-F2-8-Di-III-VXD-G2-Lens.aspx",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 16-30mm f/2.8 Di III VXD G2 Review: The Daisangen Dream - PetaPixel",
+        "url": "https://petapixel.com/2025/07/10/tamron-16-30mm-f-2-8-di-iii-vxd-g2-review-the-daisangen-dream/",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-20-40-f28-di-iii-vxd",
+    "brand": "Tamron",
+    "name": "Tamron 20-40mm F/2.8 Di III VXD (Model A062)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E"
+    ],
+    "format": "full-frame",
+    "category": "ultra-wide",
+    "focalLength": {
+      "min": 20,
+      "max": 40
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 12,
+    "groups": 11,
+    "specialElements": [
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 4
+      },
+      {
+        "kind": "aspherical",
+        "label": "GM (Glass Molded Aspherical)",
+        "count": 2
+      },
+      {
+        "kind": "aspherical",
+        "label": "Hybrid Aspherical",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.17,
+      "tele": null
+    },
+    "maxMagnification": 0.26,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 365,
+    "dimensionsMm": {
+      "diameter": 74.4,
+      "length": 86.5
+    },
+    "filterMm": 67,
+    "releaseYear": 2022,
+    "launchPrice": {
+      "amount": 699,
+      "currency": "USD"
+    },
+    "notes": "Sony E-mount only. Announced 29 September 2022, on sale 27 October 2022. Category is ultra-wide because the widest end is 20 mm, although the range reaches the 40 mm standard focal length. Tamron gives MOD 0.17 m and maximum magnification 1:3.8 at the wide end (0.26 = 1:3.8 rounded); the MOD at 40 mm could not be verified and is null. Minimum aperture could not be verified from accessible sources and is null. Non-official values: the 9-blade aperture and the USD 699 launch price are from PetaPixel's announcement coverage and review, not from a Tamron page. Zoom and focus mechanisms could not be confirmed and are omitted. No optical stabilisation.",
+    "famousFor": "One of the smallest and lightest constant-f/2.8 full-frame zooms, starting wider (20 mm) and ending longer (40 mm) than a typical 24-35 mm range, which made it popular as a compact walk-around and vlogging lens for Sony E.",
+    "strengths": [
+      "Very small and light (365 g) for a constant f/2.8 zoom",
+      "Sharp images with good overall image quality",
+      "Fast, quiet VXD autofocus suited to video",
+      "Close focusing to 0.17 m at 20 mm for near-far shots"
+    ],
+    "weaknesses": [
+      "No optical stabilisation",
+      "Short 2x zoom range compared with a 24-70 mm",
+      "Sold only for Sony E-mount"
+    ],
+    "bestFor": [
+      "Everyday travel and street photography with a light kit",
+      "Handheld vlogging and gimbal video",
+      "Landscapes and architecture at 20 mm",
+      "Food and environmental portraits at 35-40 mm"
+    ],
+    "sources": [
+      {
+        "title": "20-40mm F/2.8 Di III VXD (Model A062) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a062/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "20-40mm F/2.8 Di III VXD - Tamron Americas",
+        "url": "https://tamron-americas.com/product/20-40mm-f-2-8-di-iii-vxd/",
+        "kind": "official"
+      },
+      {
+        "title": "Tamron announces the launch of 20-40mm F/2.8 Di III VXD (Model A062) - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/20220929001003.html",
+        "kind": "press"
+      },
+      {
+        "title": "Tamron 20-40mm f/2.8 Di III VXD Review: Tiny Yet Mighty - PetaPixel",
+        "url": "https://petapixel.com/2022/11/14/tamron-20-40mm-f-2-8-di-iii-vxd-review-tiny-yet-mighty/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron's New 20-40mm f/2.8 Lens is the Smallest and Lightest in its Class - PetaPixel",
+        "url": "https://petapixel.com/2022/09/29/tamrons-new-20-40mm-f-2-8-lens-is-the-smallest-and-lightest-in-its-class/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 20-40mm f/2.8 Di III VXD Lens Review - The-Digital-Picture",
+        "url": "https://www.the-digital-picture.com/Reviews/Tamron-20-40mm-f2-8-Di-III-VXD-Lens.aspx",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-28-75-f28-di-iii-vxd-g2",
+    "brand": "Tamron",
+    "name": "Tamron 28-75mm F/2.8 Di III VXD G2 (Model A063)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E",
+      "Nikon Z"
+    ],
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": {
+      "min": 28,
+      "max": 75
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 17,
+    "groups": 15,
+    "specialElements": [
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 2
+      },
+      {
+        "kind": "aspherical",
+        "label": "GM (Glass Molded Aspherical)",
+        "count": 2
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.18,
+      "tele": 0.38
+    },
+    "maxMagnification": 0.37,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 540,
+    "dimensionsMm": {
+      "diameter": 75.8,
+      "length": 117.6
+    },
+    "filterMm": 67,
+    "releaseYear": 2021,
+    "launchPrice": {
+      "amount": 899,
+      "currency": "USD"
+    },
+    "notes": "Second generation of the 28-75mm F/2.8 Di III RXD (Model A036). Sony E version launched 28 October 2021 (price is the Sony E launch MSRP); the Nikon Z version was announced in March 2024 and went on sale 18 April 2024. Weight and length are Tamron's Sony E figures; the Nikon Z version is 550 g and 119.8 mm long (same 75.8 mm diameter). Maximum magnification 1:2.7 at the wide end (0.37 = 1:2.7 rounded). Non-official values: the tele-end MOD (0.38 m, 1:4.1), the 9 aperture blades and the USD 899 launch price come from review/press coverage (The-Digital-Picture, DPReview, PetaPixel, ePhotozine) rather than a directly read Tamron spec table; Tamron's own pages confirm the 0.18 m wide-end MOD and a circular diaphragm. Special elements are as Tamron's description states them (2 LD, 2 GM). Minimum aperture could not be verified and is null. Zoom and focus mechanisms not confirmed and omitted. No optical stabilisation.",
+    "famousFor": "One of the most popular third-party standard zooms for Sony E (and later Nikon Z): a light, affordable constant-f/2.8 alternative to first-party 24-70 mm lenses, improved in the G2 version with a VXD linear motor, better optics and closer focusing.",
+    "strengths": [
+      "Sharp across the range with good image quality",
+      "Fast, accurate VXD autofocus",
+      "Light (540 g) and compact, with close focusing to 0.18 m at 28 mm",
+      "Much cheaper than first-party f/2.8 standard zooms"
+    ],
+    "weaknesses": [
+      "No optical stabilisation",
+      "28 mm wide end is less wide than 24-70 mm rivals"
+    ],
+    "bestFor": [
+      "Weddings and events on a budget",
+      "Everyday and travel photography",
+      "Portraits at 75 mm f/2.8",
+      "Close-up detail shots of food and products at 28 mm"
+    ],
+    "sources": [
+      {
+        "title": "28-75mm F/2.8 Di III VXD G2 (Model A063) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a063/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "28-75mm F/2.8 Di III VXD G2 - Tamron Americas",
+        "url": "https://tamron-americas.com/product/28-75mm-f-2-8-di-iii-vxd-g2/",
+        "kind": "official"
+      },
+      {
+        "title": "Tamron announces the launch of 28-75mm F/2.8 Di III VXD G2 (Model A063) for Sony E-mount - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/20210930001033.html",
+        "kind": "press"
+      },
+      {
+        "title": "TAMRON announces the launch of 28-75mm F/2.8 Di III VXD G2 (Model A063) for Nikon Z mount - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/a063z_20240314.html",
+        "kind": "press"
+      },
+      {
+        "title": "Tamron 28-75mm f/2.8 Di III VXD G2 Lens Review - The-Digital-Picture",
+        "url": "https://www.the-digital-picture.com/Reviews/Tamron-28-75mm-f-2.8-Di-III-VXD-G2-Lens.aspx",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 28-75mm F/2.8 Di III VXD G2 Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/tamron-28-75mm-f-2-8-di-iii-vxd-g2-lens-review-35983",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron Brings Its Affordable, Excellent 28-75mm f/2.8 G2 Lens to Nikon Z - PetaPixel",
+        "url": "https://petapixel.com/2024/03/27/tamron-brings-its-affordable-excellent-28-75mm-f-2-8-g2-lens-to-nikon-z/",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-35-150-f2-28-di-iii-vxd",
+    "brand": "Tamron",
+    "name": "Tamron 35-150mm F/2-2.8 Di III VXD (Model A058)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E",
+      "Nikon Z"
+    ],
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": {
+      "min": 35,
+      "max": 150
+    },
+    "maxAperture": {
+      "wide": 2,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 21,
+    "groups": 15,
+    "specialElements": [
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 4
+      },
+      {
+        "kind": "aspherical",
+        "label": "GM (Glass Molded Aspherical)",
+        "count": 3
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.33,
+      "tele": 0.85
+    },
+    "maxMagnification": 0.18,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 1165,
+    "dimensionsMm": {
+      "diameter": 89.2,
+      "length": 158
+    },
+    "filterMm": null,
+    "releaseYear": 2021,
+    "launchPrice": {
+      "amount": 1899,
+      "currency": "USD"
+    },
+    "notes": "Sony E version announced 30 September 2021 and launched 28 October 2021 at USD 1,899; the Nikon Z version was announced in August 2023. Tamron describes it as the first zoom for full-frame mirrorless cameras with an f/2 maximum aperture at the wide end. Tamron gives MOD 0.33 m and 1:5.7 at 35 mm (0.18 = 1:5.7 rounded); the 0.85 m MOD at 150 mm (1:5.9) is from review/database coverage (The-Digital-Picture, Photography Life). Weight and length: Tamron's accessible pages gave them in imperial units (41.1 oz, 6.2 in) for the Sony E version; the metric 1,165 g and 158 mm are from review spec tables and match those figures. Mount-specific Nikon Z weight/length not verified. Filter size left null: one search summary of Tamron's pages said 83 mm while Tamron's accessory listing names an 82 mm front cap, and the conflict could not be settled from a spec table. Minimum aperture not verified (null). Zoom and focus mechanisms not confirmed and omitted. No optical stabilisation.",
+    "famousFor": "The first full-frame mirrorless zoom to open to f/2 at the wide end, covering 35 to 150 mm with f/2-2.8 so that one lens can replace a bag of fast primes for portraits and events.",
+    "strengths": [
+      "Unusually bright f/2-2.8 aperture over a 4.3x zoom range",
+      "Sharp images with attractive background blur for portraits",
+      "Fast, precise VXD autofocus",
+      "Replaces several fast primes for event work"
+    ],
+    "weaknesses": [
+      "Heavy and large (about 1,165 g) for a walk-around lens",
+      "No optical stabilisation",
+      "Expensive by Tamron standards"
+    ],
+    "bestFor": [
+      "Weddings and events with a single lens",
+      "Environmental and head-and-shoulders portraits",
+      "Documentary and street work in mixed light",
+      "Indoor sports and stage performances"
+    ],
+    "sources": [
+      {
+        "title": "35-150mm F/2-2.8 Di III VXD (Model A058) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a058/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "TAMRON 35-150mm F/2-2.8 Di III VXD Lens - Tamron Americas",
+        "url": "https://tamron-americas.com/product/35-150mm-f-2-2-8-di-iii-vxd/",
+        "kind": "official"
+      },
+      {
+        "title": "Tamron announces the launch of 35-150mm F/2-2.8 Di III VXD (Model A058) for Sony E-mount - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/20210930001013.html",
+        "kind": "press"
+      },
+      {
+        "title": "TAMRON announces the launch of 35-150mm F/2-2.8 Di III VXD (Model A058) for Nikon Z mount system - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/a058z_202308024.html",
+        "kind": "press"
+      },
+      {
+        "title": "Tamron 35-150mm f/2-2.8 Di III VXD Review - Photography Life",
+        "url": "https://photographylife.com/reviews/tamron-35-150mm-f-2-2-8",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 35-150mm f/2-2.8 Di III VXD Lens Specifications - The-Digital-Picture",
+        "url": "https://www.the-digital-picture.com/Reviews/Lens-Specifications.aspx?Lens=1585",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 35-150mm F/2-2.8 Di III VXD Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/tamron-35-150mm-f-2-2-8-di-iii-vxd-lens-review-35863",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-70-180-f28-di-iii-vc-vxd-g2",
+    "brand": "Tamron",
+    "name": "Tamron 70-180mm F/2.8 Di III VC VXD G2 (Model A065)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E",
+      "Nikon Z"
+    ],
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": {
+      "min": 70,
+      "max": 180
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 22
+    },
+    "elements": 20,
+    "groups": 15,
+    "specialElements": [
+      {
+        "kind": "super-low-dispersion",
+        "label": "XLD (eXtra Low Dispersion)",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 3
+      },
+      {
+        "kind": "aspherical",
+        "label": "GM (Glass Molded Aspherical)",
+        "count": 2
+      },
+      {
+        "kind": "aspherical",
+        "label": "Hybrid Aspherical",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.3,
+      "tele": 0.85
+    },
+    "maxMagnification": 0.38,
+    "stabilization": {
+      "optical": true,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 855,
+    "dimensionsMm": {
+      "diameter": 83,
+      "length": 156.5
+    },
+    "filterMm": 67,
+    "releaseYear": 2023,
+    "launchPrice": null,
+    "notes": "The official name includes \"VC\": the G2 adds Tamron's VC (Vibration Compensation) optical stabilisation, which the first-generation 70-180mm F/2.8 Di III VXD (Model A056, 2020) lacked. Tamron does not state a CIPA stops rating in the sources found, so stops is null. Sony E version launched 12 October 2023; Nikon Z version launched 23 October 2025 at USD 1,149. Weight and length are Tamron's Sony E figures; Nikon Z figures not verified. Tamron gives maximum magnification 1:2.6 (wide) and 1:4.7 (tele); 0.38 = 1:2.6 rounded, and the 0.3 m wide-end MOD is with autofocus. Launch price of the Sony E version left null: no Tamron page with the MSRP was found, and PetaPixel reports it only as about USD 1,300 (USD 100 above the first version). Zoom and focus mechanisms not confirmed and omitted.",
+    "famousFor": "The second generation of Tamron's compact 70-180mm f/2.8, a popular budget alternative to first-party 70-200 mm f/2.8 zooms; the G2 adds optical stabilisation, much closer focusing at 70 mm and refined optics while staying small and light.",
+    "strengths": [
+      "Very sharp, with more natural bokeh than the first version",
+      "Built-in VC optical stabilisation",
+      "Close focusing to 0.3 m at 70 mm (1:2.6)",
+      "Compact and light for an f/2.8 telephoto zoom, at about half the price of a first-party 70-200"
+    ],
+    "weaknesses": [
+      "Range ends at 180 mm rather than the usual 200 mm",
+      "Slightly heavier and larger than the first-generation model"
+    ],
+    "bestFor": [
+      "Portraits and weddings with compressed, blurred backgrounds",
+      "Indoor sports and school events",
+      "Stage performances and concerts",
+      "Close-up detail shots of flowers and products at 70 mm"
+    ],
+    "sources": [
+      {
+        "title": "70-180mm F/2.8 Di III VC VXD G2 (Model A065) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a065/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "70-180mm F/2.8 Di III VC VXD G2 Lens - Tamron Americas",
+        "url": "https://tamron-americas.com/product/tamron-70-180mm-f-2-8-di-iii-vc-vxd-g2/",
+        "kind": "official"
+      },
+      {
+        "title": "TAMRON announces the launch of 70-180mm F/2.8 Di III VC VXD G2 (Model A065) for Sony E-mount - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/a065_20230914.html",
+        "kind": "press"
+      },
+      {
+        "title": "TAMRON Announces the 70-180mm F/2.8 Di III VC VXD G2 for Nikon Z Mount - Tamron Americas",
+        "url": "https://tamron-americas.com/70-180-g2-for-nikon-z-mount/",
+        "kind": "press"
+      },
+      {
+        "title": "Tamron 70-180mm f/2.8 VXD VC G2: Making a Good Thing Even Better - PetaPixel",
+        "url": "https://petapixel.com/2023/10/27/tamron-70-180mm-f-2-8-vxd-vc-g2-making-a-good-thing-even-better/",
+        "kind": "review"
+      },
+      {
+        "title": "Upgraded Tamron 70-180mm f/2.8 G2 Lens Launches Next Month - PetaPixel",
+        "url": "https://petapixel.com/2023/09/13/upgraded-tamron-70-180mm-f-2-8-g2-lens-launches-next-month/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 70-180mm F2.8 Di III VC VXD G2 Lens Review - The-Digital-Picture",
+        "url": "https://www.the-digital-picture.com/Reviews/Tamron-70-180mm-F2-8-Di-III-VC-VXD-G2-Lens.aspx",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-25-200-f28-56-di-iii-vxd-g2",
+    "brand": "Tamron",
+    "name": "Tamron 25-200mm F/2.8-5.6 Di III VXD G2 (Model A075)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E"
+    ],
+    "format": "full-frame",
+    "category": "standard-zoom",
+    "focalLength": {
+      "min": 25,
+      "max": 200
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 5.6
+    },
+    "minAperture": {
+      "wide": 16,
+      "tele": 32
+    },
+    "elements": 18,
+    "groups": 14,
+    "specialElements": null,
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.16,
+      "tele": 0.8
+    },
+    "maxMagnification": 0.58,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 575,
+    "dimensionsMm": {
+      "diameter": 76.2,
+      "length": 121.5
+    },
+    "filterMm": 67,
+    "releaseYear": 2025,
+    "launchPrice": {
+      "amount": 899,
+      "currency": "USD"
+    },
+    "notes": "Researched as the current successor of the listed 28-200mm F/2.8-5.6 Di III RXD (Model A071, 2020): the G2 widens the short end from 28 to 25 mm and switches to a VXD linear motor. Sony E-mount only. Development announced 9 September 2025, launch announced 21 October 2025, on sale 20 November 2025 at USD 899. Maximum magnification: the launch specification was 1:1.9 at 25 mm (0.16 m MOD); Tamron's lens firmware Ver. 3 (29 July 2026) raises it to 1:2 or greater across 25-70 mm and to 1:1.7 (reported as 0.58x) at 35-50 mm, so 0.58 is the current figure with updated firmware. The 0.8 m MOD at 200 mm is from review/retailer coverage (The-Digital-Picture, B&H), not a directly read Tamron table. Special elements: Tamron mentions XLD and LD glass but the counts could not be verified, so specialElements is null. No VC (Vibration Compensation) in the name or specification, i.e. no optical stabilisation. Zoom and focus mechanisms not confirmed and omitted.",
+    "famousFor": "Tamron's second-generation full-frame all-in-one zoom for Sony E: an 8x range starting at 25 mm with a bright f/2.8 wide end, near half-macro close focusing and a VXD motor in a 575 g body.",
+    "strengths": [
+      "Sharp for an 8x superzoom, excellent below about 100 mm",
+      "Quick, quiet VXD autofocus with reliable tracking",
+      "Compact and light (575 g) with a 67 mm filter",
+      "Near half-macro close-ups at the short end"
+    ],
+    "weaknesses": [
+      "Corners soften beyond about 100 mm",
+      "Aperture drops to f/5.6 at the long end, limiting low-light use",
+      "No optical stabilisation and Sony E-mount only"
+    ],
+    "bestFor": [
+      "One-lens travel photography",
+      "Family events and holidays without lens changes",
+      "Close-ups of flowers, food and details at 25-70 mm",
+      "Casual wildlife and zoo photography at 200 mm"
+    ],
+    "sources": [
+      {
+        "title": "25-200mm F/2.8-5.6 Di III VXD G2 (Model A075) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a075/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "25-200mm F/2.8-5.6 Di III VXD G2 - Tamron Americas",
+        "url": "https://tamron-americas.com/product/25-200mm-f-2-8-5-6-di-iii-vxd-g2/",
+        "kind": "official"
+      },
+      {
+        "title": "TAMRON Announces the Launch of the 25-200mm F/2.8-5.6 Di III VXD G2 Lens - Tamron Americas",
+        "url": "https://tamron-americas.com/launch-announcement-25-200-g2-lens/",
+        "kind": "press"
+      },
+      {
+        "title": "TAMRON Firmware Update Enhances Close-Focusing Performance of the 25-200mm (Model A075) - Tamron Americas",
+        "url": "https://tamron-americas.com/firmware-update-ver3-25-200-a075/",
+        "kind": "official"
+      },
+      {
+        "title": "Tamron just made its 25-200mm focus closer - DPReview",
+        "url": "https://www.dpreview.com/news/tamron-25-200mm-firmware-update-close-focus-v3/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 25-200mm F/2.8-5.6 Di III VXD G2 Lens Review - The-Digital-Picture",
+        "url": "https://www.the-digital-picture.com/Reviews/Tamron-25-200mm-F2-8-5-6-Di-III-VXD-G2-Lens.aspx",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 25-200mm f/2.8-5.6 Di III VXD G2 Review: Travel Light - PetaPixel",
+        "url": "https://petapixel.com/2025/11/13/tamron-25-200mm-f-2-8-5-6-di-iii-vxd-g2-review-travel-light/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 25-200mm f/2.8-5.6 Di III VXD G2 Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/tamron-25-200mm-f-2-8-5-6-di-iii-vxd-g2-lens-review-37454",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-50-400-f45-63-di-iii-vc-vxd",
+    "brand": "Tamron",
+    "name": "Tamron 50-400mm F/4.5-6.3 Di III VC VXD (Model A067)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E",
+      "Nikon Z"
+    ],
+    "format": "full-frame",
+    "category": "telephoto-zoom",
+    "focalLength": {
+      "min": 50,
+      "max": 400
+    },
+    "maxAperture": {
+      "wide": 4.5,
+      "tele": 6.3
+    },
+    "minAperture": {
+      "wide": 22,
+      "tele": 32
+    },
+    "elements": 24,
+    "groups": 18,
+    "specialElements": [
+      {
+        "kind": "super-low-dispersion",
+        "label": "XLD (eXtra Low Dispersion)",
+        "count": 2
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 3
+      },
+      {
+        "kind": "aspherical",
+        "label": "GM (Glass Molded Aspherical)",
+        "count": 1
+      },
+      {
+        "kind": "aspherical",
+        "label": "Hybrid Aspherical",
+        "count": 1
+      }
+    ],
+    "apertureBlades": 9,
+    "minFocusM": {
+      "wide": 0.25,
+      "tele": 1.5
+    },
+    "maxMagnification": 0.5,
+    "stabilization": {
+      "optical": true,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 1155,
+    "dimensionsMm": {
+      "diameter": 88.5,
+      "length": 183.4
+    },
+    "filterMm": 67,
+    "releaseYear": 2022,
+    "launchPrice": {
+      "amount": 1299,
+      "currency": "USD"
+    },
+    "zoomMechanism": "extending",
+    "notes": "Sony E version: development announced 27 July 2022, on sale 22 September 2022 at USD 1,299 (price and date from PetaPixel/DPReview coverage of Tamron's announcement). Nikon Z version launched 19 September 2024 at USD 1,299 (Tamron Americas); it weighs 1,180 g and is 185.8 mm long. Weight and length above are Tamron's Sony E figures, without the optional Arca-Swiss-compatible tripod mount, which is sold separately. The 88.5 mm maximum diameter was read from Tamron's Nikon Z listing; the search summary indicated the same diameter for the Sony E version. Tamron gives maximum magnification 1:2 at 50 mm (0.25 m MOD) and 1:4 at 400 mm (1.5 m MOD). VC (Vibration Compensation) optical stabilisation is built in, but no CIPA stops rating was found, so stops is null. Extending zoom barrel is from reviews (PetaPixel/Photography Life). Category is telephoto-zoom because the lens stops at 400 mm (the brief reserves super-telephoto for zooms reaching 500 mm or more).",
+    "famousFor": "The first ultra-telephoto zoom to start at 50 mm, covering an 8x range to 400 mm with stabilisation in a body far lighter than typical 100-400 or 150-600 mm lenses, and doubling as a half-macro lens at 50 mm.",
+    "strengths": [
+      "Unique 50-400 mm range covers normal to long telephoto in one lens",
+      "Good image quality throughout the zoom range for the price",
+      "Built-in VC stabilisation and fast VXD autofocus",
+      "1:2 half-macro close focusing at 50 mm"
+    ],
+    "weaknesses": [
+      "Less sharp at 400 mm than premium 100-400 mm zooms or 400 mm primes",
+      "Barrel extends a long way at 400 mm and can wobble slightly",
+      "Tripod mount not included"
+    ],
+    "bestFor": [
+      "Wildlife and birding safaris with a single lens",
+      "Outdoor sports from the sidelines",
+      "Airshows and motorsport",
+      "Close-ups of flowers and insects at 50 mm"
+    ],
+    "sources": [
+      {
+        "title": "50-400mm F/4.5-6.3 Di III VC VXD (Model A067) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a067/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "50-400mm F/4.5-6.3 Di III VC VXD - Tamron Americas",
+        "url": "https://tamron-americas.com/product/50-400mm-f-4-5-6-3-di-iii-vc-vxd/",
+        "kind": "official"
+      },
+      {
+        "title": "Groundbreaking ultra-telephoto zoom starts at 50mm, 50-400mm (Model A067) for Nikon Z mount system - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/a067z_20240829.html",
+        "kind": "press"
+      },
+      {
+        "title": "Tamron's 50-400mm f/4.5-6.3 is Coming September 22 for $1,299 - PetaPixel",
+        "url": "https://petapixel.com/2022/08/25/tamrons-50-400mm-f-4-5-6-3-is-coming-september-22-for-1299/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 50-400mm f/4.5-6.3 Review - Photography Life",
+        "url": "https://photographylife.com/reviews/tamron-50-400mm-f-4-5-6-3",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 50-400mm f/4.5-6.3 Di III Review: Not Your Average All-In-One - PetaPixel",
+        "url": "https://petapixel.com/2022/10/12/tamron-50-400mm-f-4-5-6-3-di-iii-review-not-your-average-all-in-one/",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-150-500-f5-67-di-iii-vc-vxd",
+    "brand": "Tamron",
+    "name": "Tamron 150-500mm F/5-6.7 Di III VC VXD (Model A057)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E",
+      "Nikon Z",
+      "Fujifilm X"
+    ],
+    "format": "full-frame",
+    "category": "super-telephoto",
+    "focalLength": {
+      "min": 150,
+      "max": 500
+    },
+    "maxAperture": {
+      "wide": 5,
+      "tele": 6.7
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 25,
+    "groups": 16,
+    "specialElements": [
+      {
+        "kind": "super-low-dispersion",
+        "label": "XLD (eXtra Low Dispersion)",
+        "count": 1
+      },
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 5
+      },
+      {
+        "kind": "aspherical",
+        "label": "Hybrid Aspherical",
+        "count": 2
+      }
+    ],
+    "apertureBlades": 7,
+    "minFocusM": {
+      "wide": 0.6,
+      "tele": 1.8
+    },
+    "maxMagnification": 0.32,
+    "stabilization": {
+      "optical": true,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 1725,
+    "dimensionsMm": {
+      "diameter": 93,
+      "length": 209.6
+    },
+    "filterMm": 82,
+    "releaseYear": 2021,
+    "launchPrice": {
+      "amount": 1379.99,
+      "currency": "GBP"
+    },
+    "notes": "Tamron's first ultra-telephoto zoom reaching 500 mm for full-frame mirrorless. Sony E version on sale June 2021; a Fujifilm X-mount version (Model A057 'X', for APS-C bodies) was announced in September 2022 and a Nikon Z version in October 2023. Figures are Tamron's Sony E values: weight 1,725 g without the included Arca-Swiss-compatible tripod mount (the mount itself weighs 155 g). Tamron gives MOD 0.6 m at 150 mm and 1.8 m at 500 mm, maximum magnification 1:3.1 at 150 mm (0.32 = 1:3.1 rounded). Non-official values: the 7 aperture blades and the launch price come from reviews (ePhotozine, PetaPixel). Launch price is ePhotozine's UK SRP at launch; US figures in the coverage found were inconsistent (PetaPixel about USD 1,400 at launch, another summary USD 1,200), so no USD figure is given. Minimum aperture could not be verified (null). The maximum aperture steps from f/5 (150-237 mm) to f/5.6, f/6.3 and f/6.7 (480-500 mm), per PetaPixel. VC optical stabilisation is built in, but no CIPA stops rating was found. Zoom mechanism not confirmed and omitted.",
+    "famousFor": "A comparatively compact and affordable 500 mm stabilised zoom that made long-telephoto wildlife shooting accessible on Sony E (and later Nikon Z and Fujifilm X), competing with first-party 200-600 mm lenses on size, weight and price.",
+    "strengths": [
+      "Impressive sharpness for its price class",
+      "Smaller, lighter and cheaper than first-party 500-600 mm zooms",
+      "Built-in VC stabilisation and fast VXD autofocus",
+      "Short 75-degree zoom-ring rotation for quick framing changes"
+    ],
+    "weaknesses": [
+      "Slow f/6.7 maximum aperture at the long end limits low-light use",
+      "Still heavy (about 1.7 kg) for long handheld sessions",
+      "Only 7 aperture blades"
+    ],
+    "bestFor": [
+      "Birds and wildlife at distance",
+      "Field sports and motorsport from the sidelines",
+      "Airshows",
+      "Moon and distant-landscape compression shots"
+    ],
+    "sources": [
+      {
+        "title": "150-500mm F/5-6.7 Di III VC VXD (Model A057) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a057/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "150-500mm F/5-6.7 Di III VC VXD - Tamron Americas",
+        "url": "https://tamron-americas.com/product/150-500mm-f-5-6-7-di-iii-vc-vxd/",
+        "kind": "official"
+      },
+      {
+        "title": "150-500mm F/5-6.7 Di III VC VXD X (Model A057) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/a057x/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "TAMRON announces the launch of 150-500mm F/5-6.7 Di III VC VXD (Model A057) for Nikon Z mount system - TAMRON News",
+        "url": "https://www.tamron.com/global/consumer/news/detail/a057z_20231010.html",
+        "kind": "press"
+      },
+      {
+        "title": "Tamron 150-500mm f/5-6.7 Di III VC VXD (A057) Lens Review - ePHOTOzine",
+        "url": "https://www.ephotozine.com/article/tamron-150-500mm-f-5-6-7-di-iii-vc-vxd--a057--lens-review-35567",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 150-500mm f/5-6.7 Review: A Little Weird, a Lot Awesome - PetaPixel",
+        "url": "https://petapixel.com/2021/06/21/tamron-150-500mm-f-5-6-7-review-a-little-weird-a-lot-awesome/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron Launches 150-500mm Super-Telephoto Zoom for Sony E-Mount - PetaPixel",
+        "url": "https://petapixel.com/2021/04/21/tamron-launches-150-500mm-super-telephoto-zoom-for-sony-e-mount/",
+        "kind": "review"
+      },
+      {
+        "title": "Tamron 150-500mm f/5-6.7 Di III VC VXD Review (page 4) - Photography Life",
+        "url": "https://photographylife.com/reviews/tamron-150-500mm-f-5-6-7-di-iii-vc-vxd/4",
+        "kind": "review"
+      }
+    ],
+    "checked": "2026-09-26"
+  },
+  {
+    "id": "tamron-90-f28-di-iii-macro-vxd",
+    "brand": "Tamron",
+    "name": "Tamron 90mm F/2.8 Di III MACRO VXD (Model F072)",
+    "mount": "Sony E",
+    "mounts": [
+      "Sony E"
+    ],
+    "format": "full-frame",
+    "category": "macro",
+    "focalLength": {
+      "min": 90,
+      "max": 90
+    },
+    "maxAperture": {
+      "wide": 2.8,
+      "tele": 2.8
+    },
+    "minAperture": {
+      "wide": null,
+      "tele": null
+    },
+    "elements": 15,
+    "groups": 12,
+    "specialElements": [
+      {
+        "kind": "low-dispersion",
+        "label": "LD (Low Dispersion)",
+        "count": 4
+      }
+    ],
+    "apertureBlades": 12,
+    "minFocusM": {
+      "wide": 0.23,
+      "tele": 0.23
+    },
+    "maxMagnification": 1,
+    "stabilization": {
+      "optical": false,
+      "stops": null
+    },
+    "autofocus": "VXD (Voice-coil eXtreme-torque Drive) linear motor",
+    "weightG": 630,
+    "dimensionsMm": {
+      "diameter": 79.2,
+      "length": 126.5
+    },
+    "filterMm": null,
+    "releaseYear": null,
+    "launchPrice": null,
+    "notes": "Only partly researched: the session's shared web-search budget ran out after one official-domain search for this lens, so only the values in that result are filled. From Tamron's pages: 15 elements in 12 groups with 4 LD elements, 12 aperture blades, MOD 0.23 m at 1:1, VXD linear motor, 630 g, 79.2 x 126.5 mm, BBAR-G2 coating. Left null because they could not be verified: minimum aperture, filter size, release year and launch price. The weight and length are as returned by the search and could not be tied to a specific mount version. Mounts: a Sony E version is listed by Tamron Europe; whether a Nikon Z version exists could not be checked, so only Sony E is given. No 'VC' in the name, i.e. no optical stabilisation. No review search could be run, so the descriptive text is based on Tamron's published specifications only and should be revisited against independent reviews.",
+    "famousFor": "Tamron's life-size (1:1) 90 mm macro for full-frame mirrorless cameras, pairing a VXD linear focus motor with a 12-blade circular aperture, in the tradition of Tamron's long-running 90 mm macro line.",
+    "strengths": [
+      "True 1:1 life-size magnification at 0.23 m",
+      "12-blade circular aperture for rounded out-of-focus highlights",
+      "VXD linear-motor autofocus",
+      "Four LD elements to control chromatic aberration"
+    ],
+    "weaknesses": [
+      "No optical stabilisation; relies on in-body stabilisation for handheld close-ups",
+      "Shorter working distance at 1:1 than longer 150-180 mm macro lenses"
+    ],
+    "bestFor": [
+      "Life-size macro of insects and flowers",
+      "Product and jewellery photography",
+      "Head-and-shoulders portraits at f/2.8",
+      "Close-up detail shots of food and textures"
+    ],
+    "sources": [
+      {
+        "title": "90mm F/2.8 Di III MACRO VXD (Model F072) | Specifications - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/f072/spec.html",
+        "kind": "official"
+      },
+      {
+        "title": "90mm F/2.8 Di III MACRO VXD (Model F072) | Lenses - TAMRON",
+        "url": "https://www.tamron.com/global/consumer/lenses/f072/",
+        "kind": "official"
+      },
+      {
+        "title": "TAMRON 90mm F/2.8 Di III MACRO VXD - TAMRON Europe",
+        "url": "https://www.tamron.eu/en/p/1b2043f5-4ad5-4297-bdde-06e677809502/90mm-f28-di-iii-macro-vxd",
+        "kind": "official"
+      },
+      {
+        "title": "Tamron 90mm F/2.8 Di III Macro VXD: A New Benchmark in Macro Photography Lenses - Tamron Americas",
+        "url": "https://tamron-americas.com/photo-tip/tamron-90mm-f-2-8-di-iii-macro-vxd-a-new-benchmark-in-macro-photography/",
+        "kind": "official"
+      }
+    ],
+    "checked": "2026-09-26"
+  }
+]
