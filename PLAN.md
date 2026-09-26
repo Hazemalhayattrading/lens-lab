@@ -179,9 +179,19 @@ this section and `git log`, then continue with the first unchecked phase.
   (comparable across formats), subject sharp / outside the frame, weight. Presets from the data: phone vs full frame
   (iPhone main vs RF 24 mm f/1.4), APS-C vs full frame (XF 33 f/1.4 vs RF 50 f/1.2), wide vs tele (16 mm vs 600 mm),
   f/1.2 vs f/8.
-- [ ] **2.12 — Polish loop**: Playwright screenshots (desktop + mobile) after each visual phase, critique, iterate;
+- [x] **2.12 — Polish loop**: Playwright screenshots (desktop + mobile) after each visual phase, critique, iterate;
   lazy loading, quality toggle, zero console errors.
-- [ ] **2.13 — Finish**: README, SOURCES.md, tests, `npm run build`, pull request with screenshots.
+  *Done:* screenshots of every view at 1600×900 and 390×844 (`scripts/shots.mjs`, now also writes JPEG), no console
+  errors. A 38-finding review of Phases 2.5–2.10 (physics, geometry, rendering, interaction) was fixed in clusters:
+  **physics** F1 F2 F4 F5 F9 F10 F13 F31 F32 F38 (tele zooms no longer reach 1:1 — a published maximum magnification
+  is the lens maximum; hyperfocal distance constant across focus for breathing lenses; continuous zoom; closest focus
+  below 0.2 m reachable; aperture animation), with three data gaps filled on the way (Z 70-200 II 0.3×, RF 70-200 Z
+  0.49/0.68 m and 0.3×, XF 150-600 0.24×); **interaction** F30 F33–F37 (the nearest ring takes the pointer, verified
+  in the browser; memoised lazy views; "Back to the lab" keeps zoom; teaching-lens scale at focal-plane distances;
+  assumed blade counts shown as unverified). *Open follow-ups* (not in this pass): geometry F11 F12 F14–F19 F21 F22
+  F29 (layout packing / barrel details) and rendering F3/F23 F6–F8 F24–F28 (mip-level sampling in the near-field DoF
+  pass, shadow pass layers, haze colour, sky shader pow, per-frame allocations).
+- [x] **2.13 — Finish**: README, SOURCES.md, tests, `npm run build`, pull request with screenshots.
 
 *Scope change (2026-09-25, requested by the user): the Arabic / RTL work — former phases 2.4 (i18n foundation) and 2.11
 (Arabic content) — is dropped; the app is English only. The i18n code that had been started was removed; the other

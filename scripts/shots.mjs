@@ -1,6 +1,6 @@
 // Screenshot tool for visual reviews (not part of the app build).
 // Usage: node scripts/shots.mjs <baseUrl> <outDir> <shots.json>   (uses the globally installed playwright)
-// shots.json: [{ "name": "hero", "width": 1600, "height": 900, "query": "capture", "eval": "js...", "frames": 3, "wait": 0 }]
+// shots.json: [{ "name": "hero", "width": 1600, "height": 900, "query": "capture", "eval": "js...", "frames": 3, "wait": 0, "ext": "jpg" }]
 import { execSync } from 'node:child_process';
 import { mkdirSync, readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -32,8 +32,8 @@ for (const s of shots) {
   if (s.eval) await page.evaluate(s.eval);
   if (s.frames) await page.evaluate((n) => window.lensLab.renderFrames(n), s.frames);
   if (s.wait) await page.waitForTimeout(s.wait);
-  const file = join(outDir, `${s.name}.png`);
-  await page.screenshot({ path: file, timeout: 180000 });
+  const file = join(outDir, `${s.name}.${s.ext ?? 'png'}`);
+  await page.screenshot({ path: file, timeout: 180000, ...(s.ext === 'jpg' ? { quality: s.quality ?? 86 } : {}) });
   console.log(`${file}${logs.length ? `\n  ${logs.join('\n  ')}` : ''}`);
   await ctx.close();
 }
