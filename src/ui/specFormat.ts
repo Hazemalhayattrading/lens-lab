@@ -75,7 +75,8 @@ export function magnificationText(m: number | null): string | null {
 }
 
 export function constructionText(d: LensData): string | null {
-  if (d.elements === null || d.groups === null) return null;
+  if (d.elements === null) return null;
+  if (d.groups === null) return `${d.elements} elements (groups not published)`;
   return `${d.elements} elements in ${d.groups} groups`;
 }
 

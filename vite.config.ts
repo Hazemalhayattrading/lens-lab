@@ -1,3 +1,4 @@
+import { configDefaults } from 'vitest/config';
 import { defineConfig } from 'vite';
 
 // GitHub Pages serves the site from https://<user>.github.io/lens-lab/
@@ -15,5 +16,9 @@ export default defineConfig({
   },
   server: {
     host: true,
+  },
+  test: {
+    // agent worktrees live under .claude/ — never run their copies of the tests
+    exclude: [...configDefaults.exclude, '.claude/**'],
   },
 });

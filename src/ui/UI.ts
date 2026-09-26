@@ -524,7 +524,9 @@ export class UI {
     else if (d) chips.push(unver('MFD'));
     else chips.push(`MFD ${(p.mfd.wide / 1000).toFixed(2)} m`);
     const verifiedElements = !lens.assumed.includes('elements');
-    chips.push(verifiedElements ? `${lens.elements} elements / ${lens.groups} groups` : unver('elements'));
+    chips.push(
+      !verifiedElements ? unver('elements') : lens.assumed.includes('groups') ? `<span>${lens.elements} elements</span>${unver('groups')}` : `${lens.elements} elements / ${lens.groups} groups`,
+    );
     if (d?.maxMagnification) chips.push(`${d.maxMagnification}× max`);
     this.$.lensSpecs.innerHTML = chips.map((c) => (c.startsWith('<') ? c : `<span>${c}</span>`)).join('');
     // special glass: the colour code of the cutaway

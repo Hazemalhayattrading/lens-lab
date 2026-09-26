@@ -326,7 +326,12 @@ export class LibraryView {
     const sources = d.sources
       .map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a> <span class="src-kind ${s.kind}">${s.kind}</span> <span class="src-dom">${esc(sourceDomain(s))}</span></li>`)
       .join('');
-    const layoutNote = `Element and group counts${d.specialElements ? ' and special glass' : ''} are ${d.brand}'s; shapes, spacings and group motion are schematic${lens.assumed.includes('dimensions') ? ', barrel proportions assumed (dimensions unverified)' : ''}.`;
+    const counts = lens.assumed.includes('elements')
+      ? `Construction not published — ${lens.elements} elements drawn as an example`
+      : lens.assumed.includes('groups')
+        ? `The element count is ${d.brand}'s (the group count is not published — ${lens.groups} groups assumed)`
+        : `Element and group counts are ${d.brand}'s`;
+    const layoutNote = `${counts}${d.specialElements?.length ? `, special glass as listed by ${d.brand}` : ''}; shapes, spacings and group motion are schematic${lens.assumed.includes('dimensions') ? ', barrel proportions assumed (dimensions unverified)' : ''}.`;
     this.$detail.innerHTML = `
 <div class="lib-d">
   <button class="btn lib-d-back mobile-only" data-act="back">← All lenses</button>

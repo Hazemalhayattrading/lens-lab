@@ -18,7 +18,7 @@ export type LayoutKind =
   | 'zoom-super';
 
 /** A value the simulation had to assume because the spec is unverified. */
-export type Assumption = 'minAperture' | 'minFocus' | 'dimensions' | 'elements' | 'blades';
+export type Assumption = 'minAperture' | 'minFocus' | 'dimensions' | 'elements' | 'groups' | 'blades';
 
 export interface LabLens {
   id: string;
@@ -157,9 +157,15 @@ export function labLensFromData(d: LensData): LabLens {
 
   let elements = d.elements;
   let groups = d.groups;
-  if (elements === null || groups === null) {
+  if (elements === null) {
+    // no published construction: the family's typical counts
     [elements, groups] = FALLBACK_ELEMENTS[layout];
     assumed.push('elements');
+  } else if (groups === null) {
+    // published element count, group count unknown: keep the elements, assume the family's cementing ratio
+    const [fe, fg] = FALLBACK_ELEMENTS[layout];
+    groups = Math.max(1, Math.min(elements, Math.round((elements * fg) / fe)));
+    assumed.push('groups');
   }
   let blades = d.apertureBlades;
   if (blades === null) {
