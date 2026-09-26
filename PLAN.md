@@ -89,10 +89,10 @@ this section and `git log`, then continue with the first unchecked phase.
 ## Phases
 
 - [x] **2.0 — Plan & schema**: this section, data model (`src/data/types.ts`), research tooling check.
-- [~] **2.1 — Lens research** — *partial, see "Research status" below*: Canon, Nikon, Sony, Fujifilm, Panasonic, Leica, Sigma, Tamron — 6–10 current lenses each
+- [x] **2.1 — Lens research** — *78 lenses, see "Research status" below*: Canon, Nikon, Sony, Fujifilm, Panasonic, Leica, Sigma, Tamron — 6–10 current lenses each
   (ultra-wide, standard, portrait, macro, standard zoom, tele zoom, super-tele where the brand has one), official specs +
   review-based "famous for / strengths / weaknesses / best for", sources per lens → `data/lenses/*.json`.
-- [~] **2.2 — Phone research** — *partial, see "Research status" below*: current flagships (searched, not from memory) of Apple, Samsung, Google + 3 other makers,
+- [x] **2.2 — Phone research** — *7 phones, see "Research status" below*: current flagships (searched, not from memory) of Apple, Samsung, Google + 3 other makers,
   every camera's sensor / pixel / MP / eq. focal length / aperture / zoom / OIS / AF → `data/phones/phones.json`;
   `data/SOURCES.md` generated from the data.
 - [x] **2.3 — Physics v2**: generic lens model (focal range, variable max aperture, aperture range, MFD from the focal
@@ -232,26 +232,29 @@ Every row was worked out by hand (checked with a pocket-calculator script) and i
 | **O** phone cameras (`tests/phoneOptics.test.ts`) | 48 MP × 1.22 µm: px = √(48e6·4/3) = **8000** → **9.76 × 7.32 mm** (matches 1/1.28" ≈ 10 × 7.5) · 24 mm eq → real f = 24/3.4613 = **6.93 mm**, f/1.48 → eq **f/5.1**, FOV 2·atan(43.267/48) = **84.1°** · 5× of 24 mm → **120 mm** eq (computed, labelled) · DoF at 2 m, f/1.48, c = 0.00867: H = 6.93²/(1.48·0.00867) + 6.93 ≈ **3754 mm**, u ≈ 1993 → near ≈ **1.30 m**, far ≈ **4.24 m** (the lens stays at v, so both limits add the same v — same convention as `lensState`, asserted equal) | ✅ |
 | **P** illustrative layouts (`tests/opticalLayout.test.ts`) | invariants, for every library lens + one synthetic lens per design family: element count = published, groups = elements − cemented joins = published, each cemented pair shares its contact surface (r₁' = −r₂, touching vertices), edge thickness > 0.5 mm, clear aperture < barrel inner radius and rear element < mount throat, min axial clearance > 0.2 mm between neighbours at z ∈ {0, ¼, ½, ¾, 1} × focus ∈ {0, ½, 1}, zoom / focus groups move, entrance pupil ≤ front element | ✅ |
 
-## Research status (updated 2026-09-25)
+## Research status (updated 2026-09-26)
 
-Researched with the method in `data/RESEARCH.md`, validated by `tests/data.test.ts`, listed with sources in
-`data/SOURCES.md` (`npm run sources`).
+Researched with the method in `data/RESEARCH.md` (official pages first, reviews only for gaps and the text), then
+audited by a second, independent agent per file that tried to prove the data wrong (schema, units, versions,
+special-glass normalisation, magnification vs closest focus, sources on the maker's domain, neutral text). Validated
+by `tests/data.test.ts`; every product with its sources and check date is in `data/SOURCES.md` (`npm run sources`).
 
-| File | Done | Still to research |
+| File | Products | Notes |
 |---|---|---|
-| `data/lenses/canon.json` | 10/10 | — |
-| `data/lenses/nikon.json` | 10/10 | — |
-| `data/lenses/sony.json` | 3/10 (16-35 GM II, 24 GM, 50 GM) | 85 GM II, 100 Macro GM / 90 Macro G, 24-70 GM II, 70-200 GM II, 200-600 G, 400-800 G, 600 GM |
-| `data/lenses/fujifilm.json` | 4/9 (8-16, 23, 33, 56) | XF80 Macro, XF16-55 II, XF50-140, XF150-600, GF110 |
-| `data/lenses/panasonic.json` | 0/9 | all (list in the task prompts, see git history of this section) |
-| `data/lenses/leica.json` | 0/10 | all |
-| `data/lenses/sigma.json` | 0/10 | all |
-| `data/lenses/tamron.json` | 0/10 | all |
-| `data/phones/phones-apple-samsung-google.json` | 3/3 (iPhone 18 Pro / Pro Max, Galaxy S26 Ultra, Pixel 11 Pro / Pro XL) | — |
-| `data/phones/phones-xiaomi-vivo-huawei.json` | 0/3 | Xiaomi, vivo, Huawei flagships (search for the current models first) |
+| `data/lenses/canon.json` | 10 | RF 15-35, 24 VCM, 50 f/1.2, 50 f/1.8, 85 f/1.2, 100 Macro, 24-70, 70-200 Z, 100-500, 600 f/4 |
+| `data/lenses/nikon.json` | 10 | Z 14-24, 35 f/1.2, 50 f/1.2, 58 Noct, 85 f/1.2, MC 105, 24-70 II, 70-200 II, 180-600, 600 TC |
+| `data/lenses/sony.json` | 10 | FE 16-35 GM II, 24 GM, 50 GM, 85 GM II, 100 Macro GM, 24-70 GM II, 70-200 GM II, 200-600 G, 400-800 G, 600 GM |
+| `data/lenses/fujifilm.json` | 9 | XF 8-16, 23, 33, 56, 80 Macro, 16-55 II, 50-140, 150-600; GF 110 |
+| `data/lenses/panasonic.json` | 9 | S 14-28, S PRO 50, S 50, S 85, S 100 Macro, S PRO 24-70, S PRO 70-200, S 28-200; LEICA DG 100-400 II |
+| `data/lenses/leica.json` | 10 | SL 16-35, M 35 Summilux, M 50 Noctilux, M 50 APO-Summicron, M 50 Summilux, SL 90 APO, SL 100 APO-Macro, SL 24-70, SL 90-280, SL 100-400 |
+| `data/lenses/sigma.json` | 10 | 14 f/1.4, 35 f/1.2 II, 50 f/1.2, 85 f/1.4, 105 Macro, 28-45, 24-70 II, 70-200 Sports, 300-600 f/4, 500 f/5.6 |
+| `data/lenses/tamron.json` | 10 | 16-30 G2 (successor of the 17-28), 20-40, 28-75 G2, 35-150, 70-180 G2, 25-200 G2 (successor of the 28-200), 50-400, 150-500, 90 Macro, 20 f/2.8 |
+| `data/phones/phones-apple-samsung-google.json` | 3 | iPhone 18 Pro / Pro Max, Galaxy S26 Ultra, Pixel 11 Pro / Pro XL |
+| `data/phones/phones-xiaomi-vivo-huawei-oppo.json` | 4 | Xiaomi 17 Ultra (the newer 18 Pro / Pro Max is not the top camera model — noted), vivo X300 Ultra, Huawei Pura 90 Pro Max, OPPO Find X9 Ultra |
 
-**Blocker:** this session's web-search budget (200 searches, `CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION`) is used up,
-and direct page fetches are blocked by the network policy, so the remaining products cannot be verified here.
-Nothing is filled in from memory. To finish: run the remaining research in a new session (fresh budget) or with a
-higher budget — one agent per file, each reading `data/RESEARCH.md` first and appending to the existing file.
+Values the researchers and auditors could not confirm are `null` and appear as *unverified* in the UI (e.g. several
+minimum apertures, some diameters, launch prices with conflicting sources). Conflicts are explained in each product's
+`notes`. Limits: the web-search budget is 200 searches per session and direct page fetches are blocked by the
+network policy, so every value comes from search results on the official domains (and cited reviews); the 3D
+arrangement of the phone camera modules (`moduleLayout`) is an approximation, as noted in the data.
 The app loads whatever is in `data/`, so new files/entries appear in the library without code changes.
