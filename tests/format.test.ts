@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { fmtDistance, fmtDofCm, fmtF, fmtRange, fmtRatio } from '../src/ui/format';
+import { depthMap } from '../src/scene/layout';
+import { fmtDistance, fmtDofCm, fmtF, fmtRange, fmtRatio, splitDistance } from '../src/ui/format';
 
 describe('UI formatters', () => {
   it('formats distances across scales', () => {
@@ -23,6 +24,32 @@ describe('UI formatters', () => {
     expect(fmtF(1.78)).toBe('f/1.78');
     expect(fmtF(2.8)).toBe('f/2.8');
     expect(fmtF(16)).toBe('f/16');
+  });
+
+  it('splits the big Focus readout with the same units, km at the far end of the ladder (review F38)', () => {
+    expect(splitDistance(786)).toEqual({ value: '78.6', unit: 'cm' });
+    expect(splitDistance(2000)).toEqual({ value: '2.00', unit: 'm' });
+    expect(splitDistance(30000)).toEqual({ value: '30.0', unit: 'm' });
+    expect(splitDistance(200000)).toEqual({ value: '200', unit: 'm' });
+    expect(splitDistance(9.21e7)).toEqual({ value: '92.1', unit: 'km' }); // was "92100.0 m"
+    expect(splitDistance(9.283e8)).toEqual({ value: '928', unit: 'km' }); // was "928317.8 m"
+    expect(splitDistance(Infinity)).toEqual({ value: '∞', unit: '' });
+    expect(fmtDistance(9.21e7)).toBe('92.1 km');
+    expect(fmtDistance(9.283e8)).toBe('928 km');
+    // beyond 99 999 km a power of ten keeps the number short
+    expect(splitDistance(5.24e10)).toEqual({ value: '52400', unit: 'km' });
+    expect(splitDistance(1.984e11)).toEqual({ value: '2·10⁵', unit: 'km' });
+    expect(fmtDistance(1.995e12)).toBe('2·10⁶ km');
+    expect(fmtDistance(9.6e12)).toBe('1·10⁷ km');
+    expect(fmtDistance(3e21)).toBe('3·10¹⁵ km');
+    // the same number in the big readout and the slider output, and at most five digits at every
+    // slider step (the 27 px readout cell holds five digits + "km" down to a 1024 px window)
+    for (let i = 0; i <= 999; i++) {
+      const d = depthMap.fromU(i / 1000);
+      const s = splitDistance(d);
+      expect(fmtDistance(d)).toBe(`${s.value} ${s.unit}`);
+      expect([...s.value.replace('.', '')].length).toBeLessThanOrEqual(5);
+    }
   });
 
   it('formats depth of field and reproduction ratios', () => {

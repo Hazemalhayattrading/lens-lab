@@ -88,9 +88,12 @@ export class LabState {
   get minFocus(): number {
     return mfdAtZoom(this.lens.physics, this.zoom);
   }
-  /** Ladder position of the closest focus (the scene starts at 0). */
+  /**
+   * Ladder position of the closest focus. The ladder starts (u = 0) at 0.2 m; a lens that focuses
+   * closer gets u < 0 (the map extends smoothly below its start), so its whole range stays reachable.
+   */
   get uMin(): number {
-    return clamp(depthMap.toU(this.minFocus), 0, 1);
+    return Math.min(depthMap.toU(this.minFocus), 1);
   }
   get u(): number {
     return clamp(this.focusU.value, this.uMin, 1);
@@ -109,7 +112,8 @@ export class LabState {
     return minApertureAtZoom(this.lens.physics, this.zoom);
   }
   get fNumber(): number {
-    if (this.wideOpen) return this.maxAperture;
+    // wide open tracks the zoom's widest aperture, once the stops animation towards it has finished
+    if (this.wideOpen && !this.stops.active) return this.maxAperture;
     return clamp(fromStops(this.stops.value), this.maxAperture, this.minAperture);
   }
   get explode(): number {
@@ -135,9 +139,18 @@ export class LabState {
     this.changed = true;
   }
 
+  /**
+   * Zooming to a longer closest focus only clamps the focus in the getters (zooming back restores
+   * it); a new focus movement starts from where the focus actually is.
+   */
+  private rebaseFocus(): void {
+    if (this.focusU.value !== this.u) this.focusU.set(this.u);
+  }
+
   /** Animate to a focus distance (mm from the focal plane). */
   focusTo(distance: number, source: FocusSource = 'button', duration?: number): void {
     const u = clamp(depthMap.toU(Math.max(distance, this.minFocus)), this.uMin, 1);
+    this.rebaseFocus();
     const d = duration ?? 0.55 + Math.abs(u - this.focusU.value) * 1.1;
     this.followU = null;
     this.focusU.start(u, d);
@@ -151,6 +164,7 @@ export class LabState {
 
   /** Direct manipulation (slider): follow the target with a short, smooth lag. u is ladder space. */
   followFocusU(u: number, source: FocusSource): void {
+    this.rebaseFocus();
     this.followU = clamp(u, this.uMin, 1);
     this.lastFocusSource = source;
     this.changed = true;
@@ -165,10 +179,11 @@ export class LabState {
   }
 
   setAperture(n: number): void {
+    // start from the f-number on screen (wide open it follows the zoom, not the stored stops)
+    const from = this.fNumber;
     this.wideOpen = n <= this.maxAperture * 1.01;
     const target = clamp(n, this.maxAperture, this.minAperture);
     this.apertureTarget = target;
-    const from = this.fNumber;
     this.stops.set(toStops(from));
     this.stops.start(toStops(target), 0.5 + Math.abs(toStops(target) - toStops(from)) * 0.09, easeInOutCubic);
     this.changed = true;

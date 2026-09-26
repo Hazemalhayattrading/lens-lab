@@ -12,9 +12,10 @@
  *               reach its *published* maximum magnification exactly at its *published* MFD
  *               (thin-lens conjugates: u = f(1+m)/m, v = f(1+m), T = f(1+m)²/m).
  *               This is focus breathing: most internally focusing lenses get shorter up close.
+ *               Zooms reach the published maximum at its zoom end and never exceed it elsewhere.
  */
 import { cocForSensor, diagonal, type SensorSize } from './formats';
-import { angleOfView, blurDiameterSigned, dofLimits, hyperfocal } from './thinLens';
+import { angleOfView, blurDiameterSigned, dofLimits } from './thinLens';
 
 export interface LensPhysicsSpec {
   focal: { min: number; max: number };
@@ -24,7 +25,7 @@ export interface LensPhysicsSpec {
   mfd: { wide: number; tele: number };
   /** Published maximum magnification (null = unverified → fixed focal length, no breathing). */
   maxMagnification: number | null;
-  /** Zoom end the published magnification refers to. */
+  /** Zoom end the published magnification refers to (makers quote it at the tele end). */
   maxMagAt: 'wide' | 'tele';
   sensor: SensorSize;
   /** Override for the acceptable circle of confusion (default: diagonal / 1442). */
@@ -137,24 +138,62 @@ function monotonic(c: FocusCurve): boolean {
   return true;
 }
 
-/** The focus curve of the lens at zoom z (see the header for the model). */
+/**
+ * Largest magnification ≤ m the breathing model can be fitted to at focal length f and closest
+ * focus T while the ring still focuses monotonically (T falls all the way from ∞ to the MFD).
+ * With f_e(m) = f + k·m, dT/dm < 0 on (0, m_max] ⇔ h(m_max) = f(1 + m_max)³ − 2T·m_max² > 0
+ * (for m_max < 2). h(0) = f > 0; h can only dip below zero for T > 3f (then it has a local maximum
+ * at x₁ < 1 and a local minimum at x₂ > 1). m_max is then limited to the first root of h, so the
+ * model stays continuous in z instead of switching to a different curve.
+ */
+function monotonicMagnification(f: number, T: number, m: number): number {
+  const h = (x: number) => f * (1 + x) ** 3 - 2 * T * x * x;
+  // critical points of h: 3f·x² + (6f − 4T)·x + 3f = 0
+  const b = 4 * T - 6 * f;
+  const disc = b * b - 36 * f * f;
+  if (disc <= 0) return m;
+  const x1 = (b - Math.sqrt(disc)) / (6 * f);
+  const x2 = (b + Math.sqrt(disc)) / (6 * f);
+  const end = Math.min(m, x2);
+  if (m <= x1 || h(end) > 0) return m;
+  let lo = x1;
+  let hi = end;
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    if (h(mid) > 0) lo = mid;
+    else hi = mid;
+  }
+  return lo;
+}
+
+/**
+ * The focus curve of the lens at zoom z (see the header for the model). The published maximum
+ * magnification is the lens' overall maximum: it is reached at its zoom end (makers quote it at the
+ * tele end of a zoom), the other end focuses as a fixed-f thin lens, and no zoom position exceeds it.
+ */
 export function focusCurve(spec: LensPhysicsSpec, z: number): FocusCurve {
   const t = isZoom(spec) ? clamp01(z) : 0;
   const f = focalAtZoom(spec, t);
   const mfd = mfdAtZoom(spec, t);
-  const endM = (end: 'wide' | 'tele'): number => {
-    if (spec.maxMagnification !== null && (end === spec.maxMagAt || !isZoom(spec))) return spec.maxMagnification;
-    const fe = end === 'wide' ? spec.focal.min : spec.focal.max;
-    return thinLensMagnification(fe, end === 'wide' ? spec.mfd.wide : spec.mfd.tele) ?? 1;
-  };
-  const mMax = isZoom(spec) ? lerp(endM('wide'), endM('tele'), t) : endM(spec.maxMagAt);
-  const fitted: FocusCurve = { f, fMfd: (mfd * mMax) / ((1 + mMax) * (1 + mMax)), mMax, mfd, fitted: true };
-  if (spec.maxMagnification !== null && mMax > 0 && monotonic(fitted)) {
-    fitted.fitted = Math.abs(fitted.fMfd - f) > 1e-6;
-    return fitted;
+  const published = spec.maxMagnification;
+  if (published !== null && published > 0) {
+    const endM = (end: 'wide' | 'tele'): number => {
+      if (end === spec.maxMagAt) return published;
+      const fe = end === 'wide' ? spec.focal.min : spec.focal.max;
+      return Math.min(published, thinLensMagnification(fe, end === 'wide' ? spec.mfd.wide : spec.mfd.tele) ?? published);
+    };
+    const want = isZoom(spec) ? Math.min(published, lerp(endM('wide'), endM('tele'), t)) : published;
+    const mMax = monotonicMagnification(f, mfd, want);
+    const fitted: FocusCurve = { f, fMfd: (mfd * mMax) / ((1 + mMax) * (1 + mMax)), mMax, mfd, fitted: true };
+    if (mMax > 0 && monotonic(fitted)) {
+      fitted.fitted = Math.abs(fitted.fMfd - f) > 1e-6;
+      return fitted;
+    }
   }
-  // fixed focal length (no published magnification, or a curve that would not focus monotonically)
-  const m = thinLensMagnification(f, mfd) ?? 1;
+  // fixed focal length (no published magnification, or as a safety net a fit that still would not
+  // focus monotonically): a thin lens cannot focus closer than T = 4f (1:1); a published maximum is
+  // never exceeded
+  const m = Math.min(thinLensMagnification(f, mfd) ?? published ?? 1, published ?? Number.POSITIVE_INFINITY);
   return { f, fMfd: f, mMax: m, mfd: distanceForMagnification({ f, fMfd: f, mMax: m, mfd, fitted: false }, m), fitted: false };
 }
 
@@ -170,6 +209,23 @@ export function magnificationForDistance(c: FocusCurve, T: number): number {
     else hi = mid;
   }
   return (lo + hi) / 2;
+}
+
+/**
+ * Hyperfocal distance (mm from the focal plane): the focus distance at which the far limit just
+ * reaches ∞. There u = H(f_e) = f_e²/(N·c) + f_e with u = f_e(1 + m)/m, i.e. m·f_e(m) = N·c — a
+ * property of the lens at this zoom position and f-number, not of the current focus (a breathing
+ * lens focused close has a different f_e). With f_e = f + k·m: k·m² + f·m − N·c = 0; without
+ * breathing T = f²/(N·c) + 2f + N·c = H + f·H/(H − f).
+ */
+export function hyperfocalDistance(c: FocusCurve, N: number, coc: number): number {
+  const Nc = N * coc;
+  const k = c.mMax > 0 ? (c.fMfd - c.f) / c.mMax : 0;
+  const disc = c.f * c.f + 4 * k * Nc;
+  // smaller root in the cancellation-free form; past the closest focus f_e stays at f_mfd
+  let m = disc >= 0 ? (2 * Nc) / (c.f + Math.sqrt(disc)) : Number.POSITIVE_INFINITY;
+  if (m > c.mMax) m = Nc / c.fMfd;
+  return distanceForMagnification(c, m);
 }
 
 export interface LensState {
@@ -214,8 +270,6 @@ export function lensState(spec: LensPhysicsSpec, z: number, T: number, N: number
   const T0 = m > 0 ? u + v : Number.POSITIVE_INFINITY;
   const c = spec.coc ?? cocForSensor(spec.sensor);
   const dof = dofLimits(fe, N, c, u);
-  const H = hyperfocal(fe, N, c);
-  const vH = (fe * H) / (H - fe);
   return {
     zoom,
     focalLength: curve.f,
@@ -228,7 +282,7 @@ export function lensState(spec: LensPhysicsSpec, z: number, T: number, N: number
     apertureDiameter: fe / N,
     workingFNumber: N * (1 + m),
     coc: c,
-    hyperfocal: H + vH,
+    hyperfocal: hyperfocalDistance(curve, N, c),
     near: dof.near + v,
     far: dof.far + v,
     depthOfField: dof.far - dof.near,
