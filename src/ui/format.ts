@@ -1,21 +1,40 @@
 /** Formatting helpers for optical quantities (inputs in mm). */
 
+const SUPERSCRIPT = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+
+/**
+ * Kilometres from 100 km on (the far end of the depth ladder): whole numbers up to 99 999 km,
+ * then a power of ten (2·10⁶ km), so readouts never need more than five digits.
+ */
+function farKm(mm: number): string {
+  const km = mm / 1e6;
+  if (km < 99999.5) return String(Math.round(km));
+  let e = Math.floor(Math.log10(km));
+  let m = Math.round(km / 10 ** e);
+  if (m >= 10) [m, e] = [1, e + 1];
+  return `${m}·10${[...String(e)].map((d) => SUPERSCRIPT[Number(d)]).join('')}`;
+}
+
 /** digits ≥ 2: precise (78.6 cm / 2.00 m); digits ≤ 1: compact labels (80 cm / 2.0 m). */
 export function fmtDistance(mm: number, digits = 2): string {
   if (!Number.isFinite(mm)) return '∞';
   if (mm < 1000) return `${(mm / 10).toFixed(digits >= 2 ? 1 : 0)} cm`;
+  if (mm >= 1e8) return `${farKm(mm)} km`;
   if (mm >= 1e6) return `${(mm / 1e6).toFixed(digits >= 2 ? 1 : 0)} km`;
   if (mm >= 100000) return `${Math.round(mm / 1000)} m`;
   if (mm >= 10000) return `${(mm / 1000).toFixed(digits >= 2 ? 1 : 0)} m`;
   return `${(mm / 1000).toFixed(digits)} m`;
 }
 
-/** Distance split into value + unit (for large readouts). */
+/** Distance split into value + unit (for large readouts), with the numbers and units of fmtDistance. */
 export function splitDistance(mm: number): { value: string; unit: string } {
   if (!Number.isFinite(mm)) return { value: '∞', unit: '' };
   if (mm < 1000) return { value: (mm / 10).toFixed(1), unit: 'cm' };
   if (mm < 10000) return { value: (mm / 1000).toFixed(2), unit: 'm' };
-  return { value: (mm / 1000).toFixed(1), unit: 'm' };
+  if (mm < 100000) return { value: (mm / 1000).toFixed(1), unit: 'm' };
+  if (mm < 1e6) return { value: String(Math.round(mm / 1000)), unit: 'm' };
+  if (mm < 1e8) return { value: (mm / 1e6).toFixed(1), unit: 'km' };
+  return { value: farKm(mm), unit: 'km' };
 }
 
 /** Depth of field: mm below 1 cm (macro), cm below 1 m, metres above. */

@@ -1,7 +1,6 @@
 import type { LensCategory, LensData, SensorFormat, SpecialElement } from '../data/types';
 import { FORMAT_SIZES, cropFactor } from '../optics/formats';
 import type { LensPhysicsSpec } from '../optics/lensModel';
-import { thinLensMagnification } from '../optics/lensModel';
 
 /** Optical design family used to draw the (illustrative) cutaway. */
 export type LayoutKind =
@@ -146,20 +145,17 @@ export function labLensFromData(d: LensData): LabLens {
     mfd = { wide: mfdW * 1000, tele: mfdT * 1000 };
   }
 
-  // which end the published magnification refers to (default: the tele end, as for most zooms)
-  let maxMagAt: 'wide' | 'tele' = 'tele';
-  if (zoom && d.maxMagnification !== null) {
-    const mw = thinLensMagnification(d.focalLength.min, mfd.wide) ?? 1;
-    const mt = thinLensMagnification(d.focalLength.max, mfd.tele) ?? 1;
-    // pick the end whose plain thin-lens magnification is closer to the published value
-    maxMagAt = Math.abs(Math.log(mw / d.maxMagnification)) < Math.abs(Math.log(mt / d.maxMagnification)) ? 'wide' : 'tele';
-  }
-
   let elements = d.elements;
   let groups = d.groups;
   if (elements === null) {
-    // no published construction: the family's typical counts
-    [elements, groups] = FALLBACK_ELEMENTS[layout];
+    const [fe, fg] = FALLBACK_ELEMENTS[layout];
+    if (groups === null) {
+      // no published construction: the family's typical counts
+      [elements, groups] = [fe, fg];
+    } else {
+      // published group count, element count unknown: keep the groups, assume the family's cementing ratio
+      elements = Math.max(groups, Math.round((groups * fe) / fg));
+    }
     assumed.push('elements');
   } else if (groups === null) {
     // published element count, group count unknown: keep the elements, assume the family's cementing ratio
@@ -192,14 +188,17 @@ export function labLensFromData(d: LensData): LabLens {
       minAperture: { wide: minW, tele: minT },
       mfd,
       maxMagnification: d.maxMagnification,
-      maxMagAt,
+      // makers quote a zoom's maximum magnification at its tele end (lensModel never exceeds it elsewhere)
+      maxMagAt: 'tele',
       sensor,
     },
     isZoom: zoom,
     layout,
     elements,
     groups,
-    special: dedupeSpecial(d.specialElements ?? []),
+    // as published: a label listed under two kinds (e.g. "Aspherical ED") is one element with both
+    // properties — assignSpecials (opticalLayout) and glassLegend (specialGlass) merge it by label
+    special: [...(d.specialElements ?? [])],
     blades,
     dims,
     stabilized: d.stabilization?.optical ?? false,
@@ -208,20 +207,6 @@ export function labLensFromData(d: LensData): LabLens {
     assumed,
     crop,
   };
-}
-
-/**
- * Special elements as physical glass: the research lists e.g. an "ED aspherical" element under both
- * kinds; the cutaway must draw it once (with both tags). Same label → keep the larger count.
- */
-function dedupeSpecial(list: SpecialElement[]): SpecialElement[] {
-  const byLabel = new Map<string, SpecialElement>();
-  for (const s of list) {
-    const key = s.label.toLowerCase().replace(/\s+/g, ' ').trim();
-    const prev = byLabel.get(key);
-    if (!prev || s.count > prev.count) byLabel.set(key, s);
-  }
-  return [...byLabel.values()];
 }
 
 /** The Phase 1 teaching lens: a classic 6-element double-Gauss 50 mm f/2 with unit focusing. */

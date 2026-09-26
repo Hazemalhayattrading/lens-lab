@@ -89,7 +89,8 @@ const TRACK_TICKS: [number, string][] = [
 ];
 const ZOOM_STOPS = [8, 10, 12, 14, 16, 18, 20, 24, 28, 35, 40, 45, 50, 55, 60, 70, 85, 100, 105, 135, 140, 150, 180, 200, 280, 300, 400, 500, 600, 800];
 
-const uPct = (d: number) => (Math.min(1, Math.max(0, depthMap.toU(d))) * 100).toFixed(3);
+/** Position (%) of a distance on the focus slider / track, whose left end is ladder position u0 (≤ 0). */
+const uPct = (d: number, u0 = 0) => (((Math.min(1, Math.max(u0, depthMap.toU(d))) - u0) / (1 - u0)) * 100).toFixed(3);
 
 export class UI {
   readonly root: HTMLElement;
@@ -119,6 +120,18 @@ export class UI {
   private explodedState = true;
   private lens: LabLens | null = null;
   private apertureList: number[] = [];
+  /**
+   * Ladder position at the focus slider's left end: 0 (0.2 m, where the diorama starts), or the
+   * closest focus of a lens that focuses nearer (u < 0), so the slider always covers MFD → ∞.
+   */
+  private focusU0 = 0;
+  /** Ladder position ↔ slider position (0…1). */
+  private sliderPos(u: number): number {
+    return (Math.min(1, Math.max(this.focusU0, u)) - this.focusU0) / (1 - this.focusU0);
+  }
+  private sliderU(s: number): number {
+    return this.focusU0 + Math.min(1, Math.max(0, s)) * (1 - this.focusU0);
+  }
 
   constructor(parent: HTMLElement, private readonly h: UIHandlers) {
     const root = document.createElement('div');
@@ -329,7 +342,7 @@ export class UI {
       this.sliderActive = false;
       this.zoomActive = false;
     });
-    this.slider.addEventListener('input', () => this.h.onSlider(Number(this.slider.value) / 1000));
+    this.slider.addEventListener('input', () => this.h.onSlider(this.sliderU(Number(this.slider.value) / 1000)));
     this.zoomSlider.addEventListener('input', () => this.h.onZoom(Number(this.zoomSlider.value) / 1000));
     for (const s of [this.slider, this.zoomSlider]) s.addEventListener('keydown', (e) => e.stopPropagation());
 
@@ -415,8 +428,7 @@ export class UI {
       else if (k === 'p') this.h.onPhones?.();
       else if (k === 'c') this.h.onCompare?.();
       else if (k === 'arrowleft' || k === 'arrowright') {
-        const u = Number(this.slider.value) / 1000 + (k === 'arrowleft' ? -0.02 : 0.02);
-        this.h.onSlider(Math.min(1, Math.max(0, u)));
+        this.h.onSlider(this.sliderU(Number(this.slider.value) / 1000 + (k === 'arrowleft' ? -0.02 : 0.02)));
       } else return;
       e.preventDefault();
     });
@@ -553,6 +565,16 @@ export class UI {
       if (kept.length > 2 && zoomForFocal(p, kept[kept.length - 1]) - zoomForFocal(p, kept[kept.length - 2]) < 0.14) kept.splice(kept.length - 2, 1);
       this.$.zoomTicks.innerHTML = kept.map((f) => `<span style="left:${(zoomForFocal(p, f) * 100).toFixed(2)}%">${Math.round(f)}</span>`).join('');
     }
+    // focus slider domain: closest focus of the lens (below the 0.2 m ladder start if it focuses nearer) → ∞
+    const u0 = Math.min(0, depthMap.toU(Math.min(p.mfd.wide, p.mfd.tele)));
+    if (u0 !== this.focusU0) {
+      this.focusU0 = u0;
+      const place = (sel: string, ds: number[]) => this.root.querySelectorAll<HTMLElement>(sel).forEach((el, i) => (el.style.left = `${uPct(ds[i], u0)}%`));
+      place('.slider-wrap.focus .ticks span', SLIDER_TICKS.map(([dist]) => dist));
+      place('.slider-wrap.focus .marks i', SUBJECTS.map((s) => s.distance));
+      place('.dof-track .tick', TRACK_TICKS.map(([dist]) => dist));
+      place('.dof-track .sdot', SUBJECTS.map((s) => s.distance));
+    }
     // sensor aspect for the film frames
     const aspect = `${p.sensor.width} / ${p.sensor.height}`;
     this.filmDock.style.aspectRatio = aspect;
@@ -595,20 +617,22 @@ export class UI {
     $.filmHud4.textContent = `CoC limit ${fmtCoc(o.coc)}`;
 
     // focus slider (don't fight the user's thumb)
-    if (!this.sliderActive && document.activeElement !== this.slider) this.slider.value = String(Math.round(state.u * 1000));
+    const sFocus = this.sliderPos(state.u);
+    if (!this.sliderActive && document.activeElement !== this.slider) this.slider.value = String(Math.round(sFocus * 1000));
     this.slider.setAttribute('aria-valuetext', fmtDistance(o.focusDistance).replace(' m', ' metres'));
-    const uNear = Math.min(1, Math.max(0, depthMap.toU(o.near)));
-    const uFar = Math.min(1, Math.max(0, depthMap.toU(o.far)));
+    const sNear = this.sliderPos(depthMap.toU(o.near));
+    const sFar = this.sliderPos(depthMap.toU(o.far));
+    const sMin = this.sliderPos(state.uMin);
     const pct = (v: number) => `${(v * 100).toFixed(2)}%`;
     const inner = (v: number) => `calc(11px + (100% - 22px) * ${v.toFixed(4)})`;
-    this.sliderFill.style.width = inner(state.u);
-    this.sliderZone.style.left = inner(uNear);
-    this.sliderZone.style.width = `calc((100% - 22px) * ${Math.max(0.004, uFar - uNear).toFixed(4)})`;
-    this.sliderBlocked.style.width = state.uMin > 0.001 ? inner(state.uMin) : '0px';
-    this.trackZone.style.left = pct(uNear);
-    this.trackZone.style.width = pct(Math.max(0.006, uFar - uNear));
-    this.trackFocus.style.left = pct(state.u);
-    (this.root.querySelector('.dof-track .blocked') as HTMLElement).style.width = pct(state.uMin);
+    this.sliderFill.style.width = inner(sFocus);
+    this.sliderZone.style.left = inner(sNear);
+    this.sliderZone.style.width = `calc((100% - 22px) * ${Math.max(0.004, sFar - sNear).toFixed(4)})`;
+    this.sliderBlocked.style.width = sMin > 0.001 ? inner(sMin) : '0px';
+    this.trackZone.style.left = pct(sNear);
+    this.trackZone.style.width = pct(Math.max(0.006, sFar - sNear));
+    this.trackFocus.style.left = pct(sFocus);
+    (this.root.querySelector('.dof-track .blocked') as HTMLElement).style.width = pct(sMin);
 
     // zoom slider
     if (lens.isZoom) {

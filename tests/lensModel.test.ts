@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest';
+import type { LensData } from '../src/data/types';
+import { labLensFromData } from '../src/lab/labLens';
 import { PowerDepthMap } from '../src/optics/depthMap';
 import {
   cocForSensor,
@@ -19,6 +21,7 @@ import {
   distanceForMagnification,
   focalAtZoom,
   focusCurve,
+  hyperfocalDistance,
   lensState,
   magnificationForDistance,
   maxApertureAtZoom,
@@ -30,6 +33,9 @@ import {
 import { angleOfView, blurDiameter, dofLimits } from '../src/optics/thinLens';
 
 const deg = (r: number) => (r * 180) / Math.PI;
+// the same glob the app uses to lazy-load the data (here eagerly)
+const lensFiles = import.meta.glob<LensData[]>('../data/lenses/*.json', { eager: true, import: 'default' });
+const library = Object.values(lensFiles).flat().map(labLensFromData);
 const prime = (f: number, N: number, minN: number, mfd: number, mag: number | null, sensor = FULL_FRAME): LensPhysicsSpec => ({
   focal: { min: f, max: f },
   maxAperture: { wide: N, tele: N },
@@ -276,6 +282,182 @@ describe('aperture buttons and the image-side schematic', () => {
       expect((2 * r * aFar) / (D - aFar)).toBeCloseTo(disc, 12);
       const aNear = convergenceOffset(disc, r, D, false); // image behind the sensor
       expect((2 * r * -aNear) / (D - aNear)).toBeCloseTo(disc, 12);
+    }
+  });
+});
+
+// ---------------------------------------------------------------- review regressions (F1, F4, F2)
+
+const SWEEP = Array.from({ length: 401 }, (_, i) => i / 400);
+const zoom = (fMin: number, fMax: number, mfdW: number, mfdT: number, mag: number | null): LensPhysicsSpec => ({
+  focal: { min: fMin, max: fMax },
+  maxAperture: { wide: 4, tele: 5.6 },
+  minAperture: { wide: 32, tele: 32 },
+  mfd: { wide: mfdW, tele: mfdT },
+  maxMagnification: mag,
+  maxMagAt: 'tele',
+  sensor: FULL_FRAME,
+});
+/** T(m) falls strictly from ∞ to the closest focus (the focus ring never turns back). */
+function focusesMonotonically(spec: LensPhysicsSpec, z: number, n = 200): boolean {
+  const c = focusCurve(spec, z);
+  let prev = Infinity;
+  for (let i = 1; i <= n; i++) {
+    const T = distanceForMagnification(c, (i / n) * c.mMax);
+    if (!(T < prev)) return false;
+    prev = T;
+  }
+  return true;
+}
+
+describe('published maximum magnification is the lens maximum (review F1)', () => {
+  for (const l of library.filter((x) => x.physics.maxMagnification !== null)) {
+    const p = l.physics;
+    const pub = p.maxMagnification!;
+    it(`${l.id}: at most ${pub}× at every zoom position, exactly ${pub}× at the published tele MFD`, () => {
+      let worst = 0;
+      let mfdError = 0;
+      for (const z of l.isZoom ? SWEEP : [0]) {
+        const c = focusCurve(p, z);
+        const s = lensState(p, z, c.mfd, maxApertureAtZoom(p, z));
+        worst = Math.max(worst, c.mMax, s.magnification);
+        mfdError = Math.max(mfdError, Math.abs(c.mfd - mfdAtZoom(p, z)));
+      }
+      expect(worst).toBeLessThanOrEqual(pub * (1 + 1e-9));
+      expect(mfdError).toBeLessThan(1e-6); // the published closest focus is reached everywhere
+      const tele = lensState(p, 1, mfdAtZoom(p, 1), maxApertureAtZoom(p, 1));
+      expect(tele.magnification).toBeCloseTo(pub, 9);
+      expect(tele.focusDistance).toBeCloseTo(mfdAtZoom(p, 1), 6);
+    });
+  }
+
+  it('RF 100-500 at 500 mm, 1.2 m: 0.33× (not 1:1); at 100 mm, 0.9 m: a plain 100 mm thin lens', () => {
+    const p = library.find((l) => l.id === 'canon-rf-100-500-f45-71-l-is-usm')!.physics;
+    const tele = lensState(p, 1, 1200, 7.1);
+    // f_mfd = 1200·0.33/1.33² = 223.87 mm, v = f_mfd·1.33 = 297.74 mm
+    expect(tele.magnification).toBeCloseTo(0.33, 9);
+    expect(tele.effectiveFocal).toBeCloseTo((1200 * 0.33) / 1.33 ** 2, 6);
+    expect(tele.imageDistance).toBeCloseTo(297.74, 1);
+    // m = (700 − √450000)/200 = 0.14590, v = 114.59 mm, 2·atan(18/114.59) = 17.85° (not 9.2°)
+    const wide = lensState(p, 0, 900, 4.5);
+    expect(wide.magnification).toBeCloseTo((700 - Math.sqrt(450000)) / 200, 9);
+    expect(wide.effectiveFocal).toBeCloseTo(100, 9);
+    expect(deg(wide.fovHorizontal)).toBeCloseTo(17.85, 1);
+  });
+
+  it('Z 180-600 at 600 mm, 2.4 m (= 4f): 0.25×, lens → sensor 480 mm (not 1:1 and 1200 mm)', () => {
+    const p = library.find((l) => l.id === 'nikon-z-180-600mm-f56-63-vr')!.physics;
+    const s = lensState(p, 1, 2400, 6.3);
+    expect(s.magnification).toBeCloseTo(0.25, 9);
+    expect(s.effectiveFocal).toBeCloseTo((2400 * 0.25) / 1.5625, 6); // 384 mm
+    expect(s.imageDistance).toBeCloseTo(480, 6);
+  });
+
+  it('uses the published value, not 1:1, where a fixed-f thin lens cannot focus that close', () => {
+    // 100–400 mm: 0.35 m at the wide end is < 4f, so the wide end has no fixed-f solution
+    const p = zoom(100, 400, 350, 1000, 0.3);
+    for (const z of SWEEP) {
+      const c = focusCurve(p, z);
+      expect(c.mMax).toBeCloseTo(0.3, 12);
+      expect(c.mfd).toBeCloseTo(mfdAtZoom(p, z), 6);
+    }
+  });
+
+  it('any spec gives a monotonic curve that never exceeds the published magnification', () => {
+    for (const f of [8, 50, 200, 600]) {
+      for (const ratio of [2.2, 3, 4, 6, 10, 30]) {
+        for (const mag of [0.05, 0.2, 0.5, 1, 1.5, 3]) {
+          const spec = prime(f, 2.8, 22, f * ratio, mag);
+          expect(focusCurve(spec, 0).mMax).toBeLessThanOrEqual(mag * (1 + 1e-12));
+          expect(focusesMonotonically(spec, 0, 256)).toBe(true);
+        }
+      }
+    }
+  });
+});
+
+describe('the focus model is continuous over the zoom range (review F4)', () => {
+  // 24–70 mm with 0.9× published at 0.38 m: a breathing fit to 0.9× cannot focus monotonically,
+  // so the magnification is limited where the fit would fail instead of switching to a fixed-f lens
+  const stress = zoom(24, 70, 210, 380, 0.9);
+  const cases: [string, LensPhysicsSpec][] = [
+    ...library.filter((l) => l.isZoom).map((l): [string, LensPhysicsSpec] => [l.id, l.physics]),
+    ['synthetic 24-70 0.9×', stress],
+  ];
+  /** Largest relative change of m, v and the angle of view at the closest focus between zoom z0 and z1. */
+  const change = (p: LensPhysicsSpec, z0: number, z1: number): number => {
+    const [a, b] = [z0, z1].map((z) => lensState(p, z, focusCurve(p, z).mfd, maxApertureAtZoom(p, z)));
+    return Math.max(
+      Math.abs(b.magnification / a.magnification - 1),
+      Math.abs(b.imageDistance / a.imageDistance - 1),
+      Math.abs(b.fovHorizontal / a.fovHorizontal - 1),
+    );
+  };
+  for (const [id, p] of cases) {
+    it(`${id}: m, lens → sensor distance and angle of view at the closest focus have no jumps`, () => {
+      let monotonic = focusesMonotonically(p, 0);
+      for (let i = 0; i < SWEEP.length - 1; i++) {
+        const [z0, z1] = [SWEEP[i], SWEEP[i + 1]];
+        monotonic &&= focusesMonotonically(p, z1);
+        // 400 steps: smooth curves change < 1 % per step (the old model jumped by up to 49 % in one step)
+        const coarse = change(p, z0, z1);
+        if (coarse < 0.02) continue;
+        // steep but continuous (a fixed-f lens as T → 4f) shrinks with a finer step; a jump does not
+        let fine = 0;
+        for (let k = 0; k < 100; k++) fine = Math.max(fine, change(p, z0 + (k / 100) * (z1 - z0), z0 + ((k + 1) / 100) * (z1 - z0)));
+        expect(fine, `jump at z ≈ ${z0.toFixed(4)}`).toBeLessThan(coarse / 4);
+      }
+      expect(monotonic).toBe(true);
+    });
+  }
+
+  it('the synthetic zoom still reaches its published closest focus and stays below 0.9×', () => {
+    for (const z of SWEEP) {
+      const c = focusCurve(stress, z);
+      expect(c.mfd).toBeCloseTo(mfdAtZoom(stress, z), 6);
+      expect(c.mMax).toBeLessThan(0.9);
+    }
+  });
+});
+
+describe('hyperfocal distance of a breathing lens (review F2)', () => {
+  it('does not change as the lens is focused', () => {
+    for (const l of library) {
+      const p = l.physics;
+      for (const z of l.isZoom ? [0, 0.5, 1] : [0]) {
+        const N = maxApertureAtZoom(p, z);
+        const c = focusCurve(p, z);
+        const atInf = lensState(p, z, Infinity, N).hyperfocal;
+        for (const T of [c.mfd, 2000, 30000]) expect(lensState(p, z, T, N).hyperfocal).toBe(atInf);
+      }
+    }
+  });
+
+  it('100 mm macro f/2.8 (1.4× at 0.26 m): 119.2 m at every focus distance (was 47.7 m at the MFD)', () => {
+    const macro = prime(100, 2.8, 32, 260, 1.4);
+    const c = focusCurve(macro, 0);
+    const s = lensState(macro, 0, 260, 2.8);
+    // focused at H the far limit just reaches ∞: m·f_e(m) = N·c with f_e = f + k·m, k = (f_mfd − f)/m_max
+    const Nc = 2.8 * s.coc;
+    const k = (c.fMfd - 100) / 1.4;
+    const m = (2 * Nc) / (100 + Math.sqrt(1e4 + 4 * k * Nc)); // 8.403e-4
+    const fe = 100 + k * m;
+    expect(s.hyperfocal).toBeCloseTo((fe * (1 + m) ** 2) / m, 3);
+    expect(s.hyperfocal / 1000).toBeCloseTo(119.2, 1);
+    expect(hyperfocalDistance(c, 2.8, s.coc)).toBe(s.hyperfocal);
+  });
+
+  it('is exactly where the far limit reaches ∞', () => {
+    for (const l of library) {
+      const p = l.physics;
+      for (const z of l.isZoom ? [0, 0.5, 1] : [0]) {
+        const c = focusCurve(p, z);
+        for (const N of [maxApertureAtZoom(p, z), 8, 22]) {
+          const H = lensState(p, z, Infinity, N).hyperfocal;
+          expect(lensState(p, z, H * 1.001, N).far).toBe(Infinity);
+          if (H * 0.999 > c.mfd) expect(Number.isFinite(lensState(p, z, H * 0.999, N).far)).toBe(true);
+        }
+      }
     }
   });
 });
