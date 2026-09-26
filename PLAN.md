@@ -155,8 +155,17 @@ this section and `git log`, then continue with the first unchecked phase.
   table; the maker's named computational features; sources. Found on the way: `GlowLines` quads are one-sided and their
   winding follows the segment's screen direction; the phone light paths opt into double-sided lines (the lab's ray
   bundles keep their tuned one-sided look).
-- [ ] **2.9 — Explainers**: small-sensor depth of field, equivalent focal length & aperture, periscope zoom,
+- [x] **2.9 — Explainers**: small-sensor depth of field, equivalent focal length & aperture, periscope zoom,
   computational photography (portrait mode, multi-frame fusion) — with live visuals.
+  *Done:* `ui/LearnView.ts` + `learn/` (lazy; nav "Learn", `E` key, `#learn/<topic>`). Four topics, every number
+  computed from the phone data with the lab's physics and tagged published / computed / example: (1) *small sensors* —
+  phone vs full frame at the same framing, DoF bars, magnified background-light tiles; (2) *equivalence* — sensor sizes
+  to scale, calculator (real focal length, f-number → equivalent, angle of view, relative light); (3) *periscope* —
+  to-scale side section of a phone with straight / one-fold / four-fold (schematic) layouts and animated photons along
+  the chief and edge rays; (4) *computational* — Poisson-noise frame stack with measured vs √N SNR, portrait-mode
+  depth blur, HDR bracket merge, crop "zoom". Tests: `tests/learn.test.ts` (row Q). Found on the way: topics mounted
+  while their panel was hidden measured 0 px and waited for a ResizeObserver frame — the panel is now shown first; the
+  view's grid column is `minmax(0, 1fr)` so the nowrap tab strip cannot widen it past a phone screen.
 - [x] **2.10 — Compare mode + phone vs camera**: any two lenses / phone cameras side by side: specs, FOV, DoF at the same
   distance, rendered images; phone-vs-full-frame preset.
   *Done:* `ui/CompareView.ts` (lazy; nav "Compare", `C` key, `#compare/<preset>`). Two extra `SensorPipeline`s render the
@@ -231,6 +240,7 @@ Every row was worked out by hand (checked with a pocket-calculator script) and i
 | **N** image-side cones | aperture radius r at D in front of the sensor, wanted disc b, t = b/2r: far subject a = tD/(1 + t) in front, near subject a = tD/(1 − t) behind; similar triangles give back 2r·a/(D ∓ a) = b exactly | ✅ |
 | **O** phone cameras (`tests/phoneOptics.test.ts`) | 48 MP × 1.22 µm: px = √(48e6·4/3) = **8000** → **9.76 × 7.32 mm** (matches 1/1.28" ≈ 10 × 7.5) · 24 mm eq → real f = 24/3.4613 = **6.93 mm**, f/1.48 → eq **f/5.1**, FOV 2·atan(43.267/48) = **84.1°** · 5× of 24 mm → **120 mm** eq (computed, labelled) · DoF at 2 m, f/1.48, c = 0.00867: H = 6.93²/(1.48·0.00867) + 6.93 ≈ **3754 mm**, u ≈ 1993 → near ≈ **1.30 m**, far ≈ **4.24 m** (the lens stays at v, so both limits add the same v — same convention as `lensState`, asserted equal) | ✅ |
 | **P** illustrative layouts (`tests/opticalLayout.test.ts`) | invariants, for every library lens + one synthetic lens per design family: element count = published, groups = elements − cemented joins = published, each cemented pair shares its contact surface (r₁' = −r₂, touching vertices), edge thickness > 0.5 mm, clear aperture < barrel inner radius and rear element < mount throat, min axial clearance > 0.2 mm between neighbours at z ∈ {0, ¼, ½, ¾, 1} × focus ∈ {0, ½, 1}, zoom / focus groups move, entrance pupil ≤ front element | ✅ |
+| **Q** explainers (`tests/learn.test.ts`) | Pixel 11 Pro main 1/1.3", 24 mm, f/1.68: d = 16/1.3 = 12.308 → crop **3.515**, f = **6.827 mm**, N_eq = **f/5.91**, c = 0.008535 · DoF at 2 m: phone **1244–5132 mm** (3.89 m), FF 24 mm f/1.68 **1712–2407 mm** (0.70 m), FF f/5.91 **1259–4969 mm** — H − f = f²/(Nc) is the same for phone and equivalent FF (3250.5) · background disc b = f²/(N(u − f)): phone **0.142 %** of the frame width, FF f/1.68 **0.488 %** · tele 105 mm eq on 1/1.95": crop **5.273** → f = **19.91 mm**, pupil f/N = **7.11 mm**, overhang vs 8 mm phone **11.9 mm** · SNR √(λN): λ = 16.1, N = 8 → **11.3** | ✅ |
 
 ## Research status (updated 2026-09-26)
 

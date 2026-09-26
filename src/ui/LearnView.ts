@@ -152,11 +152,12 @@ export class LearnView {
     if (changed) this.topicOf(this.current).setActive(false);
     this.current = id;
     const panel = this.panels.get(id)!;
+    // show the panel before mounting so a topic can measure its figures and draw them right away
+    this.panels.forEach((p, k) => (p.hidden = k !== id));
     if (!this.mounted.has(id)) {
       this.topicOf(id).mount(panel, this.ctx);
       this.mounted.add(id);
     }
-    this.panels.forEach((p, k) => (p.hidden = k !== id));
     this.$nav.querySelectorAll<HTMLElement>('[data-topic]').forEach((b) => {
       const on = b.dataset.topic === id;
       b.setAttribute('aria-selected', String(on));

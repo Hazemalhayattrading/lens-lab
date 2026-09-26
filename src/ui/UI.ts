@@ -26,6 +26,8 @@ export interface UIHandlers {
   onLibrary?(): void;
   onPhones?(): void;
   onCompare?(): void;
+  /** The "Learn" section (explainers view). */
+  onLearnView?(): void;
 }
 
 export interface UIState {
@@ -179,6 +181,7 @@ export class UI {
     <button data-view="lenses" aria-current="false" title="Browse the lens library (L)">Lenses</button>
     <button data-view="phones" aria-current="false" title="Phone cameras and their teardowns (P)">Phones</button>
     <button data-view="compare" aria-current="false" title="Compare two lenses or phone cameras (C)">Compare</button>
+    <button data-view="learn" aria-current="false" title="Explainers: small sensors, equivalence, periscope zoom, computational photography (E)">Learn</button>
   </nav>
   <div class="top-actions">
     <div class="chip desktop-only"><div class="seg" role="group" aria-label="Render quality">
@@ -313,7 +316,7 @@ export class UI {
       <li><strong>Aperture &amp; zoom</strong> — the buttons follow the lens’ real aperture range; zoom lenses get a working zoom ring. Watch the iris, the light cones, the field-of-view cone and the sharp zone change.</li>
       <li><strong>Read the sensor</strong> — in-focus light lands as a point, out-of-focus light as a disc. Open the sensor view (<kbd>F</kbd>) to see the real blur.</li>
       <li><strong>Orbit</strong> — drag to rotate, scroll / pinch to zoom, right-drag / two fingers to pan.</li>
-      <li><strong>Lenses</strong> (<kbd>L</kbd>) — the library: filter by brand and type, search, read the specs and sources, load any lens into the lab. <strong>Phones</strong> (<kbd>P</kbd>) — phone camera modules taken apart. <strong>Compare</strong> (<kbd>C</kbd>) — two lenses or phone cameras side by side.</li>
+      <li><strong>Lenses</strong> (<kbd>L</kbd>) — the library: filter by brand and type, search, read the specs and sources, load any lens into the lab. <strong>Phones</strong> (<kbd>P</kbd>) — phone camera modules taken apart. <strong>Compare</strong> (<kbd>C</kbd>) — two lenses or phone cameras side by side. <strong>Learn</strong> (<kbd>E</kbd>) — explainers on small sensors, equivalence, periscope zoom and computational photography.</li>
     </ul>
     <div class="foot"><span>Physics: thin lens with each lens’ real focal length, apertures, closest focus and magnification; distances from the focal plane.</span><button class="btn" data-action="close-help">Got it</button></div>
   </div>
@@ -361,6 +364,7 @@ export class UI {
         if (b.dataset.view === 'lenses') this.h.onLibrary?.();
         else if (b.dataset.view === 'phones') this.h.onPhones?.();
         else if (b.dataset.view === 'compare') this.h.onCompare?.();
+        else if (b.dataset.view === 'learn') this.h.onLearnView?.();
       }),
     );
 
@@ -414,6 +418,7 @@ export class UI {
       else if (k === 'l') this.h.onLibrary?.();
       else if (k === 'p') this.h.onPhones?.();
       else if (k === 'c') this.h.onCompare?.();
+      else if (k === 'e') this.h.onLearnView?.();
       else if (k === 'arrowleft' || k === 'arrowright') {
         const u = Number(this.slider.value) / 1000 + (k === 'arrowleft' ? -0.02 : 0.02);
         this.h.onSlider(Math.min(1, Math.max(0, u)));
@@ -463,7 +468,7 @@ export class UI {
   }
 
   /** Marks the active section in the nav; while an overlay view is open the lab's shortcuts are off. */
-  setView(view: 'lab' | 'lenses' | 'phones' | 'compare'): void {
+  setView(view: 'lab' | 'lenses' | 'phones' | 'compare' | 'learn'): void {
     this.root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) => b.setAttribute('aria-current', b.dataset.view === view ? 'page' : 'false'));
     this.root.classList.toggle('overlay-open', view !== 'lab');
   }

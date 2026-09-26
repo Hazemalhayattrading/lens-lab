@@ -105,10 +105,10 @@ function paintNightScene(): HTMLCanvasElement {
 }
 
 function snrChart(W: number, lambda: number, measured: number[], n: number): string {
-  const H = 178;
+  const H = 188;
   const L = 34;
   const R = W - 14;
-  const top = 14;
+  const top = 26;
   const B = H - 30;
   const ymax = Math.ceil((theoreticalSnr(lambda, 16) * 1.12) / 4) * 4;
   const X = (k: number) => L + ((k - 1) / 15) * (R - L);
@@ -120,7 +120,7 @@ function snrChart(W: number, lambda: number, measured: number[], n: number): str
   }
   for (const k of [1, 4, 8, 12, 16]) s += `<text class="c-t" x="${f1(X(k))}" y="${B + 15}" text-anchor="middle">${k}</text>`;
   s += `<text class="c-cap" x="${R}" y="${H - 2}" text-anchor="end">frames merged, N</text>`;
-  s += `<text class="c-cap" x="${L - 26}" y="${top - 4}">SNR</text>`;
+  s += `<text class="c-cap" x="${L - 26}" y="${top - 13}">SNR</text>`;
   let d = '';
   for (let k = 1; k <= 16; k += 0.25) d += `${k === 1 ? 'M' : 'L'}${f1(X(k))} ${f1(Y(theoreticalSnr(lambda, k)))}`;
   s += `<path class="c-theory" d="${d}"/>`;

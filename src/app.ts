@@ -30,6 +30,7 @@ import { fmtCoc, fmtDeg, fmtDistance, fmtF } from './ui/format';
 import { LabelLayer } from './ui/labels';
 import type { LibraryView } from './ui/LibraryView';
 import type { CompareView } from './ui/CompareView';
+import type { LearnView } from './ui/LearnView';
 import type { PhonesView } from './ui/PhonesView';
 import { UI, type CameraPreset, type QualityChoice } from './ui/UI';
 
@@ -77,6 +78,7 @@ export class LensLabApp {
   private library: LibraryView | null = null;
   private phones: PhonesView | null = null;
   private compare: CompareView | null = null;
+  private learn: LearnView | null = null;
   /** Two sensor pipelines for compare mode (created on first use). */
   private comparePipes: [SensorPipeline, SensorPipeline] | null = null;
   /** The lab stops rendering while a full-screen view (library …) covers it. */
@@ -176,6 +178,7 @@ export class LensLabApp {
       onLibrary: () => void this.openLibrary(),
       onPhones: () => void this.openPhones(),
       onCompare: () => void this.openCompare(),
+      onLearnView: () => void this.openLearn(),
     });
     this.ui.enableLibrary();
     this.ui.setLens(this.state.lens);
@@ -310,8 +313,7 @@ export class LensLabApp {
       });
       this.library.onSelect = (id) => history.replaceState(null, '', `#lenses/${id}`);
     }
-    if (this.phones?.isOpen) this.phones.close();
-    if (this.compare?.isOpen) this.compare.close();
+    this.closeOverlays('lenses');
     this.paused = !this.capture;
     this.ui.setView('lenses');
     await this.library.open(this.lens.lens.id === TEACHING_LENS.id ? null : this.lens.lens.id, selectId);
@@ -332,27 +334,52 @@ export class LensLabApp {
       });
       this.phones.onSelect = (id) => history.replaceState(null, '', `#phones/${id}`);
     }
-    if (this.library?.isOpen) this.library.close();
-    if (this.compare?.isOpen) this.compare.close();
+    this.closeOverlays('phones');
     this.paused = !this.capture;
     this.ui.setView('phones');
     await this.phones.open(selectId);
     if (!location.hash.startsWith('#phones')) history.replaceState(null, '', '#phones');
   }
 
-  /** Deep links: #lenses, #lenses/<lens-id>, #phones, #phones/<phone-id>. */
+  /** Opens the explainers (the view, its styles and the phone data are fetched on first use). */
+  async openLearn(topic?: string): Promise<void> {
+    if (!this.learn) {
+      const { LearnView } = await import('./ui/LearnView');
+      this.learn = new LearnView(document.body, {
+        onClose: () => {
+          this.paused = false;
+          this.timer.reset();
+          this.ui.setView('lab');
+          if (location.hash.startsWith('#learn')) history.replaceState(null, '', location.pathname + location.search);
+        },
+      });
+      this.learn.onSelect = (id) => history.replaceState(null, '', `#learn/${id}`);
+    }
+    this.closeOverlays('learn');
+    this.paused = !this.capture;
+    this.ui.setView('learn');
+    await this.learn.open(topic);
+  }
+
+  /** Closes every full-screen view except `keep` (only one is open at a time). */
+  private closeOverlays(keep?: 'lenses' | 'phones' | 'compare' | 'learn'): void {
+    if (keep !== 'lenses' && this.library?.isOpen) this.library.close();
+    if (keep !== 'phones' && this.phones?.isOpen) this.phones.close();
+    if (keep !== 'compare' && this.compare?.isOpen) this.compare.close();
+    if (keep !== 'learn' && this.learn?.isOpen) this.learn.close();
+  }
+
+  /** Deep links: #lenses[/<lens-id>], #phones[/<phone-id>], #compare[/<preset>], #learn[/<topic>]. */
   route(): void {
     const lib = /^#lenses(?:\/([\w-]+))?$/.exec(location.hash);
     const ph = /^#phones(?:\/([\w-]+))?$/.exec(location.hash);
     const cmp = /^#compare(?:\/([\w-]+))?$/.exec(location.hash);
+    const lrn = /^#learn(?:\/([\w-]+))?$/.exec(location.hash);
     if (lib) void this.openLibrary(lib[1]);
     else if (ph) void this.openPhones(ph[1]);
     else if (cmp) void this.openCompare(cmp[1]);
-    else {
-      if (this.library?.isOpen) this.library.close();
-      if (this.phones?.isOpen) this.phones.close();
-      if (this.compare?.isOpen) this.compare.close();
-    }
+    else if (lrn) void this.openLearn(lrn[1]);
+    else this.closeOverlays();
   }
 
   /** Opens compare mode; the two sensor images are rendered by the lab renderer (below the view's DOM). */
@@ -369,8 +396,7 @@ export class LensLabApp {
         },
       });
     }
-    if (this.library?.isOpen) this.library.close();
-    if (this.phones?.isOpen) this.phones.close();
+    this.closeOverlays('compare');
     if (!this.comparePipes) {
       const p = QUALITY[this.quality];
       const q = { width: Math.min(p.sensorMaxWidth, 960), samples: p.sensorSamples, msaa: p.sensorMsaa };

@@ -117,6 +117,7 @@ function foldSvg(L: FoldLayout, v: View, ghost: FoldLayout): string {
   s += `<text class="f-t dim" x="${f1(dimX + 6)}" y="${f1(Y(T) + 15)}">phone ≈ ${T} mm</text>`;
   const pill = (x: number, y: number, text: string, cls = '') => {
     const w = text.length * 6.3 + 14;
+    x = Math.min(Math.max(x, w / 2 + 2), v.W - w / 2 - 2); // keep the pill inside the figure
     return `<g class="f-pill ${cls}"><rect x="${f1(x - w / 2)}" y="${f1(y - 10)}" width="${f1(w)}" height="19" rx="9.5"/><text x="${f1(x)}" y="${f1(y + 3.8)}" text-anchor="middle">${esc(text)}</text></g>`;
   };
   if (L.mode === 'straight') {
@@ -128,7 +129,7 @@ function foldSvg(L: FoldLayout, v: View, ghost: FoldLayout): string {
   } else if (L.mode === 'prism') {
     const y = Y(T) + 16;
     s += `<line class="f-dimline" x1="${f1(X(L.lensCenter.x))}" y1="${f1(y)}" x2="${f1(X(sc.x))}" y2="${f1(y)}"/>`;
-    s += `<text class="f-t" x="${f1(X((L.lensCenter.x + sc.x) / 2))}" y="${f1(y + 16)}" text-anchor="middle">lens → sensor ≈ ${mm(L.pathLength)}, along the phone</text>`;
+    s += `<text class="f-t" x="${f1(X((L.lensCenter.x + sc.x) / 2))}" y="${f1(y + 16)}" text-anchor="middle">lens → sensor ≈ ${mm(L.pathLength)}${narrow ? '' : ', along the phone'}</text>`;
     s += pill(X(0), Y(RAY_START) + 2, '45° prism');
     s += pill(X(sc.x), Y(0) - 14, 'sensor');
     s += pill(X(L.lensCenter.x + 1), Y(0) - 14, 'lens');
@@ -253,6 +254,8 @@ ${cam.notes ? `<details class="lt-details"><summary>Notes on this data</summary>
         g.appendChild(c);
         photons.push(c);
       }
+      // position them now: a fresh circle sits at the SVG origin until the first animation frame
+      placePhotons(performance.now() - t0);
     }
     const m = layout.module;
     const status = ref('status');

@@ -5,6 +5,8 @@
   inset: 0;
   z-index: 40;
   display: grid;
+  /* minmax(0, …): the nowrap tab strip must not widen the view past the screen */
+  grid-template-columns: minmax(0, 1fr);
   padding: 18px 22px calc(18px + var(--safe-b));
   /* opaque: the lab is paused behind it */
   background: radial-gradient(1400px 800px at 30% 0%, #111c2b, #06090d 70%), #05070a;
@@ -16,8 +18,9 @@
   opacity: 1;
   visibility: visible;
 }
-body.learn-open #ui {
-  visibility: hidden;
+body.learn-open #ui,
+body.learn-open #ui * {
+  visibility: hidden !important;
 }
 .learn-shell {
   display: grid;
@@ -959,6 +962,10 @@ body.learn-open #ui {
 .lt-status.bad b {
   color: #ff8b8b;
 }
+.lt-fold-fig svg {
+  /* the phone body runs past both edges: clip it to the figure */
+  overflow: hidden;
+}
 .lt-fold-fig {
   border-radius: 14px;
   background: radial-gradient(500px 220px at 30% 20%, rgba(95, 224, 255, 0.06), transparent 70%);
@@ -1430,7 +1437,7 @@ body.learn-open #ui {
     display: none;
   }
   .learn-body {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     grid-template-rows: auto minmax(0, 1fr);
     gap: 10px;
   }
