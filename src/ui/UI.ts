@@ -172,6 +172,10 @@ export class UI {
     return `
 <header class="topbar">
   <div class="brand">${LOGO}<div><h1>Lens Lab</h1><p>The lens &amp; camera encyclopedia</p></div></div>
+  <nav class="views seg" aria-label="Sections">
+    <button data-view="lab" aria-current="page">Lab</button>
+    <button data-view="lenses" aria-current="false" title="Browse the lens library (L)">Lenses</button>
+  </nav>
   <div class="top-actions">
     <div class="chip desktop-only"><div class="seg" role="group" aria-label="Render quality">
       <button data-quality="auto" aria-pressed="true" title="Adapts to your device">Auto</button>
@@ -347,6 +351,11 @@ export class UI {
       li.addEventListener('pointerleave', () => this.h.onHighlight(null));
     });
     r.querySelector('[data-action="library"]')!.addEventListener('click', () => this.h.onLibrary?.());
+    r.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
+      b.addEventListener('click', () => {
+        if (b.dataset.view === 'lenses') this.h.onLibrary?.();
+      }),
+    );
 
     const film = r.querySelector<HTMLElement>('[data-action="film"]')!;
     film.addEventListener('click', () => this.openFilm(true));
@@ -442,6 +451,12 @@ export class UI {
   /** Show the library button once the library exists. */
   enableLibrary(): void {
     this.root.querySelector<HTMLElement>('[data-action="library"]')!.hidden = false;
+  }
+
+  /** Marks the active section in the nav; while an overlay view is open the lab's shortcuts are off. */
+  setView(view: 'lab' | 'lenses'): void {
+    this.root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) => b.setAttribute('aria-current', b.dataset.view === view ? 'page' : 'false'));
+    this.root.classList.toggle('overlay-open', view !== 'lab');
   }
 
   /** Exposes panel sizes to CSS so side panels never run under the bottom elements. */
@@ -551,7 +566,8 @@ export class UI {
     $.focal.innerHTML = `${fl >= 10 ? Math.round(fl) : fl.toFixed(1)}<small>mm</small>`;
     const crop = lens.crop;
     const breathing = o.curve.fitted && Math.abs(o.effectiveFocal - fl) / fl > 0.015;
-    $.focalSub.textContent = Math.abs(crop - 1) > 0.02 ? `≈ ${Math.round(fl * crop)} mm f/${(o.fNumber * crop).toFixed(1)} FF-eq.` : breathing ? `eff. ${fmtFocal(o.effectiveFocal)} · breathing` : '';
+    $.focalSub.textContent = Math.abs(crop - 1) > 0.02 ? `≈ ${Math.round(fl * crop)} mm f/${(o.fNumber * crop).toFixed(1)} FF-eq.` : breathing ? `eff. ${fmtFocal(o.effectiveFocal)}` : '';
+    $.focalSub.title = breathing ? 'Effective focal length at this focus distance (focus breathing)' : '';
     $.dof.textContent = fmtDofCm(o.depthOfField);
     $.dofRange.textContent = fmtRange(o.near, o.far);
     $.di.textContent = fmtMm(o.imageDistance, 1);

@@ -127,8 +127,17 @@ this section and `git log`, then continue with the first unchecked phase.
   synthetic lens per family: published element / group counts, every special element assigned, positive edge
   thickness, clear apertures inside the barrel and the mount throat, cemented partners share the contact surface,
   no collision at any zoom / focus position, zoom and focus groups actually move, pupil within the front element.
-- [ ] **2.7 — Lens browser**: brand tabs, category filters, search, cards, detail sheet (specs, text, sources,
+- [x] **2.7 — Lens browser**: brand tabs, category filters, search, cards, detail sheet (specs, text, sources,
   "unverified" markers), "Load into lab".
+  *Done:* `ui/LibraryView.ts` (lazy chunk with its own CSS, fetched on first open; data chunks per brand) — section
+  nav (Lab · Lenses), `L` key, "Change lens" in the lens card, deep links `#lenses/<id>`. Brand tabs with counts,
+  type chips (by field of view), token search over name / brand / mount / focal / aperture / special glass / uses
+  ("85 1.2", "fluorite", "macro"), cards with a procedural side silhouette to a common scale and an "n values
+  unverified" note, the teaching lens as a card to go back. Detail sheet: illustrative cross-section (same layout as
+  the 3D cutaway, special glass colour-coded, iris), every spec with an explicit *unverified* marker instead of a
+  guess, angle of view and full-frame equivalent computed from the data, strengths / weaknesses / best for, notes,
+  sources with kind + domain and the check date, "Load into the lab" (zooms: at wide / middle / tele). The lab
+  pauses rendering while the library covers it; mobile: single column + full-screen detail with back button.
 - [ ] **2.8 — Phones**: phone browser, per-camera specs, procedural exploded camera-module teardown (cover glass, lens
   stack, IR filter, sensor, VCM / OIS) and periscope prism path with animated light.
 - [ ] **2.9 — Explainers**: small-sensor depth of field, equivalent focal length & aperture, periscope zoom,

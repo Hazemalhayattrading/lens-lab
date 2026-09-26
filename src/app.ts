@@ -28,6 +28,7 @@ import { LabState } from './state/LabState';
 import { SUBJECT_NAME } from './ui/explain';
 import { fmtCoc, fmtDeg, fmtDistance, fmtF } from './ui/format';
 import { LabelLayer } from './ui/labels';
+import type { LibraryView } from './ui/LibraryView';
 import { UI, type CameraPreset, type QualityChoice } from './ui/UI';
 
 const PRESETS: Record<CameraPreset, { position: THREE.Vector3; target: THREE.Vector3 }> = {
@@ -71,6 +72,9 @@ export class LensLabApp {
   private cradleSwapped = true;
   private raysMaster = 1;
   private readonly tmp = new THREE.Vector3();
+  private library: LibraryView | null = null;
+  /** The lab stops rendering while a full-screen view (library …) covers it. */
+  private paused = false;
   private readonly auto: AutoQuality;
   private readonly timer = new THREE.Timer();
   private readonly container: HTMLElement;
@@ -163,7 +167,9 @@ export class LensLabApp {
       onCamera: (p) => this.flyToPreset(p),
       onPeaking: (on) => (this.sensorView.matDisplay.uniforms.uPeaking.value = on ? 1 : 0),
       onHighlight: (id) => (this.highlight = id),
+      onLibrary: () => void this.openLibrary(),
     });
+    this.ui.enableLibrary();
     this.ui.setLens(this.state.lens);
     this.labels = new LabelLayer(this.ui.root.querySelector('.labels')!);
 
@@ -181,6 +187,7 @@ export class LensLabApp {
     this.updateSafeArea();
 
     window.addEventListener('resize', () => this.resize());
+    window.addEventListener('hashchange', () => this.route());
     if (this.capture) {
       this.auto.enabled = false;
       this.state.setFocusDistance(2000, 'init');
@@ -277,6 +284,35 @@ export class LensLabApp {
     this.lens.group.position.y = LAYOUT.axisY + kin * lift;
     this.lens.group.position.z = LAYOUT.axisZ - kin * 1.2;
     this.lens.group.visible = t > 0.38;
+  }
+
+  /** Opens the lens library (the view, its styles and the data are fetched on first use). */
+  async openLibrary(selectId?: string): Promise<void> {
+    if (!this.library) {
+      const { LibraryView } = await import('./ui/LibraryView');
+      this.library = new LibraryView(document.body, {
+        onLoad: (id, focal) => void this.loadLens(id, focal),
+        onTeachingLens: () => this.setLens(TEACHING_LENS),
+        onClose: () => {
+          this.paused = false;
+          this.timer.reset();
+          this.ui.setView('lab');
+          if (location.hash.startsWith('#lenses')) history.replaceState(null, '', location.pathname + location.search);
+        },
+      });
+      this.library.onSelect = (id) => history.replaceState(null, '', `#lenses/${id}`);
+    }
+    this.paused = !this.capture;
+    this.ui.setView('lenses');
+    await this.library.open(this.lens.lens.id === TEACHING_LENS.id ? null : this.lens.lens.id, selectId);
+    if (!location.hash.startsWith('#lenses')) history.replaceState(null, '', '#lenses');
+  }
+
+  /** Deep links: #lenses, #lenses/<lens-id>. */
+  route(): void {
+    const m = /^#lenses(?:\/([\w-]+))?$/.exec(location.hash);
+    if (m) void this.openLibrary(m[1]);
+    else if (this.library?.isOpen) this.library.close();
   }
 
   /** Mount a library lens by id (loads the data on demand). */
@@ -396,6 +432,7 @@ export class LensLabApp {
 
   // ------------------------------------------------------------------ frame
   private frame(fixedDt?: number): void {
+    if (this.paused && fixedDt === undefined) return;
     this.timer.update();
     const dt = fixedDt ?? Math.min(this.timer.getDelta(), 0.1);
     this.t += dt;

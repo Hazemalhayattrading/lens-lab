@@ -64,10 +64,16 @@
 }
 .lc-glass li {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 6px;
-  white-space: nowrap;
+  min-width: 0;
+  max-width: 100%;
+  line-height: 1.35;
   cursor: help;
+}
+.lc-glass i {
+  flex: none;
+  transform: translateY(-1px);
 }
 .lc-glass i {
   width: 7px;
@@ -307,4 +313,33 @@
 .subjects .state {
   letter-spacing: 0.06em;
   padding: 2px 5px;
+}
+
+/* ---------------------------------------------------------------- section nav */
+.topbar .views {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.views button[aria-current='page'] {
+  background: rgba(95, 224, 255, 0.14);
+  color: #fff;
+}
+@media (max-width: 1100px) {
+  .topbar .views {
+    position: static;
+    transform: none;
+    margin-left: auto;
+  }
+}
+@media (max-width: 820px) {
+  .brand p {
+    display: none;
+  }
+  .topbar .views button {
+    padding: 7px 10px;
+  }
+}
+body.lib-open #ui {
+  visibility: hidden;
 }
