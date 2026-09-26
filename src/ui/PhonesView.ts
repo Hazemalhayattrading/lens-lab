@@ -124,17 +124,18 @@ export class PhonesView {
   }
 
   async open(phoneId?: string): Promise<void> {
-    this.lastFocus = document.activeElement as HTMLElement | null;
+    if (!this.isOpen) this.lastFocus = document.activeElement as HTMLElement | null;
     this.root.classList.add('open');
     document.body.classList.add('lib-open');
     await this.ready;
     if (!this.viewer) {
       const { PhoneViewer } = await import('../phone/PhoneViewer');
-      this.viewer = new PhoneViewer(this.$stage, this.$labels);
+      this.viewer ??= new PhoneViewer(this.$stage, this.$labels);
       this.viewer.setLight(this.light);
-      this.resizeObs = new ResizeObserver(() => this.viewer?.resize());
+      this.resizeObs ??= new ResizeObserver(() => this.viewer?.resize());
       this.resizeObs.observe(this.$stage);
     }
+    if (!this.isOpen) return; // closed while loading: do not start the render loop
     const id = phoneId && this.phones.some((p) => p.id === phoneId) ? phoneId : (this.phone?.id ?? this.phones[0]?.id);
     if (id) this.showPhone(id);
     this.viewer.resize();

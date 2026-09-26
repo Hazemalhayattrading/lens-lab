@@ -4,7 +4,7 @@ import { findLens } from './data/library';
 import { labLensFromData, TEACHING_LENS, type LabLens } from './lab/labLens';
 import { computeFrame, type OpticsFrame } from './lab/optics';
 import { subjectById, type SubjectId } from './optics/config';
-import { distanceForMagnification, focusCurve } from './optics/lensModel';
+import { distanceForMagnification, focusCurve, zoomForFocal } from './optics/lensModel';
 import { MainPipeline } from './render/MainPipeline';
 import { AutoQuality, initialQuality, isLikelyMobile, QUALITY, type QualityLevel } from './render/quality';
 import { SensorPipeline } from './render/SensorPipeline';
@@ -79,6 +79,13 @@ export class LensLabApp {
   private phones: PhonesView | null = null;
   private compare: CompareView | null = null;
   private learn: LearnView | null = null;
+  /** Lazy view construction, memoised so a double click cannot build a view twice. */
+  private libraryReady: Promise<LibraryView> | null = null;
+  private phonesReady: Promise<PhonesView> | null = null;
+  private compareReady: Promise<CompareView> | null = null;
+  private learnReady: Promise<LearnView> | null = null;
+  /** The latest view asked for wins when several are still loading. */
+  private viewRequest = 0;
   /** Two sensor pipelines for compare mode (created on first use). */
   private comparePipes: [SensorPipeline, SensorPipeline] | null = null;
   /** The lab stops rendering while a full-screen view (library …) covers it. */
@@ -192,6 +199,7 @@ export class LensLabApp {
     this.ring.onDragStart = () => (this.ringUsed = true);
     this.zoomDrag = new FocusRingDrag(renderer.domElement, this.rig.camera, this.rig.controls, NO_RING, () => this.state.zoom);
     this.zoomDrag.onFraction = (fr) => this.state.followZoomTo(fr);
+    FocusRingDrag.link(this.ring, this.zoomDrag);
 
     this.auto = new AutoQuality(this.quality, (level) => this.applyQuality(level));
     this.updateLineResolution();
@@ -230,11 +238,14 @@ export class LensLabApp {
   /** Mount another lens in the lab (library, compare): the old lens rises out, the new one drops in. */
   setLens(lens: LabLens, focal?: number): void {
     if (lens.id === this.lens.lens.id) {
-      this.state.setLens(lens, focal);
+      // already mounted ("Back to the lab"): keep the zoom and aperture unless a focal length was asked for
+      if (focal !== undefined) this.state.zoomTo(zoomForFocal(lens.physics, focal));
       return;
     }
     this.state.setLens(lens, focal);
     this.ui.setLens(lens);
+    // the dock may have gained or lost the zoom row: reframe the bench and the label area
+    this.updateSafeArea();
     const next: MountedLens = lens.id === TEACHING_LENS.id ? new LensAssembly(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ, (50 / 2 / 2) * LAYOUT.kLateral) : new ProceduralLens(lens);
     this.finishSwap();
     for (const c of this.lens.callouts()) this.labels.remove(this.calloutId(this.lens, c.id));
@@ -299,66 +310,61 @@ export class LensLabApp {
 
   /** Opens the lens library (the view, its styles and the data are fetched on first use). */
   async openLibrary(selectId?: string): Promise<void> {
-    if (!this.library) {
-      const { LibraryView } = await import('./ui/LibraryView');
-      this.library = new LibraryView(document.body, {
+    const req = ++this.viewRequest;
+    const library = await (this.libraryReady ??= import('./ui/LibraryView').then(({ LibraryView }) => {
+      const v = new LibraryView(document.body, {
         onLoad: (id, focal) => void this.loadLens(id, focal),
         onTeachingLens: () => this.setLens(TEACHING_LENS),
-        onClose: () => {
-          this.paused = false;
-          this.timer.reset();
-          this.ui.setView('lab');
-          if (location.hash.startsWith('#lenses')) history.replaceState(null, '', location.pathname + location.search);
-        },
+        onClose: () => this.overlayClosed('#lenses'),
       });
-      this.library.onSelect = (id) => history.replaceState(null, '', `#lenses/${id}`);
-    }
+      v.onSelect = (id) => history.replaceState(null, '', `#lenses/${id}`);
+      return (this.library = v);
+    }));
+    if (req !== this.viewRequest) return; // another view was asked for while this one loaded
     this.closeOverlays('lenses');
     this.paused = !this.capture;
     this.ui.setView('lenses');
-    await this.library.open(this.lens.lens.id === TEACHING_LENS.id ? null : this.lens.lens.id, selectId);
-    if (!location.hash.startsWith('#lenses')) history.replaceState(null, '', '#lenses');
+    await library.open(this.lens.lens.id === TEACHING_LENS.id ? null : this.lens.lens.id, selectId);
+    if (library.isOpen && !location.hash.startsWith('#lenses')) history.replaceState(null, '', '#lenses');
   }
 
   /** Opens the phone cameras view (view, styles, 3D viewer and data are fetched on first use). */
   async openPhones(selectId?: string): Promise<void> {
-    if (!this.phones) {
-      const { PhonesView } = await import('./ui/PhonesView');
-      this.phones = new PhonesView(document.body, {
-        onClose: () => {
-          this.paused = false;
-          this.timer.reset();
-          this.ui.setView('lab');
-          if (location.hash.startsWith('#phones')) history.replaceState(null, '', location.pathname + location.search);
-        },
-      });
-      this.phones.onSelect = (id) => history.replaceState(null, '', `#phones/${id}`);
-    }
+    const req = ++this.viewRequest;
+    const phones = await (this.phonesReady ??= import('./ui/PhonesView').then(({ PhonesView }) => {
+      const v = new PhonesView(document.body, { onClose: () => this.overlayClosed('#phones') });
+      v.onSelect = (id) => history.replaceState(null, '', `#phones/${id}`);
+      return (this.phones = v);
+    }));
+    if (req !== this.viewRequest) return;
     this.closeOverlays('phones');
     this.paused = !this.capture;
     this.ui.setView('phones');
-    await this.phones.open(selectId);
-    if (!location.hash.startsWith('#phones')) history.replaceState(null, '', '#phones');
+    await phones.open(selectId);
+    if (phones.isOpen && !location.hash.startsWith('#phones')) history.replaceState(null, '', '#phones');
   }
 
   /** Opens the explainers (the view, its styles and the phone data are fetched on first use). */
   async openLearn(topic?: string): Promise<void> {
-    if (!this.learn) {
-      const { LearnView } = await import('./ui/LearnView');
-      this.learn = new LearnView(document.body, {
-        onClose: () => {
-          this.paused = false;
-          this.timer.reset();
-          this.ui.setView('lab');
-          if (location.hash.startsWith('#learn')) history.replaceState(null, '', location.pathname + location.search);
-        },
-      });
-      this.learn.onSelect = (id) => history.replaceState(null, '', `#learn/${id}`);
-    }
+    const req = ++this.viewRequest;
+    const learn = await (this.learnReady ??= import('./ui/LearnView').then(({ LearnView }) => {
+      const v = new LearnView(document.body, { onClose: () => this.overlayClosed('#learn') });
+      v.onSelect = (id) => history.replaceState(null, '', `#learn/${id}`);
+      return (this.learn = v);
+    }));
+    if (req !== this.viewRequest) return;
     this.closeOverlays('learn');
     this.paused = !this.capture;
     this.ui.setView('learn');
-    await this.learn.open(topic);
+    await learn.open(topic);
+  }
+
+  /** A full-screen view closed: the lab renders again and its deep link is dropped. */
+  private overlayClosed(hash: string): void {
+    this.paused = false;
+    this.timer.reset();
+    this.ui.setView('lab');
+    if (location.hash.startsWith(hash)) history.replaceState(null, '', location.pathname + location.search);
   }
 
   /** Closes every full-screen view except `keep` (only one is open at a time). */
@@ -379,23 +385,25 @@ export class LensLabApp {
     else if (ph) void this.openPhones(ph[1]);
     else if (cmp) void this.openCompare(cmp[1]);
     else if (lrn) void this.openLearn(lrn[1]);
-    else this.closeOverlays();
+    else {
+      this.viewRequest++; // back to the lab: a view still loading must not open
+      this.closeOverlays();
+    }
   }
 
   /** Opens compare mode; the two sensor images are rendered by the lab renderer (below the view's DOM). */
   async openCompare(presetId?: string): Promise<void> {
-    if (!this.compare) {
-      const { CompareView } = await import('./ui/CompareView');
-      this.compare = new CompareView(document.body, {
+    const req = ++this.viewRequest;
+    const compare = await (this.compareReady ??= import('./ui/CompareView').then(({ CompareView }) => {
+      const v = new CompareView(document.body, {
         onClose: () => {
-          this.paused = false;
-          this.timer.reset();
-          this.ui.setView('lab');
           this.lastShadowKey = '';
-          if (location.hash.startsWith('#compare')) history.replaceState(null, '', location.pathname + location.search);
+          this.overlayClosed('#compare');
         },
       });
-    }
+      return (this.compare = v);
+    }));
+    if (req !== this.viewRequest) return;
     this.closeOverlays('compare');
     if (!this.comparePipes) {
       const p = QUALITY[this.quality];
@@ -405,8 +413,8 @@ export class LensLabApp {
     // compare renders its own frames (the lab's bench is not drawn meanwhile)
     this.paused = false;
     this.ui.setView('compare');
-    await this.compare.open(presetId);
-    if (!location.hash.startsWith('#compare')) history.replaceState(null, '', '#compare');
+    await compare.open(presetId);
+    if (compare.isOpen && !location.hash.startsWith('#compare')) history.replaceState(null, '', '#compare');
     if (this.capture) this.frame(1 / 60);
   }
 
@@ -725,7 +733,7 @@ export class LensLabApp {
     // exploded-view part callouts
     const exploded = this.state.explode > 0.7;
     const irisWorld = this.lens.irisLabelPoint(this.tmp);
-    L.ensure('iris', { className: 'part', priority: 3, html: `Iris <span class="v">${fmtF(o.fNumber)} · pupil ⌀ ${o.apertureDiameter.toFixed(1)} mm · ${this.lens.lens.blades} blades</span>` });
+    L.ensure('iris', { className: 'part', priority: 3, html: `Iris <span class="v">${fmtF(o.fNumber)} · pupil ⌀ ${o.apertureDiameter.toFixed(1)} mm · ${this.lens.lens.assumed.includes('blades') ? 'blades unverified' : `${this.lens.lens.blades} blades`}</span>` });
     L.place('iris', irisWorld, cam, exploded && !compact && settled, [0, 16]);
 
     // special glass (close to the lens or exploded) and moving groups (exploded)

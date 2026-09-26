@@ -25,6 +25,8 @@ export class FocusRingDrag {
   private lastPhi = 0;
   private ringAngle = 0;
   private hover = false;
+  /** Other rings on the same canvas: a pointer belongs to the ring nearest to the eye. */
+  private peers: FocusRingDrag[] = [];
   onFraction: (fraction: number) => void = () => {};
   onDragStart: () => void = () => {};
   onDragEnd: () => void = () => {};
@@ -42,6 +44,11 @@ export class FocusRingDrag {
     dom.addEventListener('pointermove', this.onMove);
     window.addEventListener('pointerup', this.onUp);
     window.addEventListener('pointercancel', this.onUp);
+  }
+
+  /** Rings that share a canvas (focus and zoom): only the nearest one under the pointer reacts. */
+  static link(...drags: FocusRingDrag[]): void {
+    for (const d of drags) d.peers = drags.filter((p) => p !== d);
   }
 
   /** Point the drag at another lens. */
@@ -63,9 +70,27 @@ export class FocusRingDrag {
     this.raycaster.setFromCamera(this.ndc, this.camera);
   }
 
+  private ownHit(ray: THREE.Ray): THREE.Intersection | null {
+    if (!this.lens.focusRingMeshes.length) return null;
+    this.raycaster.ray.copy(ray);
+    return this.raycaster.intersectObjects(this.lens.focusRingMeshes, false)[0] ?? null;
+  }
+
+  /** The hit on this ring, unless another ring is in front of it along the same ray. */
   private hitRing(): THREE.Intersection | null {
-    const hits = this.raycaster.intersectObjects(this.lens.focusRingMeshes, false);
-    return hits[0] ?? null;
+    const ray = this.raycaster.ray.clone();
+    const hit = this.ownHit(ray);
+    if (!hit) return null;
+    for (const p of this.peers) {
+      const other = p.ownHit(ray);
+      if (other && other.distance < hit.distance) return null;
+    }
+    return hit;
+  }
+
+  private updateCursor(): void {
+    if (this.dragging || this.peers.some((p) => p.dragging)) return;
+    this.dom.style.cursor = this.hover || this.peers.some((p) => p.hover) ? 'grab' : '';
   }
 
   private axisCenter(): THREE.Vector3 {
@@ -140,7 +165,7 @@ export class FocusRingDrag {
       const over = this.hitRing() !== null;
       if (over !== this.hover) {
         this.hover = over;
-        this.dom.style.cursor = over ? 'grab' : '';
+        this.updateCursor();
       }
     }
   };
@@ -150,7 +175,7 @@ export class FocusRingDrag {
     this.dragging = false;
     this.controls.enabled = true;
     this.dom.releasePointerCapture?.(e.pointerId);
-    this.dom.style.cursor = this.hover ? 'grab' : '';
+    this.updateCursor();
     this.onDragEnd();
   };
 

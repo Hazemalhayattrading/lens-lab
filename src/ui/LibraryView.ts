@@ -173,11 +173,12 @@ export class LibraryView {
 
   /** Opens the library, pre-selecting the mounted lens (if it is a library lens). */
   async open(mountedId: string | null, selectId?: string): Promise<void> {
-    this.lastFocus = document.activeElement as HTMLElement | null;
+    if (!this.isOpen) this.lastFocus = document.activeElement as HTMLElement | null;
     this.mountedId = mountedId;
     this.root.classList.add('open');
     document.body.classList.add('lib-open');
     await this.ready;
+    if (!this.isOpen) return; // closed while the data loaded
     const has = (id: string | null | undefined): id is string => !!id && this.lenses.some((l) => l.id === id);
     const id = has(selectId) ? selectId : has(mountedId) ? mountedId : (this.selected ?? this.visible()[0]?.id ?? null);
     if (id) this.select(id, has(selectId));

@@ -172,10 +172,11 @@ export class CompareView {
   }
 
   async open(presetId?: string): Promise<void> {
-    this.lastFocus = document.activeElement as HTMLElement | null;
+    if (!this.isOpen) this.lastFocus = document.activeElement as HTMLElement | null;
     this.root.classList.add('open');
     document.body.classList.add('lib-open');
     await this.ready;
+    if (!this.isOpen) return; // closed while the data loaded
     if (presetId || !this.sides) this.applyPreset(presetId && PRESETS.some((p) => p.id === presetId) ? presetId : (PRESETS.find((p) => this.resolve(p.a) && this.resolve(p.b))?.id ?? ''));
     this.root.querySelector<HTMLElement>('[data-act="close"]')!.focus({ preventScroll: true });
   }

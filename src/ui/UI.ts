@@ -1,7 +1,7 @@
 import { SUBJECTS, type SubjectId } from '../optics/config';
 import { apertureButtons, focalAtZoom, zoomForFocal } from '../optics/lensModel';
 import { FULL_FRAME_DIAGONAL, diagonal } from '../optics/formats';
-import type { LabLens } from '../lab/labLens';
+import type { Assumption, LabLens } from '../lab/labLens';
 import type { OpticsFrame } from '../lab/optics';
 import { depthMap } from '../scene/layout';
 import { explain, SUBJECT_NAME } from './explain';
@@ -553,10 +553,14 @@ export class UI {
       ? `<li>${unver('special glass')}</li>`
       : legend.map((g) => `<li title="${esc(g.kinds.map((k) => SPECIAL_KIND_NAMES[k]).join(' + '))}"><i style="color:${g.color}"></i>${esc(g.label)}${g.count > 1 ? ` <b>×${g.count}</b>` : ''}</li>`).join('');
     this.$.lensGlass.hidden = !this.$.lensGlass.innerHTML;
-    const assumed = lens.assumed.filter((a) => a !== 'elements' && a !== 'dimensions' && a !== 'blades');
-    this.$.lensNote.textContent = assumed.length
-      ? `Illustrative layout · lab assumes ${assumed.map((a) => (a === 'minAperture' ? 'f/16 minimum' : 'a 1:10 closest focus')).join(', ')}`
-      : 'Illustrative layout';
+    // the chips already flag unverified elements / groups; list what the lab fills in to work
+    const note: Partial<Record<Assumption, string>> = {
+      minAperture: 'f/16 minimum',
+      minFocus: lens.format === 'phone' ? 'a 10 cm closest focus' : 'a 1:10 closest focus',
+      blades: `${lens.blades} aperture blades`,
+    };
+    const assumed = lens.assumed.map((a) => note[a]).filter(Boolean);
+    this.$.lensNote.textContent = assumed.length ? `Illustrative layout · lab assumes ${assumed.join(', ')}` : 'Illustrative layout';
 
     // zoom control
     const zoomCtl = this.root.querySelector<HTMLElement>('.zoom-ctl')!;
