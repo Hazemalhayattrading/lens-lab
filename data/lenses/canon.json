@@ -392,8 +392,8 @@
       { "kind": "low-dispersion", "label": "UD", "count": 1 }
     ],
     "apertureBlades": 11,
-    "minFocusM": { "wide": null, "tele": null },
-    "maxMagnification": null,
+    "minFocusM": { "wide": 0.49, "tele": 0.68 },
+    "maxMagnification": 0.3,
     "stabilization": { "optical": true, "stops": 5.5 },
     "autofocus": "Dual Nano USM",
     "weightG": 1110,
@@ -403,7 +403,7 @@
     "launchPrice": { "amount": 2999, "currency": "USD" },
     "zoomMechanism": "internal",
     "focusMechanism": "floating",
-    "notes": "The task brief described this as the '2023' internal-zoom version, but Canon's own newsroom material confirms it was announced 30 Oct 2024 and shipped Nov 2024; the confirmed 2024 date is used. Weight is 1110g for the black finish (white finish is 1115g per Canon's heat-resistant white paint); weight/dimensions/filter size were corroborated via The Digital Picture, PetaPixel and DPReview since the Canon spec-sheet page text itself was not fully readable in search results (non-official corroboration). minFocusM and maxMagnification are left null: one search result reported approx. 0.49m, another reported approx. 0.68m with 0.3x magnification, and this conflict could not be resolved within the available search budget. Minimum aperture not found.",
+    "notes": "The task brief described this as the '2023' internal-zoom version, but Canon's own newsroom material confirms it was announced 30 Oct 2024 and shipped Nov 2024; the confirmed 2024 date is used. Weight is 1110g for the black finish (white finish is 1115g per Canon's heat-resistant white paint); weight/dimensions/filter size were corroborated via The Digital Picture, PetaPixel and DPReview since the Canon spec-sheet page text itself was not fully readable in search results (non-official corroboration). Canon's pages give a closest focusing distance of approx. 0.49 m (70 mm) and 0.68 m at 200 mm, where the maximum magnification of 0.3x is reached (re-checked 2026-09-26; an earlier pass had read the two figures as a conflict). Minimum aperture not found.",
     "famousFor": "Canon's redesigned 'Z' 70-200mm f/2.8, the first in this class with a fully internal zoom and focus mechanism, keeping the barrel length fixed while zooming and enabling RF extender compatibility across the whole zoom range.",
     "strengths": [
       "Fully internal zoom - barrel length never changes, useful for gimbals and video",
@@ -431,7 +431,7 @@
       { "title": "Canon unveils the RF 70-200mm F2.8 L IS USM Z", "url": "https://www.dpreview.com/news/3012958778/canon-announces-rf-70-200mm-f2-8-l-is-usm-z", "kind": "press" },
       { "title": "Canon RF 70-200mm F2.8 L IS USM Z Lens Specifications - The Digital Picture", "url": "https://www.the-digital-picture.com/Reviews/Lens-Specifications.aspx?Lens=1715", "kind": "review" }
     ],
-    "checked": "2026-09-25"
+    "checked": "2026-09-26"
   },
   {
     "id": "canon-rf-100-500-f45-71-l-is-usm",

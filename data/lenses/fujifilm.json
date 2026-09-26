@@ -403,7 +403,7 @@
     ],
     "apertureBlades": 9,
     "minFocusM": { "wide": 2.4, "tele": 2.4 },
-    "maxMagnification": null,
+    "maxMagnification": 0.24,
     "stabilization": { "optical": true, "stops": 5 },
     "autofocus": "Linear Motor (LM)",
     "weightG": 1605,
@@ -412,7 +412,7 @@
     "releaseYear": 2022,
     "launchPrice": { "amount": 1999, "currency": "USD" },
     "zoomMechanism": "internal",
-    "notes": "Fujifilm's official pages give 24 elements in 17 groups (3 ED, 4 Super ED), 9 rounded blades, F22 minimum aperture, 2.4 m minimum focus, 82 mm filter, 5-stop OIS, an inner-zoom barrel of constant length, and about 1,605 g excluding caps, hood and tripod foot. Fujifilm gives one minimum focus distance and one minimum aperture, used here for both ends. The US press release states an MSRP of $1,999 with availability in July 2022 (announced 31 May 2022). Dimensions (99 x 314.5 mm) come from DPReview because the official dimension field did not appear in accessible snippets. Maximum magnification could not be verified and is left null. Compatible with Fujifilm's XF1.4X and XF2X teleconverters (229-914 mm equivalent native; 300-1,200 mm actual focal length with the 2x).",
+    "notes": "Fujifilm's official pages give 24 elements in 17 groups (3 ED, 4 Super ED), 9 rounded blades, F22 minimum aperture, 2.4 m minimum focus, 82 mm filter, 5-stop OIS, an inner-zoom barrel of constant length, and about 1,605 g excluding caps, hood and tripod foot. Fujifilm gives one minimum focus distance and one minimum aperture, used here for both ends. The US press release states an MSRP of $1,999 with availability in July 2022 (announced 31 May 2022). Dimensions (99 x 314.5 mm) come from DPReview because the official dimension field did not appear in accessible snippets. Maximum magnification 0.24x at 600 mm and 2.4 m comes from reviews (DustinAbbott.net, Digital Camera World); it did not appear in accessible snippets of the official pages. Compatible with Fujifilm's XF1.4X and XF2X teleconverters (229-914 mm equivalent native; 300-1,200 mm actual focal length with the 2x).",
     "famousFor": "Fujifilm's longest X-mount zoom, reaching 914 mm equivalent in a weather-sealed, internally zooming barrel with 5-stop stabilisation.",
     "strengths": [
       "229-914 mm-equivalent reach, extendable with Fujifilm teleconverters",
@@ -437,7 +437,8 @@
       { "title": "Fujifilm Introduces FUJINON XF150-600mmF5.6-8 R LM OIS WR Lens", "url": "https://www.fujifilm.com/us/en/news/optical-devices/fujifilm-introduces-fujinon-xf150-600-mm-lens", "kind": "press" },
       { "title": "Fujifilm launches the 150-600mm F5.6-8 R LM OIS WR, its longest super telephoto zoom to date", "url": "https://www.dpreview.com/news/8430367417/fujifilm-launches-the-150-600mm-f5-6-8-r-lm-ois-wr-it-s-longest-super-telephoto-zoom-to-date", "kind": "review" },
       { "title": "Hands-on with the Fujifilm XF 150-600mm F5.6-8 R LM OIS WR Lens", "url": "https://www.dpreview.com/articles/7991433592/hands-on-with-the-fujifilm-xf-150-600mm-f5-6-8-r-lm-ois-wr-lens", "kind": "review" },
-      { "title": "Fujinon XF 150-600mm F5.6-8 R LM OIS WR Review", "url": "https://dustinabbott.net/2023/01/fujinon-xf-150-600mm-f5-6-8-r-lm-ois-wr-review/", "kind": "review" }
+      { "title": "Fujinon XF 150-600mm F5.6-8 R LM OIS WR Review", "url": "https://dustinabbott.net/2023/01/fujinon-xf-150-600mm-f5-6-8-r-lm-ois-wr-review/", "kind": "review" },
+      { "title": "Fujifilm Fujinon XF150-600mm F5.6-8 R LM OIS WR review", "url": "https://www.digitalcameraworld.com/reviews/fujinon-xf150-600mmf56-8-r-lm-ois-wr-review", "kind": "review" }
     ],
     "checked": "2026-09-26"
   },
