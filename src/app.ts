@@ -479,6 +479,10 @@ export class LensLabApp {
     this.lights.setShadowQuality(p.shadowSize, p.shadows);
     this.lastShadowKey = '';
     this.sensorWidth = 0; // re-evaluate sensor resolution
+    if (this.comparePipes) {
+      const q = { width: Math.min(p.sensorMaxWidth, 960), samples: p.sensorSamples, msaa: p.sensorMsaa };
+      for (const pipe of this.comparePipes) pipe.setQuality(q);
+    }
     this.updateLineResolution();
     if (this.qualityChoice === 'auto') this.ui.setQuality('auto');
   }

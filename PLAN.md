@@ -229,6 +229,8 @@ Every row was worked out by hand (checked with a pocket-calculator script) and i
 | **L** depth ladder | u(d) = 1 − (200/d)^0.3: u(2 m) = 1 − 0.1^0.3 = **0.4988**; d(½) = 200·0.5^(−1/0.3) = **2015.9 mm**; 0.3 m → 0.115, 30 m → 0.778, 200 m → 0.874, ∞ → 1 | ✅ |
 | **M** apertures | f/1.2–16 → buttons **1.2, 2, 4, 8, 16** (full stops spread evenly in stop space) · f/0.95–16 → **0.95, 2, 4, 8, 16** | ✅ |
 | **N** image-side cones | aperture radius r at D in front of the sensor, wanted disc b, t = b/2r: far subject a = tD/(1 + t) in front, near subject a = tD/(1 − t) behind; similar triangles give back 2r·a/(D ∓ a) = b exactly | ✅ |
+| **O** phone cameras (`tests/phoneOptics.test.ts`) | 48 MP × 1.22 µm: px = √(48e6·4/3) = **8000** → **9.76 × 7.32 mm** (matches 1/1.28" ≈ 10 × 7.5) · 24 mm eq → real f = 24/3.4613 = **6.93 mm**, f/1.48 → eq **f/5.1**, FOV 2·atan(43.267/48) = **84.1°** · 5× of 24 mm → **120 mm** eq (computed, labelled) · DoF at 2 m, f/1.48, c = 0.00867: H = 6.93²/(1.48·0.00867) + 6.93 ≈ **3754 mm**, u ≈ 1993 → near ≈ **1.30 m**, far ≈ **4.24 m** (the lens stays at v, so both limits add the same v — same convention as `lensState`, asserted equal) | ✅ |
+| **P** illustrative layouts (`tests/opticalLayout.test.ts`) | invariants, for every library lens + one synthetic lens per design family: element count = published, groups = elements − cemented joins = published, each cemented pair shares its contact surface (r₁' = −r₂, touching vertices), edge thickness > 0.5 mm, clear aperture < barrel inner radius and rear element < mount throat, min axial clearance > 0.2 mm between neighbours at z ∈ {0, ¼, ½, ¾, 1} × focus ∈ {0, ½, 1}, zoom / focus groups move, entrance pupil ≤ front element | ✅ |
 
 ## Research status (updated 2026-09-25)
 

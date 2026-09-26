@@ -313,6 +313,7 @@ export class UI {
       <li><strong>Aperture &amp; zoom</strong> — the buttons follow the lens’ real aperture range; zoom lenses get a working zoom ring. Watch the iris, the light cones, the field-of-view cone and the sharp zone change.</li>
       <li><strong>Read the sensor</strong> — in-focus light lands as a point, out-of-focus light as a disc. Open the sensor view (<kbd>F</kbd>) to see the real blur.</li>
       <li><strong>Orbit</strong> — drag to rotate, scroll / pinch to zoom, right-drag / two fingers to pan.</li>
+      <li><strong>Lenses</strong> (<kbd>L</kbd>) — the library: filter by brand and type, search, read the specs and sources, load any lens into the lab. <strong>Phones</strong> (<kbd>P</kbd>) — phone camera modules taken apart. <strong>Compare</strong> (<kbd>C</kbd>) — two lenses or phone cameras side by side.</li>
     </ul>
     <div class="foot"><span>Physics: thin lens with each lens’ real focal length, apertures, closest focus and magnification; distances from the focal plane.</span><button class="btn" data-action="close-help">Got it</button></div>
   </div>
