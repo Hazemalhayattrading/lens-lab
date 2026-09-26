@@ -408,7 +408,7 @@
     ],
     "apertureBlades": 11,
     "minFocusM": { "wide": 0.38, "tele": 0.8 },
-    "maxMagnification": null,
+    "maxMagnification": 0.3,
     "stabilization": { "optical": true, "stops": null },
     "autofocus": "Silky Swift VCM (voice coil motor)",
     "weightG": 998,
@@ -418,7 +418,7 @@
     "launchPrice": { "amount": 3199.95, "currency": "USD" },
     "zoomMechanism": null,
     "focusMechanism": null,
-    "notes": "This II version was announced 2026-02-17 and shipped from late March 2026, replacing the original NIKKOR Z 70-200mm f/2.8 VR S (2020); researched here as the current model per the task's replacement instruction. About 26% lighter than the original (998 g vs. approx. 1,360 g). Minimum aperture, exact VR stop rating, maximum magnification and zoom mechanism (internal vs. extending) were not stated in the sources reviewed and are left null.",
+    "notes": "This II version was announced 2026-02-17 and shipped from late March 2026, replacing the original NIKKOR Z 70-200mm f/2.8 VR S (2020); researched here as the current model per the task's replacement instruction. About 26% lighter than the original (998 g vs. approx. 1,360 g). Maximum reproduction ratio 0.3× at 70 mm (0.38 m) and 0.25× at 200 mm (0.8 m), per Nikon. Minimum aperture, exact VR stop rating and zoom mechanism (internal vs. extending) were not stated in the sources reviewed and are left null.",
     "famousFor": "A 2026 second-generation redesign of Nikon's flagship 70-200mm f/2.8, breaking the 1kg barrier for the class while adding Nikon's fastest-yet Silky Swift VCM autofocus.",
     "strengths": [
       "Roughly 26% lighter than the original S while improving optics",
@@ -439,12 +439,13 @@
     ],
     "sources": [
       { "title": "NIKKOR Z 70-200mm f/2.8 VR S II Zoom Lens for Nikon Z Mirrorless Cameras", "url": "https://www.nikonusa.com/p/nikkor-z-70-200mm-f28-vr-s-ii/20130/overview", "kind": "official" },
+      { "title": "NIKKOR Z 70-200mm f/2.8 VR S II | Z mount Lenses | Nikon Consumer", "url": "https://imaging.nikon.com/imaging/lineup/lens/z-mount/z_70-200mmf28_vr_s2/", "kind": "official" },
       { "title": "Nikon releases the NIKKOR Z 70-200mm f/2.8 VR S II", "url": "https://www.nikon.com/company/news/2026/0224_imaging_01/", "kind": "press" },
       { "title": "The all-new NIKKOR Z 70-200mm f/2.8 VR S II", "url": "https://www.nikon.co.uk/en_GB/learn-and-explore/magazine/gear/the-all-new-nikkor-z-70-200mm-f2.8-vr-s-ii", "kind": "official" },
       { "title": "Nikon Z 70-200mm f/2.8 VR S II review: a flawless workhorse lens", "url": "https://www.techradar.com/cameras/camera-lenses/nikon-z-70-200mm-f-2-8-vr-s-ii-review", "kind": "review" },
       { "title": "Nikon Z 70-200mm f2.8 S VR II Review: Nikon's Best Zoom Yet", "url": "https://www.thephoblographer.com/2026/02/23/nikon-z-70-200mm-f2-8-s-vr-ii-review-nikons-best-zoom-yet/", "kind": "review" }
     ],
-    "checked": "2026-09-25"
+    "checked": "2026-09-26"
   },
   {
     "id": "nikon-z-180-600mm-f56-63-vr",
