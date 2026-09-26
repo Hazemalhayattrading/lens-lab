@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { FocusRingDrag } from './interaction/FocusRingDrag';
+import { FocusRingDrag, type RingTarget } from './interaction/FocusRingDrag';
 import { findLens } from './data/library';
 import { labLensFromData, TEACHING_LENS, type LabLens } from './lab/labLens';
 import { computeFrame, type OpticsFrame } from './lab/optics';
@@ -8,7 +8,7 @@ import { distanceForMagnification, focusCurve } from './optics/lensModel';
 import { MainPipeline } from './render/MainPipeline';
 import { AutoQuality, initialQuality, isLikelyMobile, QUALITY, type QualityLevel } from './render/quality';
 import { SensorPipeline } from './render/SensorPipeline';
-import { createBench, createHardwareMaterials, createLensCradle } from './scene/bench';
+import { createBench, createHardwareMaterials, createLensCradle, type HardwareMaterials } from './scene/bench';
 import { createCameraRig, VIEWS, type CameraRig } from './scene/cameraRig';
 import { Diorama } from './scene/diorama/Diorama';
 import { skyUniforms } from './scene/diorama/skyShader';
@@ -19,6 +19,8 @@ import { FocusPlane } from './scene/focusPlane';
 import { FovCone } from './scene/fovCone';
 import { LAYOUT, OPTICAL_CENTER_X, SENSOR_H } from './scene/layout';
 import { LensAssembly } from './scene/lens/LensAssembly';
+import type { MountedLens } from './scene/lens/MountedLens';
+import { ProceduralLens } from './scene/lens/ProceduralLens';
 import { createLights, type LabLights } from './scene/lights';
 import { framePosition, RayBundles } from './scene/rays/RayBundles';
 import { createSensorStand, type SensorStand } from './scene/sensorStand';
@@ -36,14 +38,18 @@ const PRESETS: Record<CameraPreset, { position: THREE.Vector3; target: THREE.Vec
   far: { position: new THREE.Vector3(5.6, 3.3, 3.9), target: new THREE.Vector3(8.4, 1.85, 0.2) },
 };
 
-/** Display scale of the teaching lens' helicoid travel (world units per mm of extension). */
-const TEACHING_TRAVEL_SCALE = 0.075;
+/** Drag target for lenses without a zoom ring. */
+const NO_RING: RingTarget = { focusRingMeshes: [], focusRing: new THREE.Group(), ringThrow: 1, setRingHover: () => {} };
+/** Duration of the lens swap animation (s). */
+const SWAP_TIME = 1.25;
+const easeIn = (t: number) => t * t * t;
+const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
 
 export class LensLabApp {
   readonly renderer: THREE.WebGLRenderer;
   readonly scene = new THREE.Scene();
   readonly state = new LabState();
-  lens: LensAssembly;
+  lens: MountedLens;
   readonly sensor: SensorStand;
   readonly diorama: Diorama;
   readonly focusPlane = new FocusPlane();
@@ -56,6 +62,15 @@ export class LensLabApp {
   private readonly lights: LabLights;
   private readonly labels: LabelLayer;
   private readonly ring: FocusRingDrag;
+  private readonly zoomDrag: FocusRingDrag;
+  private readonly hw: HardwareMaterials;
+  private cradle: THREE.Group;
+  /** Lens being unmounted (rises out of the bench while the new one drops in). */
+  private outgoing: MountedLens | null = null;
+  private swapT = 1;
+  private cradleSwapped = true;
+  private raysMaster = 1;
+  private readonly tmp = new THREE.Vector3();
   private readonly auto: AutoQuality;
   private readonly timer = new THREE.Timer();
   private readonly container: HTMLElement;
@@ -105,13 +120,15 @@ export class LensLabApp {
     this.scene.add(this.lights.group);
 
     const hw = createHardwareMaterials();
+    this.hw = hw;
     this.scene.add(createBench(hw));
     this.sensor = createSensorStand(hw);
     this.scene.add(this.sensor.group);
     const maxAperture = (50 / 2 / 2) * LAYOUT.kLateral;
     this.lens = new LensAssembly(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ, maxAperture);
     this.scene.add(this.lens.group);
-    this.scene.add(createLensCradle(hw, OPTICAL_CENTER_X - 0.1, LAYOUT.axisY, 1.122));
+    this.cradle = createLensCradle(hw, this.lens.support.x, LAYOUT.axisY, this.lens.support.radius);
+    this.scene.add(this.cradle);
     this.diorama = new Diorama();
     this.scene.add(this.diorama.group, this.diorama.sensorWorld);
     applyFocusOverlayTo(this.diorama.group);
@@ -156,6 +173,8 @@ export class LensLabApp {
       this.state.setFocusDistance(distanceForMagnification(c, fr * c.mMax), 'ring');
     };
     this.ring.onDragStart = () => (this.ringUsed = true);
+    this.zoomDrag = new FocusRingDrag(renderer.domElement, this.rig.camera, this.rig.controls, NO_RING, () => this.state.zoom);
+    this.zoomDrag.onFraction = (fr) => this.state.followZoomTo(fr);
 
     this.auto = new AutoQuality(this.quality, (level) => this.applyQuality(level));
     this.updateLineResolution();
@@ -190,10 +209,74 @@ export class LensLabApp {
     this.renderer.setAnimationLoop(() => this.frame());
   }
 
-  /** Mount another lens in the lab (library, compare). */
+  /** Mount another lens in the lab (library, compare): the old lens rises out, the new one drops in. */
   setLens(lens: LabLens, focal?: number): void {
+    if (lens.id === this.lens.lens.id) {
+      this.state.setLens(lens, focal);
+      return;
+    }
     this.state.setLens(lens, focal);
     this.ui.setLens(lens);
+    const next: MountedLens = lens.id === TEACHING_LENS.id ? new LensAssembly(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ, (50 / 2 / 2) * LAYOUT.kLateral) : new ProceduralLens(lens);
+    this.finishSwap();
+    for (const c of this.lens.callouts()) this.labels.remove(this.calloutId(this.lens, c.id));
+    this.outgoing = this.lens;
+    this.lens = next;
+    this.scene.add(next.group);
+    this.swapT = this.capture ? 1 : 0;
+    this.cradleSwapped = false;
+    this.ring.setLens(next);
+    this.zoomDrag.setLens(next.zoomRing ?? NO_RING);
+    if (this.capture) this.finishSwap();
+  }
+
+  private calloutId(lens: MountedLens, id: string): string {
+    return `c-${lens.lens.id}-${id}`;
+  }
+
+  /** Completes a running swap at once (another lens was picked, or screenshots). */
+  private finishSwap(): void {
+    if (this.outgoing) {
+      this.scene.remove(this.outgoing.group);
+      this.outgoing.dispose();
+      this.outgoing = null;
+    }
+    if (!this.cradleSwapped) this.swapCradle();
+    this.swapT = 1;
+    this.lens.group.position.y = LAYOUT.axisY;
+    this.lens.group.position.z = LAYOUT.axisZ;
+  }
+
+  private swapCradle(): void {
+    this.scene.remove(this.cradle);
+    this.cradle.traverse((o) => (o as THREE.Mesh).isMesh && (o as THREE.Mesh).geometry.dispose());
+    this.cradle = createLensCradle(this.hw, this.lens.support.x, LAYOUT.axisY, this.lens.support.radius);
+    this.scene.add(this.cradle);
+    this.cradleSwapped = true;
+    this.lastShadowKey = '';
+  }
+
+  /** Swap animation: the outgoing lens lifts away, the new lens settles into the cradle. */
+  private updateSwap(dt: number): void {
+    if (this.swapT >= 1 && !this.outgoing) return;
+    this.swapT = Math.min(1, this.swapT + dt / SWAP_TIME);
+    const t = this.swapT;
+    const lift = 3.4;
+    if (this.outgoing) {
+      const k = easeIn(Math.min(1, t / 0.5));
+      this.outgoing.group.position.y = LAYOUT.axisY + k * lift;
+      this.outgoing.group.position.z = LAYOUT.axisZ - k * 1.2;
+      if (t >= 0.5) {
+        this.scene.remove(this.outgoing.group);
+        this.outgoing.dispose();
+        this.outgoing = null;
+      }
+    }
+    if (t >= 0.45 && !this.cradleSwapped) this.swapCradle();
+    const kin = 1 - easeOut(THREE.MathUtils.clamp((t - 0.38) / 0.62, 0, 1));
+    this.lens.group.position.y = LAYOUT.axisY + kin * lift;
+    this.lens.group.position.z = LAYOUT.axisZ - kin * 1.2;
+    this.lens.group.visible = t > 0.38;
   }
 
   /** Mount a library lens by id (loads the data on demand). */
@@ -329,6 +412,8 @@ export class LensLabApp {
 
     this.state.update(dt);
     this.ring.update(dt);
+    this.zoomDrag.update(dt);
+    this.updateSwap(dt);
     this.sensor.setFormat(this.state.lens.physics.sensor.width, this.state.lens.physics.sensor.height);
     this.sensor.update(this.capture ? 10 : dt);
     this.rig.update(dt);
@@ -345,14 +430,13 @@ export class LensLabApp {
     this.optics = o;
 
     // lens mechanics
-    this.lens.setExploded(this.state.explode);
-    const extension = Math.max(0, o.imageDistance - o.focalLength);
-    this.lens.setFocus(extension * TEACHING_TRAVEL_SCALE, o.ringFraction * this.lens.ringThrow);
-    this.lens.setAperture((((50 / o.fNumber) / 2) * LAYOUT.kLateral), o.fNumber);
+    this.lens.apply(o, this.state.explode);
 
-    // teaching overlays
+    // teaching overlays (the rays wait until a newly mounted lens has settled)
+    const settled = this.swapT >= 1 && !this.outgoing;
+    this.raysMaster += ((settled ? 1 : 0) - this.raysMaster) * (this.capture ? 1 : 1 - Math.exp(-dt * (settled ? 4 : 14)));
     const sensorSize = { w: o.sensor.width * LAYOUT.kLateral, h: o.sensor.height * LAYOUT.kLateral };
-    this.rays.update(o, this.lens, sensorSize, this.t, this.capture ? 10 : dt, RayBundles.pick(o), this.highlight);
+    this.rays.update(o, this.lens, sensorSize, this.t, this.capture ? 10 : dt, RayBundles.pick(o), this.highlight, this.raysMaster);
     this.focusPlane.update(o, this.t, { focus: true, zone: true });
     this.fovCone.update(o.fovHorizontal, o.fovVertical, this.lens.frontX, this.t);
 
@@ -378,7 +462,7 @@ export class LensLabApp {
     }
 
     // shadows only when something that casts them moved
-    const shadowKey = `${o.imageDistance.toFixed(4)}|${this.state.explode.toFixed(4)}`;
+    const shadowKey = `${this.lens.lens.id}|${o.imageDistance.toFixed(4)}|${o.zoom.toFixed(4)}|${this.state.explode.toFixed(4)}|${this.swapT.toFixed(3)}`;
     if (shadowKey !== this.lastShadowKey) {
       this.renderer.shadowMap.needsUpdate = true;
       this.lastShadowKey = shadowKey;
@@ -451,15 +535,24 @@ export class LensLabApp {
     L.place('sensor', new THREE.Vector3(LAYOUT.sensorX, LAYOUT.axisY + SENSOR_H / 2 + 0.62, 0), cam, !compact);
 
     // focus ring hint until the user has turned it once
-    const ringWorld = this.lens.focusRing.localToWorld(new THREE.Vector3(0.7, -0.55, 1.12));
+    const settled = this.swapT >= 1 && !this.outgoing;
+    const ringWorld = this.lens.ringHintPoint(this.tmp);
     L.ensure('ring', { className: 'hint', priority: 9, html: `↕ Drag the focus ring` });
-    L.place('ring', ringWorld, cam, !this.ringUsed && this.t > 4.5, [0, 30]);
+    L.place('ring', ringWorld, cam, !this.ringUsed && this.t > 4.5 && settled, [0, 30]);
 
     // exploded-view part callouts
     const exploded = this.state.explode > 0.7;
-    const irisWorld = new THREE.Vector3(this.lens.stopX, LAYOUT.axisY - 0.98, 0.3);
-    L.ensure('iris', { className: 'part', priority: 3, html: `Iris <span class="v">${fmtF(o.fNumber)} · ⌀ ${o.apertureDiameter.toFixed(1)} mm</span>` });
-    L.place('iris', irisWorld, cam, exploded && !compact, [0, 16]);
+    const irisWorld = this.lens.irisLabelPoint(this.tmp);
+    L.ensure('iris', { className: 'part', priority: 3, html: `Iris <span class="v">${fmtF(o.fNumber)} · pupil ⌀ ${o.apertureDiameter.toFixed(1)} mm · ${this.lens.lens.blades} blades</span>` });
+    L.place('iris', irisWorld, cam, exploded && !compact && settled, [0, 16]);
+
+    // special glass (close to the lens or exploded) and moving groups (exploded)
+    const near = cam.position.distanceTo(new THREE.Vector3(OPTICAL_CENTER_X, LAYOUT.axisY, LAYOUT.axisZ)) < 10.5;
+    for (const c of this.lens.callouts()) {
+      const id = this.calloutId(this.lens, c.id);
+      L.ensure(id, { className: c.explodedOnly ? 'part group' : 'part glass', priority: c.explodedOnly ? 2 : 3, html: c.html });
+      L.place(id, c.world, cam, settled && !compact && (c.explodedOnly ? exploded : exploded || near), c.explodedOnly ? [0, 14] : [0, -12]);
+    }
   }
 
   /** Whether the renderer runs on a phone-class device (used for defaults). */

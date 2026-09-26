@@ -33,7 +33,7 @@ for (const s of shots) {
   if (s.frames) await page.evaluate((n) => window.lensLab.renderFrames(n), s.frames);
   if (s.wait) await page.waitForTimeout(s.wait);
   const file = join(outDir, `${s.name}.png`);
-  await page.screenshot({ path: file });
+  await page.screenshot({ path: file, timeout: 180000 });
   console.log(`${file}${logs.length ? `\n  ${logs.join('\n  ')}` : ''}`);
   await ctx.close();
 }

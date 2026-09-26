@@ -28,6 +28,11 @@ export interface RayLens {
   readonly apertureRadius: number;
   /** Optical surfaces in world space, front (subject side) to rear. */
   getSurfaces(out: SurfaceInfo[]): SurfaceInfo[];
+  /**
+   * Height of a ray at world X ÷ its height at the iris (optional). In front of the iris the rays
+   * fan out to the entrance pupil: wider than the iris in a telephoto, narrower in a retrofocus.
+   */
+  pupilScale?(x: number): number;
 }
 
 const discVertex = /* glsl */ `
@@ -239,6 +244,7 @@ export class RayBundles {
     const D = xL - xS;
     lens.getSurfaces(this.surfaces);
     const surfaces = this.surfaces;
+    const pupil = lens.pupilScale ? (x: number) => lens.pupilScale!(x) : null;
     const xFront = surfaces.length ? surfaces[0].x : xL + 0.5;
     const xRear = surfaces.length ? surfaces[surfaces.length - 1].x - 0.2 : xL - 0.5;
     const apertureR = Math.max(0.004, lens.apertureRadius);
@@ -287,18 +293,30 @@ export class RayBundles {
       const coneDen = b.cone.geometry.getAttribute('density') as THREE.BufferAttribute;
       const K = this.coneK;
 
+      const chiefAt = new THREE.Vector3();
+      const place = (x: number, Q: THREE.Vector3, s: SurfaceInfo, p: THREE.Vector3) => {
+        pointAt(x, P, Q, I, p);
+        if (pupil && Q !== Q0) {
+          // spread the ray away from the chief ray towards the entrance pupil (inside the glass)
+          pointAt(x, P, Q0, I, chiefAt);
+          const d = p.distanceTo(chiefAt);
+          const m = Math.min(pupil(x), (s.radius * 0.95) / Math.max(1e-6, d));
+          p.sub(chiefAt).multiplyScalar(m).add(chiefAt);
+        }
+        return p;
+      };
       const trace = (rho: number, phi: number): THREE.Vector3[] => {
-        const Q = new THREE.Vector3(xL, axisY + rho * Math.sin(phi), axisZ + rho * Math.cos(phi));
+        const Q = rho === 0 ? Q0 : new THREE.Vector3(xL, axisY + rho * Math.sin(phi), axisZ + rho * Math.cos(phi));
         const pts: THREE.Vector3[] = [P.clone()];
         for (const s of surfaces) {
           const p = new THREE.Vector3();
           let x = s.x;
           for (let it = 0; it < 2; it++) {
-            pointAt(x, P, Q, I, p);
+            place(x, Q, s, p);
             const r = Math.hypot(p.y - axisY, p.z - axisZ);
             x = s.xAt(Math.min(r, s.radius));
           }
-          pointAt(x, P, Q, I, p);
+          place(x, Q, s, p);
           pts.push(p);
         }
         if (!surfaces.length) pts.push(Q.clone());

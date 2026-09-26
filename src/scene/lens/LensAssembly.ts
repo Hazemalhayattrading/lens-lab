@@ -1,5 +1,8 @@
 import * as THREE from 'three';
+import { TEACHING_LENS } from '../../lab/labLens';
+import type { OpticsFrame } from '../../lab/optics';
 import { LENS } from '../../optics/config';
+import { LAYOUT } from '../layout';
 import { buildElementEdge, buildElementGeometry, ELEMENTS, type ElementSpec, frontSurfaceH, rearSurfaceH } from './elements';
 import { addGlassRim } from './glassRim';
 import { Iris } from './iris';
@@ -14,6 +17,7 @@ import {
   nameRingTexture,
   ribTextures,
 } from './lensTextures';
+import type { LensCallout, MountedLens } from './MountedLens';
 import { CUT_PHI_LENGTH, revolve, ringProfile } from './revolve';
 
 const V2 = (r: number, h: number) => new THREE.Vector2(r, h);
@@ -43,7 +47,14 @@ export interface SurfaceInfo {
   radius: number;
 }
 
-export class LensAssembly {
+/** Display scale of the teaching lens' helicoid travel (world units per mm of extension). */
+const TEACHING_TRAVEL_SCALE = 0.075;
+
+/** The Phase 1 teaching lens: a hand-modelled 6-element double-Gauss 50 mm f/2 with unit focusing. */
+export class LensAssembly implements MountedLens {
+  readonly lens = TEACHING_LENS;
+  readonly zoomRing = null;
+  readonly zoomThrow = 0;
   readonly group = new THREE.Group();
   /** Parts fixed to the lens mount (do not move when focusing). */
   readonly fixed = new THREE.Group();
@@ -390,5 +401,43 @@ export class LensAssembly {
   /** World X of the front of the lens (where the field-of-view cone starts). */
   get frontX(): number {
     return this.centerX + 1.5;
+  }
+
+  get support(): { x: number; radius: number } {
+    return { x: this.centerX - 0.1, radius: 1.122 };
+  }
+
+  apply(o: OpticsFrame, explode: number): void {
+    this.setExploded(explode);
+    // unit focusing: the whole optical cell moves out by (v − f), shown at a teaching scale
+    const extension = Math.max(0, o.imageDistance - o.focalLength);
+    this.setFocus(extension * TEACHING_TRAVEL_SCALE, o.ringFraction * this.ringThrow);
+    this.setAperture((50 / o.fNumber / 2) * LAYOUT.kLateral, o.fNumber);
+  }
+
+  ringHintPoint(out: THREE.Vector3): THREE.Vector3 {
+    return this.focusRing.localToWorld(out.set(0.7, -0.55, 1.12));
+  }
+
+  irisLabelPoint(out: THREE.Vector3): THREE.Vector3 {
+    return out.set(this.stopX, this.axisY - 0.98, 0.3);
+  }
+
+  callouts(): readonly LensCallout[] {
+    return [];
+  }
+
+  dispose(): void {
+    const textures = new Set<THREE.Texture>();
+    this.group.traverse((o) => {
+      const m = o as THREE.Mesh;
+      if (!m.isMesh) return;
+      m.geometry.dispose();
+      for (const mat of Array.isArray(m.material) ? m.material : [m.material]) {
+        for (const v of Object.values(mat)) if (v instanceof THREE.Texture) textures.add(v);
+        mat.dispose();
+      }
+    });
+    for (const t of textures) t.dispose();
   }
 }

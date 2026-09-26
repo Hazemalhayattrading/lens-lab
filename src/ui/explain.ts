@@ -42,7 +42,7 @@ export function explain(o: OpticsFrame): { eyebrow: string; lead: string; body: 
   const focus = fmtDistance(o.focusDistance);
   const inFrame = o.subjects.filter((s) => s.inFrame);
   const sharp = inFrame.filter((s) => s.sharpness === 'sharp');
-  const onPlane = o.subjects.find((s) => Number.isFinite(s.distance) && Math.abs(s.distance - o.focusDistance) / s.distance < 0.02);
+  const onPlane = inFrame.find((s) => Number.isFinite(s.distance) && Math.abs(s.distance - o.focusDistance) / s.distance < 0.02);
 
   let lead: string;
   if (!Number.isFinite(o.focusDistance)) {

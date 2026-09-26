@@ -66,7 +66,7 @@ vec3 skyColor(vec3 d, float px) {
   vec2 sc = vec2(az, el) / 0.35;
   vec2 cell = floor(sc);
   float h = skyHash(cell);
-  if (h > 0.982 && starFade > 0.0) {
+  if (h > 0.992 && starFade > 0.0) {
     vec2 pos = cell + vec2(skyHash(cell + 3.1), skyHash(cell + 7.7));
     float distDeg = length((sc - pos) * 0.35);
     float sigma = max(degrees(px) * 0.9, 0.012);

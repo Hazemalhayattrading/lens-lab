@@ -107,8 +107,26 @@ this section and `git log`, then continue with the first unchecked phase.
   centres, near-field scatter-as-gather + tent filter, composite) · sensor chip resizes to the lens' format
   (APS-C / MFT / GF) · adaptive aperture buttons, MFD hatch on the focus slider, working f-number for macro.
   *Known limit:* a faint ghost of a large out-of-focus foreground remains behind its blur (single-layer DoF).
-- [ ] **2.6 — Procedural lenses**: barrel from real dimensions, real element / group counts, special elements highlighted
+- [x] **2.6 — Procedural lenses**: barrel from real dimensions, real element / group counts, special elements highlighted
   and labelled, zoom groups + zoom ring, adaptive aperture buttons, smooth lens-to-lens transitions.
+  *Done:* `lab/opticalLayout.ts` builds an illustrative cross-section per design family (double-Gauss, retrofocus,
+  ultra-wide, portrait, macro, telephoto, super-tele, 4 zoom families) with exactly the published element count;
+  cemented doublets (+/− achromats first) are formed until the published group count is reached; published special
+  glass is placed where it typically sits (low-dispersion glass in positive front-group elements of telephotos,
+  aspherical surfaces at the rear / front of wide-angles …; a label listed under two kinds is one element with both
+  properties). Elements are packed against each other's real sag profiles; the air each zoom / focus group needs is
+  reserved first and the motions are scaled down automatically if anything could collide.
+  `scene/lens/ProceduralLens.ts` turns it into the 3D cutaway: barrel to the maker's diameter × length (uniform scale,
+  iris on the optical centre), mount with lugs, rubber focus + zoom rings (both draggable), control ring, tripod
+  collar on super-teles, AF/IS switch panel, section tubes + cells, iris with the published blade count, colour-coded
+  special glass (legend in the lens card, callouts close up / exploded), extending front barrel with inner sleeve for
+  extending zooms, front ring engraved with the spec only (no maker names or trade dress). Rays fan out to the
+  entrance pupil in front of the iris (wider than the iris in a telephoto, narrower in a retrofocus). Lens swaps: the
+  old lens lifts away, the new one drops into a cradle sized for its barrel; geometry / textures are disposed
+  (memory stays flat over repeated swaps). Tests: `tests/opticalLayout.test.ts` — for every library lens and one
+  synthetic lens per family: published element / group counts, every special element assigned, positive edge
+  thickness, clear apertures inside the barrel and the mount throat, cemented partners share the contact surface,
+  no collision at any zoom / focus position, zoom and focus groups actually move, pupil within the front element.
 - [ ] **2.7 — Lens browser**: brand tabs, category filters, search, cards, detail sheet (specs, text, sources,
   "unverified" markers), "Load into lab".
 - [ ] **2.8 — Phones**: phone browser, per-camera specs, procedural exploded camera-module teardown (cover glass, lens

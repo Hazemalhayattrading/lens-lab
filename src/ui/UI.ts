@@ -5,6 +5,7 @@ import type { LabLens } from '../lab/labLens';
 import type { OpticsFrame } from '../lab/optics';
 import { depthMap } from '../scene/layout';
 import { explain, SUBJECT_NAME } from './explain';
+import { glassLegend, SPECIAL_KIND_NAMES } from '../lab/specialGlass';
 import { fmtApertureRange, fmtCoc, fmtDeg, fmtDistance, fmtDofCm, fmtF, fmtFocal, fmtFocalRange, fmtMm, fmtRange, fmtRatio, splitDistance } from './format';
 
 export type QualityChoice = 'auto' | 'low' | 'medium' | 'high';
@@ -157,7 +158,8 @@ export class UI {
     const subjects = SUBJECTS.map(
       (s) => `<li data-subject="${s.id}" style="color:${s.color}" title="Focus on the ${SUBJECT_NAME[s.id].toLowerCase()}">
         <span class="dot"></span>
-        <span class="name" style="color:var(--text)">${SUBJECT_NAME[s.id]}<small>${fmtDistance(s.distance, 1)}</small><span class="state">sharp</span></span>
+        <span class="name" style="color:var(--text)">${SUBJECT_NAME[s.id]}<small>${fmtDistance(s.distance, 1)}</small></span>
+        <span class="state">sharp</span>
         <span class="coc">—</span>
         <span class="bar"><i></i><b style="left:18%"></b></span>
       </li>`,
@@ -187,6 +189,7 @@ export class UI {
     <div class="lc-brand" data-bind="lensBrand"></div>
     <div class="lc-name" data-bind="lensName"></div>
     <div class="lc-specs" data-bind="lensSpecs"></div>
+    <ul class="lc-glass" data-bind="lensGlass" aria-label="Special glass in this lens (colour code of the cutaway)"></ul>
     <div class="lc-foot">
       <button class="btn lc-change" data-action="library" hidden>Change lens</button>
       <span class="lc-note" data-bind="lensNote" title="The cutaway uses the lens' real element and group counts; shapes and positions are schematic because the maker's construction diagram could not be reproduced exactly.">Illustrative layout</span>
@@ -500,6 +503,13 @@ export class UI {
     chips.push(verifiedElements ? `${lens.elements} elements / ${lens.groups} groups` : unver('elements'));
     if (d?.maxMagnification) chips.push(`${d.maxMagnification}× max`);
     this.$.lensSpecs.innerHTML = chips.map((c) => (c.startsWith('<') ? c : `<span>${c}</span>`)).join('');
+    // special glass: the colour code of the cutaway
+    const legend = glassLegend(lens.special);
+    const esc = (t: string) => t.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]!);
+    this.$.lensGlass.innerHTML = d && d.specialElements === null
+      ? `<li>${unver('special glass')}</li>`
+      : legend.map((g) => `<li title="${esc(g.kinds.map((k) => SPECIAL_KIND_NAMES[k]).join(' + '))}"><i style="color:${g.color}"></i>${esc(g.label)}${g.count > 1 ? ` <b>×${g.count}</b>` : ''}</li>`).join('');
+    this.$.lensGlass.hidden = !this.$.lensGlass.innerHTML;
     const assumed = lens.assumed.filter((a) => a !== 'elements' && a !== 'dimensions' && a !== 'blades');
     this.$.lensNote.textContent = assumed.length
       ? `Illustrative layout · lab assumes ${assumed.map((a) => (a === 'minAperture' ? 'f/16 minimum' : 'a 1:10 closest focus')).join(', ')}`
@@ -540,7 +550,8 @@ export class UI {
     const fl = o.focalLength;
     $.focal.innerHTML = `${fl >= 10 ? Math.round(fl) : fl.toFixed(1)}<small>mm</small>`;
     const crop = lens.crop;
-    $.focalSub.textContent = Math.abs(crop - 1) > 0.02 ? `≈ ${Math.round(fl * crop)} mm f/${(o.fNumber * crop).toFixed(1)} FF-equiv.` : o.curve.fitted && o.magnification > 0.02 ? `effective ${fmtFocal(o.effectiveFocal)} (breathing)` : '';
+    const breathing = o.curve.fitted && Math.abs(o.effectiveFocal - fl) / fl > 0.015;
+    $.focalSub.textContent = Math.abs(crop - 1) > 0.02 ? `≈ ${Math.round(fl * crop)} mm f/${(o.fNumber * crop).toFixed(1)} FF-eq.` : breathing ? `eff. ${fmtFocal(o.effectiveFocal)} · breathing` : '';
     $.dof.textContent = fmtDofCm(o.depthOfField);
     $.dofRange.textContent = fmtRange(o.near, o.far);
     $.di.textContent = fmtMm(o.imageDistance, 1);
@@ -587,7 +598,7 @@ export class UI {
     for (const s of o.subjects) {
       const row = this.subjectRows.get(s.id)!;
       row.coc.textContent = fmtCoc(s.coc);
-      const label = !s.inFrame ? 'out of frame' : s.tooClose ? 'too close' : s.sharpness;
+      const label = !s.inFrame ? 'outside' : s.tooClose ? 'too close' : s.sharpness;
       row.state.textContent = label;
       row.state.className = `state ${s.inFrame ? (s.tooClose ? 'close' : s.sharpness) : 'out'}`;
       row.li.classList.toggle('out', !s.inFrame);
