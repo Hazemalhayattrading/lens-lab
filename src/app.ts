@@ -29,6 +29,7 @@ import { SUBJECT_NAME } from './ui/explain';
 import { fmtCoc, fmtDeg, fmtDistance, fmtF } from './ui/format';
 import { LabelLayer } from './ui/labels';
 import type { LibraryView } from './ui/LibraryView';
+import type { PhonesView } from './ui/PhonesView';
 import { UI, type CameraPreset, type QualityChoice } from './ui/UI';
 
 const PRESETS: Record<CameraPreset, { position: THREE.Vector3; target: THREE.Vector3 }> = {
@@ -73,6 +74,7 @@ export class LensLabApp {
   private raysMaster = 1;
   private readonly tmp = new THREE.Vector3();
   private library: LibraryView | null = null;
+  private phones: PhonesView | null = null;
   /** The lab stops rendering while a full-screen view (library …) covers it. */
   private paused = false;
   private readonly auto: AutoQuality;
@@ -168,6 +170,7 @@ export class LensLabApp {
       onPeaking: (on) => (this.sensorView.matDisplay.uniforms.uPeaking.value = on ? 1 : 0),
       onHighlight: (id) => (this.highlight = id),
       onLibrary: () => void this.openLibrary(),
+      onPhones: () => void this.openPhones(),
     });
     this.ui.enableLibrary();
     this.ui.setLens(this.state.lens);
@@ -302,17 +305,49 @@ export class LensLabApp {
       });
       this.library.onSelect = (id) => history.replaceState(null, '', `#lenses/${id}`);
     }
+    if (this.phones?.isOpen) this.phones.close();
     this.paused = !this.capture;
     this.ui.setView('lenses');
     await this.library.open(this.lens.lens.id === TEACHING_LENS.id ? null : this.lens.lens.id, selectId);
     if (!location.hash.startsWith('#lenses')) history.replaceState(null, '', '#lenses');
   }
 
-  /** Deep links: #lenses, #lenses/<lens-id>. */
+  /** Opens the phone cameras view (view, styles, 3D viewer and data are fetched on first use). */
+  async openPhones(selectId?: string): Promise<void> {
+    if (!this.phones) {
+      const { PhonesView } = await import('./ui/PhonesView');
+      this.phones = new PhonesView(document.body, {
+        onClose: () => {
+          this.paused = false;
+          this.timer.reset();
+          this.ui.setView('lab');
+          if (location.hash.startsWith('#phones')) history.replaceState(null, '', location.pathname + location.search);
+        },
+      });
+      this.phones.onSelect = (id) => history.replaceState(null, '', `#phones/${id}`);
+    }
+    if (this.library?.isOpen) this.library.close();
+    this.paused = !this.capture;
+    this.ui.setView('phones');
+    await this.phones.open(selectId);
+    if (!location.hash.startsWith('#phones')) history.replaceState(null, '', '#phones');
+  }
+
+  /** Deep links: #lenses, #lenses/<lens-id>, #phones, #phones/<phone-id>. */
   route(): void {
-    const m = /^#lenses(?:\/([\w-]+))?$/.exec(location.hash);
-    if (m) void this.openLibrary(m[1]);
-    else if (this.library?.isOpen) this.library.close();
+    const lib = /^#lenses(?:\/([\w-]+))?$/.exec(location.hash);
+    const ph = /^#phones(?:\/([\w-]+))?$/.exec(location.hash);
+    if (lib) void this.openLibrary(lib[1]);
+    else if (ph) void this.openPhones(ph[1]);
+    else {
+      if (this.library?.isOpen) this.library.close();
+      if (this.phones?.isOpen) this.phones.close();
+    }
+  }
+
+  /** Test tooling: render the phone viewer synchronously. */
+  renderPhones(): void {
+    this.phones?.renderNow();
   }
 
   /** Mount a library lens by id (loads the data on demand). */

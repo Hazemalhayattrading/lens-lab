@@ -121,6 +121,8 @@ export class GlowLines {
       depthTest: opts.depthTest ?? true,
       blending: THREE.AdditiveBlending,
       toneMapped: false,
+      // screen-aligned quads: their winding depends on the segment's direction, never cull them
+      side: THREE.DoubleSide,
     });
     this.mesh = new THREE.Mesh(geo, this.material);
     this.mesh.frustumCulled = false;

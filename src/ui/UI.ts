@@ -24,6 +24,7 @@ export interface UIHandlers {
   onPeaking(on: boolean): void;
   onHighlight(id: SubjectId | null): void;
   onLibrary?(): void;
+  onPhones?(): void;
 }
 
 export interface UIState {
@@ -175,6 +176,7 @@ export class UI {
   <nav class="views seg" aria-label="Sections">
     <button data-view="lab" aria-current="page">Lab</button>
     <button data-view="lenses" aria-current="false" title="Browse the lens library (L)">Lenses</button>
+    <button data-view="phones" aria-current="false" title="Phone cameras and their teardowns (P)">Phones</button>
   </nav>
   <div class="top-actions">
     <div class="chip desktop-only"><div class="seg" role="group" aria-label="Render quality">
@@ -354,6 +356,7 @@ export class UI {
     r.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) =>
       b.addEventListener('click', () => {
         if (b.dataset.view === 'lenses') this.h.onLibrary?.();
+        else if (b.dataset.view === 'phones') this.h.onPhones?.();
       }),
     );
 
@@ -405,6 +408,7 @@ export class UI {
       else if (k === 'x') this.h.onExploded(!this.explodedState);
       else if (k === 'f') this.openFilm(!this.filmOpen);
       else if (k === 'l') this.h.onLibrary?.();
+      else if (k === 'p') this.h.onPhones?.();
       else if (k === 'arrowleft' || k === 'arrowright') {
         const u = Number(this.slider.value) / 1000 + (k === 'arrowleft' ? -0.02 : 0.02);
         this.h.onSlider(Math.min(1, Math.max(0, u)));
@@ -454,7 +458,7 @@ export class UI {
   }
 
   /** Marks the active section in the nav; while an overlay view is open the lab's shortcuts are off. */
-  setView(view: 'lab' | 'lenses'): void {
+  setView(view: 'lab' | 'lenses' | 'phones'): void {
     this.root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) => b.setAttribute('aria-current', b.dataset.view === view ? 'page' : 'false'));
     this.root.classList.toggle('overlay-open', view !== 'lab');
   }

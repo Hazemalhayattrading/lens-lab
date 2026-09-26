@@ -138,8 +138,22 @@ this section and `git log`, then continue with the first unchecked phase.
   guess, angle of view and full-frame equivalent computed from the data, strengths / weaknesses / best for, notes,
   sources with kind + domain and the check date, "Load into the lab" (zooms: at wide / middle / tele). The lab
   pauses rendering while the library covers it; mobile: single column + full-screen detail with back button.
-- [ ] **2.8 — Phones**: phone browser, per-camera specs, procedural exploded camera-module teardown (cover glass, lens
+- [x] **2.8 — Phones**: phone browser, per-camera specs, procedural exploded camera-module teardown (cover glass, lens
   stack, IR filter, sensor, VCM / OIS) and periscope prism path with animated light.
+  *Done:* `ui/PhonesView.ts` (lazy; nav "Phones", `P` key, `#phones/<id>`), `phone/PhoneViewer.ts` (its own small
+  three.js renderer, created on first open, paused when closed) and `phone/phoneOptics.ts` (tested). Generic phone body
+  (no maker design / logo), cameras placed by the published arrangement type. Straight modules, cut away: flex PCB,
+  ceramic package + die sized from the published optical format (else pixel count × pitch, else an illustrative size
+  that is labelled), sensor-shift OIS stage or lens-shift OIS, IR-cut filter, plastic aspheric stack (published
+  element count, else labelled illustrative) with a gull-wing last element, voice-coil motor, cover glass. Folded
+  telephotos follow the maker's description: classic periscope (prism → lens group → upright sensor with its long
+  side in the phone plane), tetraprism-style 4-reflection fold (labelled illustrative path), lenses-on-prism. Exploded
+  view lifts the module out of the phone, which fades; the camera moves to a side view; folded parts separate along
+  the light path so the animated glow path stays connected; part labels. Spec panel: published values vs computed
+  ones (sensor size, real focal length = equivalent ÷ crop, equivalent aperture = N × crop, angle of view, DoF at
+  2 m with the lab's conventions) each tagged *computed* with the formula; missing values *unverified*; all cameras
+  table; the maker's named computational features; sources. Fixed on the way: `GlowLines` quads are now drawn
+  double-sided (their winding depends on the segment direction, so some segments could be culled).
 - [ ] **2.9 — Explainers**: small-sensor depth of field, equivalent focal length & aperture, periscope zoom,
   computational photography (portrait mode, multi-frame fusion) — with live visuals.
 - [ ] **2.10 — Compare mode + phone vs camera**: any two lenses / phone cameras side by side: specs, FOV, DoF at the same
