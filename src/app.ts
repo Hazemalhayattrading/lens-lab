@@ -29,6 +29,7 @@ import { SUBJECT_NAME } from './ui/explain';
 import { fmtCoc, fmtDeg, fmtDistance, fmtF } from './ui/format';
 import { LabelLayer } from './ui/labels';
 import type { LibraryView } from './ui/LibraryView';
+import type { CompareView } from './ui/CompareView';
 import type { PhonesView } from './ui/PhonesView';
 import { UI, type CameraPreset, type QualityChoice } from './ui/UI';
 
@@ -75,6 +76,9 @@ export class LensLabApp {
   private readonly tmp = new THREE.Vector3();
   private library: LibraryView | null = null;
   private phones: PhonesView | null = null;
+  private compare: CompareView | null = null;
+  /** Two sensor pipelines for compare mode (created on first use). */
+  private comparePipes: [SensorPipeline, SensorPipeline] | null = null;
   /** The lab stops rendering while a full-screen view (library …) covers it. */
   private paused = false;
   private readonly auto: AutoQuality;
@@ -171,6 +175,7 @@ export class LensLabApp {
       onHighlight: (id) => (this.highlight = id),
       onLibrary: () => void this.openLibrary(),
       onPhones: () => void this.openPhones(),
+      onCompare: () => void this.openCompare(),
     });
     this.ui.enableLibrary();
     this.ui.setLens(this.state.lens);
@@ -306,6 +311,7 @@ export class LensLabApp {
       this.library.onSelect = (id) => history.replaceState(null, '', `#lenses/${id}`);
     }
     if (this.phones?.isOpen) this.phones.close();
+    if (this.compare?.isOpen) this.compare.close();
     this.paused = !this.capture;
     this.ui.setView('lenses');
     await this.library.open(this.lens.lens.id === TEACHING_LENS.id ? null : this.lens.lens.id, selectId);
@@ -327,6 +333,7 @@ export class LensLabApp {
       this.phones.onSelect = (id) => history.replaceState(null, '', `#phones/${id}`);
     }
     if (this.library?.isOpen) this.library.close();
+    if (this.compare?.isOpen) this.compare.close();
     this.paused = !this.capture;
     this.ui.setView('phones');
     await this.phones.open(selectId);
@@ -337,12 +344,80 @@ export class LensLabApp {
   route(): void {
     const lib = /^#lenses(?:\/([\w-]+))?$/.exec(location.hash);
     const ph = /^#phones(?:\/([\w-]+))?$/.exec(location.hash);
+    const cmp = /^#compare(?:\/([\w-]+))?$/.exec(location.hash);
     if (lib) void this.openLibrary(lib[1]);
     else if (ph) void this.openPhones(ph[1]);
+    else if (cmp) void this.openCompare(cmp[1]);
     else {
       if (this.library?.isOpen) this.library.close();
       if (this.phones?.isOpen) this.phones.close();
+      if (this.compare?.isOpen) this.compare.close();
     }
+  }
+
+  /** Opens compare mode; the two sensor images are rendered by the lab renderer (below the view's DOM). */
+  async openCompare(presetId?: string): Promise<void> {
+    if (!this.compare) {
+      const { CompareView } = await import('./ui/CompareView');
+      this.compare = new CompareView(document.body, {
+        onClose: () => {
+          this.paused = false;
+          this.timer.reset();
+          this.ui.setView('lab');
+          this.lastShadowKey = '';
+          if (location.hash.startsWith('#compare')) history.replaceState(null, '', location.pathname + location.search);
+        },
+      });
+    }
+    if (this.library?.isOpen) this.library.close();
+    if (this.phones?.isOpen) this.phones.close();
+    if (!this.comparePipes) {
+      const p = QUALITY[this.quality];
+      const q = { width: Math.min(p.sensorMaxWidth, 960), samples: p.sensorSamples, msaa: p.sensorMsaa };
+      this.comparePipes = [new SensorPipeline(q), new SensorPipeline(q)];
+    }
+    // compare renders its own frames (the lab's bench is not drawn meanwhile)
+    this.paused = false;
+    this.ui.setView('compare');
+    await this.compare.open(presetId);
+    if (!location.hash.startsWith('#compare')) history.replaceState(null, '', '#compare');
+    if (this.capture) this.frame(1 / 60);
+  }
+
+  /** Compare frame: both sides' sensor views of the diorama, drawn into the view's frame windows. */
+  private renderCompare(): void {
+    const cmp = this.compare!;
+    const pipes = this.comparePipes!;
+    if (!cmp.sides) {
+      this.renderer.setRenderTarget(null);
+      this.renderer.setClearColor('#05070a', 1);
+      this.renderer.clear();
+      return;
+    }
+    const frames = cmp.sides.map((s) => {
+      const T = Math.max(cmp.focus, focusCurve(s.lens.physics, s.zoom).mfd);
+      const o = computeFrame(s.lens, s.zoom, T, s.fNumber);
+      for (const subj of o.subjects) {
+        const p = this.diorama.subjects.find((x) => x.id === subj.id)!.position;
+        const fp = framePosition(p, o.fovHorizontal, o.fovVertical);
+        subj.inFrame = Math.abs(fp.x) <= 1.02 && Math.abs(fp.y) <= 1.02;
+      }
+      return o;
+    }) as [OpticsFrame, OpticsFrame];
+    focusOverlay.uOverlayOn.value = 0;
+    focusOverlay.uHazeOn.value = 1;
+    frames.forEach((o, i) => {
+      pipes[i].update(o, o.maxApertureNow, o.lens.blades || 9);
+      pipes[i].render(this.renderer, this.scene, this.t);
+    });
+    focusOverlay.uOverlayOn.value = 1;
+    focusOverlay.uHazeOn.value = 0;
+    this.renderer.setRenderTarget(null);
+    this.renderer.setClearColor('#05070a', 1);
+    this.renderer.clear();
+    const rects = cmp.frameRects();
+    rects.forEach((r, i) => r && pipes[i].drawToScreen(this.renderer, r, this.container.clientHeight));
+    cmp.update(frames);
   }
 
   /** Test tooling: render the phone viewer synchronously. */
@@ -472,6 +547,11 @@ export class LensLabApp {
     const dt = fixedDt ?? Math.min(this.timer.getDelta(), 0.1);
     this.t += dt;
     this.frameCount++;
+    if (this.compare?.isOpen) {
+      skyUniforms.uSkyTime.value = this.t;
+      this.renderCompare();
+      return;
+    }
 
     const debug = (window as unknown as { __lensDebug?: { explode?: number; f?: number; focus?: number; zoom?: number } }).__lensDebug;
     if (debug) {

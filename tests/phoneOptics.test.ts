@@ -100,3 +100,21 @@ describe('phone camera optics', () => {
     expect(moduleKind(cam({ folded: true, prism: 'periscope' }))).toBe('periscope');
   });
 });
+
+describe('phone camera as a lab lens (compare mode)', () => {
+  it('reproduces the equivalent angle of view through the lab physics', async () => {
+    const { labLensFromPhone, PHONE_ASSUMED_MFD } = await import('../src/lab/phoneLens');
+    const main = cam({ sensorFormat: '1/1.28"', eqFocalMm: 24, aperture: 1.48, apertureSteps: [1.48, 1.8, 2.8, 4] });
+    const lens = labLensFromPhone(phone([main]), 0)!;
+    expect(lens.format).toBe('phone');
+    expect(lens.physics.maxAperture.wide).toBe(1.48);
+    expect(lens.physics.minAperture.wide).toBe(4);
+    expect(lens.physics.mfd.wide).toBe(PHONE_ASSUMED_MFD);
+    expect(lens.assumed).toContain('minFocus');
+    // at ∞ the diagonal angle of view equals the 35 mm-equivalent one: 2·atan(43.267/48) = 84.1°
+    const s = lensState(lens.physics, 0, Infinity, 1.48);
+    expect((s.fovDiagonal * 180) / Math.PI).toBeCloseTo(84.1, 0);
+    // no sensor size → no lens (never guessed)
+    expect(labLensFromPhone(phone([cam({ eqFocalMm: 24, aperture: 1.8 })]), 0)).toBeNull();
+  });
+});

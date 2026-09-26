@@ -152,12 +152,24 @@ this section and `git log`, then continue with the first unchecked phase.
   the light path so the animated glow path stays connected; part labels. Spec panel: published values vs computed
   ones (sensor size, real focal length = equivalent ÷ crop, equivalent aperture = N × crop, angle of view, DoF at
   2 m with the lab's conventions) each tagged *computed* with the formula; missing values *unverified*; all cameras
-  table; the maker's named computational features; sources. Fixed on the way: `GlowLines` quads are now drawn
-  double-sided (their winding depends on the segment direction, so some segments could be culled).
+  table; the maker's named computational features; sources. Found on the way: `GlowLines` quads are one-sided and their
+  winding follows the segment's screen direction; the phone light paths opt into double-sided lines (the lab's ray
+  bundles keep their tuned one-sided look).
 - [ ] **2.9 — Explainers**: small-sensor depth of field, equivalent focal length & aperture, periscope zoom,
   computational photography (portrait mode, multi-frame fusion) — with live visuals.
-- [ ] **2.10 — Compare mode + phone vs camera**: any two lenses / phone cameras side by side: specs, FOV, DoF at the same
+- [x] **2.10 — Compare mode + phone vs camera**: any two lenses / phone cameras side by side: specs, FOV, DoF at the same
   distance, rendered images; phone-vs-full-frame preset.
+  *Done:* `ui/CompareView.ts` (lazy; nav "Compare", `C` key, `#compare/<preset>`). Two extra `SensorPipeline`s render the
+  diorama through each side from the same spot, focused at the same distance (clamped to each lens' closest focus,
+  flagged in the table); the images are drawn by the lab renderer into the view's transparent frame windows (the bench
+  is not rendered meanwhile). Pickers list every library lens, the teaching lens and every phone camera whose sensor
+  size and equivalent focal length are published (`lab/phoneLens.ts`: real focal length = equivalent ÷ crop, fixed or
+  stepped aperture, closest focus an explicit assumption). Per side: zoom slider (variable-aperture lenses stay wide
+  open), aperture buttons; shared focus chips. Table: sensor + crop, real and equivalent focal length, aperture +
+  equivalent aperture, angle of view, focus, depth of field, hyperfocal, background blur as % of the frame width
+  (comparable across formats), subject sharp / outside the frame, weight. Presets from the data: phone vs full frame
+  (iPhone main vs RF 24 mm f/1.4), APS-C vs full frame (XF 33 f/1.4 vs RF 50 f/1.2), wide vs tele (16 mm vs 600 mm),
+  f/1.2 vs f/8.
 - [ ] **2.12 — Polish loop**: Playwright screenshots (desktop + mobile) after each visual phase, critique, iterate;
   lazy loading, quality toggle, zero console errors.
 - [ ] **2.13 — Finish**: README, SOURCES.md, tests, `npm run build`, pull request with screenshots.

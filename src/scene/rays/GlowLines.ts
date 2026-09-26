@@ -84,7 +84,7 @@ export class GlowLines {
 
   constructor(
     readonly capacity: number,
-    opts: { width?: number; intensity?: number; depthTest?: boolean; pulse?: number; renderOrder?: number } = {},
+    opts: { width?: number; intensity?: number; depthTest?: boolean; pulse?: number; renderOrder?: number; doubleSided?: boolean } = {},
   ) {
     const geo = new THREE.InstancedBufferGeometry();
     geo.setAttribute('position', new THREE.Float32BufferAttribute([0, -1, 0, 1, -1, 0, 1, 1, 0, 0, 1, 0], 3));
@@ -121,8 +121,10 @@ export class GlowLines {
       depthTest: opts.depthTest ?? true,
       blending: THREE.AdditiveBlending,
       toneMapped: false,
-      // screen-aligned quads: their winding depends on the segment's direction, never cull them
-      side: THREE.DoubleSide,
+      // The quads' winding flips with the segment's screen direction, so one-sided lines drop the
+      // segments running "backwards". The lab's ray bundles were designed (and look best) that way;
+      // views that need every segment (the phone light paths) ask for both sides.
+      side: opts.doubleSided ? THREE.DoubleSide : THREE.FrontSide,
     });
     this.mesh = new THREE.Mesh(geo, this.material);
     this.mesh.frustumCulled = false;

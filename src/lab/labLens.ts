@@ -27,7 +27,8 @@ export interface LabLens {
   /** Full record from the library (null for the built-in teaching lens). */
   data: LensData | null;
   category: LensCategory;
-  format: SensorFormat;
+  /** 'phone' = a phone camera's own sensor size (compare mode). */
+  format: SensorFormat | 'phone';
   /** Mount throat diameter in mm (draws the bayonet to scale). */
   mountDiameter: number;
   physics: LensPhysicsSpec;

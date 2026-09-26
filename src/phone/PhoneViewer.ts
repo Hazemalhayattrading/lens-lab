@@ -106,7 +106,7 @@ export class PhoneViewer {
   readonly camera = new THREE.PerspectiveCamera(30, 1, 1, 2000);
   readonly controls: OrbitControls;
   private readonly labels: LabelLayer;
-  private readonly lines = new GlowLines(400, { width: 2.4, intensity: 1.5, pulse: 1.4, depthTest: false });
+  private readonly lines = new GlowLines(400, { width: 2.4, intensity: 1.5, pulse: 1.4, depthTest: false, doubleSided: true });
   private phone: THREE.Group | null = null;
   private phoneMats: THREE.Material[] = [];
   private modules: Module[] = [];

@@ -25,6 +25,7 @@ export interface UIHandlers {
   onHighlight(id: SubjectId | null): void;
   onLibrary?(): void;
   onPhones?(): void;
+  onCompare?(): void;
 }
 
 export interface UIState {
@@ -177,6 +178,7 @@ export class UI {
     <button data-view="lab" aria-current="page">Lab</button>
     <button data-view="lenses" aria-current="false" title="Browse the lens library (L)">Lenses</button>
     <button data-view="phones" aria-current="false" title="Phone cameras and their teardowns (P)">Phones</button>
+    <button data-view="compare" aria-current="false" title="Compare two lenses or phone cameras (C)">Compare</button>
   </nav>
   <div class="top-actions">
     <div class="chip desktop-only"><div class="seg" role="group" aria-label="Render quality">
@@ -357,6 +359,7 @@ export class UI {
       b.addEventListener('click', () => {
         if (b.dataset.view === 'lenses') this.h.onLibrary?.();
         else if (b.dataset.view === 'phones') this.h.onPhones?.();
+        else if (b.dataset.view === 'compare') this.h.onCompare?.();
       }),
     );
 
@@ -409,6 +412,7 @@ export class UI {
       else if (k === 'f') this.openFilm(!this.filmOpen);
       else if (k === 'l') this.h.onLibrary?.();
       else if (k === 'p') this.h.onPhones?.();
+      else if (k === 'c') this.h.onCompare?.();
       else if (k === 'arrowleft' || k === 'arrowright') {
         const u = Number(this.slider.value) / 1000 + (k === 'arrowleft' ? -0.02 : 0.02);
         this.h.onSlider(Math.min(1, Math.max(0, u)));
@@ -458,7 +462,7 @@ export class UI {
   }
 
   /** Marks the active section in the nav; while an overlay view is open the lab's shortcuts are off. */
-  setView(view: 'lab' | 'lenses' | 'phones'): void {
+  setView(view: 'lab' | 'lenses' | 'phones' | 'compare'): void {
     this.root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach((b) => b.setAttribute('aria-current', b.dataset.view === view ? 'page' : 'false'));
     this.root.classList.toggle('overlay-open', view !== 'lab');
   }
@@ -512,7 +516,7 @@ export class UI {
     this.$.lensName.textContent = lens.name;
     const p = lens.physics;
     const chips: string[] = [fmtFocalRange(p.focal.min, p.focal.max), fmtApertureRange(p.maxAperture.wide, p.maxAperture.tele)];
-    if (lens.format !== 'full-frame') chips.push(lens.format === 'aps-c' ? 'APS-C' : lens.format === 'micro-four-thirds' ? 'Micro Four Thirds' : 'Medium format');
+    if (lens.format !== 'full-frame') chips.push(lens.format === 'aps-c' ? 'APS-C' : lens.format === 'micro-four-thirds' ? 'Micro Four Thirds' : lens.format === 'phone' ? 'Phone sensor' : 'Medium format');
     const unver = (label: string) => `<span class="unverified" title="Could not be verified — the lab uses an assumed value">${label} unverified</span>`;
     const mfd = d ? d.minFocusM : null;
     if (mfd && mfd.wide !== null) chips.push(`MFD ${mfd.wide === mfd.tele || mfd.tele === null ? `${mfd.wide} m` : `${mfd.wide}–${mfd.tele} m`}`);

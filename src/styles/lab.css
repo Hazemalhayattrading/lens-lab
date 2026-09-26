@@ -340,6 +340,8 @@
     padding: 7px 10px;
   }
 }
-body.lib-open #ui {
-  visibility: hidden;
+body.lib-open #ui,
+body.lib-open #ui * {
+  /* full-screen views cover the lab; compare is transparent over the canvas, so hide every label too */
+  visibility: hidden !important;
 }
